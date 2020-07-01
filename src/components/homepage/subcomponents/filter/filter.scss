@@ -1,0 +1,122 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/fonts';
+@import '../../../../stylesheets/utilities';
+
+.filter{
+
+    @extend %centered-flex;
+    flex-direction: column;
+
+    &__header{
+        padding: 0 150px;
+        color: $dark-blue;
+        margin-bottom: 50px;
+        font-family: markpro-bold;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 40px;
+        line-height: 51px;
+    }
+
+    &__filter__search{
+        @extend %centered-flex;
+        margin-bottom: 35px;
+
+        .inputgroup{
+            display: flex;
+            align-items: center;
+            border: 1px solid $light-grey;
+            border-radius: 5px 0px 0px 5px;
+            padding-left: 20px;
+        }
+        .inputgroup:active{
+            border: 1px solid red;
+        }
+
+        &__input{
+            width: 548px;
+            height: 50px;
+            border: 1px solid $light-grey;
+            box-sizing: border-box;
+            border-radius: 5px;
+            @extend %eighteenpx;
+            font-size: 16px;
+            padding: 18px 20px;
+            padding-left: 9px;
+            color: $light-grey;
+            border: 0;
+            outline: none;
+            
+            &:hover{
+                outline: none;
+            }
+        }
+
+        &__button{
+            @extend %filled-button;
+            border-radius: 0px 5px 5px 0px;
+            width: 125px;
+            height: 52px;
+        }
+
+    }
+
+    &__filter__select{
+        background: $lightest-grey;
+        margin-bottom: 50px;
+        width: 1140px;
+        height: 169px;
+        border-radius: 10px;
+        padding: 26px 35px 35px 35px;
+        box-sizing: border-box;
+        
+        &__items{
+             display: flex;
+             justify-content: space-between;
+
+            .--item{
+                width: 191px;
+                height: 45px;
+                *{
+                    color: $dark-blue;
+                    font-family: markpro-regular;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        &__icons{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+
+            &__icon{
+                cursor: pointer;
+            }
+        }
+
+        .--divider{
+            border: 0.8px solid $light-navy-blue-two;
+            margin-bottom: 25px;
+        }
+
+        &__icons__icon{
+            display: flex;
+            cursor: pointer;
+
+            .--icon{
+                margin-right: 10px;
+            }
+
+            .--text{
+                @extend %eighteenpx;
+                color: $dark-blue;
+                font-family: 'markpro-medium'; 
+
+            }
+        }
+
+    }
+
+}

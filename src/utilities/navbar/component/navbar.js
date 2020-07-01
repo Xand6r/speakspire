@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from '../assets/Logo.svg';
-import './navbar.scss';;
+import './navbar.scss';
 
 export default function navbar() {
     return (

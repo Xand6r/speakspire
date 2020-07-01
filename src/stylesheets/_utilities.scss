@@ -1,4 +1,9 @@
 @import './colors';
+@import './fonts';
+
+.--underline{
+    text-decoration: underline;
+}
 
 %centered-flex {
     display: flex;
@@ -11,6 +16,9 @@
     background: $light-blue;
     border-radius: 5px;
     color: white;
+    cursor: pointer;
+    font-family: markpro-bold;
+    font-size: 15px;
 }
 
 %outlined-button {
@@ -19,4 +27,15 @@
     border: 1px solid $light-blue;
     box-sizing: border-box;
     color: $light-blue;
+    cursor: pointer;
+    font-family: markpro-bold;
+    font-size: 15px;
+    line-height: 19px;
+}
+
+
+// define font progressions
+%eighteenpx{
+    line-height: 23px;
+    font-size: 18px;
 }
