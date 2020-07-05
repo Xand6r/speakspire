@@ -1,0 +1,112 @@
+// import the dependencies
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+@import '../../../../stylesheets/fonts';
+
+.event{
+    display: flex;
+    margin-top: 129px;
+    margin-bottom: 170px;
+    padding: 0 150px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    &__graphic{
+        margin-right: 280px;
+        
+        img{
+            position: absolute;
+            z-index: -1;
+        }
+        &__floating_card{ 
+            margin-left: 40%;
+            margin-top: 26%;
+            .--icons{
+                display: flex;
+                margin-bottom: 15px;
+                div{
+                    @extend %centered-flex;
+                    background: white;
+                    box-shadow: 0px 15px 15px rgba(77, 117, 244, 0.08);
+                    border-radius: 50%;
+                    width: 38.11px;
+                    height: 38.11px;
+                    margin: 0 5px;
+                }
+                img{
+                    position: relative;
+                    z-index: 1;
+                }
+            }
+            .--card{
+                background: #FFFFFF;
+                box-shadow: 0px 15px 20px rgba(77, 117, 244, 0.05);
+                border-radius: 10px;
+                width: 314px;
+                padding: 14px 28px;
+                img{
+                    position: relative;
+                    z-index: 1;
+                }
+                .--card-item{
+                    @extend %fourteenpx;
+                    padding: 14px 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    color: $light-navy-blue;
+                    font-family: 'markpro-bold';
+                    text-transform: capitalize;
+                    img{
+                        margin-right: 11px;
+                    }
+                }
+            }
+        }
+    }
+
+    &__text{
+        display: flex;
+        max-width: 489px;
+        flex-direction: column;
+
+        .--header{
+            @extend %fourtypx;
+            color: $dark-blue;
+            font-family: 'markpro-bold';
+            margin-bottom: 15px;
+        }
+
+        .--subheader{
+            @extend %eighteenpx;
+            color: $grey;
+            max-width: 321px;
+            margin-bottom: 50px;
+        }
+
+        &__list_items{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 203px;
+            max-width: 321px;
+
+            .--item{
+                @extend %eighteenpx;
+                display: flex;
+                font-family: 'markpro-bold';
+                color: $dark-blue;
+                .--number{
+                    color: $light-blue;
+                    margin-right: 13px;
+                }
+            }
+        }
+        .--button{
+            @extend %filled-button;
+            width: 180px;
+            height: 50px;
+            margin-top: 50px;
+        }
+    }
+}

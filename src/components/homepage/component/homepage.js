@@ -4,6 +4,7 @@ import {component as Header} from '../subcomponents/header';
 import {component as SpeakerFilter} from '../subcomponents/filter_upper';
 import {component as EventFilter} from '../subcomponents/filter_lower';
 import {component as Vision} from '../subcomponents/vision';
+import {component as Event} from '../subcomponents/event';
 import './homepage.scss'
 
 export default function homepage() {
@@ -28,6 +29,10 @@ export default function homepage() {
             {/* The filter functionality to search events */}
             <EventFilter />
             {/* The filter functionality to search events */}
+
+            {/* The event section of the page */}
+            <Event />
+            {/* The event section of the page */}
 
         </div>
     )
