@@ -1,12 +1,14 @@
 import React from 'react';
-
 import {component as NavBar} from '../../../utilities/navbar';
 import {component as Header} from '../subcomponents/header';
-import {component as Filter} from '../subcomponents/filter';
+import {component as SpeakerFilter} from '../subcomponents/filter_upper';
+import {component as EventFilter} from '../subcomponents/filter_lower';
+import {component as Vision} from '../subcomponents/vision';
+import './homepage.scss'
 
 export default function homepage() {
     return (
-        <div>
+        <div class="hompage">
             {/* the top navigation bar of the site */}
             <NavBar />
             {/* the top navigation bar of the site */}
@@ -16,8 +18,16 @@ export default function homepage() {
             {/* The headver page of the webiste */}
 
             {/* The filter functionaity to search for a speaker */}
-            <Filter />
+            <SpeakerFilter />
             {/* The filter functionaity to search for a speaker */}
+
+            {/* The vision of speakspire */}
+            <Vision />
+            {/* The vision of speakspire */}
+
+            {/* The filter functionality to search events */}
+            <EventFilter />
+            {/* The filter functionality to search events */}
 
         </div>
     )

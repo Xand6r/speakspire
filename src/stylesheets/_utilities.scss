@@ -5,6 +5,12 @@
     text-decoration: underline;
 }
 
+%divider{
+    border: 0.3px solid $light-navy-blue_two;
+    margin-bottom: 11px;
+    width: 100%;
+}
+
 %centered-flex {
     display: flex;
     justify-content: center;
@@ -35,7 +41,22 @@
 
 
 // define font progressions
+%fourteenpx{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+}
+
 %eighteenpx{
     line-height: 23px;
     font-size: 18px;
+}
+
+%fourtypx{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 51px;
+
 }

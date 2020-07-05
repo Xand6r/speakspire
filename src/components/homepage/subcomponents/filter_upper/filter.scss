@@ -46,6 +46,8 @@
             color: $light-grey;
             border: 0;
             outline: none;
+            font-family: 'markpro-medium';
+
             
             &:hover{
                 outline: none;
@@ -117,6 +119,22 @@
             }
         }
 
+    }
+
+    &__results{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 70px;
+    }
+
+    &__more_results{
+        @extend %outlined-button;
+        width: 206px;
+        height: 50px;
+        border-width: 1.5px;
+        justify-content: space-between;
+        padding:0 35px;
     }
 
 }

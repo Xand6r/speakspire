@@ -1,9 +1,11 @@
 import React from 'react';
 import Select from 'react-select'
 
+import { component as SpeakerCard } from '../../../../utilities/speakerCard';
 import FilterIcon from '../../assets/filterIcon.svg';
 import ResetFilterIcon from '../../assets/resetFilterIcon.svg';
 import SearchIcon from '../../assets/search.svg';
+import LeftArrow from '../../assets/leftArrow.svg';
 
 import './filter.scss';
 
@@ -68,7 +70,15 @@ export default function filter() {
                 </div>
 
                 <div className="filter__results">
-                    
+                    <SpeakerCard />
+                    <SpeakerCard />
+                    <SpeakerCard />
+                    <SpeakerCard />
+                </div>
+
+                <div className="filter__more_results">
+                    <span>More Speakers</span>
+                    <img src={LeftArrow} alt="left arrow"/>
                 </div>
             </div>
         </div>
