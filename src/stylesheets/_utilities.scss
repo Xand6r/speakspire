@@ -41,6 +41,10 @@
 
 
 // define font progressions
+%elevenpx{
+    font-size: 11px;
+    line-height: 14px;
+}
 %fourteenpx{
     font-style: normal;
     font-weight: 500;
@@ -53,10 +57,19 @@
     font-size: 18px;
 }
 
+%twentyfourpx{
+    line-height: 34px;
+    font-size: 24px;
+}
+
+%thirtysixpx{
+    font-size: 36px;
+    line-height: 46px;
+}
+
 %fourtypx{
     font-style: normal;
     font-weight: bold;
     font-size: 40px;
     line-height: 51px;
-
 }

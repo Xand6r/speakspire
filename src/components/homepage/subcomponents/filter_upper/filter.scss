@@ -29,9 +29,6 @@
             border-radius: 5px 0px 0px 5px;
             padding-left: 20px;
         }
-        .inputgroup:active{
-            border: 1px solid red;
-        }
 
         &__input{
             width: 548px;
@@ -43,7 +40,7 @@
             font-size: 16px;
             padding: 18px 20px;
             padding-left: 9px;
-            color: $light-grey;
+            color: $dark-blue;
             border: 0;
             outline: none;
             font-family: 'markpro-medium';

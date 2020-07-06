@@ -54,8 +54,8 @@ export default function vision() {
                     </div>
                     <div className="vision__register__benefits">
                         {
-                            benefits.map(benefit => (
-                                <div className="--benefit">
+                            benefits.map((benefit,i) => (
+                                <div className="--benefit" key={i}>
                                     <img src={benefit[0]} alt="" className="--icon"/>
                                     <div className="--text">
                                         {benefit[1]}

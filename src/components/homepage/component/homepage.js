@@ -5,11 +5,13 @@ import {component as SpeakerFilter} from '../subcomponents/filter_upper';
 import {component as EventFilter} from '../subcomponents/filter_lower';
 import {component as Vision} from '../subcomponents/vision';
 import {component as Event} from '../subcomponents/event';
+import {component as Contact} from '../subcomponents/contact';
+import {component as Footer} from '../subcomponents/footer';
 import './homepage.scss'
 
 export default function homepage() {
     return (
-        <div class="hompage">
+        <div className="hompage">
             {/* the top navigation bar of the site */}
             <NavBar />
             {/* the top navigation bar of the site */}
@@ -33,6 +35,15 @@ export default function homepage() {
             {/* The event section of the page */}
             <Event />
             {/* The event section of the page */}
+
+            {/* The contact section of the page */}
+            <Contact />
+            {/* The contact section of the page */}
+
+            {/* The footer of the page */}
+            <Footer />
+            {/* The footer of the page */}
+
 
         </div>
     )

@@ -3,7 +3,7 @@ import './skill.scss';
 
 export default function skill({name}) {
     return (
-        <div class="skill">
+        <div className="skill">
             {name}
         </div>
     )

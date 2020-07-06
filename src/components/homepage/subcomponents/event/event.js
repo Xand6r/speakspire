@@ -33,8 +33,8 @@ export default function event() {
                         </div>
                         <div className="--card">
                             {
-                                upcomingEvents.map(event=>(
-                                    <div className="--card-item">
+                                upcomingEvents.map((event,i)=>(
+                                    <div className="--card-item" key={i}>
                                         <div className="--title">
                                             <img src={smallPlus} alt=""/>
                                             {event[0]}
@@ -59,7 +59,7 @@ export default function event() {
 
                         {
                             eventSteps.map((item,i)=>(
-                                <div className="--item">
+                                <div className="--item" key={i}>
                                     <div className="--number">{i + 1}</div>
                                     <div className="--step">
                                         {item}

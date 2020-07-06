@@ -1,0 +1,92 @@
+// import the dependencies
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+@import '../../../../stylesheets/fonts';
+
+.contact{
+    @extend %centered-flex;
+    flex-direction: column;
+    margin-bottom: 90px;
+    &__subscribe{
+        &__text{
+            @extend %twentyfourpx;
+            margin: 0 auto;
+            color: $dark-blue;
+            text-align: center;
+            max-width: 570px;
+            font-style: normal;
+            font-weight: 500;
+            font-family: 'markpro-medium';
+            margin-bottom: 40px;
+        }
+
+        &__search{
+            @extend %centered-flex;
+            .inputgroup{
+                display: flex;
+                align-items: center;
+                border: 1px solid $light-grey;
+                border-radius: 5px 0px 0px 5px;
+            }
+    
+            &__input{
+                width: 437px;
+                height: 50px;
+                border: 1px solid $light-grey;
+                box-sizing: border-box;
+                border-radius: 5px;
+                @extend %eighteenpx;
+                font-size: 16px;
+                padding: 18px 20px;
+                color: $dark-blue;
+                border: 0;
+                outline: none;
+                font-family: 'markpro-medium';
+                
+                &:hover{
+                    outline: none;
+                }
+            }
+    
+            &__button{
+                @extend %filled-button;
+                border-radius: 0px 5px 5px 0px;
+                width: 133px;
+                height: 52px;
+            }
+    
+        }
+    }
+    &__banner{
+        margin-bottom: 118px;
+        color: white;
+        border-radius: 10px;
+        background: $dark-blue;
+        box-shadow: 0px 20px 40px rgba(77, 117, 244, 0.2);
+        width: 1140px;
+        height: 252px;
+        box-sizing: border-box;
+        padding: 80px 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .--text{
+            @extend %thirtysixpx;
+            font-style: normal;
+            font-weight: bold;
+            font-family: 'markpro-bold';
+            max-width: 463px;
+        }
+
+        .--button{
+            @extend %outlined-button;
+            width: 185px;
+            height: 50px;
+            @extend %eighteenpx;
+            font-family: 'markpro-bold';
+            border: 1px solid white;
+            color: white;
+        }
+    }
+}
