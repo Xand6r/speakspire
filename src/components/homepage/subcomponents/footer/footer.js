@@ -13,6 +13,10 @@ const SPEKAER_ITEMS=[
     'Corporate Speakers','Celebrity Speakers','Blog', 
     'Privacy', 'Terms', 'Career'
 ];
+const EVENT_ITEMS=[
+    'Corporate Events','Celebrity Events','Blog', 
+    'Privacy', 'Terms', 'Career'
+];
 const TOPIC_ITEMS=[
     'Health', 'Motivation', 'Social Wellbeing', 'Personal Development',
     'Fitness', 'Technology'
@@ -55,6 +59,20 @@ export default function footer() {
                         <div className="--items">
                             {
                                 SPEKAER_ITEMS.map((item, i)=>(
+                                    <div key={i} className="--item">
+                                        {item}
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                    <div className="footer__text__section">
+                        <div className="--header">
+                            Events
+                        </div>
+                        <div className="--items">
+                            {
+                                EVENT_ITEMS.map((item, i)=>(
                                     <div key={i} className="--item">
                                         {item}
                                     </div>

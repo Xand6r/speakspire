@@ -16,8 +16,8 @@ export default function navbar() {
                     <div className="navigation__menu__item --item"> Events </div>
                     <div className="navigation__menu__item --item"> Blog </div>
                     <div className="navigation__menu__item --item"> About Us </div>
-                    <div className="navigation__menu__item --filledbutton"> Sign In </div>
-                    <div className="navigation__menu__item --outlinedbutton"> Sign Up</div>
+                    <div className="navigation__menu__item --outlinedbutton"> Sign In </div>
+                    <div className="navigation__menu__item --filledbutton"> Sign Up</div>
                 </div>
 
             </div>

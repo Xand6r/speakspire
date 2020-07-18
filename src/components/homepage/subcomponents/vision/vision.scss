@@ -8,6 +8,12 @@
     margin-bottom: 135px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    
+    .--wrapper{
+        max-width: 426px;
+    }
+    
     &__mission_statement{
         display: flex;
         justify-content: space-between;
@@ -17,7 +23,7 @@
             @extend %centered-flex;
             flex-direction: column;
             position: absolute;
-            right: 10vw;
+            right: 30px;
             top: -50px;
 
             .--axis{
@@ -55,9 +61,8 @@
     }
 
     &__mission_statement__text{
-        max-width: 426px;
+        width: 1140px;
         padding: 0 150px;
-
         .--heading{
             @extend %fourtypx;
             font-family: markpro-bold;
@@ -75,15 +80,19 @@
 
     &__register {
         min-height: 766px;
-        background: $light-green-two;
+        background: $light-blue;
         padding: 126px 0;
         display: flex;
         align-items: center;
         box-sizing: border-box;
         flex-direction: column;
+        width: 100%;
+        color: white;
         
         .signup{
             @extend %filled-button;
+            background: white;
+            color: $light-blue;
             width: 177px;
             height: 50px;
         }
@@ -93,7 +102,6 @@
             font-weight: bold;
             line-height: 51px;
             text-align: center;
-            color: $dark-blue;
             max-width: 450px;
             margin-bottom: 103px;
             font-family: 'markpro-bold';
@@ -109,13 +117,13 @@
                 margin: 0 60px;
                 .--icon{
                     margin-bottom: 49px;
+                    margin-left: 5px;
+                    align-self: flex-start;
                 }
                 .--text{
                     @extend %eighteenpx;
                     line-height: 28px;
                     font-family: 'markpro-medium';
-                    color: $dark-blue;
-                    text-align: center;
                 }
             }
         }

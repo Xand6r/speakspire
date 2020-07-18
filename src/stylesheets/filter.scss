@@ -1,6 +1,6 @@
-@import '../../../../stylesheets/colors';
-@import '../../../../stylesheets/fonts';
-@import '../../../../stylesheets/utilities';
+@import './colors';
+@import './fonts';
+@import './utilities';
 
 .filter{
 
@@ -78,7 +78,7 @@
                 height: 45px;
                 *{
                     color: $dark-blue;
-                    font-family: markpro-regular;
+                    font-family: markpro-medium;
                     font-size: 14px;
                 }
             }
@@ -96,7 +96,7 @@
         }
 
         .--divider{
-            border: 0.8px solid $light-navy-blue-two;
+            border: 0.05px solid $light-navy-blue-two;
             margin-bottom: 25px;
         }
 

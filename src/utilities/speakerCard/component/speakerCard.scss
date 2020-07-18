@@ -31,6 +31,7 @@
         line-height: 11px;
         @extend %centered-flex;
         font-family: 'markpro-bold';
+        text-transform: uppercase;
     }
 
     .--premium{
@@ -83,7 +84,7 @@
             }
         }
         .--divider{
-            border: 0.3px solid $light-navy-blue_two;
+            border: 0.05px solid $light-navy-blue_two;
             margin-bottom: 11px;
             width: 100%;
         }

@@ -44,7 +44,6 @@ export default function homepage() {
             <Footer />
             {/* The footer of the page */}
 
-
         </div>
     )
 }

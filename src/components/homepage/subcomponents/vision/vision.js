@@ -24,12 +24,14 @@ export default function vision() {
 
                 <div className="vision__mission_statement">
                     <div className="vision__mission_statement__text">
-                        <div className="--heading">
-                            Reigniting the world one speaker at a time
-                        </div>
-                        <div className="--subheading">
-                            We are a community of speakers who aren’t just interested in showing up at events but showing up in people’s lives to inspire them to be better.
-                              The world needs the inspiration to light up.   
+                        <div className="--wrapper">
+                            <div className="--heading">
+                                Reigniting the world one speaker at a time
+                            </div>
+                            <div className="--subheading">
+                                We are a community of speakers who aren’t just interested in showing up at events but showing up in people’s lives to inspire them to be better.
+                                The world needs the inspiration to light up.   
+                            </div>
                         </div>
                     </div>
                     <div className="vision__mission_statement__world">

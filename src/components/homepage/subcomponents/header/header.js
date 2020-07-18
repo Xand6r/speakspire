@@ -13,7 +13,7 @@ export default function header() {
                         Ready to ignite a vibrant world?
                     </div>
                     <div className="header__text__secondary">
-                        start by SPEAKING about it.
+                        Start by SPEAKING about it.
                     </div>
                     <div className="header__text__action">
                         Sign Up

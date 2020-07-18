@@ -8,7 +8,7 @@ import ResetFilterIcon from '../../assets/resetFilterIcon.svg';
 import SearchIcon from '../../assets/search.svg';
 import LeftArrow from '../../assets/leftArrow.svg';
 
-import './filter.scss';
+import '../../../../stylesheets/filter.scss';
 
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
