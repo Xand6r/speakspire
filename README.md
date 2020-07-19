@@ -1,4 +1,4 @@
-Visit site at  [Speakspier](https://speakspire.com).
+Visit site at  [Speakspire](https://speakspire.com).
 
 ## Available Scripts
 
