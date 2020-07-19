@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Visit site at  [Speakspier](https://speakspire.com).
 
 ## Available Scripts
 
