@@ -1,0 +1,75 @@
+// import the dependencies
+@import '../../stylesheets/colors';
+@import '../../stylesheets/utilities';
+@import '../../stylesheets/fonts';
+
+.footer{
+    min-height: 637px;
+    background: #F4F8FF;
+    padding: 100px 150px 67px;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    align-items: space-between;
+    box-sizing: border-box;
+
+    .divider{
+        @extend %divider;
+        margin-bottom: 33px;
+    }
+
+    &__icons{
+        &__media{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .--right-reserved{
+            @extend %centered-flex;
+            img{
+                margin-right: 24px;
+            }
+            span{
+                @extend %elevenpx;
+                color: $dark-blue;
+                font-family: 'markpro-regular';
+            }
+        }
+        .--social-media{
+            width: 184px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    &__text{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: flex-end;
+
+        .topics{
+            display: flex;
+            justify-content: space-between;
+            width: 509px;
+            margin-right: 104px;
+        }
+
+        &__section{
+            .--header{
+                @extend %eighteenpx;
+                font-weight: 500;
+                font-family: 'markpro-medium';
+                color: $dark-blue;
+                margin-bottom: 15px;
+            }
+            .--item{
+                @extend %fourteenpx;
+                font-family: 'markpro-regular';
+                color: $light-navy-blue;
+                line-height: 33px;
+            }
+        }
+    }
+}

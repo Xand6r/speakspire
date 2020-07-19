@@ -1,0 +1,106 @@
+@import '../../../stylesheets/colors';
+@import '../../../stylesheets/fonts';
+@import '../../../stylesheets/utilities';
+
+
+.speakercard{
+    display: flex;
+    flex-direction: column;
+    min-width: 262px;
+    max-width: 262px;
+    // height: 361px;
+    box-shadow: 0px 5px 20px rgba(22, 35, 89, 0.05);
+    border-radius: 10px;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 35px;
+    margin: 0 15px;
+    margin-bottom: 70px;
+
+    %tag{
+        position: relative;
+        right:25px;
+        width: 71px;
+        height: 22px;
+        background: #FFF5E3;
+        border-radius: 10px 0px;
+        text-transform: capitalize;
+        font-size: 9px;
+        line-height: 11px;
+        @extend %centered-flex;
+        font-family: 'markpro-bold';
+        text-transform: uppercase;
+    }
+
+    .--premium{
+        @extend %tag;
+        background: #FFF5E3;;
+        color: #D1B072;
+    }
+
+    &__profile {
+        @extend %centered-flex;
+        flex-direction: column;
+        margin-top: 35px;
+
+        &__picturewrapper{
+            // border: 2px solid red;
+            width: 93px;
+            height: 93px;
+            border-radius: 50%;
+            .pictureImage{
+                width: 93px;
+                height: 93px;
+            }
+        }
+
+        &__name{
+            color: $dark-blue;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            @extend %eighteenpx;
+            font-family: 'markpro-bold';
+        }
+
+        &__position {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 11px;
+            line-height: 14px;
+            @extend %centered-flex;
+            flex-direction: column;
+            line-height: 14px;
+            margin-bottom: 25px;
+
+            .--title{
+                color: $dark-blue;
+                font-family: 'markpro-medium';
+            }
+            .--company{
+                color: $light-navy-blue;
+                font-family: 'markpro-regular';
+            }
+        }
+        .--divider{
+            border: 0.05px solid $light-navy-blue_two;
+            margin-bottom: 11px;
+            width: 100%;
+        }
+
+        &__skills{
+            @extend %centered-flex;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        &__footer{
+            @extend %centered-flex;
+
+            img{
+                margin-left: 10px;
+            }
+        }
+    }
+}

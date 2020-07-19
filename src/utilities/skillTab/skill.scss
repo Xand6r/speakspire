@@ -1,0 +1,17 @@
+@import '../../stylesheets/colors';
+@import '../../stylesheets/fonts';
+@import '../../stylesheets/utilities';
+
+.skill{
+    color: $dark-blue;
+    @extend %centered-flex;
+    font-family: 'markpro-medium';
+    text-transform: uppercase;
+    background: #EFF0F3;
+    height: 17px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 8px;
+    margin-top: 6px;
+    margin-left: 8px;
+}

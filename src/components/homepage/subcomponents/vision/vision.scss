@@ -1,0 +1,81 @@
+// import the dependencies
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+@import '../../../../stylesheets/fonts';
+
+.vision{
+    margin-top: 150px;
+    margin-bottom: 135px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .--wrapper{
+        max-width: 426px;
+    }
+    
+    &__mission_statement{
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+
+        &__world{
+            @extend %centered-flex;
+            flex-direction: column;
+            position: absolute;
+            right: 30px;
+            top: -50px;
+
+            .--axis{
+                width: 2px;
+                height: 60px;
+                background: #42E56D;
+                border-radius: 8px;
+                margin: 20px 0;
+            }
+
+            .--world{
+                width: 325px;
+                height: 325px;
+                padding: 0;
+                margin: 0;
+            }
+
+            .--auxilary_images{
+                img{
+                    position: absolute;
+                    z-index: -1;
+                }
+                .first{
+                    transform: translate(-145px, 50px);
+                }
+                .second{
+                    transform: translate(-258px, 140px);
+                }
+                .third{
+                    transform: translate(-280px, 268px);
+                }
+
+            }
+        }
+    }
+
+    &__mission_statement__text{
+        width: 1140px;
+        padding: 0 150px;
+        .--heading{
+            @extend %fourtypx;
+            font-family: markpro-bold;
+            margin-bottom: 30px;
+            color: $dark-blue;
+        }
+
+        .--subheading{
+            @extend %eighteenpx;
+            color: $light-navy-blue;
+            font-family: markpro-medium;
+            margin-bottom: 192px;
+        }
+    }
+
+}

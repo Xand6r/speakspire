@@ -1,0 +1,54 @@
+// import the dependencies
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+@import '../../../../stylesheets/fonts';
+
+// define the main styles
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 150px;
+    padding-top: 200px;
+    margin-bottom: 323px;
+
+    .header__text{
+        max-width: 600px;
+    }
+
+    .header__logo{
+        padding-top: 67px;
+    }
+
+    .header__text__primary{
+        margin-bottom: 29px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 76px;
+        line-height: 120%;
+        color: $dark-blue;
+        font-family: markpro-bold;
+    }
+
+    .header__text__secondary{
+        margin-bottom: 62px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 25px;
+        color: $grey;
+        font-family: markpro-medium;
+    }
+
+    .header__text__action{
+        @extend %filled-button;
+        width: 176px;
+        height: 50px;
+    }
+}
+
+
+
+
+
+// import the breakpoints
+@import './breakpoints'

@@ -1,0 +1,48 @@
+// imports
+@import '../../../stylesheets/colors';
+@import '../../../stylesheets/utilities';
+@import '../../../stylesheets/fonts';
+
+
+// main styles
+.navigation {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 150px;
+    font-family: markpro-medium;
+
+    .navigation__menu {
+        display: flex;
+        align-items: center;
+
+        .navigation__menu__item {
+            margin-right: 35px;
+            color: $dark-blue;
+            line-height: 18px;
+            cursor: pointer;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .navigation__menu__item.--filledbutton {
+            @extend %filled-button;
+            width: 133px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .navigation__menu__item.--outlinedbutton {
+            @extend %outlined-button;
+            width: 133px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+    }
+}
+
+// import breakpoints
+@import './breakpoints';
