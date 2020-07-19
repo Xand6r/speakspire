@@ -7,6 +7,7 @@ import ResetFilterIcon from '../../../../assets/resetFilterIcon.svg';
 import SearchIcon from '../../../../assets/search.svg';
 import LeftArrow from '../../../../assets/leftArrow.svg';
 
+import './filter.scss'
 import '../../../../stylesheets/filter.scss';
 
 const options = [
@@ -15,13 +16,23 @@ const options = [
     { value: 'vanilla', label: 'Vanilla' }
   ]
 
+const speakers = [
+    1,2,3,4,5,6,7,8,9,10,11,12
+]
 export default function filter() {
     return (
         <div>
-            <div className="filter">
+            <div className="filter --speakerspage">
 
                 <div className="filter__header">
                     Find the speaker of your dreams
+                </div>
+
+                <div className="filter__subheader">
+                    …at first you will call them speakers and coaches, but you 
+                    will come to realize that they are more like friends who are 
+                    passionate about helping and inspiring you and your 
+                    audience to be better.
                 </div>
 
                 <div className="filter__filter">
@@ -70,10 +81,11 @@ export default function filter() {
                 </div>
 
                 <div className="filter__results">
-                    <SpeakerCard />
-                    <SpeakerCard />
-                    <SpeakerCard />
-                    <SpeakerCard />
+                    {
+                        speakers.map(speaker => (
+                            <SpeakerCard key={speaker} />
+                        ))
+                    }
                 </div>
 
                 <div className="filter__more_results">

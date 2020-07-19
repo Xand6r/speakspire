@@ -1,6 +1,6 @@
 import React from 'react';
 
-import HeaderIcon from '../../assets/curve.svg';
+import HeaderIcon from '../../../../assets/curve.svg';
 import './header.scss';
 
 export default function header() {

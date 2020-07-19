@@ -4,7 +4,7 @@
 @import '../../../../stylesheets/fonts';
 
 .vision{
-    margin-top: 134px;
+    margin-top: 150px;
     margin-bottom: 135px;
     display: flex;
     flex-direction: column;
@@ -78,54 +78,4 @@
         }
     }
 
-    &__register {
-        min-height: 766px;
-        background: $light-blue;
-        padding: 126px 0;
-        display: flex;
-        align-items: center;
-        box-sizing: border-box;
-        flex-direction: column;
-        width: 100%;
-        color: white;
-        
-        .signup{
-            @extend %filled-button;
-            background: white;
-            color: $light-blue;
-            width: 177px;
-            height: 50px;
-        }
-        .--heading{
-            @extend %fourtypx;
-            font-style: normal;
-            font-weight: bold;
-            line-height: 51px;
-            text-align: center;
-            max-width: 450px;
-            margin-bottom: 103px;
-            font-family: 'markpro-bold';
-        }
-
-        &__benefits {
-            @extend %centered-flex;
-            margin-bottom: 113px;
-            .--benefit{
-                @extend %centered-flex;
-                flex-direction: column;
-                max-width: 287px;
-                margin: 0 60px;
-                .--icon{
-                    margin-bottom: 49px;
-                    margin-left: 5px;
-                    align-self: flex-start;
-                }
-                .--text{
-                    @extend %eighteenpx;
-                    line-height: 28px;
-                    font-family: 'markpro-medium';
-                }
-            }
-        }
-    }
 }

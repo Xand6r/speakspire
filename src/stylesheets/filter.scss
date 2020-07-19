@@ -122,7 +122,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 70px;
+        flex-wrap: wrap;
+        max-width: 1180px;
     }
 
     &__more_results{

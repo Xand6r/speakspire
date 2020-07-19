@@ -1,7 +1,7 @@
 // import the dependencies
-@import '../../../../stylesheets/colors';
-@import '../../../../stylesheets/utilities';
-@import '../../../../stylesheets/fonts';
+@import '../../stylesheets/colors';
+@import '../../stylesheets/utilities';
+@import '../../stylesheets/fonts';
 
 .contact{
     @extend %centered-flex;

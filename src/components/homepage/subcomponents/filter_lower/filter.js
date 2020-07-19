@@ -3,10 +3,10 @@ import Select from 'react-select'
 
 import { component as EventCard } from '../../../../utilities/eventCard';
 
-import FilterIcon from '../../assets/filterIcon.svg';
-import ResetFilterIcon from '../../assets/resetFilterIcon.svg';
-import SearchIcon from '../../assets/search.svg';
-import LeftArrow from '../../assets/leftArrow.svg';
+import FilterIcon from '../../../../assets/filterIcon.svg';
+import ResetFilterIcon from '../../../../assets/resetFilterIcon.svg';
+import SearchIcon from '../../../../assets/search.svg';
+import LeftArrow from '../../../../assets/leftArrow.svg';
 
 import '../../../../stylesheets/filter.scss';
 

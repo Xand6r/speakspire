@@ -1,11 +1,11 @@
 import React from 'react';
 import './event.scss';
 
-import phoneWoman from '../../assets/phoneWoman.svg';
-import GreenPlus from '../../assets/plus.svg';
-import BlueUser from '../../assets/blueUser.svg';
-import BlackMic from '../../assets/blackMicrophone.svg';
-import smallPlus from '../../assets/smallPlus.svg';
+import phoneWoman from '../../../../assets/phoneWoman.svg';
+import GreenPlus from '../../../../assets/plus.svg';
+import BlueUser from '../../../../assets/blueUser.svg';
+import BlackMic from '../../../../assets/blackMicrophone.svg';
+import smallPlus from '../../../../assets/smallPlus.svg';
 
 const eventSteps = [
     ['Sign up as an organizer and add your events'],

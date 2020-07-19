@@ -1,12 +1,12 @@
 import React from 'react';
-import {component as NavBar} from '../../../utilities/navbar';
 import {component as Header} from '../subcomponents/header';
 import {component as SpeakerFilter} from '../subcomponents/filter_upper';
 import {component as EventFilter} from '../subcomponents/filter_lower';
 import {component as Vision} from '../subcomponents/vision';
 import {component as Event} from '../subcomponents/event';
-import {component as Contact} from '../subcomponents/contact';
-import {component as Footer} from '../subcomponents/footer';
+import {component as NavBar} from '../../../utilities/navbar';
+import {component as Contact} from '../../../utilities/contact';
+import {component as Footer} from '../../../utilities/footer';
 import './homepage.scss'
 
 export default function homepage() {

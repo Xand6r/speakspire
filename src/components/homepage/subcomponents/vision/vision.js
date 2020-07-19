@@ -1,9 +1,6 @@
 import React from 'react';
 import './vision.scss';
-
-import UserLogo from '../../assets/user.svg';
-import UsersLogo from '../../assets/users.svg';
-import MicrophoneLogo from '../../assets/microphone.svg';
+import SpeakerJoinUs from './joinus';
 
 import WorldMap from './assets/world.svg';
 import Face from './assets/face.svg';
@@ -12,11 +9,6 @@ import circleMed from './assets/circleMed.svg';
 import circleSmall from './assets/circleSmall.svg';
 
 
-const benefits = [
-    [UserLogo, 'Sign up for free, no fee or credit card required' ],
-    [UsersLogo, 'Join a community of world-class speakers and life coaches'],
-    [MicrophoneLogo, 'Get more exposure and value for your work']
-]
 export default function vision() {
     return (
         <div>
@@ -50,26 +42,7 @@ export default function vision() {
                     </div>
                 </div>
 
-                <div className="vision__register">
-                    <div className="--heading">
-                        Become an inspiration. Sign up as a speaker.
-                    </div>
-                    <div className="vision__register__benefits">
-                        {
-                            benefits.map((benefit,i) => (
-                                <div className="--benefit" key={i}>
-                                    <img src={benefit[0]} alt="" className="--icon"/>
-                                    <div className="--text">
-                                        {benefit[1]}
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </div>
-                    <div className="signup">
-                        Sign Up
-                    </div>
-                </div>
+                <SpeakerJoinUs />
 
             </div>
         </div>
