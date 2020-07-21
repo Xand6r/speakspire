@@ -1,0 +1,15 @@
+// import the dependencies
+@import '../../../stylesheets/colors';
+@import '../../../stylesheets/utilities';
+@import '../../../stylesheets/fonts';
+
+.category{
+    background: $background;
+    min-height: 100vh;
+    
+    .choicetabcomponent{
+        padding: 90px 150px;
+        margin: 0 auto;
+    }
+
+}

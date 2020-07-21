@@ -1,0 +1,49 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+@import '../../../../stylesheets/fonts';
+
+
+
+.accountcard{
+    width: 270px;
+    height: 226px;
+    margin-bottom: 70px;
+    margin-left: 30px;
+    margin-right: 30px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 36px;
+    cursor: pointer;
+    
+    &.--blue{
+        border: 1.5px solid #EDF1FE;
+    }
+    &.--red{
+        border: 1.5px solid #FFEFF2;
+    }
+    &.--green{
+        border: 1.5px solid #F1FCF6;
+    }
+
+
+    &.--grey{
+        background: $lightest-grey;
+    }
+
+    &__header{
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        color: $dark-blue;
+        @extend %sixteenpx;
+        font-family: 'markpro-bold';
+        img{
+            margin-right: 14px;
+        }
+    }
+    &__content{
+        @extend %thirteenpx;
+        font-family: 'markpro-medium';
+        color: $grey;
+    }
+}

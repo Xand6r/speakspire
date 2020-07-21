@@ -51,6 +51,18 @@
     font-size: 14px;
     line-height: 18px;
 }
+%thirteenpx{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+}
+%sixteenpx{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+}
 
 %eighteenpx{
     line-height: 27px;
@@ -60,6 +72,11 @@
 %twentyfourpx{
     line-height: 34px;
     font-size: 24px;
+}
+
+%twentyeightpx{
+    line-height: 34px;
+    font-size: 28px;
 }
 
 %thirtysixpx{
