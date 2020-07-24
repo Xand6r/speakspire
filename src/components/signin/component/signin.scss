@@ -1,0 +1,13 @@
+// import the dependencies
+@import '../../../stylesheets/colors';
+
+.signin{
+    background: $background;
+    min-height: 100vh;
+    
+    .signincomponent{
+        padding: 90px 150px;
+        margin: 0 auto;
+    }
+
+}

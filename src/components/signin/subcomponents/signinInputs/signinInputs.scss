@@ -1,0 +1,93 @@
+// import the dependencies
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+@import '../../../../stylesheets/fonts';
+
+
+.signininputs{
+    display: flex;
+    flex-direction: column;
+    
+    &__headers{
+        margin-bottom: 50px;
+        &__heading{
+            @extend %twentyeightpx;
+            font-family: 'markpro-bold';
+            color: $dark-blue;
+            margin-bottom: 15px;
+        }
+    
+        &__subheading{
+            @extend %twelvepx;
+            color: $light-navy-blue;
+            font-family: 'markpro-medium';
+    
+            span{
+                color: $light-blue;
+            }
+        }
+    }
+
+    &__form{
+        margin-bottom: 50px;
+        span{
+            color: $light-blue;
+            @extend %twelvepx; 
+            font-family: 'markpro-medium';
+        }
+        .--inputwrapper{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+
+            .--passwordinput{
+                display: flex;
+                align-items: center;
+
+                i{
+                    margin-left: -34px;
+                    cursor: pointer;
+                    color: $grey;
+                }
+            }
+
+            label{
+                @extend %fourteenpx;
+                color: $grey;
+                font-family: 'markpro-medium';
+                margin-bottom: 15px;
+            }
+
+            input{
+                @extend %fourteenpx;
+                box-sizing: border-box;
+                width: 360px;
+                height: 50px;
+                padding: 20px;
+                box-sizing: border-box;
+                border-radius: 5px;
+                background: #F7F8FC;
+                border: 1px solid $light-navy-blue_two;
+                font-family: 'markpro-medium';
+                color: $dark-blue;
+                transition: 300ms;
+
+                &::placeholder{
+                    color: $light-navy-blue_two;
+                }
+
+                &:focus{
+                    outline: none;
+                    border: 1px solid $light-blue;
+
+                }
+            }
+        }
+    }
+
+    &__submit{
+        @extend %filled-button;
+        width: 120px;
+        height: 50px;
+    }
+}
