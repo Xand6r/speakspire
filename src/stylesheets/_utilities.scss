@@ -45,11 +45,31 @@
     font-size: 11px;
     line-height: 14px;
 }
+
+%twelvepx{
+    font-size: 12px;
+    line-height: 15px;
+}
+
+%thirteenpx{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+}
+
 %fourteenpx{
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
+}
+
+%sixteenpx{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
 }
 
 %eighteenpx{
@@ -60,6 +80,11 @@
 %twentyfourpx{
     line-height: 34px;
     font-size: 24px;
+}
+
+%twentyeightpx{
+    line-height: 34px;
+    font-size: 28px;
 }
 
 %thirtysixpx{
