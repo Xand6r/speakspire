@@ -5,7 +5,7 @@ export default function SigninInputs() {
 
     const [passwordHidden, setPasswordHidden ] = useState(true)
     return (
-        <div class="signininputs">
+        <div className="signininputs">
             
             <div className="signininputs__headers">
                 <div className="signininputs__headers__heading">

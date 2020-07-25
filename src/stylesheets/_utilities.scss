@@ -39,6 +39,41 @@
     line-height: 19px;
 }
 
+%input-date {
+    input[type="date"] {
+        background:#F7F8FC url('../assets/calendar.svg') 94% 50% no-repeat ;
+    }
+    input[type="date"]::-webkit-inner-spin-button {
+        display: none;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        opacity: 0;
+        cursor: pointer;
+    }
+    input[type="date"]::-webkit-clear-button { display: none; }
+}
+
+%input-styles {
+    box-sizing: border-box;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: 'markpro-medium';
+    color: $dark-blue;
+    transition: 300ms;
+
+    &::placeholder{
+        color: $light-navy-blue_two;
+    }
+
+    &:focus{
+        outline: none;
+        border: 1px solid $light-blue;
+
+    }
+
+}
+
 
 // define font progressions
 %elevenpx{
@@ -67,7 +102,6 @@
 
 %sixteenpx{
     font-style: normal;
-    font-weight: bold;
     font-size: 16px;
     line-height: 20px;
 }

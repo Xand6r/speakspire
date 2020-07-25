@@ -4,6 +4,7 @@ import { component as Homepage } from './components/homepage';
 import { component as SpeakersPage } from './components/speakerspage';
 import { component as SignUpCategory } from './components/category';
 import { component as SignInPage } from './components/signin';
+import { component as SignUpPage } from './components/register';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route exact path='/speakers' component={SpeakersPage} />
       <Route exact path='/category' component={SignUpCategory} />
       <Route exact path='/login' component={SignInPage} />
+      <Route exact path='/register' component={SignUpPage} />
     </Switch>
   );
 }

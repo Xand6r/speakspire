@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './speakerCard.scss';
 import {component as Skill} from '../../skillTab';
 import samplePicture from '../assets/samplepicture.svg';
@@ -9,7 +11,9 @@ const tempskills = [
     "business","leadership","management",
     "startup advisory","aquisitions"
 ]
-export default function speakerCard() {
+export default function SpeakerCard({
+    fullname
+}) {
     return (
         <div>
             <div className="speakercard">
@@ -22,7 +26,7 @@ export default function speakerCard() {
                         <img src={samplePicture} alt="profile" className="pictureImage"/>
                     </div>
                     <div className="speakercard__profile__name">
-                       Emeka Chukwuma
+                       {fullname}
                     </div>
                     <div className="speakercard__profile__position">
                         <div className="--title">Chief Executive Officer</div>
@@ -45,4 +49,12 @@ export default function speakerCard() {
             </div>
         </div>
     )
+}
+
+SpeakerCard.propTypes= {
+    fullname: PropTypes.string
+}
+
+SpeakerCard.defaultProps = {
+    fullname: 'Emeka Chukwuma'
 }

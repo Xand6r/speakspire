@@ -1,0 +1,91 @@
+// import the dependencies
+@import '../../../stylesheets/colors';
+@import '../../../stylesheets/utilities';
+
+.register{
+    background: $background;
+    min-height: 100vh;
+
+    &__activetab{
+        max-width: 1140px;
+        margin: 97px auto 42px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__content{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        justify-content: space-between;
+        max-width: 1140px;
+
+        &__form{
+        
+        }
+
+        &__preview{
+            padding-top: 39px;
+            min-width: 356px;
+            max-width: 356px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            margin-right: 40px;
+            &.--large{
+                height: 580px;
+            }
+            &.--small{
+                height:161px
+            }
+            &__header{
+                padding: 0 50px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 22px;
+                span{
+                    font-family: 'markpro-medium';
+                    @extend %fourteenpx;
+                    color: $dark-blue;
+                    font-style: normal;
+                    font-weight: 500;
+                }
+                i{
+                    width: 39px;
+                    height: 28px;
+                    background: #E4EAFD;
+                    border-radius: 5px;
+                    color: $light-blue;
+                    cursor: pointer;
+                    @extend %centered-flex;
+                }
+            }
+
+            &__card{
+                @extend %centered-flex;
+                margin-bottom: 37px;
+                .speakercard{
+                    margin: 0;
+                    border: 0.5px solid #CDD1DE;
+                    box-sizing: border-box;
+                    box-shadow: 0px 5px 20px rgba(22, 35, 89, 0.05);
+                    &__tag{
+                        display: none;
+                    }
+                }
+            }
+
+            &__footer{
+                background-color: $light-green-two;
+                padding: 38px 50px;
+                color: $dark-blue;
+                @extend %fourteenpx;
+                font-weight: bold;
+                font-family: 'markpro-bold';
+            }
+        }
+    }
+}
