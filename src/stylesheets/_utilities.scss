@@ -74,6 +74,17 @@
 
 }
 
+%register-tabs-styles{
+    box-sizing: border-box;
+    min-width: 744px;
+    max-width: 744px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    padding: 70px 177px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 30px rgba(22, 35, 89, 0.04);
+}
+
 
 // define font progressions
 %elevenpx{

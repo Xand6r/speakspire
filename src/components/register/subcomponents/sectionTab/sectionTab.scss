@@ -16,6 +16,10 @@
     cursor: pointer;
     transition: 5s;
 
+    &:last-of-type{
+        margin-right: 0;
+    }
+
     &__icon{
         transition: background 300ms;
         height: 25px;

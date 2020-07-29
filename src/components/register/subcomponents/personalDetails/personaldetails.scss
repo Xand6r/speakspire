@@ -2,14 +2,7 @@
 @import '../../../../stylesheets/utilities';
 
 .personaldetails{
-    box-sizing: border-box;
-    min-width: 744px;
-    max-width: 744px;
-    border-radius: 10px;
-    margin-bottom: 50px;
-    padding: 70px 177px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 30px rgba(22, 35, 89, 0.04);
+    @extend %register-tabs-styles;
 
     &__heading{
         margin-bottom: 50px;
@@ -41,6 +34,7 @@
             .--passwordinput{
                 display: flex;
                 align-items: center;
+                text-transform: none;
 
                 i{
                     margin-left: -34px;
@@ -63,6 +57,7 @@
             }
             input{
                 @extend %sixteenpx;
+                text-transform: capitalize;
                 width: 390px;
                 height: 50px;
                 @extend %input-styles;
@@ -77,6 +72,9 @@
                     outline: none;
                     border: 1px solid $light-blue;
 
+                }
+                &[name='password'], &[type='date']{
+                    text-transform: none;
                 }
             }
             &.--date{

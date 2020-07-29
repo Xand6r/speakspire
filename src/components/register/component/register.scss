@@ -11,6 +11,10 @@
         margin: 97px auto 42px;
         display: flex;
         justify-content: space-between;
+
+        .link{
+            text-decoration: none;
+        }
     }
 
     &__content{

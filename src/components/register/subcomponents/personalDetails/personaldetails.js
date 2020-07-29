@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import GenderTab from './genderTab';
 import PhoneInput from 'react-phone-input-2';
@@ -12,20 +12,35 @@ const GENDER_OPTIONS = [
 ];
 
 export default function Personaldetails({
-    onNameChange, nameValue
+    stateChanger, state, match
 }) {
     const [activeTab, setactiveTab] = useState(0);
     const [passwordHidden, setPasswordHidden ] = useState(true)
 
-    const handleNameChange = (event)=>{
-        onNameChange(event.target.value);
+    useEffect(()=>{
+        const currentlyActiveTab = match.url.split("/")[2];
+        setactiveTab(currentlyActiveTab)
+    },[setactiveTab, match.url])
+
+    const handleFormChange = (event)=>{
+        const {name, value} = event.target;
+        console.log(state)
+        stateChanger({
+            ...state,
+            [name]: value
+          });
     }
 
     const makeActive = (clickedIndex) => {
         setactiveTab(clickedIndex)
+        stateChanger({
+            ...state,
+            gender: GENDER_OPTIONS[clickedIndex]
+          })
     }
+
     return (
-        <div class="personaldetails">
+        <div className="personaldetails">
             <div className="personaldetails__heading">
                 <div className="personaldetails__heading__header">
                     Personal Details
@@ -44,8 +59,8 @@ export default function Personaldetails({
                         type="text"
                         id="fullname"
                         name="fullname"
-                        onChange={handleNameChange}
-                        value={nameValue}
+                        onChange={handleFormChange}
+                        value={state.fullname}
                     />
                 </div>
                 {/* wrapepr for the name */}
@@ -77,6 +92,7 @@ export default function Personaldetails({
                         type="date"
                         id="birthdate"
                         name="birthdate"
+                        onChange={handleFormChange}
                     />
                 </div>
                 {/* wrapper for the birthdate */}
@@ -86,7 +102,13 @@ export default function Personaldetails({
                     <label htmlFor="number">Phone</label>
                     <PhoneInput
                         country={'ng'}
-                        placeholder=""
+                        value={state.phonenumber}
+                        onChange={(value)=>(
+                            stateChanger({
+                                ...state,
+                                phonenumber: value
+                            })
+                        )}
                     />
                 </div>
                 {/* wrapper for the phone number */}
@@ -99,18 +121,20 @@ export default function Personaldetails({
                         id="location"
                         name="location"
                         placeholder="Enter your city or state"
+                        onChange={handleFormChange}
                     />
                 </div>
                 {/* wrapper for the city or state */}
 
                 {/* wrapper for the email */}
                     <div className="--wrapper">
-                    <label htmlFor="location">Email</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         type="email"
-                        id="location"
-                        name="location"
+                        id="email"
+                        name="email"
                         placeholder="Enter your email"
+                        onChange={handleFormChange}
                     />
                 </div>
                 {/* wrapper for the email */}
@@ -124,6 +148,7 @@ export default function Personaldetails({
                             type={(passwordHidden)?"password":"text"}
                             name="password"
                             id="password"
+                            onChange={handleFormChange}
                         />
                         <i 
                             className={(passwordHidden)?"far fa-eye":"fa fa-eye-slash"}
@@ -158,6 +183,7 @@ export default function Personaldetails({
 }
 
 Personaldetails.propTypes = {
-    onNameChange: PropTypes.func.isRequired,
-    nameValue: PropTypes.string.isRequired
+    stateChanger: PropTypes.func.isRequired,
+    state: PropTypes.instanceOf(Object).isRequired,
+    match: PropTypes.instanceOf(Object).isRequired
 }

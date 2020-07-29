@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import {
+    Switch,
+    Link,
+    Route // for later
+  } from 'react-router-dom'
+
 import {component as NavBar} from '../../../utilities/navbar';
 import {component as SectionTab} from '../subcomponents/sectionTab';
 import {component as SpeakerCard} from '../../../utilities/speakerCard';
-import {component as PersonalDetail} from '../subcomponents/personalDetails'
+import {component as PersonalDetail} from '../subcomponents/personalDetails';
+import {component as Expertise} from '../subcomponents/expertise';
 
 import './register.scss';
 
@@ -11,10 +19,28 @@ const STEPS = [
     'Personal Details', 'Expertise',
     'Speaking Preferences', 'Media'
 ]
-export default function Register() {
+const INITIAL_STATE = {
+    fullname:'',
+    gender:'',
+    birthdate:'',
+    phonenumber:'',
+    location:'',
+    email:'',
+    password:''
+}
+
+export default function Register({
+    location
+}) {
     const [activeTab, setactiveTab] = useState(0);
     const [previewHidden, setPreviewHidden ] = useState(false);
-    const [fullname, setFullName] = useState('');
+    const [personalDetails, setPersonalDetails] = useState(INITIAL_STATE);
+
+    useEffect(()=>{
+        const {pathname} = location;
+        const currentTab = pathname.split("/")[2]
+        setactiveTab(Number(currentTab)-1)
+    },[setactiveTab, location])
 
     const makeActive = (clickedIndex) => {
         setactiveTab(clickedIndex)
@@ -30,13 +56,15 @@ export default function Register() {
             <div className="register__activetab">
                 {
                     STEPS.map((step, index)=>(
-                        <SectionTab
-                            key={Math.random()}
-                            index={index}
-                            text={step}
-                            active={index === activeTab }
-                            changeTab={makeActive}
-                        />
+                        <Link key={Math.random()} className="link" to={`/register/${index+1}`}>
+                            <SectionTab
+                                
+                                index={index}
+                                text={step}
+                                active={index === activeTab }
+                                changeTab={makeActive}
+                            />
+                        </Link>
                     ))
                 }
             </div>
@@ -58,8 +86,9 @@ export default function Register() {
                     {
                         (!previewHidden)?
                             <div className="register__content__preview__card">
+
                                 <SpeakerCard
-                                    fullname={fullname}
+                                    fullname={personalDetails.fullname}
                                 />
                             </div>
                             :""
@@ -71,13 +100,37 @@ export default function Register() {
                     </div>
                 </div>
                 <div className="register__content__form">
-                    <PersonalDetail
+                    <Switch>
+                        <Route
+                            path = "/register/(1)?"
+                            exact
+                            render={(props) => (
+                                <PersonalDetail {...props} 
+                                    stateChanger = {setPersonalDetails}
+                                    state = {personalDetails}
+                                />
+                            )}
+                        />
+                        <Route
+                            path = "/register/2"
+                            exact
+                            render={(props) => (
+                                <Expertise
+                                />
+                            )}
+                        />
+                    </Switch>
+                    {/* <PersonalDetail
                         onNameChange = {setFullName}
                         nameValue = {fullname}
-                    />
+                    /> */}
                 </div>
             </div>
 
         </div>
     )
+}
+
+Register.propTypes = {
+    location: PropTypes.instanceOf(Object).isRequired
 }

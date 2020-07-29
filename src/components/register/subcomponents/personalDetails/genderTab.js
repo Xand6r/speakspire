@@ -22,7 +22,7 @@ const GenderTab = ({
 
 GenderTab.propTypes = {
     index:PropTypes.number.isRequired,
-    text:PropTypes.string.isRequired,
+    option:PropTypes.string.isRequired,
     active:PropTypes.bool.isRequired,
     changeTab:PropTypes.func.isRequired,}
 

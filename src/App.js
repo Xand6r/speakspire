@@ -13,7 +13,7 @@ function App() {
       <Route exact path='/speakers' component={SpeakersPage} />
       <Route exact path='/category' component={SignUpCategory} />
       <Route exact path='/login' component={SignInPage} />
-      <Route exact path='/register' component={SignUpPage} />
+      <Route path='/register' component={SignUpPage} />
     </Switch>
   );
 }
