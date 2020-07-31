@@ -76,6 +76,9 @@
             .--item{
                 width: 191px;
                 height: 45px;
+                .css-tlfecz-indicatorContainer{
+                    cursor: pointer;
+                }
                 *{
                     color: $dark-blue;
                     font-family: markpro-medium;

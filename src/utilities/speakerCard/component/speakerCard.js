@@ -12,7 +12,7 @@ const tempskills = [
     "startup advisory","aquisitions"
 ]
 export default function SpeakerCard({
-    fullname
+    fullname, company, position, skills, image
 }) {
     return (
         <div>
@@ -23,20 +23,20 @@ export default function SpeakerCard({
 
                 <div className="speakercard__profile">
                     <div className="speakercard__profile__picturewrapper">
-                        <img src={samplePicture} alt="profile" className="pictureImage"/>
+                        <img src={image} alt="profile" className="pictureImage"/>
                     </div>
                     <div className="speakercard__profile__name">
                        {fullname}
                     </div>
                     <div className="speakercard__profile__position">
-                        <div className="--title">Chief Executive Officer</div>
-                        <div className="--company">Emeks Enterprises</div>
+                        <div className="--title">{position}</div>
+                        <div className="--company">{company}</div>
                     </div>
 
                     <hr className="--divider"/>
                     <div className="speakercard__profile__skills">
                         {
-                            tempskills.map((skill,i)=>(
+                            skills.map((skill,i)=>(
                                 <Skill name={skill} key={i} />
                             ))
                         }
@@ -52,9 +52,17 @@ export default function SpeakerCard({
 }
 
 SpeakerCard.propTypes= {
-    fullname: PropTypes.string
+    fullname: PropTypes.string,
+    company: PropTypes.string,
+    position: PropTypes.string,
+    skills: PropTypes.array,
+    image: PropTypes.string
 }
 
 SpeakerCard.defaultProps = {
-    fullname: 'Emeka Chukwuma'
+    fullname: 'Emeka Chukwuma',
+    company: 'Emeks Enterprises',
+    position: 'Chief Executive Officer',
+    skills: tempskills,
+    image: samplePicture
 }

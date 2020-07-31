@@ -45,6 +45,7 @@
         @extend %centered-flex;
         flex-direction: column;
         margin-top: 35px;
+        text-transform: capitalize;
 
         &__picturewrapper{
             // border: 2px solid red;

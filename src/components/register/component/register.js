@@ -4,7 +4,7 @@ import {
     Switch,
     Link,
     Route // for later
-  } from 'react-router-dom'
+  } from 'react-router-dom';
 
 import {component as NavBar} from '../../../utilities/navbar';
 import {component as SectionTab} from '../subcomponents/sectionTab';
@@ -13,13 +13,14 @@ import {component as PersonalDetail} from '../subcomponents/personalDetails';
 import {component as Expertise} from '../subcomponents/expertise';
 
 import './register.scss';
+import defaultImage from '../assets/greycircle.svg'
 
 
 const STEPS = [
     'Personal Details', 'Expertise',
     'Speaking Preferences', 'Media'
 ]
-const INITIAL_STATE = {
+const INITIAL_PERSONAL_DETAILS_STATE = {
     fullname:'',
     gender:'',
     birthdate:'',
@@ -28,17 +29,35 @@ const INITIAL_STATE = {
     email:'',
     password:''
 }
-
+const INITIAL_EXPERTISE_STATE = {
+    position:'',
+    company:'',
+    exp_dateFrom:'',
+    exp_dateTo:'',
+    school:'',
+    field_of_study:'',
+    edu_dateFrom:'',
+    edu_edu_dateTo:'',
+    topics:[],
+    topic_tags:['Topic 1', 'Topic 2'],
+    shortbio:"",
+    fullbio:""
+}
 export default function Register({
     location
 }) {
     const [activeTab, setactiveTab] = useState(0);
     const [previewHidden, setPreviewHidden ] = useState(false);
-    const [personalDetails, setPersonalDetails] = useState(INITIAL_STATE);
+    const [personalDetails, setPersonalDetails] = useState(INITIAL_PERSONAL_DETAILS_STATE);
+    const [expertise, setExpertise] = useState(INITIAL_EXPERTISE_STATE)
 
     useEffect(()=>{
         const {pathname} = location;
         const currentTab = pathname.split("/")[2]
+        if(!currentTab){
+            setactiveTab(0)
+            return
+        }
         setactiveTab(Number(currentTab)-1)
     },[setactiveTab, location])
 
@@ -72,6 +91,7 @@ export default function Register({
 
             {/* the section actually showing the mail content */}
             <div className="register__content">
+                <div>
                 <div 
                     className={`register__content__preview ${(previewHidden)?"--small":"--large"}`}
                 >
@@ -89,6 +109,10 @@ export default function Register({
 
                                 <SpeakerCard
                                     fullname={personalDetails.fullname}
+                                    company={expertise.company}
+                                    position={expertise.position}
+                                    skills={expertise.topic_tags}
+                                    image={defaultImage}
                                 />
                             </div>
                             :""
@@ -97,6 +121,7 @@ export default function Register({
                         Your detials are being automatically 
                         saved. You can skip a question and 
                         come back to it later.
+                    </div>
                     </div>
                 </div>
                 <div className="register__content__form">
@@ -115,15 +140,13 @@ export default function Register({
                             path = "/register/2"
                             exact
                             render={(props) => (
-                                <Expertise
+                                <Expertise {...props}
+                                    stateChanger = {setExpertise}
+                                    state = {expertise}
                                 />
                             )}
                         />
                     </Switch>
-                    {/* <PersonalDetail
-                        onNameChange = {setFullName}
-                        nameValue = {fullname}
-                    /> */}
                 </div>
             </div>
 

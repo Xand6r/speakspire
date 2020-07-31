@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import GenderTab from './genderTab';
 import PhoneInput from 'react-phone-input-2';
@@ -12,19 +13,13 @@ const GENDER_OPTIONS = [
 ];
 
 export default function Personaldetails({
-    stateChanger, state, match
+    stateChanger, state
 }) {
     const [activeTab, setactiveTab] = useState(0);
     const [passwordHidden, setPasswordHidden ] = useState(true)
 
-    useEffect(()=>{
-        const currentlyActiveTab = match.url.split("/")[2];
-        setactiveTab(currentlyActiveTab)
-    },[setactiveTab, match.url])
-
     const handleFormChange = (event)=>{
         const {name, value} = event.target;
-        console.log(state)
         stateChanger({
             ...state,
             [name]: value
@@ -41,6 +36,7 @@ export default function Personaldetails({
 
     return (
         <div className="personaldetails">
+
             <div className="personaldetails__heading">
                 <div className="personaldetails__heading__header">
                     Personal Details
@@ -173,9 +169,11 @@ export default function Personaldetails({
                     <div className="cancel">
                         Cancel
                     </div>
-                    <div className="next">
-                        Next
-                    </div>
+                    <Link className="link" to="/register/2">
+                        <div className="next">
+                            Next
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -184,6 +182,5 @@ export default function Personaldetails({
 
 Personaldetails.propTypes = {
     stateChanger: PropTypes.func.isRequired,
-    state: PropTypes.instanceOf(Object).isRequired,
-    match: PropTypes.instanceOf(Object).isRequired
+    state: PropTypes.instanceOf(Object).isRequired
 }

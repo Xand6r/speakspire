@@ -38,12 +38,6 @@
             flex-direction: column;
             border-radius: 10px;
             margin-right: 40px;
-            &.--large{
-                height: 580px;
-            }
-            &.--small{
-                height:161px
-            }
             &__header{
                 padding: 0 50px;
                 display: flex;
@@ -77,7 +71,7 @@
                     box-sizing: border-box;
                     box-shadow: 0px 5px 20px rgba(22, 35, 89, 0.05);
                     &__tag{
-                        display: none;
+                        visibility: hidden;
                     }
                 }
             }

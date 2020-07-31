@@ -4,6 +4,9 @@
 .--underline{
     text-decoration: underline;
 }
+.link{
+    text-decoration: none;
+}
 
 %divider{
     border: 0.05px solid $light-navy-blue_two;
@@ -87,6 +90,10 @@
 
 
 // define font progressions
+%tenpx{
+    font-size: 10px;
+    line-height: 13px;
+}
 %elevenpx{
     font-size: 11px;
     line-height: 14px;

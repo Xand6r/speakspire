@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './choiceTab.scss';
 
 import AccountTypeCard from '../subcomponents/accountCard';
@@ -47,7 +48,9 @@ export default function choiceTab() {
             </div>
 
             <div className="choicetab__footer">
-                <div className="button">Continue</div>
+                <Link className="link" to="register">
+                    <div className="button">Continue</div>
+                </Link>
                 <div className="--subtext">
                     Already a member? <span>Sign in</span>
                 </div>
