@@ -6,7 +6,7 @@
 .vision__register {
     min-height: 766px;
     background: $light-blue;
-    padding: 126px 0;
+    padding: 126px 0 100px;
     display: flex;
     align-items: center;
     box-sizing: border-box;
@@ -28,13 +28,13 @@
         line-height: 51px;
         text-align: center;
         max-width: 450px;
-        margin-bottom: 103px;
         font-family: 'markpro-bold';
+        margin-bottom: 116px;
     }
 
     &__benefits {
         @extend %centered-flex;
-        margin-bottom: 113px;
+        margin-bottom: 123px;
         .--benefit{
             @extend %centered-flex;
             flex-direction: column;

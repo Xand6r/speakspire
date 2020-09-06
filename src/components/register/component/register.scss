@@ -30,6 +30,8 @@
         }
 
         &__preview{
+            position: sticky;
+            top: 42px;
             padding-top: 39px;
             min-width: 356px;
             max-width: 356px;

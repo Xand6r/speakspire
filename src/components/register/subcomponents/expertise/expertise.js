@@ -1,16 +1,23 @@
 import React, {useState} from 'react';
-import Select from 'react-select'
+import { Upload, message, Button } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import { DatePicker } from 'antd';
+import Select from 'react-select';
 import TagsInput from 'react-tagsinput';
 import MultiSelect from "@khanacademy/react-multi-select";
 import PropTypes from 'prop-types';
 
 import './expertise.scss';
 import 'react-tagsinput/react-tagsinput.css';
-import './tag.scss'
+import '../../../../stylesheets/tag.scss'
+
 import blueCircle from '../../assets/circlePlus.svg';
+import calendarIcon from '../../../../assets/calendar.svg'
+import fileUpload from '../../assets/uploadFile.svg'
 export default function Expertise({
     stateChanger, state
 }) {
+    
     const multi_options = [
         { label: "Grapes", value: "grapes" },
         { label: "Mango", value: "mango" },
@@ -21,27 +28,58 @@ export default function Expertise({
         { label: "Tangerine", value: "tangerine" },
         { label: "Pineapple", value: "pineapple" },
         { label: "Peach ", value: "peach" },
-      ];
+    ];
      
-      const options = [
+    const options = [
         { value: 'chocolate', label: 'Chocolate' },
         { value: 'strawberry', label: 'Strawberry' },
         { value: 'vanilla', label: 'Vanilla' }
-      ]
+    ];
 
-    const [inputState, setInputState] = useState("")
+    const [inputState, setInputState] = useState("");
     const changeInputState = (value) =>{
         if (value.length < 20){
             setInputState(value)
         }
-    }
+    };
     const handleFormChange = (event)=>{
         const {name, value} = event.target;
         stateChanger({
             ...state,
             [name]: value
           });
-    }
+    };
+    const changeDate = (momentDate, dateString ,name) =>{
+        stateChanger({
+            ...state,
+            [name]: [momentDate, dateString ]
+          });
+    };
+    const props = {
+        name: 'file',
+        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+        headers: {
+          authorization: 'authorization-text',
+        },
+        onChange(info) {
+          if (info.file.status !== 'uploading') {
+            console.log(info.file, info.fileList);
+          }
+          if (info.file.status === 'done') {
+            message.success(`${info.file.name} file uploaded successfully`);
+          } else if (info.file.status === 'error') {
+            message.error(`${info.file.name} file upload failed.`);
+          }
+        },
+    };
+
+    const monthFormat = 'MM/YY';
+    const DateSuffix = () => (
+        <img height="14px" src={calendarIcon} alt="calendar"/>
+    );
+    const FileImage = () => (
+        <img height="14px" style={ {'margin-right': '10px'} } src={fileUpload} alt="calendar"/>
+    );
 
     return (
         <div className="expertise">
@@ -56,14 +94,14 @@ export default function Expertise({
 
                 <div className="expertise__formsection__section">
                     <div className="expertise__formsection__section__header">
-                        <div className="--heading">Current Position</div>
+                        <div className="--heading">Specialty</div>
                         <div className="--sub_heading">
-                            This is the primary position to be displayed on your profile.
+                        Tell us what kind of speaker you are.
                         </div>
                     </div>
-                    <div className="expertise__formsection__section__form">
+                    <div className="expertise__formsection__section__form --nomargin">
                         <div className="--input_wrapper">
-                            <label htmlFor="position">Position</label>
+                            <label htmlFor="position">Primary</label>
                             <input
                                 name="position"
                                 type="text"
@@ -74,7 +112,7 @@ export default function Expertise({
                         </div>
 
                         <div className="--input_wrapper">
-                            <label htmlFor="company">company</label>
+                            <label htmlFor="company">Secondary (optional)</label>
                             <input
                                 name="company"
                                 type="text"
@@ -84,125 +122,58 @@ export default function Expertise({
                             />
                         </div>
 
-                        <div className="--input_wrapper">
-                            <label htmlFor="dates">From</label>
-                            <div className="--date_wrapper">
-                                <input
-                                    type="date"
-                                    name="exp_dateFrom"
-                                    id="exp_dateFrom"
-                                    onChange={handleFormChange}
-                                    value={state.exp_dateFrom}
-                                />
-                                <span>to</span>
-                                <input
-                                    type="date"
-                                    name="exp_dateTo"
-                                    id="exp_dateTo"
-                                    onChange={handleFormChange}
-                                    value={state.exp_dateTo}
-                                />
-                            </div>
-                        </div>
                     </div>
-                    <div 
-                        className="expertise__formsection__section__footer"
-                    >
-                        <img 
-                            src={blueCircle}
-                            alt=""
-                        />
-                        <span>
-                            Add New Education
-                        </span>
-                    </div>
+
                 </div>
 
                 <div className="expertise__formsection__section">
                     <div className="expertise__formsection__section__header">
-                        <div className="--heading">Education</div>
-                    </div>
-                    <div className="expertise__formsection__section__form">
-                        <div className="--input_wrapper">
-                            <label htmlFor="position">School</label>
-                            <input
-                                name="school"
-                                type="text"
-                                placeholder="Enter School Name"
-                                onChange={handleFormChange}
-                                value={state.school}
-                            />
+                        <div className="--heading">Topic Areas</div>
+                        <div className="--sub_heading">
+                        These are the broad topics your expertise falls under.
                         </div>
-
-                        <div className="--input_wrapper">
-                            <label htmlFor="field_of_study">field of study</label>
-                            <input
-                                name="field_of_study"
-                                type="text"
-                                onChange={handleFormChange}
-                                value={state.field_of_study}
-                            />
-                        </div>
-
-                        <div className="--input_wrapper">
-                            <label htmlFor="dates">From</label>
-                            <div className="--date_wrapper">
-                                <input
-                                    type="date"
-                                    name="edu_dateFrom"
-                                    id="edu_dateFrom"
-                                    onChange={handleFormChange}
-                                    value={state.edu_dateFrom}
-                                />
-                                <span>to</span>
-                                <input
-                                    type="date"
-                                    name="edu_dateTo"
-                                    id="edu_dateTo"
-                                    onChange={handleFormChange}
-                                    value={state.edu_dateTo}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div 
-                        className="expertise__formsection__section__footer"
-                    >
-                        <img 
-                            src={blueCircle}
-                            alt=""
-                        />
-                        <span>
-                            Add New Position
-                        </span>
-                    </div>
-                </div>
-
-                <div className="expertise__formsection__section">
-                    <div className="expertise__formsection__section__header">
-                        <div className="--heading">Topic</div>
                     </div>
                     <div className="expertise__formsection__section__form">
                         <div className="--input_wrapper --select">
                             <label class="double" htmlFor="position">
-                                Topics
-                                <span>These are the broad topics your expertise falls under.</span>
+                                Primary
                             </label>
-                            <div className="--multiselect --white">
-                                <MultiSelect
-                                    options={multi_options}
-                                    selected={state.topics}
-                                    onSelectedChanged={selected => stateChanger({...state, topics:selected})}
-                                    overrideStrings={{
-                                        selectSomeItems: <span class="placeholding_text">Select Topic</span>,
-                                    }}
-                                />
+                            <div className="--singleselect">
+                                <Select options={options} isSearchable placeholder="Location" className="--item" />
                             </div>
                         </div>
 
                         <div className="--input_wrapper --tags">
                             <label className="double">
-                                Topic Tags
+                                Topic Tags (Primary)
+                                <span>
+                                These are specific topics you can easily speak about. Separate topics
+                                  with commas. {/*drag and drop to change topic arrangement.*/}
+                                </span>
+                            </label>
+                            <TagsInput
+                                value={state.topic_tags}
+                                addKeys={[9, 13, 188 ]}
+                                onChange={(tag)=>{
+                                    stateChanger({...state,topic_tags:tag})
+                                    }}
+                                inputValue={inputState}
+                                onChangeInput={changeInputState}
+                            />
+                        </div>
+
+                        <div className="--input_wrapper --select">
+                            <label class="double" htmlFor="position">
+                                Secondary (optional)
+                            </label>
+                            <div className="--singleselect">
+                                <Select options={options} isSearchable placeholder="Location" className="--item" />
+                            </div>
+                        </div>
+
+                        <div className="--input_wrapper --tags">
+                            <label className="double">
+                                Topic Tags (Secondary)
                                 <span>
                                 These are specific topics you can easily speak about. Separate topics
                                   with commas. {/*drag and drop to change topic arrangement.*/}
@@ -220,62 +191,197 @@ export default function Expertise({
                         </div>
 
                     </div>
-                    <div className="expertise__formsection__section__form --whitebg">
-                        <div className="--input_wrapper">
-                            <label class="double" htmlFor="bio">
-                                Short Bio
-                                <span>
-                                    This is your profile introduction.
-                                </span>
-                            </label>
-                            <textarea
-                                name="shortbio"
-                                type="text"
-                                placeholder="Enter Your Short Bio"
-                                value={state.shortbio}
-                                onChange={handleFormChange}
+
+                    <div className="expertise__formsection__section">
+                        <div className="expertise__formsection__section__header">
+                            <div className="--heading">Education</div>
+                        </div>
+                        <div className="expertise__formsection__section__form">
+                            <div className="--input_wrapper">
+                                <label htmlFor="position">School</label>
+                                <input
+                                    name="school"
+                                    type="text"
+                                    placeholder="Enter School Name"
+                                    onChange={handleFormChange}
+                                    value={state.school}
+                                />
+                            </div>
+
+                            <div className="--input_wrapper">
+                                <label htmlFor="field_of_study">field of study</label>
+                                <input
+                                    name="field_of_study"
+                                    type="text"
+                                    onChange={handleFormChange}
+                                    value={state.field_of_study}
+                                />
+                            </div>
+
+                            <div className="--input_wrapper">
+                                <label htmlFor="dates">From</label>
+                                <div className="--date_wrapper --half_date">
+                                    <DatePicker
+                                        format={monthFormat}
+                                        picker="month"
+                                        placeholder="mm/yy"
+                                        suffixIcon={<DateSuffix />}
+                                        onChange={(momentDate, dateString)=>{
+                                            changeDate(momentDate, dateString, 'exp_dateFrom');
+                                        }}
+                                        value={state.exp_dateFrom[0]}
+                                    />
+                                    <span>to</span>
+                                    <DatePicker
+                                        format={monthFormat}
+                                        picker="month"
+                                        placeholder="mm/yy"
+                                        suffixIcon={<DateSuffix />}
+                                        onChange={(momentDate, dateString)=>{
+                                            changeDate(momentDate, dateString, 'exp_dateTo');
+                                        }}
+                                        value={state.exp_dateTo[0]}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div 
+                            className="expertise__formsection__section__footer"
+                        >
+                            <img 
+                                src={blueCircle}
+                                alt=""
                             />
+                            <span>
+                                Add New Education
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="expertise__formsection__section --last">
+                        <div className="expertise__formsection__section__header">
+                            <div className="--heading">Certification and Licenses </div>
+                        </div>
+                        <div className="expertise__formsection__section__form">
+                            <div className="--input_wrapper">
+                                <label htmlFor="position">Certification Name</label>
+                                <input
+                                    name="school"
+                                    type="text"
+                                    placeholder="Enter School Name"
+                                    onChange={handleFormChange}
+                                    value={state.school}
+                                />
+                            </div>
+
+                            <div className="--input_wrapper">
+                                <label htmlFor="field_of_study">Institution</label>
+                                <input
+                                    name="field_of_study"
+                                    type="text"
+                                    onChange={handleFormChange}
+                                    value={state.field_of_study}
+                                />
+                            </div>
+
+                            <div className="--input_wrapper">
+                                <label htmlFor="dates">From</label>
+                                <div className="--date_wrapper --half_date">
+                                    <DatePicker
+                                        format={monthFormat}
+                                        picker="month"
+                                        placeholder="mm/yy"
+                                        suffixIcon={<DateSuffix />}
+                                        onChange={(momentDate, dateString)=>{
+                                            changeDate(momentDate, dateString, 'exp_dateFrom');
+                                        }}
+                                        value={state.exp_dateFrom[0]}
+                                    />
+                                    <span>to</span>
+                                    <DatePicker
+                                        format={monthFormat}
+                                        picker="month"
+                                        placeholder="mm/yy"
+                                        suffixIcon={<DateSuffix />}
+                                        onChange={(momentDate, dateString)=>{
+                                            changeDate(momentDate, dateString, 'exp_dateTo');
+                                        }}
+                                        value={state.exp_dateTo[0]}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="--input_wrapper">
+                                <label className="double">
+                                    Media
+                                    <span>
+                                    Upload or link to external documents, sites, photos and videos.
+                                    </span>
+                                </label>
+                                <div className="--two_inputs --half_date">
+
+                                    <Upload {...props}>
+                                        <Button icon={<FileImage />}>Upload File</Button>
+                                    </Upload>
+
+
+                                    <div className="--input_wrapper">
+                                        <input
+                                            name="field_of_study"
+                                            type="text"
+                                            onChange={handleFormChange}
+                                            value={state.field_of_study}
+                                            placeholder="Add Link"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div 
+                            className="expertise__formsection__section__footer"
+                        >
+                            <img 
+                                src={blueCircle}
+                                alt=""
+                            />
+                            <span>
+                                Add New Certification
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div className="expertise__formsection__section__form --whitebg">
+                        <div className="--input_wrapper --select">
+                            <label className="double" htmlFor="position">
+                                Highest Level of Education
+                            </label>
+                            <div className="--singleselect">
+                                <Select options={options} isSearchable placeholder="Location" className="--item --cream" />
+                            </div>
                         </div>
                     </div>
 
                     <div className="expertise__formsection__section__form --whitebg">
-                        <div className="--input_wrapper">
-                            <label class="double" htmlFor="fullbio">
-                                Full Bio
-                                <span>
-                                    This is your full bio.
-                                </span>
-                            </label>
-                            <textarea
-                                name="fullbio"
-                                type="text"
-                                placeholder="Enter Your Full Bio"
-                                value={state.fullbio}
-                                onChange={handleFormChange}
-                            />
-                        </div>
-                    </div>
-                    
-                    <div className="expertise__formsection__section__form --whitebg">
                         <div className="--input_wrapper --select">
                             <label className="double" htmlFor="position">
-                                Language
+                                Languages
                             </label>
-                            <div className="--singleselect">
-                            <Select options={options} isSearchable placeholder="Location" className="--item" />
-                                {/* <MultiSelect
+                            <div className="--multiselect ">
+                                <MultiSelect
                                     options={multi_options}
-                                    selected={selected}
-                                    onSelectedChanged={selected => setSelected(selected)}
+                                    selected={state.topics}
+                                    onSelectedChanged={selected => stateChanger({...state, topics:selected})}
                                     overrideStrings={{
-                                        selectSomeItems: <span class="placeholding_text">Select Language</span>,
+                                        selectSomeItems: <span class="placeholding_text">Select Topic</span>,
                                     }}
-                                /> */}
+                                />
                             </div>
                         </div>
                     </div>
 
                 </div>
+
             </div>
 
             <div className="expertise__footer">

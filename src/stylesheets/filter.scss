@@ -25,26 +25,32 @@
         .inputgroup{
             display: flex;
             align-items: center;
-            border: 1px solid $light-grey;
-            border-radius: 5px 0px 0px 5px;
             padding-left: 20px;
         }
-
+        
         &__input{
+            background-position: 20px 50%;
             width: 548px;
-            height: 50px;
+            height: 52px;
             border: 1px solid $light-grey;
+            border-radius: 5px 0px 0px 5px;
             box-sizing: border-box;
-            border-radius: 5px;
             @extend %eighteenpx;
             font-size: 16px;
             padding: 18px 20px;
-            padding-left: 9px;
+            padding-left: 50px;
             color: $dark-blue;
-            border: 0;
             outline: none;
+            background-image: url('../assets/search.svg');
             font-family: 'markpro-medium';
+            background-repeat: no-repeat, repeat;
+            transition: 300ms;
+            
+            &:focus{
+                border: 1px solid $light-blue;
+                background-image: url('../assets/searchActive.svg');
 
+            }
             
             &:hover{
                 outline: none;
@@ -64,7 +70,7 @@
         background: $lightest-grey;
         margin-bottom: 50px;
         width: 1140px;
-        height: 169px;
+        height: 205px;
         border-radius: 10px;
         padding: 26px 35px 35px 35px;
         box-sizing: border-box;
@@ -72,6 +78,7 @@
         &__items{
              display: flex;
              justify-content: space-between;
+             margin-bottom: 25px;
 
             .--item{
                 width: 191px;
@@ -91,8 +98,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 24px;
-
+            margin-bottom: 9px;
             &__icon{
                 cursor: pointer;
             }
@@ -115,7 +121,11 @@
                 @extend %eighteenpx;
                 color: $dark-blue;
                 font-family: 'markpro-medium'; 
-
+            }
+            .--small{
+                @extend %thirteenpx;
+                color: $dark-blue;
+                font-family: 'markpro-medium'; 
             }
         }
 
@@ -138,4 +148,75 @@
         padding:0 35px;
     }
 
+}
+.ant-checkbox-group-item.ant-checkbox-wrapper{
+    font-family: 'markpro-medium';
+    color: #767E9F;
+    @extend %thirteenpx;
+    margin-right: 25px;
+}
+.ant-checkbox-group-item.ant-checkbox-wrapper.ant-checkbox-wrapper-checked{
+    color: #162359;
+}
+.ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #162359 !important;
+    border-color: #162359 !important;
+}
+
+.--multiselect{
+    width: 193px;
+    .select-panel > div:first-of-type{
+        display: none;
+    }
+    .dropdown-content{
+        max-height: 170px !important;
+    }
+    .dropdown-heading{
+        border-radius: 6px !important;
+        border: 1px solid #CDD1DE !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px !important;
+    }
+    .dropdown-heading-value{
+        background: #F7F8FC;
+        overflow: hidden;
+        padding:9px 30px 9px 20px  !important;
+        font-family: 'markpro-medium';
+        span{
+            color: $dark-blue !important;
+            @extend %fifteenpx;
+
+        }
+        .placeholding_text{
+            color: #767E9F !important;
+            @extend %fifteenpx;
+        }
+    }
+    .dropdown-heading-dropdown-arrow{
+        width: 40px !important;
+    }
+    &.--white{
+        .dropdown-heading-value{
+            background: white !important;
+        }
+    }
+    label[aria-selected="true"]{
+        background-color: $light-blue !important;
+        color: $dark-blue !important;
+    }
+    label{
+        margin-bottom: 1px !important;
+        padding: 15px 10px !important;
+        .item-renderer{
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            span{
+                @extend %sixteenpx;
+                color: $dark-blue;
+            }
+        }
+    }
 }

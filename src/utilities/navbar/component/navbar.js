@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom';
 import Logo from '../assets/Logo.svg';
 import './navbar.scss';
 
+const MENU_ITEMS = [
+    {text:"Speakers", "link":"/speakers"},
+    {text:"Organizers", "link":"/speakers"},
+    {text:"Events", "link":""},
+    {text:"Blog", "link":""},
+    {text:"About Us", "link":""},
+];
+
 export default function navbar() {
     return (
         <div>
@@ -16,23 +24,17 @@ export default function navbar() {
 
                 <div className="navigation__menu">
 
-                    <Link className='link' to="/speakers">
-                        <div className="navigation__menu__item --item">
-                            Speakers 
-                        </div>
-                    </Link>
+                    {
 
-                    <Link className='link'>
-                        <div className="navigation__menu__item --item"> Events </div>
-                    </Link>
+                        MENU_ITEMS.map(menuItem => (
+                            <Link className='link' to={menuItem.link}>
+                                <div className="navigation__menu__item --item">
+                                    {menuItem.text} 
+                                </div>
+                            </Link>
+                        ))
 
-                    <Link className='link'>
-                        <div className="navigation__menu__item --item"> Blog </div>
-                    </Link>
-
-                    <Link className="link">
-                        <div className="navigation__menu__item --item"> About Us </div>
-                    </Link>
+                    }
 
                     <Link className="link" to="/login">
                         <div className="navigation__menu__item --outlinedbutton"> Sign In </div>

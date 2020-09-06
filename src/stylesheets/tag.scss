@@ -1,5 +1,5 @@
-@import '../../../../stylesheets/colors';
-@import '../../../../stylesheets/utilities';
+@import './colors';
+@import './utilities';
 
 .--input_wrapper.--tags{
     .react-tagsinput{
@@ -34,7 +34,7 @@
         overflow: hidden;
     }
     .react-tagsinput-tag a::before{
-        content:url('../../assets/cliseTag.svg');
+        content:url('../assets/cliseTag.svg');
         margin-left: 7px;
     }
     .react-tagsinput--focused{

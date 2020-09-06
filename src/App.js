@@ -6,6 +6,8 @@ import { component as SignUpCategory } from './components/category';
 import { component as SignInPage } from './components/signin';
 import { component as SignUpPage } from './components/register';
 
+import 'antd/dist/antd.css'; 
+
 function App() {
   return (
     <Switch>

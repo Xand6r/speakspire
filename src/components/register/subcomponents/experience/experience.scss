@@ -1,7 +1,7 @@
 @import '../../../../stylesheets/colors';
 @import '../../../../stylesheets/utilities';
 
-.expertise{
+.experience{
     @extend %register-tabs-styles;
     padding: 70px 150px;
 
@@ -37,7 +37,7 @@
                     color: $dark-blue;
                 }
                 .--sub_heading{
-                    @extend %elevenpx;
+                    @extend %tenpx;
                     font-family: 'markpro-medium';
                     color: $grey;
                 }
@@ -113,11 +113,11 @@
                         .--singleselect{
                             .--item{
                                 .css-1hb7zxy-IndicatorsContainer{
-                                    // background: #F7F8FC;
+                                    background: #F7F8FC;
                                     cursor: pointer !important;
                                 }
                                 .css-g1d714-ValueContainer{
-                                    // background: white;
+                                    background: #F7F8FC;
                                     padding-left: 20px;
                                     cursor: text;
                                 }
@@ -134,21 +134,8 @@
                                     @extend %sixteenpx;
                                 }
                             }
-                            .--item.--cream{
-                                .css-1hb7zxy-IndicatorsContainer{
-                                    background: #F7F8FC;
-                                    cursor: pointer !important;
-                                }
-                                .css-g1d714-ValueContainer{
-                                    background: #F7F8FC;
-                                    padding-left: 20px;
-                                    cursor: text;
-                                }
-                            }
                         }
-
                         .--multiselect{
-                            width: 360px;
                             .select-panel > div:first-of-type{
                                 display: none;
                             }
@@ -247,38 +234,9 @@
                             @extend %fourteenpx;
                             font-family: 'markpro-medium';
                         }
-
-                    }
-                    .--two_inputs{
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-
-                        .ant-btn{
-                            height: 50px !important;
-                            width: 160px !important;
-                            font-family: 'markpro-medium';
-                            display: flex;
-                            align-items: center;
-                            font-size: 16px !important;
-                            color: #CDD1DE;;
+                        input[type="date"] {
+                            background-position: 87% 50% ;
                         }
-
-                        input{
-                            height: 50px !important;
-                            width: 160px !important;
-                            background-image: url('../../assets/link.svg');
-                            background-position: 20px 50%;
-                            background-repeat: no-repeat;
-                            padding-left: 50px;
-                        }
-
-                        .ant-btn:hover, .ant-btn:focus {
-                            background: #fff;
-                            border-color:$light-blue !important;
-                            box-shadow: none !important;
-                        }
-
                     }
                 }
             }
@@ -336,7 +294,6 @@
 .ant-picker-input > input{
     font-family: 'markpro-medium';
     color: $dark-blue !important;
-    font-size: 16px !important;
 }
 .ant-picker.ant-picker-focused{
     border-color:$light-blue !important;
@@ -349,9 +306,6 @@
     width: 160px !important;
 }
 
-.--nomargin{
-    margin-bottom: 0px;
-}
 .--last{
     margin-bottom: 20px;
 }

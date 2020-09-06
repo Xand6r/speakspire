@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './choiceTab.scss';
 
@@ -18,7 +18,8 @@ const TABS = [
     [individual, 'Individual','Create a personal profile, find and hire the best speakers and organizers for your events. Keep track of your activities.', '--green'],
 ]
 
-export default function choiceTab() {
+export default function ChoiceTab() {
+    const [activeTab, setActiveTab] = useState(null);
     return (
         <div className="choicetab">
 
@@ -37,22 +38,30 @@ export default function choiceTab() {
                     TABS.map((tab,i)=>(
                         <AccountTypeCard
                             key={i}
+                            index={i}
                             icon = {tab[0]}
                             title = {tab[1]}
                             content = {tab[2]}
                             extraclass = {tab[3]}
-                            headimage = {tab[4]}
+                            stateChanger = {setActiveTab}
+                            active = {activeTab === i}
                         />
                     ))
                 }
             </div>
 
             <div className="choicetab__footer">
-                <Link className="link" to="register">
+                <Link 
+                    className="link"
+                    to={(activeTab === null)?"/category":"/register"}
+                >
                     <div className="button">Continue</div>
                 </Link>
                 <div className="--subtext">
-                    Already a member? <span>Sign in</span>
+                    Already a member?
+                    <Link className="link" to="/login">
+                        <span> Sign in</span>
+                    </Link>
                 </div>
             </div>
         </div>

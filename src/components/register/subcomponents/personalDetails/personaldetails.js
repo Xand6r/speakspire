@@ -15,7 +15,7 @@ const GENDER_OPTIONS = [
 export default function Personaldetails({
     stateChanger, state
 }) {
-    const [activeTab, setactiveTab] = useState(0);
+    const [activeTab, setactiveTab] = useState(GENDER_OPTIONS.indexOf(state.gender));
     const [passwordHidden, setPasswordHidden ] = useState(true)
 
     const handleFormChange = (event)=>{
@@ -24,6 +24,10 @@ export default function Personaldetails({
             ...state,
             [name]: value
           });
+    }
+
+    const savePersonalDetails = (event)=>{
+        console.log(state);
     }
 
     const makeActive = (clickedIndex) => {
@@ -89,6 +93,7 @@ export default function Personaldetails({
                         id="birthdate"
                         name="birthdate"
                         onChange={handleFormChange}
+                        value={state.birthdate}
                     />
                 </div>
                 {/* wrapper for the birthdate */}
@@ -109,18 +114,47 @@ export default function Personaldetails({
                 </div>
                 {/* wrapper for the phone number */}
 
-                {/* wrapper for the city or state */}
-                    <div className="--wrapper">
-                    <label htmlFor="location">City or state</label>
+                {/* wrapper for the address*/}
+                <div className="--wrapper">
+                    <label htmlFor="address">Address</label>
                     <input
                         type="text"
-                        id="location"
-                        name="location"
+                        id="address"
+                        name="address"
+                        placeholder="Enter house number and street name"
+                        onChange={handleFormChange}
+                        value={state.address}
+                    />
+                </div>
+                {/* wrapper for the address*/}
+
+                {/* wrapper for the city or state */}
+                    <div className="--wrapper">
+                    <label htmlFor="city">City or state</label>
+                    <input
+                        type="text"
+                        id="city"
+                        name="city"
                         placeholder="Enter your city or state"
                         onChange={handleFormChange}
+                        value={state.city}
                     />
                 </div>
                 {/* wrapper for the city or state */}
+
+                {/* wrapper for the country */}
+                <div className="--wrapper">
+                    <label htmlFor="coutry">Country</label>
+                    <input
+                        type="text"
+                        id="country"
+                        name="country"
+                        placeholder="Enter your country"
+                        onChange={handleFormChange}
+                        value={state.country}
+                    />
+                </div>
+                {/* wrapper for the country */}
 
                 {/* wrapper for the email */}
                     <div className="--wrapper">
@@ -131,6 +165,7 @@ export default function Personaldetails({
                         name="email"
                         placeholder="Enter your email"
                         onChange={handleFormChange}
+                        value={state.email}
                     />
                 </div>
                 {/* wrapper for the email */}
@@ -145,6 +180,7 @@ export default function Personaldetails({
                             name="password"
                             id="password"
                             onChange={handleFormChange}
+                            value={state.password}
                         />
                         <i 
                             className={(passwordHidden)?"far fa-eye":"fa fa-eye-slash"}
@@ -169,7 +205,7 @@ export default function Personaldetails({
                     <div className="cancel">
                         Cancel
                     </div>
-                    <Link className="link" to="/register/2">
+                    <Link onClick={savePersonalDetails} className="link" to="/register/2">
                         <div className="next">
                             Next
                         </div>
