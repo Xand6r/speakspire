@@ -116,10 +116,47 @@ export default function Filter() {
                 </div>
 
                 <div className="filter__results">
-                    <SpeakerCard />
-                    <SpeakerCard />
-                    <SpeakerCard />
-                    <SpeakerCard />
+                    <SpeakerCard
+                        fullname={"Onyenaturuchi Alioha"}
+                        company={"Emeks Enterprises"}
+                        position={"Chief Operating Officer"}
+                        skills={['Business', "Leadership", "Management","Startup Advisory","Aquisitions"]}
+                        image={undefined}
+                        primary={'Public Speaker'}
+                        secondary={'Career Development'}
+                        tag="premium"
+                    />
+                    <SpeakerCard
+                        fullname={"Onyenaturuchi Alioha"}
+                        company={"Emeks Enterprises"}
+                        position={"Chief Operating Officer"}
+                        skills={['Business', "Leadership", "Management","Startup Advisory","Aquisitions"]}
+                        image={undefined}
+                        primary={'Public Speaker'}
+                        secondary={'Career Development'}
+                        tag="premium"
+                    />
+                    <SpeakerCard
+                        fullname={"Onyenaturuchi Alioha"}
+                        company={"Emeks Enterprises"}
+                        position={"Chief Operating Officer"}
+                        skills={['Business', "Leadership", "Management","Startup Advisory","Aquisitions"]}
+                        image={undefined}
+                        primary={'Public Speaker'}
+                        secondary={'Career Development'}
+                        tag="premium"
+                    />
+                    <SpeakerCard
+                        fullname={"Onyenaturuchi Alioha"}
+                        company={"Emeks Enterprises"}
+                        position={"Chief Operating Officer"}
+                        skills={['Business', "Leadership", "Management","Startup Advisory","Aquisitions"]}
+                        image={undefined}
+                        primary={'Public Speaker'}
+                        secondary={'Career Development'}
+                        tag="premium"
+                    />
+                    
                 </div>
 
                 <div className="filter__more_results">

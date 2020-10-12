@@ -3,22 +3,36 @@ import PropTypes from 'prop-types';
 
 import './speakerCard.scss';
 import {component as Skill} from '../../skillTab';
+import placeholderIcon from '../assets/placeholderImage.svg'
 import samplePicture from '../assets/samplepicture.svg';
 import playIcon from '../assets/playIcon.svg';
 import profileIcon from '../assets/profileIcon.svg';
+import blueMic from '../assets/blueMic.svg';
 
-const tempskills = [
-    "business","leadership","management",
-    "startup advisory","aquisitions"
+// import placeholders
+
+import fullnamePlaceHolder from '../assets/placeholders/nameplaceholder.svg';
+import positionPlaceholder from '../assets/placeholders/positionplaceholder.svg';
+import companyPlaceholder from '../assets/placeholders/companyplaceholder.svg';
+import secondaryPlaceholder from '../assets/placeholders/secondaryplaceholder.svg';
+
+
+const PLACEHOLDER_SKILLS = [
+    "skillplaceholder", "skillplaceholder", 
+    "skillplaceholder", "skillplaceholder", 
 ]
+const RenderPlaceholder = (image) =>(
+    <img src={image} alt=""/>
+);
 export default function SpeakerCard({
-    fullname, company, position, skills, image
+    fullname, company, position, skills, image, tag,
+    primary, secondary
 }) {
     return (
         <div>
             <div className="speakercard">
-                <div className="speakercard__tag --premium">
-                    premium
+                <div className={`speakercard__tag --${tag}`}>
+                    {tag}
                 </div>
 
                 <div className="speakercard__profile">
@@ -26,14 +40,22 @@ export default function SpeakerCard({
                         <img src={image} alt="profile" className="pictureImage"/>
                     </div>
                     <div className="speakercard__profile__name">
-                       {fullname}
+                       {fullname || RenderPlaceholder(fullnamePlaceHolder)}
                     </div>
                     <div className="speakercard__profile__position">
-                        <div className="--title">{position}</div>
-                        <div className="--company">{company}</div>
+                        <div className="--title">{position || RenderPlaceholder(positionPlaceholder)}</div>
+                        <div className="--company">{company || RenderPlaceholder(companyPlaceholder)}</div>
+                    </div>
+                    <div className={`speakercard__profile__primary --${primary}`}>
+                        <img src={blueMic} alt="bluemic"/>
+                        <div className="--text_content">
+                            {primary}
+                        </div>
+                    </div>
+                    <div className="speakercard__profile__secondary">
+                            {secondary || RenderPlaceholder(secondaryPlaceholder)}
                     </div>
 
-                    <hr className="--divider"/>
                     <div className="speakercard__profile__skills">
                         {
                             skills.map((skill,i)=>(
@@ -41,10 +63,10 @@ export default function SpeakerCard({
                             ))
                         }
                     </div>
-                    <div className="speakercard__profile__footer">
+                    {/* <div className="speakercard__profile__footer">
                         <img src={profileIcon} alt=""/>
                         <img src={playIcon} alt=""/>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
@@ -56,13 +78,17 @@ SpeakerCard.propTypes= {
     company: PropTypes.string,
     position: PropTypes.string,
     skills: PropTypes.array,
-    image: PropTypes.string
+    image: PropTypes.string,
+    tag: PropTypes.string
 }
 
 SpeakerCard.defaultProps = {
-    fullname: 'Emeka Chukwuma',
-    company: 'Emeks Enterprises',
-    position: 'Chief Executive Officer',
-    skills: tempskills,
-    image: samplePicture
+    fullname: '',
+    company: '',
+    position: '',
+    skills: PLACEHOLDER_SKILLS,
+    image: placeholderIcon,
+    tag: "tagplaceholder",
+    primary: "primaryplaceholder",
+    secondary: ""
 }

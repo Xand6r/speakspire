@@ -1,0 +1,27 @@
+// import the dependencies
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+@import '../../../../stylesheets/fonts';
+
+.filter.--eventspage{
+    margin-top: 170px;
+    margin-bottom: 92px;
+
+    .filter__header{
+        @extend %fiftyfivepx;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    .filter__subheader{
+        max-width: 706px;
+        color: $light-navy-blue;
+        @extend %eighteenpx;
+        text-align: center;
+        font-family: 'markpro-medium';
+        margin-bottom: 60px;
+    }
+    .filter__results{
+        margin-bottom: 26px;
+    }
+
+}

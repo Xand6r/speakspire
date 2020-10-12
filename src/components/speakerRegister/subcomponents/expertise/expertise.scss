@@ -1,0 +1,383 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+
+.expertise{
+    @extend %register-tabs-styles;
+    padding: 70px 150px;
+
+    &__heading{
+        margin-bottom: 50px;
+        &__header{
+            font-weight: bold;
+            font-family: 'markpro-bold';
+            color: $dark-blue;
+            @extend %twentyeightpx;
+        }
+    }
+    
+    &__formsection{
+        display: flex;
+        flex-direction: column;
+
+        &__section{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 65px;
+
+            &:last-of-type{
+                margin-bottom: 50px;
+            }
+
+            &__header{
+                margin-bottom: 20px;
+                .--heading{
+                    @extend %eighteenpx;
+                    margin-bottom: 3px;
+                    font-family: 'markpro-medium';
+                    color: $dark-blue;
+                }
+                .--sub_heading{
+                    @extend %elevenpx;
+                    font-family: 'markpro-medium';
+                    color: $grey;
+                }
+            }
+
+            &__form{
+                box-sizing: border-box;
+                background: #F7F8FC;
+                border-radius: 10px;
+                width: 100%;
+                padding: 27px 42px 40px;
+                @extend %input-date;
+                margin-bottom: 25px;
+
+                &.--whitebg{
+                    background-color: white;
+                    margin-top: 30px;
+                    margin-bottom: 0;
+                    padding: 0px 42px 0px;
+
+                    .--language{
+                        .css-g1d714-ValueContainer{
+                            padding-left: 15px;
+                            height: 50px;
+                        }
+                        .css-yk16xz-control{
+                            background: #F7F8FC;
+                        }
+                        *{
+                            font-family: 'markpro-medium';
+                            color: $dark-blue;
+                        }
+                        .css-1wa3eu0-placeholder{
+                            color: #767E9F;
+                            font-weight: 500;
+                        }
+                        .css-1uccc91-singleValue{
+                            color: $dark-blue;
+                        }
+                        input{
+                            height: 38px !important;
+                        }
+                    }
+ 
+                }
+
+                .--input_wrapper{
+                    margin-bottom: 30px;
+                    display: flex;
+                    flex-direction: column;
+
+                    &:last-of-type{
+                        margin-bottom: 0;
+                    }
+                    label{
+                        @extend %fourteenpx;
+                        color:$dark-blue;
+                        margin-bottom: 10px;
+                        text-transform: capitalize;
+                        font-family: 'markpro-medium';
+                        &.double{
+                            display: flex;
+                            flex-direction: column;
+                            color: $dark-blue;
+                            span{
+                                margin-top: 7px;
+                                color: $grey;
+                                @extend %tenpx;
+                            }
+                        }
+                    }
+                    &.--select{
+                        .--singleselect{
+                            .--item{
+                                .css-1hb7zxy-IndicatorsContainer{
+                                    // background: #F7F8FC;
+                                    cursor: pointer !important;
+                                }
+                                .css-g1d714-ValueContainer{
+                                    // background: white;
+                                    padding-left: 20px;
+                                    cursor: text;
+                                }
+                                .css-1wa3eu0-placeholder{
+                                    color: #767E9F;
+                                    // opacity: .4;
+                                }
+                                input{
+                                    height: 36px;
+                                }
+                                *{
+                                    transition: 500ms !important;
+                                    color: $dark-blue;
+                                    font-family: markpro-medium;
+                                    @extend %sixteenpx;
+                                }
+                            }
+                            .--item.--cream{
+                                .css-1hb7zxy-IndicatorsContainer{
+                                    background: #F7F8FC;
+                                    transition: 500ms !important;
+                                    cursor: pointer !important;
+                                }
+                                .css-g1d714-ValueContainer{
+                                    background: #F7F8FC;
+                                    padding-left: 20px;
+                                    cursor: text;
+                                }
+                            }
+                        }
+
+                        .--multiselect{
+                            width: 360px;
+                            .select-panel > div:first-of-type{
+                                display: none;
+                            }
+                            .dropdown-content{
+                                max-height: 170px !important;
+                            }
+                            .dropdown-heading{
+                                border: 1px solid #CDD1DE !important;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                height: 50px !important;
+                            }
+                            .dropdown-heading-value{
+                                background: #F7F8FC;
+                                overflow: hidden;
+                                padding:9px 30px 9px 20px  !important;
+                                font-family: 'markpro-medium';
+                                span{
+                                    color: $dark-blue !important;
+                                }
+                                .placeholding_text{
+                                    color: #767E9F !important;
+                                }
+                            }
+                            &.--white{
+                                .dropdown-heading-value{
+                                    background: white !important;
+                                }
+                            }
+                            label[aria-selected="true"]{
+                                background-color: $light-blue !important;
+                                color: $dark-blue !important;
+                            }
+                            label{
+                                margin-bottom: 1px !important;
+                                padding: 15px 10px !important;
+                                .item-renderer{
+                                    display: flex;
+                                    flex-direction: row-reverse;
+                                    justify-content: space-between;
+                                    span{
+                                        @extend %sixteenpx;
+                                        color: $dark-blue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    input[type='text'], textarea{
+                        @extend %input-styles;
+                        @extend %sixteenpx;
+                        border: 1px solid #CDD1DE;
+                        background-color: white;
+                        max-width: 360px;
+                        height: 50px;
+                    }
+                    input[type='date']{
+                        height: 50px;
+                        @extend %input-styles;
+                        border: 1px solid #CDD1DE;
+                        background-color: white;
+                        @extend %thirteenpx ;
+                        max-width: 159px;
+                    }
+                    textarea{
+                        min-height: 103px;
+                        background: #F7F8FC;
+                    }
+                    .--topic{
+                        .css-g1d714-ValueContainer{
+                            padding-left: 15px;
+                            height: 50px;
+                        }
+                        *{
+                            font-family: 'markpro-medium';
+                            color: $dark-blue;
+                        }
+                        .css-1wa3eu0-placeholder{
+                            color: #767E9F;
+                            font-weight: 500;
+                        }
+                        .css-1uccc91-singleValue{
+                            color: $dark-blue;
+                        }
+                        input{
+                            height: 38px !important;
+                        }
+                    }
+                    .--date_wrapper{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        span{
+                            color:$light-navy-blue;
+                            @extend %fourteenpx;
+                            font-family: 'markpro-medium';
+                        }
+
+                    }
+                    .--two_inputs{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        .ant-btn{
+                            height: 50px !important;
+                            width: 160px !important;
+                            font-family: 'markpro-medium';
+                            display: flex;
+                            align-items: center;
+                            font-size: 16px !important;
+                            color: $light-blue;
+                            border-color:$light-blue !important;
+                            background: #F7F8FC;
+                            border-radius: 5px;
+                            transition: 300ms;
+                        }
+
+                        input{
+                            height: 50px;
+                            width: 160px ;
+                            background-image: url('../../assets/link.svg');
+                            background-position: 20px 50%;
+                            background-repeat: no-repeat;
+                            padding-left: 50px;
+                        }
+
+                        &.--file{
+                            .ant-btn{
+                                width: 360px !important;
+                                justify-content: center;
+                            }
+                            input{
+                                display: none;
+                            }
+                        }
+
+                        &.--link{
+                            .ant-btn{
+                                display: none;
+                            }
+                            input{
+                                width: 360px;
+                            }
+                        }
+
+                        .ant-btn:hover, .ant-btn:focus {
+                            background: #EDF1FE;
+                            border-color:$light-blue !important;
+                            box-shadow: none !important;
+                            color: $light-blue !important;
+                        }
+
+                    }
+                }
+            }
+
+            &__footer{
+                cursor: pointer;
+                color: $light-blue;
+                img{
+                    margin-right: 10px;
+                }
+                span{
+                    @extend %fourteenpx;
+                    font-family:'markpro-medium';
+                }
+            }
+        }
+    }
+
+    &__footer{
+        width: 360px;
+        margin: 0 auto;
+        .--button_group{
+            display: flex;
+            justify-content: space-between;
+            max-width: 360px;
+       
+            .cancel{
+                @extend %filled-button;
+                width: 108.22px;
+                height: 50px;
+                background: #F5F5F9;
+                font-family: 'markpro-bold';
+                color: $dark-blue;
+            }
+
+            .next{
+                @extend %filled-button;
+                width: 108.22px;
+                height: 50px;
+                background: $light-blue;
+                font-family: 'markpro-bold';
+                color: white
+            }
+        }
+    }
+}
+
+.ant-picker{
+    height: 50px;
+    border-radius: 5px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-shadow: none;
+}
+.ant-picker-input > input{
+    font-family: 'markpro-medium';
+    color: $dark-blue !important;
+    font-size: 16px !important;
+}
+.ant-picker.ant-picker-focused{
+    border-color:$light-blue !important;
+    box-shadow: none !important;
+}
+.ant-picker:hover{
+    border-color:$light-blue !important;
+}
+.--half_date .ant-picker {
+    width: 160px !important;
+}
+
+.--nomargin{
+    margin-bottom: 0px;
+}
+.--last{
+    margin-bottom: 20px;
+}

@@ -1,0 +1,26 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+@import '../../../../stylesheets/fonts';
+
+.frontpage{
+    display: flex;
+    padding: 200px 150px 201px;
+    justify-content: space-between;
+    align-items: flex-end;
+    &__textcontent{
+        max-width: 539px;
+        &__header{
+            font-family: 'markpro-bold';
+            color: #162359;
+            @extend %seventypx;
+            margin-bottom: 30px;
+        }
+
+        &__subheader{
+            color: #8990AC;
+            line-height: 30px;
+            @extend %eighteenpx;
+            font-family: 'markpro-medium';
+        }
+    }
+}

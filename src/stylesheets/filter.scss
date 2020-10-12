@@ -30,7 +30,7 @@
         
         &__input{
             background-position: 20px 50%;
-            width: 548px;
+            width: 588px;
             height: 52px;
             border: 1px solid $light-grey;
             border-radius: 5px 0px 0px 5px;
@@ -136,7 +136,7 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        max-width: 1180px;
+        width: 1140px;
     }
 
     &__more_results{
@@ -146,6 +146,9 @@
         border-width: 1.5px;
         justify-content: space-between;
         padding:0 35px;
+        &>img{
+            transform: rotate(90deg);
+        }
     }
 
 }
@@ -186,12 +189,12 @@
         font-family: 'markpro-medium';
         span{
             color: $dark-blue !important;
-            @extend %fifteenpx;
+            @extend %sixteenpx;
 
         }
         .placeholding_text{
             color: #767E9F !important;
-            @extend %fifteenpx;
+            @extend %sixteenpx;
         }
     }
     .dropdown-heading-dropdown-arrow{

@@ -7,6 +7,48 @@
 .link{
     text-decoration: none;
 }
+.css-1okebmr-indicatorSeparator{
+    display: none;
+}
+.ant-modal-header{
+    font-family: 'markpro-medium';
+}
+.ant-btn{
+    font-family: 'markpro-medium';
+}
+.ant-picker{
+    & input{
+        &::placeholder{
+            color: $light-navy-blue_two !important;
+        }
+    }
+}
+
+.file_delete{
+    color: red;
+    font-family: 'markpro-medium';
+    @extend %thirteenpx;
+    margin-top: 17px;
+    cursor: pointer;
+    margin-bottom: 4px;
+    img{
+        transition: 300ms;
+        margin-right: 5px;
+    }
+    span{
+        display: inline-block;
+    }
+}
+.file_delete:hover{
+    img{
+        transform: scale(1.2);
+    }
+}
+.file_delete:active{
+    img{
+        transform: scale(1.1);
+    }
+}
 
 %divider{
     border: 0.05px solid $light-navy-blue_two;
@@ -75,6 +117,17 @@
 
     }
 
+}
+
+%clickable{
+    transition: 300ms;
+    
+    &:hover{
+        transform: scale(1.2);
+    }
+    &:active{
+        transform: scale(0.9);
+    }
 }
 
 %register-tabs-styles{
@@ -162,4 +215,16 @@
     font-weight: bold;
     font-size: 55px;
     line-height: 70px;
+}
+
+%seventypx{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 70px;
+    line-height: 120%;
+}
+
+%twentypx{
+    font-size: 28px;
+    line-height: 40px;
 }

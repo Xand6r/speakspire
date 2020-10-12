@@ -13,13 +13,14 @@ import individual from '../assets/greenuser_greenbg.svg';
 // import gmgb from '../assets/greenuser_greenbg.svg';
 
 const TABS = [
-    [speaker, 'Speaker','Create a speaker profile and join a vibrant community of speakers. Get hired to speak at events.', '--blue'],
-    [organiser, 'Organiser','Create a company profile, showcase your events, receive requests from speakers, and hire your preferred speakers.','--red'],
-    [individual, 'Individual','Create a personal profile, find and hire the best speakers and organizers for your events. Keep track of your activities.', '--green'],
+    [speaker, 'Speaker','Create a speaker profile and join a vibrant community of speakers. Get hired to speak at events.', '--blue', '/register'],
+    [organiser, 'Organiser','Create a company profile, showcase your events, receive requests from speakers, and hire your preferred speakers.','--red','/organiser'],
+    [individual, 'Individual','Create a personal profile, find and hire the best speakers and organizers for your events. Keep track of your activities.', '--green','/individual'],
 ]
 
 export default function ChoiceTab() {
     const [activeTab, setActiveTab] = useState(null);
+    const [choice, setChoice] = useState('null')
     return (
         <div className="choicetab">
 
@@ -36,16 +37,20 @@ export default function ChoiceTab() {
             <div className="choicetab__tabs">
                 {
                     TABS.map((tab,i)=>(
-                        <AccountTypeCard
-                            key={i}
-                            index={i}
-                            icon = {tab[0]}
-                            title = {tab[1]}
-                            content = {tab[2]}
-                            extraclass = {tab[3]}
-                            stateChanger = {setActiveTab}
-                            active = {activeTab === i}
-                        />
+                        <div
+                            onClick = {()=>setChoice(tab[4])}
+                        >
+                            <AccountTypeCard
+                                key={i}
+                                index={i}
+                                icon = {tab[0]}
+                                title = {tab[1]}
+                                content = {tab[2]}
+                                extraclass = {tab[3]}
+                                stateChanger = {setActiveTab}
+                                active = {activeTab === i}
+                            />
+                        </div>
                     ))
                 }
             </div>
@@ -53,7 +58,7 @@ export default function ChoiceTab() {
             <div className="choicetab__footer">
                 <Link 
                     className="link"
-                    to={(activeTab === null)?"/category":"/register"}
+                    to={(activeTab === null)?"/category":choice}
                 >
                     <div className="button">Continue</div>
                 </Link>

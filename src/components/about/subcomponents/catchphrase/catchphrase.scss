@@ -1,0 +1,66 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+@import '../../../../stylesheets/fonts';
+
+.catchphrase{
+    padding: 0 150px;
+    &__textcontent{
+        margin-bottom: 50px;
+        text-align: center;
+        &__header{
+            @extend %fourtypx;
+            color: #162359;
+            font-style: normal;
+            font-weight: bold;
+            font-family: 'markpro-bold';
+            margin-bottom: 20px;
+        }
+        &__subheader{
+            margin: 0 auto;
+            color: #8990AC;
+            @extend %eighteenpx;
+            max-width: 556px;
+            font-family: 'markpro-medium';
+        }
+    }
+
+    &__phraseswrapper{
+        display: flex;
+        flex-direction: column;
+
+        &__box{
+            padding: 35px 145px;
+            margin-bottom: 10px;
+            display: flex;
+            border-radius: 5px;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+
+            &.--first{
+                background: #F7F8FC;
+            }
+            &.--second{
+                background: #EFF1F9;
+                flex-direction: row-reverse;
+            }
+            &.--third{
+                background: #EDF1FE;
+            }
+            &__text{
+                .--phrase__heading{
+                    color: #162359;
+                    @extend %twentyeightpx;
+                    margin-bottom: 20px;
+                    font-family: 'markpro-bold';
+                }
+                .--phrase__subheading{
+                    color: #767E9F;
+                    font-family: 'markpro-medium';
+                    max-width: 308px;
+                    @extend %eighteenpx;
+                }
+            }
+        }
+    }
+}

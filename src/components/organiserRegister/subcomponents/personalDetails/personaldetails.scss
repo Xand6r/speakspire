@@ -1,0 +1,157 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+
+.companypersonaldetails{
+    @extend %register-tabs-styles;
+
+    &__heading{
+        margin-bottom: 50px;
+        &__header{
+            font-weight: bold;
+            font-family: 'markpro-bold';
+            color: $dark-blue;
+            @extend %twentyeightpx;
+        }
+        &__subheading{
+            @extend %thirteenpx;
+            font-family: 'markpro-medium';
+            color: $light-navy-blue;
+
+            span{
+                color: $light-blue;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__formsection{
+        display: flex;
+        flex-direction: column;
+
+        .--wrapper{
+            display: flex;
+            
+            .--passwordinput{
+                display: flex;
+                align-items: center;
+                text-transform: none;
+
+                i{
+                    margin-left: -34px;
+                    cursor: pointer;
+                    color: $grey;
+                }
+            }
+
+            flex-direction: column;
+            margin-bottom: 30px;
+            .--gendersection{
+                display: flex;
+                justify-content: space-between;
+            }
+            label{
+                color: $grey;
+                @extend %fourteenpx;
+                font-family: 'markpro-medium';
+                margin-bottom: 15px;
+            }
+            input[type="text"], input[type='tel'], input[type='email'],input[type='password']{
+                @extend %sixteenpx;
+                width: 390px;
+                height: 50px;
+                @extend %input-styles;
+                border: 1px solid $light-navy-blue_two;
+                background: #F7F8FC;
+
+                &::placeholder{
+                    color: $light-navy-blue_two;
+                }
+
+                &:focus{
+                    outline: none;
+                    border: 1px solid $light-blue;
+                    background: #EDF1FE;
+                }
+                &[name='password'], &[type='date']{
+                    text-transform: none;
+                }
+            }
+            .-ant-picker{
+                background: #F7F8FC;
+            }
+            &.--date{
+                .react-tel-input .country-list{
+                    width: 391px;
+                }
+                input{
+                    width: 341px !important;
+                    margin-left: 50px;
+                }
+                ul.country-list span{
+                    color: #767e9f;
+                    font-family: 'markpro-medium';
+                }
+
+                ul.country-list li[aria-selected="true"] span{
+                    color: $dark-blue !important;
+                }
+                ul.country-list li[aria-selected="true"]{
+                    background-color: #edf1fe;
+                }
+            }
+            @extend %input-date;
+
+        }
+    }
+
+    &__footer{
+        display: flex;
+        flex-direction: column;
+        .--notification{
+            display: flex;
+            margin-bottom: 50px;
+            margin-left: 10px;
+            img{
+                margin-top: -27px;
+                margin-right: 10px
+            }
+            .--text{
+                max-width: 292px;
+                @extend %thirteenpx;
+                font-family: 'markpro-medium';
+                color: #8990AC;
+                span{
+                    color: $light-blue;
+                }
+            }
+        }
+        .--button_group{
+            display: flex;
+            justify-content: space-between;
+            
+            .cancel{
+                @extend %filled-button;
+                width: 108.22px;
+                height: 50px;
+                background: #F5F5F9;
+                font-family: 'markpro-bold';
+                color: $dark-blue;
+            }
+
+            .next{
+                @extend %filled-button;
+                width: 108.22px;
+                height: 50px;
+                background: $light-blue;
+                font-family: 'markpro-bold';
+                color: white
+            }
+        }
+    }
+}
+
+.react-tel-input .flag-dropdown {
+    background: white !important;
+    border: none !important;
+
+}

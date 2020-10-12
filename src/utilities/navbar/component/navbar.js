@@ -5,10 +5,10 @@ import './navbar.scss';
 
 const MENU_ITEMS = [
     {text:"Speakers", "link":"/speakers"},
-    {text:"Organizers", "link":"/speakers"},
-    {text:"Events", "link":""},
+    {text:"Organizers", "link":"/organisers"},
+    {text:"Events", "link":"/events"},
     {text:"Blog", "link":""},
-    {text:"About Us", "link":""},
+    {text:"About Us", "link":"/about"},
 ];
 
 export default function navbar() {

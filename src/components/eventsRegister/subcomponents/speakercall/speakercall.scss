@@ -1,0 +1,212 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+
+.speakercall{
+    @extend %register-tabs-styles;
+    padding: 70px 150px;
+
+    .--more-margin{
+        margin-bottom: 50px;
+    }
+
+    &__heading{
+        margin-bottom: 50px;
+        &__header{
+            font-weight: bold;
+            font-family: 'markpro-bold';
+            color: $dark-blue;
+            @extend %twentyeightpx;
+        }
+        &__subheading{
+            @extend %thirteenpx;
+            font-family: 'markpro-medium';
+            color: $light-navy-blue;
+
+            span{
+                color: $light-blue;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__formsection{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+        padding: 25px 41px 0;
+        background: #F7F8FC;
+        border-radius: 10px;
+        position: relative;
+
+        .--delete{
+            position: absolute;
+            height: 23px;
+            right: 10px;
+            top: 17px;
+            cursor: pointer;
+            @extend %clickable;
+        }
+
+        textarea{
+            @extend %input-styles;
+            @extend %sixteenpx;
+            border: 1px solid #CDD1DE;
+            width: 360px;
+            height: 50px;
+            min-height: 103px;
+            background: white;
+
+            &:focus{
+                outline: none;
+                border: 1px solid $light-blue;
+                background: #EDF1FE;
+            }
+        }
+        label{
+            @extend %fourteenpx;
+            color:$grey;
+            margin-bottom: 15px;
+            text-transform: capitalize;
+            font-family: 'markpro-medium';
+            &.double{
+                margin-bottom: 10px;
+                display: flex;
+                flex-direction: column;
+                color: $grey;
+                span{
+                    margin-top: 7px;
+                    color: $grey;
+                    @extend %tenpx;
+                }
+            }
+        }
+
+        .--double_wrapper{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+     
+            span{
+                color:$light-navy-blue;
+                @extend %fourteenpx;
+                font-family: 'markpro-medium';
+            }
+    
+        }
+
+        .--wrapper{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+
+            .--singleselect{
+                .--item{
+                    .css-1hb7zxy-IndicatorsContainer{
+                        background: white;
+                        cursor: pointer !important;
+                    }
+                    .css-g1d714-ValueContainer{
+                        background: white;
+                        padding-left: 20px;
+                        cursor: text;
+                    }
+                    .css-1wa3eu0-placeholder{
+                        color: $light-navy-blue_two;
+                        // opacity: .4;
+                    }
+                    input{
+                        height: 36px;
+                    }
+                    *{
+                        transition: 500ms !important;
+                        color: $dark-blue;
+                        font-family: markpro-medium;
+                        @extend %sixteenpx;
+                    }
+                }
+            }
+
+            input[type="text"], input[type='tel'], input[type='email'],input[type='password']{
+                @extend %sixteenpx;
+                width: 159px;
+                height: 50px;
+                @extend %input-styles;
+                border: 1px solid $light-navy-blue_two;
+                background: white;
+
+                &::placeholder{
+                    color: $light-navy-blue_two;
+                }
+
+                &:focus{
+                    outline: none;
+                    border: 1px solid $light-blue;
+                    background: #EDF1FE;
+                }
+                &[name='password'], &[type='date']{
+                    text-transform: none;
+                }
+            }
+            .-ant-picker{
+                background: #F7F8FC;
+            }
+
+        }
+    }
+
+    &__footer{
+        display: flex;
+        flex-direction: column;
+        .--extra{
+            margin: 0px auto 50px;
+            div{
+                @extend %outlined-button;
+                width: 360px;
+                height: 50px;
+                img{
+                    margin-right: 10px;
+                }
+            }
+        }
+        .--notification{
+            display: flex;
+            margin-bottom: 50px;
+            margin-left: 10px;
+            img{
+                margin-top: -27px;
+                margin-right: 10px
+            }
+            .--text{
+                max-width: 292px;
+                @extend %thirteenpx;
+                font-family: 'markpro-medium';
+                color: #8990AC;
+                span{
+                    color: $light-blue;
+                }
+            }
+        }
+        .--button_group{
+            display: flex;
+            justify-content: space-between;
+            
+            .cancel{
+                @extend %filled-button;
+                width: 108.22px;
+                height: 50px;
+                background: #F5F5F9;
+                font-family: 'markpro-bold';
+                color: $dark-blue;
+            }
+
+            .next{
+                @extend %filled-button;
+                width: 183px;
+                height: 50px;
+                background: $light-blue;
+                font-family: 'markpro-bold';
+                color: white
+            }
+        }
+    }
+}

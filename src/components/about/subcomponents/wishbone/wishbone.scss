@@ -1,0 +1,34 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+@import '../../../../stylesheets/fonts';
+
+.wishbone{
+    position: relative;
+    width:614.25px;
+    height:267.76px;
+    text-align: center;
+    margin: 0px auto 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img{
+        position: absolute;
+        z-index: -1;
+    }
+    &__slogan{
+        color: #162359;
+        @extend %fourtypx;
+        font-family: 'markpro-bold';
+        font-style: normal;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    &__text{
+        max-width: 493px;
+        color: #767E9F;
+        font-family: 'markpro-medium';
+        @extend %eighteenpx;
+    }
+}

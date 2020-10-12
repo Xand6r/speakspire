@@ -108,7 +108,7 @@ export default function Filter() {
 
                         
                         <div className="filter__filter__select__checkboxes">
-                        <Checkbox.Group options={CHECKBOX_OPTIONS} defaultValue={['Apple']} onChange={onChange} />
+                        <Checkbox.Group name="alex" options={CHECKBOX_OPTIONS} defaultValue={['Apple']} onChange={onChange} />
                         </div>
                     </div>
 
