@@ -27,8 +27,10 @@
     &__phraseswrapper{
         display: flex;
         flex-direction: column;
+        align-items: center;
 
         &__box{
+            max-width: 1141px;
             padding: 35px 145px;
             margin-bottom: 10px;
             display: flex;
