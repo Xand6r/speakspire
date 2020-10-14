@@ -1,0 +1,55 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+
+.circleSelect{
+    width: 360px;
+    height: 50px;
+    background: #F7F8FC;
+    /* Light Grey */
+    
+    border: 1px solid #CDD1DE;
+    box-sizing: border-box;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'markpro-medium';
+    transition: 300ms;
+
+    &__text{
+        font-style: normal;
+        @extend %sixteenpx;
+        text-transform: capitalize;
+        display: flex;
+        align-items: center;
+
+        /* Grey */
+
+        color: #767E9F;
+    }
+
+    &__icon{
+        border: 1px solid #B8BED0;
+        box-sizing: border-box;
+        width: 19px;
+        height: 19px;
+        border-radius: 50%;
+        @extend %centered-flex;
+    }
+
+    &.--active{
+        background: #EDF1FE;
+        border: 1px solid #4D75F4;
+
+        & .circleSelect__icon{
+            background: #4D75F4;
+        }
+    }
+    &:hover{
+        border: 1px solid #4D75F4;
+    }
+
+}

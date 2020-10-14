@@ -4,6 +4,51 @@
 .--underline{
     text-decoration: underline;
 }
+.link{
+    text-decoration: none;
+}
+.css-1okebmr-indicatorSeparator{
+    display: none;
+}
+.ant-modal-header{
+    font-family: 'markpro-medium';
+}
+.ant-btn{
+    font-family: 'markpro-medium';
+}
+.ant-picker{
+    & input{
+        &::placeholder{
+            color: $light-navy-blue_two !important;
+        }
+    }
+}
+
+.file_delete{
+    color: red;
+    font-family: 'markpro-medium';
+    @extend %thirteenpx;
+    margin-top: 17px;
+    cursor: pointer;
+    margin-bottom: 4px;
+    img{
+        transition: 300ms;
+        margin-right: 5px;
+    }
+    span{
+        display: inline-block;
+    }
+}
+.file_delete:hover{
+    img{
+        transform: scale(1.2);
+    }
+}
+.file_delete:active{
+    img{
+        transform: scale(1.1);
+    }
+}
 
 %divider{
     border: 0.05px solid $light-navy-blue_two;
@@ -39,8 +84,69 @@
     line-height: 19px;
 }
 
+%input-date {
+    input[type="date"] {
+        background:#F7F8FC url('../assets/calendar.svg') 94% 50% no-repeat ;
+    }
+    input[type="date"]::-webkit-inner-spin-button {
+        display: none;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        opacity: 0;
+        cursor: pointer;
+    }
+    input[type="date"]::-webkit-clear-button { display: none; }
+}
+
+%input-styles {
+    box-sizing: border-box;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: 'markpro-medium';
+    color: $dark-blue;
+    transition: 300ms;
+
+    &::placeholder{
+        color: $light-navy-blue_two;
+    }
+
+    &:focus{
+        outline: none;
+        border: 1px solid $light-blue;
+
+    }
+
+}
+
+%clickable{
+    transition: 300ms;
+    
+    &:hover{
+        transform: scale(1.2);
+    }
+    &:active{
+        transform: scale(0.9);
+    }
+}
+
+%register-tabs-styles{
+    box-sizing: border-box;
+    min-width: 744px;
+    max-width: 744px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    padding: 70px 177px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 30px rgba(22, 35, 89, 0.04);
+}
+
 
 // define font progressions
+%tenpx{
+    font-size: 10px;
+    line-height: 13px;
+}
 %elevenpx{
     font-size: 11px;
     line-height: 14px;
@@ -65,9 +171,15 @@
     line-height: 18px;
 }
 
+%fifteenpx{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 19px;
+}
+
 %sixteenpx{
     font-style: normal;
-    font-weight: bold;
     font-size: 16px;
     line-height: 20px;
 }
@@ -103,4 +215,16 @@
     font-weight: bold;
     font-size: 55px;
     line-height: 70px;
+}
+
+%seventypx{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 70px;
+    line-height: 120%;
+}
+
+%twentypx{
+    font-size: 28px;
+    line-height: 40px;
 }

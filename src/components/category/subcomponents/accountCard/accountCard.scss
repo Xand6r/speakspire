@@ -14,17 +14,35 @@
     border-radius: 5px;
     padding: 36px;
     cursor: pointer;
-    
+    transition: 300ms;
+
     &.--blue{
         border: 1.5px solid #EDF1FE;
+        &.--active{
+            border: 1.5px solid #4D75F4;
+            background: #EDF1FE;
+        }
+
     }
     &.--red{
         border: 1.5px solid #FFEFF2;
+        &.--active{
+            border: 1.5px solid #F84B6B;
+            background: #FFEFF2;
+        }
     }
     &.--green{
         border: 1.5px solid #F1FCF6;
+        &.--active{
+            border: 1.5px solid #42E56D;
+            background: #F1FCF6;
+        }
     }
-
+    &:hover{
+        border: 1.5px solid transparent;
+        background: #F5F5F9;
+    }
+    
 
     &.--grey{
         background: $lightest-grey;

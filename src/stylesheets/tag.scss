@@ -1,0 +1,64 @@
+@import './colors';
+@import './utilities';
+
+.--input_wrapper.--tags{
+
+    .react-tagsinput{
+        padding: 8px 20px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        transition: 300ms;
+
+
+        & > span{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+    }
+    .react-tagsinput-tag{
+        margin-bottom: 3px;
+        margin-top: 3px;
+        margin-right: 6px;
+        color: $dark-blue;
+        font-family: 'markpro-medium';
+        @extend %sixteenpx;
+        padding: 6px 12px;
+        box-sizing: border-box;
+        height: 27px;
+        @extend %centered-flex;
+        background: #EDF1FE;
+        border-radius: 3px;
+        border: 0;
+        font-weight: 500px;
+        max-width: 200px;
+        overflow: hidden;
+    }
+    .react-tagsinput-tag a::before{
+        content:url('../assets/cliseTag.svg');
+        margin-left: 7px;
+    }
+    .react-tagsinput--focused{
+        border: 1px solid $light-blue;
+    }
+    input{
+        border: 0 !important;
+        margin-bottom: 0 !important;
+        padding:0!important;
+        height: 27px !important;
+        width: 180px !important;
+        &:focus{
+            background-color: transparent !important;
+        }
+    }
+    &.--grey{
+        .react-tagsinput{
+            background: #F7F8FC;
+        }
+        .react-tagsinput-tag{
+            background: #F7F8FC;        
+            border: 0.5px solid #CDD1DE;
+        }
+    }
+}

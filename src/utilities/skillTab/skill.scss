@@ -3,15 +3,23 @@
 @import '../../stylesheets/utilities';
 
 .skill{
-    color: $dark-blue;
+    color: #767E9F;
     @extend %centered-flex;
     font-family: 'markpro-medium';
     text-transform: uppercase;
-    background: #EFF0F3;
-    height: 17px;
-    padding: 1px 5px;
+    background: #F7F8FC;    height: 17px;
+    padding: 5px 5px;
     border-radius: 3px;
     font-size: 8px;
     margin-top: 6px;
-    margin-left: 8px;
+    margin-right: 8px;
+
+    &:first-of-type{
+        margin-left: 0;
+    }
+    &.--skillplaceholder{
+        height: 17px;
+        background: #EFF1F9;
+        color: #EFF1F9;
+    }
 }

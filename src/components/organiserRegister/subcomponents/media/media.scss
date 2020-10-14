@@ -1,0 +1,239 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+
+.organiserlogin{
+    @extend %register-tabs-styles;
+    padding: 70px 150px;
+
+    .--more-padding{
+        padding-left: 42px;
+        padding-right: 42px;
+    }
+    .--more-margin{
+        margin-bottom: 50px;
+    }
+
+    &__heading{
+        margin-bottom: 50px;
+        &__header{
+            font-weight: bold;
+            font-family: 'markpro-bold';
+            color: $dark-blue;
+            @extend %twentyeightpx;
+        }
+    }
+
+    &__formsection{
+        display: flex;
+        flex-direction: column;
+        
+        input[type='text']{
+            @extend %input-styles;
+            @extend %sixteenpx;
+            border: 1px solid #CDD1DE;
+            background: #F7F8FC;
+            max-width: 360px;
+            height: 50px;
+        }
+
+        .--singleselect{
+            .--item{
+                .css-1hb7zxy-IndicatorsContainer{
+                    background: #F7F8FC;
+                    cursor: pointer !important;
+                }
+                .css-g1d714-ValueContainer{
+                    background: #F7F8FC;
+                    padding-left: 20px;
+                    cursor: text;
+                }
+                .css-1wa3eu0-placeholder{
+                    color: #767E9F;
+                    // opacity: .4;
+                }
+                input{
+                    height: 36px;
+                }
+                *{
+                    transition: 500ms !important;
+                    color: $dark-blue;
+                    font-family: markpro-medium;
+                    @extend %sixteenpx;
+                }
+            }
+        }
+
+        textarea{
+            @extend %input-styles;
+            @extend %sixteenpx;
+            border: 1px solid #CDD1DE;
+            max-width: 360px;
+            height: 50px;
+            min-height: 103px;
+            background: #F7F8FC;
+        }
+
+
+        
+        &__section{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+
+            .form_wrapper{
+                .ant-tabs{
+                    background: #F7F8FC;
+                    border-radius: 10px;
+                    padding: 30px 42px;
+                }
+
+                .ant-tabs-tab {
+
+                    margin: 0 80px 0 0;
+                    padding: 0px 0;
+                    font-family: 'markpro-medium';
+
+                }
+
+                .ant-tabs-top > .ant-tabs-nav::before, .ant-tabs-bottom > .ant-tabs-nav::before, .ant-tabs-top > div > .ant-tabs-nav::before, .ant-tabs-bottom > div > .ant-tabs-nav::before {
+                    border-bottom: 0px solid #f0f0f0;
+                }
+
+                .ant-tabs-top > .ant-tabs-nav .ant-tabs-nav-wrap.ant-tabs-nav-wrap-ping-right::after, .ant-tabs-bottom > .ant-tabs-nav .ant-tabs-nav-wrap.ant-tabs-nav-wrap-ping-right::after, .ant-tabs-top > div > .ant-tabs-nav .ant-tabs-nav-wrap.ant-tabs-nav-wrap-ping-right::after, .ant-tabs-bottom > div > .ant-tabs-nav .ant-tabs-nav-wrap.ant-tabs-nav-wrap-ping-right::after {
+                    opacity: 0;
+                }
+
+                .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+                    color: $dark-blue;
+                    font-weight: 500;
+                }
+                .ant-tabs-ink-bar {
+                    position: absolute;
+                    background: $dark-blue;
+                    pointer-events: none;
+                 }
+            }
+            label{
+                @extend %fourteenpx;
+                color:$grey;
+                margin-bottom: 10px;
+                text-transform: capitalize;
+                font-family: 'markpro-medium';
+                &.double{
+                    display: flex;
+                    flex-direction: column;
+                    color: $dark-blue;
+                    span{
+                        margin-top: 7px;
+                        color: $grey;
+                        @extend %tenpx;
+                    }
+                }
+            }
+
+            .form_wrapper{
+                position: relative;
+            }
+            .ant-btn{
+                height: 50px !important;
+                width: 360px !important;
+                font-family: 'markpro-medium';
+                display: flex;
+                align-items: center;
+                font-size: 16px !important;
+                color: $light-blue;
+                justify-content: center;
+                border-color:$light-blue !important;
+                background: #F7F8FC;
+                border-radius: 5px;
+                position: relative;
+            }
+            
+            button.ant-btn{
+                span, img{
+                    z-index: 4;
+                }
+            }
+            .percentage{
+                height: 50px !important;
+                // width: 360px !important;
+                position: absolute;
+                background: $light-blue;
+                top: 0;
+                color: white;
+                z-index: 3;
+                border-radius: 5px;
+            }
+
+            .icon_input{
+                display: flex;
+                margin-bottom: 15px;
+
+                .icon{
+                    margin-right: 17px;
+                    width:20px;
+                }
+                input{
+                    @extend %sixteenpx;
+                    width: 390px;
+                    height: 50px;
+                    @extend %input-styles;
+                    border: 1px solid $light-navy-blue_two;
+                    background: #F7F8FC;
+                    &:focus{
+                        background: #EDF1FE;
+                    }
+                }
+            }
+
+            .ant-btn:hover, .ant-btn:focus {
+                background: #EDF1FE;
+                border-color:$light-blue !important;
+                box-shadow: none !important;
+                color: $light-blue !important;
+            }
+            .image_upload_button.--uploaded{
+                .ant-btn{
+                    background: $light-blue;
+                    color: white;
+                }
+                .ant-btn:hover, .ant-btn:focus {
+                    background: $light-blue;
+                    border-color:$light-blue !important;
+                    box-shadow: none !important;
+                    color: white !important;
+                }
+            }
+
+
+        }
+    }
+
+    &__footer{
+        display: flex;
+        flex-direction: column;
+
+        .--button_group{
+            display: flex;
+            justify-content: space-between;
+            
+            .cancel{
+                @extend %filled-button;
+                width: 108.22px;
+                height: 50px;
+                background: #F5F5F9;
+                font-family: 'markpro-bold';
+                color: $dark-blue;
+            }
+
+            .next{
+                @extend %filled-button;
+                width: 108.22px;
+                height: 50px;
+                background: $light-blue;
+                font-family: 'markpro-bold';
+                color: white
+            }
+        }
+    }
+}

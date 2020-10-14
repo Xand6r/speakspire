@@ -1,0 +1,309 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+
+.schedule{
+    @extend %register-tabs-styles;
+    padding: 70px 192px;
+    .ant-picker{
+        background: #F7F8FC;
+    }
+    .edittime{
+        &__content{
+            width: 360px;
+            height: 205px;
+            background: #F7F8FC;
+            border-radius: 5px;
+            padding: 15px 20px;
+            margin-top: 5px;
+            border-radius: 5px;
+            span.to{
+                padding: 10px;
+            }
+            .ant-picker{
+                background: #FFF;
+            }
+            .time{
+                display: block;
+                margin-bottom: 8px;
+            }
+        }
+        &__tab{
+            width: 360px;
+            height: 50px;
+            padding-left: 21px;
+            padding-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #F7F8FC;
+            border-radius: 5px;
+            margin-top: 24px;
+
+            span{
+                font-family: 'markpro-medium';
+                color: #162359;
+                @extend %sixteenpx;
+            }
+            &__extra{
+                width: 37px;
+                height: 37px;
+                border-radius: 5px;
+                @extend %centered-flex;
+                cursor: pointer;
+                transition: 300ms;
+                &:hover{
+                    background: #EDF1FE;
+                }
+            }
+
+            &.active{
+                background: #EDF1FE;
+            }
+            &.active .edittime__tab__extra:hover{
+                background: white;
+            }
+        }
+    }
+    .--double_wrapper, .--date_wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+ 
+        span{
+            color:$light-navy-blue;
+            @extend %fourteenpx;
+            font-family: 'markpro-medium';
+        }
+
+    }
+    .--checkboxes{
+        margin-top: 5px;
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+
+        .ant-checkbox.ant-checkbox-checked ~ span{
+            color:#162359
+        }
+
+        .ant-checkbox-wrapper + .ant-checkbox-wrapper {
+            margin-left: 0px;
+        }
+    }
+    .--addnew{
+        color: #4D75F4;
+        cursor: pointer;
+        @extend %fourteenpx;
+        font-family: 'markpro-medium';
+        display: flex;
+        align-items: center;
+        img{
+            margin-top: -3px;
+            margin-right: 8px;
+            transition: 300ms;
+        }
+        &:hover{
+            img{
+                transform: scale(1.1);
+            }
+        }
+        &:active{
+            img{
+                transform: scale(1.03);
+            }
+        }
+    }
+
+    .--more-padding{
+        padding-left: 42px;
+        padding-right: 42px;
+    }
+    .--more-margin{
+        margin-bottom: 50px;
+    }
+
+    &__heading{
+        margin-bottom: 50px;
+        &__header{
+            font-weight: bold;
+            font-family: 'markpro-bold';
+            color: $dark-blue;
+            @extend %twentyeightpx;
+        }
+    }
+
+    &__formsection{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        position: relative;
+        
+        input[type='text']{
+            @extend %input-styles;
+            @extend %sixteenpx;
+            border: 1px solid #CDD1DE;
+            background: #F7F8FC;
+            width: 360px;
+            height: 50px;
+        }
+
+        .--optionalinput{
+            margin: 15px 0;
+        }
+        .--inputandicon{
+            position: relative;
+
+            img.icon{
+                position: absolute;
+                left: 18px;
+                top: 15px;
+            }
+            input{
+                padding-left: 41px;
+            }
+            img.bin{
+                position: absolute;
+                right: -24px;
+                top: 15px;
+                cursor: pointer;
+                transition: 300ms;
+                &:hover{
+                    transform: scale(1.1);
+                }
+                &:active{
+                    transform: scale(1.05);
+                }
+            }
+        }
+        .--singleselect{
+
+            .--item{
+                .css-1hb7zxy-IndicatorsContainer{
+                    background: #F7F8FC;
+                    cursor: pointer !important;
+                }
+                .css-g1d714-ValueContainer{
+                    background: #F7F8FC;
+                    padding-left: 20px;
+                    cursor: text;
+                }
+                .css-1wa3eu0-placeholder{
+                    color: $light-navy-blue_two;
+                    // opacity: .4;
+                }
+                input{
+                    height: 36px;
+                }
+                *{
+                    transition: 500ms !important;
+                    color: $dark-blue;
+                    font-family: markpro-medium;
+                    @extend %sixteenpx;
+                }
+            }
+        }
+        
+        &__section{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+            position: relative;
+
+            .day_of_week{
+                display: flex;
+                justify-content: space-between;
+                padding: 5px 0;
+                border-top: 1px solid #EFF1F9;
+                border-bottom: 1px solid #EFF1F9;
+                .day{
+                    @extend %centered-flex;
+                    @extend %fifteenpx;
+                    font-family: 'markpro-medium';
+                    width: 48px;
+                    height: 35px;
+                    transition: 300ms;
+                    color:#767E9F;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    &:hover{
+                        background: #EFF1F9;
+                        width: 49px;
+                        color: #162359;
+                    }
+                    &:active{
+                        width: 44px;
+                    }
+                    &.active{
+                        color: #4D75F4;
+                        background: #EDF1FE;
+                        border: 1px solid #4D75F4;
+                    }
+                }
+                
+            }
+
+            &.sub{
+                margin-top: 20px;
+                .--singleselect{
+                    .css-g1d714-ValueContainer{
+                        background: white;
+                        padding-left: 20px;
+                        cursor: text;
+                    }
+                    .css-1hb7zxy-IndicatorsContainer{
+                        background: white;
+                        cursor: pointer !important;
+                    }
+                }
+            }
+
+
+            label{
+                @extend %fourteenpx;
+                color:$grey;
+                margin-bottom: 10px;
+                text-transform: capitalize;
+                font-family: 'markpro-medium';
+                &.double{
+                    display: flex;
+                    flex-direction: column;
+                    color:$grey;
+                    span{
+                        margin-top: 7px;
+                        color: $grey;
+                        @extend %tenpx;
+                    }
+                }
+            }
+            
+        }
+    }
+
+    &__footer{
+        display: flex;
+        flex-direction: column;
+
+        .--button_group{
+            display: flex;
+            justify-content: space-between;
+            
+            .cancel{
+                @extend %filled-button;
+                width: 108.22px;
+                height: 50px;
+                background: #F5F5F9;
+                font-family: 'markpro-bold';
+                color: $dark-blue;
+            }
+
+            .next{
+                @extend %filled-button;
+                width: 183px;
+                height: 50px;
+                background: $light-blue;
+                font-family: 'markpro-bold';
+                color: white
+            }
+        }
+    }
+}

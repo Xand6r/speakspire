@@ -4,8 +4,8 @@
 @import '../../../../stylesheets/fonts';
 
 .vision{
-    margin-top: 150px;
-    margin-bottom: 135px;
+    margin-top: 136px;
+    margin-bottom: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,7 +23,7 @@
             @extend %centered-flex;
             flex-direction: column;
             position: absolute;
-            right: 30px;
+            right: -110px;
             top: -50px;
 
             .--axis{
@@ -62,7 +62,6 @@
 
     &__mission_statement__text{
         width: 1140px;
-        padding: 0 150px;
         .--heading{
             @extend %fourtypx;
             font-family: markpro-bold;
@@ -74,7 +73,7 @@
             @extend %eighteenpx;
             color: $light-navy-blue;
             font-family: markpro-medium;
-            margin-bottom: 192px;
+            margin-bottom: 150px;
         }
     }
 

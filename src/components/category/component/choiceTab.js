@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import './choiceTab.scss';
 
 import AccountTypeCard from '../subcomponents/accountCard';
@@ -12,12 +13,14 @@ import individual from '../assets/greenuser_greenbg.svg';
 // import gmgb from '../assets/greenuser_greenbg.svg';
 
 const TABS = [
-    [speaker, 'Speaker','Create a speaker profile and join a vibrant community of speakers. Get hired to speak at events.', '--blue'],
-    [organiser, 'Organiser','Create a company profile, showcase your events, receive requests from speakers, and hire your preferred speakers.','--red'],
-    [individual, 'Individual','Create a personal profile, find and hire the best speakers and organizers for your events. Keep track of your activities.', '--green'],
+    [speaker, 'Speaker','Create a speaker profile and join a vibrant community of speakers. Get hired to speak at events.', '--blue', '/register'],
+    [organiser, 'Organiser','Create a company profile, showcase your events, receive requests from speakers, and hire your preferred speakers.','--red','/organiser'],
+    [individual, 'Individual','Create a personal profile, find and hire the best speakers and organizers for your events. Keep track of your activities.', '--green','/individual'],
 ]
 
-export default function choiceTab() {
+export default function ChoiceTab() {
+    const [activeTab, setActiveTab] = useState(null);
+    const [choice, setChoice] = useState('null')
     return (
         <div className="choicetab">
 
@@ -34,22 +37,36 @@ export default function choiceTab() {
             <div className="choicetab__tabs">
                 {
                     TABS.map((tab,i)=>(
-                        <AccountTypeCard
-                            key={i}
-                            icon = {tab[0]}
-                            title = {tab[1]}
-                            content = {tab[2]}
-                            extraclass = {tab[3]}
-                            headimage = {tab[4]}
-                        />
+                        <div
+                            onClick = {()=>setChoice(tab[4])}
+                        >
+                            <AccountTypeCard
+                                key={i}
+                                index={i}
+                                icon = {tab[0]}
+                                title = {tab[1]}
+                                content = {tab[2]}
+                                extraclass = {tab[3]}
+                                stateChanger = {setActiveTab}
+                                active = {activeTab === i}
+                            />
+                        </div>
                     ))
                 }
             </div>
 
             <div className="choicetab__footer">
-                <div className="button">Continue</div>
+                <Link 
+                    className="link"
+                    to={(activeTab === null)?"/category":choice}
+                >
+                    <div className="button">Continue</div>
+                </Link>
                 <div className="--subtext">
-                    Already a member? <span>Sign in</span>
+                    Already a member?
+                    <Link className="link" to="/login">
+                        <span> Sign in</span>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@ const upcomingEvents =[
     ['creativity Workshop','July 9th']
 ]
 
-export default function event() {
+export default function Event() {
     return (
         <div>
             <div className="event">

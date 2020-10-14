@@ -1,0 +1,37 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+
+.imagetab{
+    .ant-upload-list.ant-upload-list-text {
+        display: none;
+    }
+    &__images{
+        display: flex;
+        justify-content: space-between;
+        
+        .imagetab__images__image_wrapper{
+            margin: 15px 0 30px;
+            position: relative;
+        }
+        &__image{
+            width: 176px;
+            height: 118px;
+            background: grey;
+        }
+
+        .delete{
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            cursor: pointer;
+            transition: 300ms;
+        }
+        .delete:hover{
+            transform: scale(1.2);
+        }
+        .delete:active{
+            transform: scale(1.1);
+        }
+    }
+
+}
