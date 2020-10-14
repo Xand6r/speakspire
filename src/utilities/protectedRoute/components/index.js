@@ -1,3 +1,3 @@
-import protectedRoute from './ProtectedRoute';
+import ProtectedRoute from './ProtectedRoute';
 
-export { protectedRoute };
+export { ProtectedRoute };

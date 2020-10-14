@@ -12,7 +12,8 @@ import { component as EventProfile } from './components/eventProfile';
 import { component as OrganisersPage } from './components/organisersPage';
 import { component as EventSignUpPage } from './components/eventsRegister';
 import { component as OrganiserProfile } from './components/organiserProfile';
-import { component as About } from './components/about'
+import { component as About } from './components/about';
+import { ProtectedRoute } from './utilities/protectedRoute/components';
 
 import IndividualSignUp from './components/individualSignup';
 
@@ -38,5 +39,6 @@ function App() {
     </Switch>
   );
 }
+
 
 export default App;

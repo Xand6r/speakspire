@@ -2,10 +2,9 @@
 import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { ADMIN, ADMIN_HOME, USER_HOME } from './constants';
-import { actions } from '../../adminLoginPage';
-import { actions as userActions } from '../../login';
+import {
+    ADMIN, ADMIN_HOME, USER_HOME, LOGGED_OUT_VIEW
+} from './constants';
 
 /**
  * A wrapper for routers, which is used to limit which route users who have not signed in can use
@@ -19,32 +18,32 @@ export default function PrivateRoute({
     authenticated,
 }) {
     // import the authentication status of both admin and user
-    const dispatch = useDispatch();
-    const isAdminAuthenticated = useSelector(state => state.adminAuthenticated);
-    const isUserAuthenticated = useSelector(state => state.userAuthenticated);
+    // const dispatch = useDispatch();
+    // const isAdminAuthenticated = useSelector(state => state.adminAuthenticated);
+    // const isUserAuthenticated = useSelector(state => state.userAuthenticated);
 
-    // define the authenticated status depending on what was passed into the route
-    const usrAuthenticated = (authenticated === ADMIN) ? isAdminAuthenticated : isUserAuthenticated;
-    const homPage = (authenticated === ADMIN) ? ADMIN_HOME : USER_HOME;
+    // // define the authenticated status depending on what was passed into the route
+    // const usrAuthenticated = (authenticated === ADMIN) ? isAdminAuthenticated : isUserAuthenticated;
+    // const homPage = (authenticated === ADMIN) ? ADMIN_HOME : USER_HOME;
 
     // upon mount of this app, check if the user is authenticated in the state
     // otherwise check firebase if the user is authenticated via cookies
-    useEffect(() => {
-        if (!usrAuthenticated) {
-            // set the state for both user and admin
-            // if they are logged in
-            dispatch(actions.isAdminAuthenticated());
-            dispatch(userActions.isUserAuthenticated());
-        }
-    }, [dispatch, usrAuthenticated]);
+    // useEffect(() => {
+    //     if (!usrAuthenticated) {
+    //         // set the state for both user and admin
+    //         // if they are logged in
+    //         dispatch(actions.isAdminAuthenticated());
+    //         dispatch(userActions.isUserAuthenticated());
+    //     }
+    // }, [dispatch, usrAuthenticated]);
 
     return (
         // if the user is logged in, let them proceed, otherwise redirect to login page
         <Route
-            render={() => (usrAuthenticated === true ? (
+            render={() => (authenticated === true ? (
                 <Component />
             ) : (
-                <Redirect to={homPage} />
+                <Redirect to={LOGGED_OUT_VIEW} />
             ))}
         />
     );
