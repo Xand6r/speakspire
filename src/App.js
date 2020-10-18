@@ -1,6 +1,7 @@
 import React, {Suspense, lazy} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import 'antd/dist/antd.css';
+import {ProtectedRoute} from './utilities/protectedRoute/components';
 
 const Homepage = lazy(() => import('./components/homepage' /* webpackChunkName: "Homepage" */));
 const SpeakersPage = lazy(() => import('./components/speakersPage' /* webpackChunkName: "SpeakersPage" */));
@@ -10,13 +11,12 @@ const SpeakerSignUpPage = lazy(() => import('./components/speakerRegister' /* we
 const OrganiserSignUpPage = lazy(() => import('./components/organiserRegister' /* webpackChunkName: "OrganiserSignUpPage" */));
 const EventsPage = lazy(() => import('./components/eventsPage' /* webpackChunkName: "EventsPage" */));
 const SpeakersProfile = lazy(() => import('./components/speakerProfile' /* webpackChunkName: "SpeakersProfile" */));
-const SpeakersProfile = lazy(() => import('./components/eventProfile' /* webpackChunkName: "SpeakersProfile" */));
+const EventProfile = lazy(() => import('./components/eventProfile' /* webpackChunkName: "EventProfile" */));
 const OrganisersPage = lazy(() => import('./components/organisersPage' /* webpackChunkName: "OrganisersPage" */));
 const EventSignUpPage = lazy(() => import('./components/eventsRegister' /* webpackChunkName: "EventSignUpPage" */));
 const OrganiserProfile = lazy(() => import('./components/organiserProfile' /* webpackChunkName: "OrganiserProfile" */));
 const About = lazy(() => import('./components/about' /* webpackChunkName: "About" */));
 const IndividualSignUp = lazy(() => import('./components/individualSignup' /* webpackChunkName: "IndividualSignUp" */));
-import {ProtectedRoute} from './utilities/protectedRoute/components';
 
 function App() {
 	return (
