@@ -18,29 +18,15 @@ export default function PrivateRoute({
     authenticated,
 }) {
     // import the authentication status of both admin and user
-    // const dispatch = useDispatch();
-    // const isAdminAuthenticated = useSelector(state => state.adminAuthenticated);
-    // const isUserAuthenticated = useSelector(state => state.userAuthenticated);
-
-    // // define the authenticated status depending on what was passed into the route
-    // const usrAuthenticated = (authenticated === ADMIN) ? isAdminAuthenticated : isUserAuthenticated;
-    // const homPage = (authenticated === ADMIN) ? ADMIN_HOME : USER_HOME;
+    
+    const foundSession = sessionStorage.getItem("speakspire_token")
 
     // upon mount of this app, check if the user is authenticated in the state
-    // otherwise check firebase if the user is authenticated via cookies
-    // useEffect(() => {
-    //     if (!usrAuthenticated) {
-    //         // set the state for both user and admin
-    //         // if they are logged in
-    //         dispatch(actions.isAdminAuthenticated());
-    //         dispatch(userActions.isUserAuthenticated());
-    //     }
-    // }, [dispatch, usrAuthenticated]);
 
     return (
         // if the user is logged in, let them proceed, otherwise redirect to login page
         <Route
-            render={() => (authenticated === true ? (
+            render={() => (foundSession ? (
                 <Component />
             ) : (
                 <Redirect to={LOGGED_OUT_VIEW} />

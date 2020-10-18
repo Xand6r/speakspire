@@ -1,6 +1,11 @@
 @import './colors';
 @import './fonts';
 
+.ant-message-custom-content.ant-message-error > span:nth-child(2){
+    font-family: 'markpro-medium' !important;
+    color: $dark-blue;
+}
+
 .--underline{
     text-decoration: underline;
 }

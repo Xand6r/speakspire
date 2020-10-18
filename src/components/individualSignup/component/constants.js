@@ -1,5 +1,5 @@
 export const INITIAL_STATE = {
-    fullname:"",
+    name:"",
     email:"",
     password:""
 }
