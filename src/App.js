@@ -33,7 +33,7 @@ function App() {
 				<ProtectedRoute path='/eventprofile' component={EventProfile} />
 				<ProtectedRoute path='/organisers' component={OrganisersPage} />
 				<Route path='/individual' component={IndividualSignUp} />
-				<ProtectedRoute path='/registerevent' component={EventSignUpPage} />
+				<Route path='/registerevent' component={EventSignUpPage} />
 				<ProtectedRoute path='/organiserprofile' component={OrganiserProfile} />
 				<Route exact path='/' component={Homepage} />
 			</Switch>
