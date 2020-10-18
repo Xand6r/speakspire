@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './choiceTab.scss';
-
 import AccountTypeCard from '../subcomponents/accountCard';
 
 import close from '../../../assets/close.svg';
 import speaker from '../assets/bluemic_bluebg.svg';
 import organiser from '../assets/individualicon.svg';
 import individual from '../assets/greenuser_greenbg.svg';
-
+import { withRouter } from 'react-router-dom';
 // import bmbb from '../assets/bluemic_bluebg.svg';
 // import gmgb from '../assets/greenuser_greenbg.svg';
 
@@ -18,9 +17,13 @@ const TABS = [
     [individual, 'Individual','Create a personal profile, find and hire the best speakers and organizers for your events. Keep track of your activities.', '--green','/individual'],
 ]
 
-export default function ChoiceTab() {
+
+function ChoiceTab({ history }) {
     const [activeTab, setActiveTab] = useState(null);
-    const [choice, setChoice] = useState('null')
+    const [choice, setChoice] = useState('null');
+
+    const goBack = () =>{
+    }
     return (
         <div className="choicetab">
 
@@ -32,6 +35,7 @@ export default function ChoiceTab() {
                 className="choicetab__close" 
                 src={close}
                 alt="close button"
+                onClick={()=>history.goBack()}
             />
 
             <div className="choicetab__tabs">
@@ -72,3 +76,5 @@ export default function ChoiceTab() {
         </div>
     )
 }
+
+export default withRouter(ChoiceTab);
