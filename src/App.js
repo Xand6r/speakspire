@@ -22,7 +22,6 @@ function App() {
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
 			<Switch>
-				<Route exact path='/' component={Homepage} />
 				<Route exact path='/about' component={About} />
 				<ProtectedRoute exact path='/speakers' component={SpeakersPage} />
 				<ProtectedRoute exact path='/events' component={EventsPage} />
@@ -36,6 +35,7 @@ function App() {
 				<Route path='/individual' component={IndividualSignUp} />
 				<ProtectedRoute path='/registerevent' component={EventSignUpPage} />
 				<ProtectedRoute path='/organiserprofile' component={OrganiserProfile} />
+				<Route exact path='/' component={Homepage} />
 			</Switch>
 		</Suspense>
 	);

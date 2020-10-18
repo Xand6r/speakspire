@@ -4,8 +4,7 @@ import SigninInput from '../subcomponents/signinInputs';
 import close from '../../../assets/close.svg';
 import userLogo from '../assets/userLogo.svg';
 
-import { withRouter } from 'react-router-dom';
-
+import {withRouter} from 'react-router-dom';
 import axios from 'axios';
 
 const Image = () => {
@@ -14,9 +13,11 @@ const Image = () => {
 		const formData = new FormData();
 		formData.append('image', image, 'imagename');
 		axios
-			.post('http://api.speakspire.com/speakers/1/photo/profile', formData,     {headers: {
-                'Content-Type': 'multipart/form-data'
-              }})
+			.post('http://api.speakspire.com/speakers/1/photo/profile', formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			})
 			.then((res) => {
 				console.log(res.data);
 			})
@@ -36,28 +37,18 @@ const Image = () => {
 	);
 };
 function signintab({history}) {
-    return (
-        <div className="signintab">
-            <img
-                className="signintab__close" 
-                src={close}
-                alt="close button"
-                onClick={() => history.goBack()}
-            />
+	return (
+		<div className='signintab'>
+			<img className='signintab__close' src={close} alt='close button' onClick={() => history.goBack()} />
 
-            <img
-                className="signintab__sideimage"
-                src={userLogo}
-                alt="userLogo"
-            />
-            <Image />
+			<img className='signintab__sideimage' src={userLogo} alt='userLogo' />
+			<Image />
 
-            <div className="signininputcomponent">
-                <SigninInput />
-            </div>
-
-        </div>
-    )
+			<div className='signininputcomponent'>
+				<SigninInput />
+			</div>
+		</div>
+	);
 }
 
 export default withRouter(signintab);
