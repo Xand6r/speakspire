@@ -227,6 +227,7 @@ export default function Media({stateChanger, state, handleSubmit}) {
 										newState[index] = e.target.value;
 										changeSelectState('links', newState);
 									}}
+									value={state.links[index]}
 								/>
 							</div>
 						))}

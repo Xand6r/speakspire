@@ -120,9 +120,9 @@ export default function Preference({
                                             <div 
                                                 className="circleSelect__item"
                                                 onClick = {(e) => {
-                                                    if(!activeCircle.includes(destination)){
+                                                    if(!state.travel_places.includes(destination)){
                                                         const newState = [
-                                                            ...activeCircle,
+                                                            ...state.travel_places,
                                                             destination
                                                         ]
                                                         setActiveCircle(newState)
@@ -130,7 +130,7 @@ export default function Preference({
                                                     }
                                                     
                                                     else{
-                                                        let notActive = activeCircle.filter((active)=>(
+                                                        let notActive = state.travel_places.filter((active)=>(
                                                                 active !==destination
                                                             ))
                                                         setActiveCircle([...notActive])
@@ -140,7 +140,7 @@ export default function Preference({
                                                 >
                                                 <CircleSelect
                                                     text={destination}
-                                                    active={activeCircle.includes(destination)}
+                                                    active={state.travel_places.includes(destination)}
                                                 />
                                             </div>
                                         ))

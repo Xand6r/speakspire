@@ -101,7 +101,7 @@ export default function Experience({
                                             placeholder="mm/yy"
                                             suffixIcon={<DateSuffix />}
                                             onChange={(momentDate, dateString)=>{
-                                                changeListData('positions', index, 'to',  [momentDate, dateString])
+                                                changeListData('positions', index, 'from',  [momentDate, dateString])
                                             }}
                                             value={position.from[0]}
                                         />
