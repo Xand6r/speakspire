@@ -12,7 +12,8 @@ import { component as EventProfile } from './components/eventProfile';
 import { component as OrganisersPage } from './components/organisersPage';
 import { component as EventSignUpPage } from './components/eventsRegister';
 import { component as OrganiserProfile } from './components/organiserProfile';
-import { component as About } from './components/about'
+import { component as About } from './components/about';
+import { ProtectedRoute } from './utilities/protectedRoute/components';
 
 import IndividualSignUp from './components/individualSignup';
 
@@ -23,20 +24,21 @@ function App() {
     <Switch>
       <Route exact  path='/' component={Homepage} />
       <Route exact path="/about" component={About} />
-      <Route exact path='/speakers' component={SpeakersPage} />
-      <Route exact path='/events' component={EventsPage} />
+      <ProtectedRoute exact path='/speakers' component={SpeakersPage} />
+      <ProtectedRoute exact path='/events' component={EventsPage} />
       <Route exact path='/category' component={SignUpCategory} />
       <Route exact path='/login' component={SignInPage} />
       <Route path='/register' component={SpeakerSignUpPage} />
       <Route path='/organiser' component={OrganiserSignUpPage} />
-      <Route path='/profile' component={SpeakersProfile} />
-      <Route path='/eventprofile' component={EventProfile} />
-      <Route path='/organisers' component={OrganisersPage} />
+      <ProtectedRoute path='/profile' component={SpeakersProfile} />
+      <ProtectedRoute path='/eventprofile' component={EventProfile} />
+      <ProtectedRoute path='/organisers' component={OrganisersPage} />
       <Route path='/individual' component={IndividualSignUp} />
-      <Route path="/registerevent" component={EventSignUpPage} />
-      <Route path='/organiserprofile' component={OrganiserProfile} />
+      <ProtectedRoute path="/registerevent" component={EventSignUpPage} />
+      <ProtectedRoute path='/organiserprofile' component={OrganiserProfile} />
     </Switch>
   );
 }
+
 
 export default App;

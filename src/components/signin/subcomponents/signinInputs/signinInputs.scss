@@ -3,11 +3,48 @@
 @import '../../../../stylesheets/utilities';
 @import '../../../../stylesheets/fonts';
 
-
+.select-dropdown{
+    height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 20px !important;
+    color: #162359 !important;
+    font-family: 'markpro-medium';
+}
+.select-dropdown:hover{
+    background: #EDF1FE !important;
+}
+.select-dropdown[aria-selected="true"]{
+    background: #EDF1FE !important;
+    color: #4D75F4 !important;
+}
+.ant-select-open{
+    border: 0.5px solid $light-blue  !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border-radius: 5px !important;
+}
+.ant-select-focused{
+    border: 1px solid $light-blue !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border-radius: 5px !important;
+}
 .signininputs{
     display: flex;
     flex-direction: column;
-    
+    .ant-select-selector{
+        height: 50px !important;
+        display: flex;
+        align-items: center;
+        border-radius: 5px !important;
+        background: #F7F8FC !important;
+        border: 1px solid #CDD1DE !important; 
+        padding: 0 20px !important;
+        font-family: 'markpro-medium';
+        color: $dark-blue !important;
+    }
+
     &__headers{
         margin-bottom: 50px;
         &__heading{
@@ -23,6 +60,7 @@
             font-family: 'markpro-medium';
     
             span{
+                cursor: pointer;
                 color: $light-blue;
             }
         }
@@ -30,9 +68,10 @@
 
     &__form{
         margin-bottom: 50px;
-        span{
+        span.blue__text{
             color: $light-blue;
             @extend %twelvepx; 
+            cursor: pointer;
             font-family: 'markpro-medium';
         }
         .--inputwrapper{
