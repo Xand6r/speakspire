@@ -1,7 +1,7 @@
 import {cleanCertification, cleanEducation, cleanExperience, cleanExpertise, cleanPreferences} from './cleanParams';
 
 export default (data) => {
-	console.log(data);
+	console.log(data)
 	const {
 		fullbio,
 		fullname,
@@ -28,7 +28,7 @@ export default (data) => {
 		primary_topic_tags,
 		secondary_topic_tags,
 		certifications,
-		availabilty,
+		availability,
 		mode_of_delivery,
 		open_for_travel,
 		travel_places,
@@ -46,10 +46,10 @@ export default (data) => {
 		years_of_experience: experience_years.value,
 		number_of_engagements: engagement_no.value,
 		highest_level_of_education: highest_education.value,
-		languages: languages.join(),
+		languages: JSON.stringify(languages),
 		usp: unique_selling_proposition,
 		bio: fullbio,
-		links: links.join(),
+		links: JSON.stringify(links),
 		profile_photo: profile_photo.src,
 		cover_photo: cover_photo.src,
 		password,
@@ -63,7 +63,7 @@ export default (data) => {
 			secondary_topic_area,
 		}),
 		certification: cleanCertification(certifications),
-		preferences: cleanPreferences({availabilty, mode_of_delivery, open_for_travel, travel_places}),
+		preferences: cleanPreferences({availability, mode_of_delivery, open_for_travel, travel_places}),
 		experience: cleanExperience(positions),
 		media,
 	});

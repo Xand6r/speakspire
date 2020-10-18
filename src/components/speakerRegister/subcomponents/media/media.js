@@ -48,8 +48,8 @@ const PROFILE_LINKS = [
 	[github, 'github.com/ '],
 ];
 
-const FileImage = () => <img height='14px' style={{'margin-right': '10px'}} src={fileUpload} alt='calendar' />;
-const DoneImage = () => <img height='14px' style={{'margin-right': '10px'}} src={whiteTick} alt='calendar' />;
+const FileImage = () => <img height='14px' style={{marginRight: '10px'}} src={fileUpload} alt='calendar' />;
+const DoneImage = () => <img height='14px' style={{marginRight: '10px'}} src={whiteTick} alt='calendar' />;
 
 const props = {
 	name: 'file',
@@ -83,7 +83,7 @@ export default function Media({stateChanger, state, handleSubmit}) {
 	});
 
 	return (
-		<div class='media'>
+		<div className='media'>
 			<div className='media__heading --more-padding'>
 				<div className='media__heading__header'>Preferences</div>
 			</div>
@@ -217,7 +217,7 @@ export default function Media({stateChanger, state, handleSubmit}) {
 					<label htmlFor=''>Profile Links</label>
 					<div className='form_wrapper'>
 						{PROFILE_LINKS.map((profileLink, index) => (
-							<div className='icon_input'>
+							<div className='icon_input' key={index}>
 								<img src={profileLink[0]} alt='icon' className='icon' />
 								<input
 									type='text'
@@ -240,25 +240,16 @@ export default function Media({stateChanger, state, handleSubmit}) {
 						<Tabs defaultActiveKey='1' onChange={callback}>
 							{/* the tab to upload images */}
 							<TabPane tab='Photos' key='1'>
-								<ImageTab
-                                    state={state}
-                                    stateChanger={stateChanger}
-                                />
+								<ImageTab state={state} stateChanger={stateChanger} />
 							</TabPane>
 							{/* the tab to upload images */}
 
 							<TabPane tab='Videos' key='2'>
-								<VideoTab
-                                    state={state}
-                                    stateChanger={stateChanger}
-                                />
+								<VideoTab state={state} stateChanger={stateChanger} />
 							</TabPane>
 
 							<TabPane tab='Presentation' key='3'>
-								<PDFTab
-                                    state={state}
-                                    stateChanger={stateChanger}
-                                />
+								<PDFTab state={state} stateChanger={stateChanger} />
 							</TabPane>
 						</Tabs>
 					</div>

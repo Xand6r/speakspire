@@ -37,6 +37,7 @@ import './register.scss';
 import defaultImage from '../assets/greycircle.svg';
 import {message} from 'antd';
 import cleanData from '../subcomponents/utils/cleanData';
+import axios from '../../../utilities/axios';
 
 export default function Register({location}) {
 	const [activeTab, setactiveTab] = useState(0);
@@ -77,13 +78,16 @@ export default function Register({location}) {
 			...preference,
 			...media,
 		};
-		// const allFilled = Object.values(mapState).every((a) => a);
-		// if (!allFilled) {
-		// 	message.error(ERROR_MESSAGES.INCOMPLETE_PARAMETERS);
-		// 	return;
-		// }
+		const allFilled = Object.values(mapState).every((a) => a);
+		if (!allFilled) {
+			message.error(ERROR_MESSAGES.INCOMPLETE_PARAMETERS);
+			return;
+		}
 		// send post request
-		console.log(cleanData(finalState));
+		axios
+			.post('/speakers/add', cleanData(finalState))
+			.then((res) => console.log(res.data))
+			.catch((err) => console.log(err.response.data));
 	};
 
 	return (
