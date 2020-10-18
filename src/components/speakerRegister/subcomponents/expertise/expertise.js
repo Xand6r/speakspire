@@ -332,7 +332,8 @@ export default function Expertise({stateChanger, state}) {
 											placeholder='mm/yy'
 											suffixIcon={<DateSuffix />}
 											onChange={(momentDate, dateString) => {
-												changeListData('education', index, 'from', [momentDate, dateString]);
+												console.log('changed')
+												changeListData('certifications', index, 'from', [momentDate, dateString]);
 											}}
 											value={cert.from[0]}
 										/>
@@ -343,7 +344,7 @@ export default function Expertise({stateChanger, state}) {
 											placeholder='mm/yy'
 											suffixIcon={<DateSuffix />}
 											onChange={(momentDate, dateString) => {
-												changeListData('education', index, 'to', [momentDate, dateString]);
+												changeListData('certifications', index, 'to', [momentDate, dateString]);
 											}}
 											value={cert.to[0]}
 										/>

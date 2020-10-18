@@ -39,6 +39,10 @@
         color: $light-blue;
         background: #E4EAFD;
 
+        .sectiontab__icon.filled{
+            background: #F0FDF6;
+            color: white;
+        }
     }
     &.--unselected{
         color: $dark-blue;
@@ -47,13 +51,10 @@
         .sectiontab__icon{
             background: #EDF1FE;
         }
-    }
-    .sectiontab__icon.unfilled{
-        background: $light-blue;
-        color: white;
-    }
-    .sectiontab__icon.filled{
-        background: #F0FDF6;
-        color: white;
+
+        .sectiontab__icon.filled{
+            background: #F0FDF6;;
+            color: white;
+        }
     }
 }
