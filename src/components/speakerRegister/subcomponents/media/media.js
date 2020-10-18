@@ -51,7 +51,8 @@ const FileImage = () => (
 );
 const DoneImage = () => (
     <img height="14px" style={ {'margin-right': '10px'} } src={whiteTick} alt="calendar"/>
-)
+);
+
 
 
 async function readFileAsDataURL(file) {
@@ -82,7 +83,7 @@ const props = {
   };
 
 export default function Media({
-    stateChanger, state
+    stateChanger, state, haldleSubmit
 }) {
 
     const changeSelectState = (name, value)=>{
@@ -92,7 +93,9 @@ export default function Media({
           });
     }
 
-    console.log(state)
+    const handleFormSubmit = () =>{
+        haldleSubmit();
+    }
 
     return (
         <div class="media">
@@ -121,6 +124,8 @@ export default function Media({
                                         }
                                         const addFile = async ()=>{
                                             const dataURL = await readFileAsDataURL(file)
+                                            // upload the file
+                                            // once src, post it here  \\
                                             changeSelectState('profile_photo', {file, src:dataURL});
                                         }
                                         addFile();
@@ -270,7 +275,10 @@ export default function Media({
                         </div>
                     </Link>
 
-                    <Link className="link" to="/">
+                    <Link
+                        className="link"
+                        onClick={handleFormSubmit}
+                    >
                         <div className="next">
                             Next
                         </div>
@@ -283,5 +291,6 @@ export default function Media({
 
 Media.propTypes = {
     stateChanger: PropTypes.func.isRequired,
-    state: PropTypes.instanceOf(Object).isRequired
+    state: PropTypes.instanceOf(Object).isRequired,
+    onSubmit: PropTypes.instanceOf(Function).isRequired
 }

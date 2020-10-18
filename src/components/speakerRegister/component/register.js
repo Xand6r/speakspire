@@ -51,6 +51,20 @@ export default function Register({
 
     const makeActive = (clickedIndex) => {
         setactiveTab(clickedIndex)
+    };
+
+    // function to submit the the state variables
+    const onSubmit = () =>{
+        const finalState = {
+            ...personalDetails, 
+            ...expertise, 
+            ...experience,
+            ...preference,
+            ...media
+        }
+        alert('here');
+        console.log('finalState');
+        console.log(finalState);
     }
 
     return (
@@ -166,7 +180,8 @@ export default function Register({
                             render={(props) => (
                                 <Media {...props}
                                     stateChanger = {setMedia}
-                                    state = {media} 
+                                    state = {media}
+                                    haldleSubmit = {onSubmit}
                                 />
                             )}
                         />
