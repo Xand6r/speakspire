@@ -1,0 +1,42 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+
+.pdftab{
+    .ant-upload-list.ant-upload-list-text {
+        display: none;
+    }
+    &__images{
+        display: flex;
+        justify-content: space-between;
+        
+        .pdftab__images__image_wrapper{
+            margin: 15px 0 30px;
+            position: relative;
+        }
+        &__image{
+            width: 124;
+            height: 118px;
+            object-fit: cover;
+            // background: #ff0000;
+        }
+        &__text{
+            font-family: 'markpro-medium';
+            color: $dark-blue;
+        }
+
+        .delete{
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            cursor: pointer;
+            transition: 300ms;
+        }
+        .delete:hover{
+            transform: scale(1.2);
+        }
+        .delete:active{
+            transform: scale(1.1);
+        }
+    }
+
+}
