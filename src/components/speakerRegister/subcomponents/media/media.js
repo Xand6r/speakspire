@@ -8,6 +8,7 @@ import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 
 import ImageTab from './imageTab';
 import VideoTab from './videoTab';
+import PDFTab from './pdfTab';
 import {Tabs} from 'antd';
 
 import './media.scss';
@@ -249,16 +250,25 @@ export default function Media({stateChanger, state, handleSubmit}) {
 						<Tabs defaultActiveKey='1' onChange={callback}>
 							{/* the tab to upload images */}
 							<TabPane tab='Photos' key='1'>
-								<ImageTab />
+								<ImageTab
+                                    state={state}
+                                    stateChanger={stateChanger}
+                                />
 							</TabPane>
 							{/* the tab to upload images */}
 
 							<TabPane tab='Videos' key='2'>
-								<VideoTab />
+								<VideoTab
+                                    state={state}
+                                    stateChanger={stateChanger}
+                                />
 							</TabPane>
 
 							<TabPane tab='Presentation' key='3'>
-								Presentations coming soon
+								<PDFTab
+                                    state={state}
+                                    stateChanger={stateChanger}
+                                />
 							</TabPane>
 						</Tabs>
 					</div>
