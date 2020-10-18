@@ -26,15 +26,6 @@ function callback(key) {
 const FileImage = () => <img height='14px' style={{'margin-right': '10px'}} src={fileUpload} alt='calendar' />;
 const DoneImage = () => <img height='14px' style={{'margin-right': '10px'}} src={whiteTick} alt='calendar' />;
 
-async function readFileAsDataURL(file) {
-	let result_base64 = await new Promise((resolve) => {
-		let fileReader = new FileReader();
-		fileReader.onload = (e) => resolve(fileReader.result);
-		fileReader.readAsDataURL(file);
-	});
-	return result_base64;
-}
-
 const props = {
 	name: 'file',
 	action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -82,11 +73,6 @@ export default function Media({stateChanger, state}) {
 										message.error('You can only upload JPG/PNG file!');
 										return;
 									}
-									const addFile = async () => {
-										const dataURL = await readFileAsDataURL(file);
-										changeSelectState('cover_photo', {file, src: dataURL});
-									};
-									addFile();
 									uploadImage(file)
 										.then((res) => changeSelectState('cover_photo', {src: res}))
 										.catch((err) => changeSelectState('cover_photo', {src: err}));

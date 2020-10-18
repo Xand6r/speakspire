@@ -12,8 +12,6 @@ const FileImage = () => <img height='14px' style={{'margin-right': '10px'}} src=
 export default function ImageTab() {
 	const [imagesUploaded, setImagesUploaded] = useState([]);
 
-	
-
 	const deleteImage = (index) => {
 		setImagesUploaded(
 			imagesUploaded.filter((image, imageIndex) => {
