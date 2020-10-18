@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import ImgCrop from 'antd-img-crop';
-import { Spin } from 'antd';
+import {Spin} from 'antd';
 import whiteTick from '../../assets/whiteTick.svg';
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 
@@ -25,8 +25,7 @@ import dribbble from '../../assets/dribbble.svg';
 import pintrest from '../../assets/pintrest.svg';
 import github from '../../assets/github.svg';
 import deleteBin from '../../assets/deleteBin.svg';
-import { LoadingOutlined } from '@ant-design/icons';
-
+import {LoadingOutlined} from '@ant-design/icons';
 
 import {Upload, message, Button} from 'antd';
 
@@ -36,7 +35,7 @@ function callback(key) {
 	console.log(key);
 }
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24, color:'#4D75F4' }} spin />;
+const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#4D75F4'}} spin />;
 const PROFILE_LINKS = [
 	[wwwLogo, 'www'],
 	[Instagram, 'instagram.com/'],
@@ -76,13 +75,12 @@ export default function Media({stateChanger, state, handleSubmit}) {
 			...state,
 			[name]: value,
 		});
-    };
-    
-    const [loadingStates, setLoadingStates] = useState({
-        coverPictureLoading: false,
-        userPictureLoading: false
-    });
+	};
 
+	const [loadingStates, setLoadingStates] = useState({
+		coverPictureLoading: false,
+		userPictureLoading: false,
+	});
 
 	return (
 		<div class='media'>
@@ -103,19 +101,19 @@ export default function Media({stateChanger, state, handleSubmit}) {
 										message.error('You can only upload JPG/PNG file!');
 										return;
 									}
-                                    setLoadingStates({
-                                        ...loadingStates,
-                                        userPictureLoading:true
-                                    })
+									setLoadingStates({
+										...loadingStates,
+										userPictureLoading: true,
+									});
 									uploadImage(file)
 										.then((res) => changeSelectState('profile_photo', {src: res}))
 										.catch((err) => changeSelectState('profile_photo', {src: err}))
-                                        .finally(() => {
-                                            setLoadingStates({
-                                                ...loadingStates,
-                                                userPictureLoading:false
-                                            })
-                                        })
+										.finally(() => {
+											setLoadingStates({
+												...loadingStates,
+												userPictureLoading: false,
+											});
+										});
 									return false;
 								}}
 							>
@@ -128,15 +126,11 @@ export default function Media({stateChanger, state, handleSubmit}) {
 								) : (
 									<div className='image_upload_button'>
 										<Button
-                                            disabled={loadingStates.userPictureLoading}
-                                            icon={!loadingStates.userPictureLoading && <FileImage />}
-                                        >
-                                            {
-                                                (loadingStates.userPictureLoading)?
-                                                <Spin indicator={antIcon} /> :
-                                                "Upload File"
-                                            }
-                                        </Button>
+											disabled={loadingStates.userPictureLoading}
+											icon={!loadingStates.userPictureLoading && <FileImage />}
+										>
+											{loadingStates.userPictureLoading ? <Spin indicator={antIcon} /> : 'Upload File'}
+										</Button>
 									</div>
 								)}
 							</Upload>
@@ -169,19 +163,19 @@ export default function Media({stateChanger, state, handleSubmit}) {
 										message.error('You can only upload JPG/PNG file!');
 										return;
 									}
-                                    setLoadingStates({
-                                        ...loadingStates,
-                                        coverPictureLoading:true
-                                    })
+									setLoadingStates({
+										...loadingStates,
+										coverPictureLoading: true,
+									});
 									uploadImage(file)
 										.then((res) => changeSelectState('cover_photo', {src: res}))
 										.catch((err) => changeSelectState('cover_photo', {src: err}))
-                                        .finally(()=>{
-                                            setLoadingStates({
-                                                ...loadingStates,
-                                                coverPictureLoading:false
-                                            })
-                                        });
+										.finally(() => {
+											setLoadingStates({
+												...loadingStates,
+												coverPictureLoading: false,
+											});
+										});
 									return false;
 								}}
 							>
@@ -193,17 +187,12 @@ export default function Media({stateChanger, state, handleSubmit}) {
 									</div>
 								) : (
 									<div className='image_upload_button'>
-                                        <Button
-                                            disabled={loadingStates.coverPictureLoading}
-                                            icon={!loadingStates.coverPictureLoading && <FileImage />}
-                                        >
-                                        {
-                                            (loadingStates.coverPictureLoading)?
-                                            <Spin indicator={antIcon} /> :
-                                            'Upload File'
-
-                                        }
-                                        </Button>
+										<Button
+											disabled={loadingStates.coverPictureLoading}
+											icon={!loadingStates.coverPictureLoading && <FileImage />}
+										>
+											{loadingStates.coverPictureLoading ? <Spin indicator={antIcon} /> : 'Upload File'}
+										</Button>
 									</div>
 								)}
 							</Upload>
@@ -281,10 +270,7 @@ export default function Media({stateChanger, state, handleSubmit}) {
 						<div className='cancel'>Back</div>
 					</Link>
 
-					<Link
-                        className='link'
-                        onClick={handleSubmit}
-                    >
+					<Link className='link' onClick={handleSubmit}>
 						<div className='next'>Next</div>
 					</Link>
 				</div>
@@ -295,6 +281,6 @@ export default function Media({stateChanger, state, handleSubmit}) {
 
 Media.propTypes = {
 	stateChanger: PropTypes.func.isRequired,
-    state: PropTypes.instanceOf(Object).isRequired,
-    handleSubmit: PropTypes.instanceOf(Function).isRequired
+	state: PropTypes.instanceOf(Object).isRequired,
+	handleSubmit: PropTypes.instanceOf(Function).isRequired,
 };
