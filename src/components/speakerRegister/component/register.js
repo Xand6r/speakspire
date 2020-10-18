@@ -11,7 +11,7 @@ import {
     INITIAL_EXPERTISE_STATE,
     INITIAL_EXPERIENCE_STATE,
     INITIAL_PREFERENCE_STATE,
-    INITIAL_MEDIA_STATE
+    INITIAL_MEDIA_STATE, ERROR_MESSAGES
 } from './constants';
 
 import {component as NavBar} from '../../../utilities/navbar';
@@ -23,8 +23,15 @@ import {component as Experience} from '../subcomponents/experience';
 import {component as Preference} from '../subcomponents/preference';
 import {component as Media} from '../subcomponents/media';
 
+import {
+    validatePersonaDetails, validateExpertiseState,
+    validateExperienceState, validatePreferenceState,
+    validateMedia
+} from '../../../utilities/generalUtils/validators/speakerValidation'
+
 import './register.scss';
 import defaultImage from '../assets/greycircle.svg'
+import { message } from 'antd';
 
 
 export default function Register({
@@ -51,7 +58,32 @@ export default function Register({
 
     const makeActive = (clickedIndex) => {
         setactiveTab(clickedIndex)
+    };
+
+    const mapState = {
+        'Personal Details': validatePersonaDetails(personalDetails),
+        'Expertise': validateExpertiseState(expertise),
+        'Experience': validateExperienceState(experience),
+        'Preferences': validatePreferenceState(preference),
+        'Media': validateMedia(media)
     }
+
+
+    const handleSubmit = () =>{
+        const finalState = {
+            ...personalDetails,
+            ...expertise,
+            ...experience,
+            ...preference,
+            ...media
+        };
+        const allFilled = Object.values(mapState).every(a=>a);
+        if(!allFilled){
+            message.error(ERROR_MESSAGES.INCOMPLETE_PARAMETERS);
+            return;
+        }
+        // send post request
+    };
 
     return (
         <div className="register">
@@ -69,6 +101,7 @@ export default function Register({
                                 text={step}
                                 active={index === activeTab }
                                 changeTab={makeActive}
+                                filled={(mapState[step])}
                             />
                         </Link>
                     ))
@@ -166,7 +199,8 @@ export default function Register({
                             render={(props) => (
                                 <Media {...props}
                                     stateChanger = {setMedia}
-                                    state = {media} 
+                                    state = {media}
+                                    handleSubmit = {handleSubmit}
                                 />
                             )}
                         />

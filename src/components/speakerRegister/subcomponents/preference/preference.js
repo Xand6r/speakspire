@@ -33,8 +33,6 @@ export default function Preference({
 
     const [activeCircle, setActiveCircle] = useState([]);
 
-    console.log(state.open_for_travel.value)
-
     return (
         <div className="preference">
 
@@ -123,10 +121,12 @@ export default function Preference({
                                                 className="circleSelect__item"
                                                 onClick = {(e) => {
                                                     if(!activeCircle.includes(destination)){
-                                                        setActiveCircle([
+                                                        const newState = [
                                                             ...activeCircle,
                                                             destination
-                                                        ])
+                                                        ]
+                                                        setActiveCircle(newState)
+                                                        changeSelectState('travel_places', newState);
                                                     }
                                                     
                                                     else{
@@ -134,6 +134,7 @@ export default function Preference({
                                                                 active !==destination
                                                             ))
                                                         setActiveCircle([...notActive])
+                                                        changeSelectState('travel_places', [...notActive]);
                                                     }
                                                 }}
                                                 >

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ImgCrop from 'antd-img-crop';
@@ -82,7 +82,7 @@ const props = {
   };
 
 export default function Media({
-    stateChanger, state
+    stateChanger, state, handleSubmit
 }) {
 
     const changeSelectState = (name, value)=>{
@@ -91,8 +91,6 @@ export default function Media({
             [name]: value
           });
     }
-
-    console.log(state)
 
     return (
         <div class="media">
@@ -270,7 +268,10 @@ export default function Media({
                         </div>
                     </Link>
 
-                    <Link className="link" to="/">
+                    <Link  
+                        className="link"
+                        onClick={handleSubmit}
+                    >
                         <div className="next">
                             Next
                         </div>
@@ -283,5 +284,6 @@ export default function Media({
 
 Media.propTypes = {
     stateChanger: PropTypes.func.isRequired,
-    state: PropTypes.instanceOf(Object).isRequired
+    state: PropTypes.instanceOf(Object).isRequired,
+    handleSubmit: PropTypes.instanceOf(Function).isRequired
 }
