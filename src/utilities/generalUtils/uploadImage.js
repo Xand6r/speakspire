@@ -6,6 +6,7 @@ export default async (image) => {
 	let link;
 	try {
 		const response = await axios.post('/upload', formData);
+		console.log(response.data.data);
 		link = response.data.data;
 	} catch (err) {
 		console.log(err);
