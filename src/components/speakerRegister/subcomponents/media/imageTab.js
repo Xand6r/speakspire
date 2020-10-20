@@ -8,7 +8,7 @@ import {Upload, Button, message} from 'antd';
 import fileUpload from '../../assets/uploadFile.svg';
 import deleteBin from '../../assets/bin.svg';
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
-const FileImage = () => <img height='14px' style={{'margin-right': '10px'}} src={fileUpload} alt='calendar' />;
+const FileImage = () => <img height='14px' style={{'marginRight': '10px'}} src={fileUpload} alt='calendar' />;
 // const operations = <div>Extra Action</div>;
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24, color:'#4D75F4' }} spin />;

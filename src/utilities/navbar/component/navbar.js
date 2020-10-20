@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 import Logo from '../assets/Logo.svg';
 
 import { fetchAllSpeakers } from '../../../redux/speakerSlice';
@@ -9,11 +10,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import './navbar.scss';
 
 const MENU_ITEMS = [
-    {text:"Speakers", "link":"/speakers"},
-    {text:"Organizers", "link":"/organisers"},
-    {text:"Events", "link":"/events"},
-    {text:"Blog", "link":""},
-    {text:"About Us", "link":"/about"},
+	{text: 'Speakers', link: '/speakers'},
+	{text: 'Organizers', link: '/organisers'},
+	{text: 'Events', link: '/events'},
+	{text: 'Blog', link: ''},
+	{text: 'About Us', link: '/about'},
 ];
 
 export default function Navbar() {
@@ -58,4 +59,3 @@ export default function Navbar() {
         </div>
     )
 }
- 
