@@ -6,6 +6,7 @@
     "@khanacademy/react-multi-select": "^0.3.3",
     "@pathofdev/react-tag-input": "^1.0.7",
     "@pymatech/react-tag-input": "^0.7.0",
+    "@reduxjs/toolkit": "^1.4.0",
     "@sentisis/react-tags-input": "^1.0.6",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -24,6 +25,7 @@
     "react-multiselect-checkboxes": "^0.1.1",
     "react-phone-input-2": "^2.13.7",
     "react-phone-number-input": "^3.0.24",
+    "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-select": "^3.1.0",
@@ -32,7 +34,8 @@
     "react-tag-input-custom-search": "^5.9.26",
     "react-tagsinput": "^3.19.0",
     "reactjs-tag-input": "^2.0.15",
-    "reactjs-tags-input": "^1.0.2"
+    "reactjs-tags-input": "^1.0.2",
+    "redux": "^4.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -54,5 +57,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "redux-devtools": "^3.7.0"
   }
 }

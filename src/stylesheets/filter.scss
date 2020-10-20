@@ -4,6 +4,9 @@
 
 .filter{
 
+    .ant-spin-spinning{
+        margin: auto;
+    }
     @extend %centered-flex;
     flex-direction: column;
 
