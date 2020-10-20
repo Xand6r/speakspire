@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom'
 
 import './speakerCard.scss';
 import {component as Skill} from '../../skillTab';
@@ -26,10 +27,13 @@ const RenderPlaceholder = (image) =>(
 );
 export default function SpeakerCard({
     fullname, company, position, skills, image, tag,
-    primary, secondary
+    primary, secondary, id
 }) {
+    const history=useHistory()
     return (
-        <div>
+        <div
+            onClick={()=>history.push(`/speakers/${id}`)}
+        >
             <div className="speakercard">
                 <div className={`speakercard__tag --${tag}`}>
                     {tag}
@@ -74,6 +78,7 @@ export default function SpeakerCard({
 }
 
 SpeakerCard.propTypes= {
+    id: PropTypes.number,
     fullname: PropTypes.string,
     company: PropTypes.string,
     position: PropTypes.string,
@@ -90,5 +95,6 @@ SpeakerCard.defaultProps = {
     image: placeholderIcon,
     tag: "tagplaceholder",
     primary: "primaryplaceholder",
-    secondary: ""
+    secondary: "",
+    id:1
 }

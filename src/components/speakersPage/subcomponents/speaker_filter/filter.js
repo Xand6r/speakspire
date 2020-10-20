@@ -108,7 +108,8 @@ export default function Filter() {
                 {
                     speakerState.data.map(speaker => {
                         const {
-                            name, experience:[{company, position}]
+                            name, experience:[{company, position}],
+                            expertise: [{primary_specialty,secondary_specialty, primary_tags }]
                         } = speaker;
                         return (
                             <SpeakerCard
@@ -116,10 +117,10 @@ export default function Filter() {
                                 fullname={name}
                                 company={company}
                                 position={position}
-                                skills={['Business', "Leadership", "Management","Startup Advisory","Aquisitions"]}
+                                skills={JSON.parse(primary_tags)}
                                 image={speaker.profile_photo}
-                                primary={'Public Speaker'}
-                                secondary={'Career Development'}
+                                primary={primary_specialty}
+                                secondary={secondary_specialty}
                                 tag="premium"
                             />
                         );
