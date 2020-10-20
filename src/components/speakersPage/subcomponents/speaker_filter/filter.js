@@ -1,50 +1,25 @@
 import React, { useState } from 'react';
 import { Checkbox } from 'antd';
 import MultiSelect from "@khanacademy/react-multi-select";
-
+import { useSelector } from 'react-redux';
 import { component as SpeakerCard } from '../../../../utilities/speakerCard';
 import ResetFilterIcon from '../../../../assets/resetFilterIcon.svg';
 import LeftArrow from '../../../../assets/leftArrow.svg';
+
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+
+import {
+    INITIAL_STATE, FILTER_TEXT, CHECKBOX_OPTIONS
+} from './constants';
 
 import './filter.scss'
 import '../../../../stylesheets/filter.scss';
 
 
-const INITIAL_STATE = {
-    location: "",
-    fee:"",
-    topicArea: "",
-    specialty: "",
-    speakerCategory: ""
-}
 
-const multi_options = [
-    { label: "Grapes", value: "grapes" },
-    { label: "Mango", value: "mango" },
-    { label: "Strawberry", value: "strawberry" },
-    { label: "Watermelon", value: "watermelon" },
-    { label: "Pear", value: "pear" },
-    { label: "Apple", value: "apple" },
-    { label: "Tangerine", value: "tangerine" },
-    { label: "Pineapple", value: "pineapple" },
-    { label: "Peach ", value: "peach" },
-];
-
-const FILTER_TEXT = [
-    {"placeholder":"Location", state:"location", options: multi_options},
-    {"placeholder":"Fee", state:"fee", options: multi_options},
-    {"placeholder":"Topic Area", state:"topicArea", options: multi_options},
-    {"placeholder":"Specialty", state:"specialty", options: multi_options},
-    {"placeholder":"Speaker Category ", state:"speakerCategory", options: multi_options},
-];
-
-const CHECKBOX_OPTIONS = [
-    { label: "Online Engagement", value: "Online Engagement" },
-    { label: "Physical Engagement", value: "Physical Engagement" },
-    { label: 'Weekdays', value: 'Weekdays' },
-    { label: 'Weekends', value: 'Weekends' },
-    { label: 'Open to travel', value: 'Open to travel' },
-];
+const antIcon = <LoadingOutlined style={{ fontSize: 24, color:'#4D75F4' }} spin />;
 
 const speakers = [
     1,2,3,4,5,6,7,8,9,10,11,12
@@ -54,6 +29,10 @@ export default function Filter() {
         console.log('checked = ', checkedValues);
     }
     const [speakerFilterState, setSpeakerFilterState] = useState(INITIAL_STATE);
+    const [speakerNumber, setSpeakerNumber] = useState(12);
+    const [filterLoading, setFilterLoading] = useState(false)
+    const speakerState = useSelector(({speakers} )=> speakers);
+
     return (
         <div>
             <div className="filter --speakerspage">
@@ -126,26 +105,39 @@ export default function Filter() {
                 </div>
 
                 <div className="filter__results">
-                    {
-                        speakers.map(speaker => (
+                {
+                    speakerState.data.map(speaker => {
+                        const {
+                            name, experience:[{company, position}]
+                        } = speaker;
+                        return (
                             <SpeakerCard
-                                key={speaker}
-                                fullname={"Onyenaturuchi Alioha"}
-                                company={"Emeks Enterprises"}
-                                position={"Chief Operating Officer"}
+                                key={speaker.id}
+                                fullname={name}
+                                company={company}
+                                position={position}
                                 skills={['Business', "Leadership", "Management","Startup Advisory","Aquisitions"]}
-                                image={undefined}
+                                image={speaker.profile_photo}
                                 primary={'Public Speaker'}
                                 secondary={'Career Development'}
                                 tag="premium"
                             />
-                        ))
+                        );
+                    })
                     }
                 </div>
 
                 <div className="filter__more_results">
-                    <span>More Speakers</span>
-                    <img src={LeftArrow} alt="left arrow"/>
+                    {
+                        (speakerState.loading || filterLoading)?(
+                            <Spin indicator={antIcon} />
+                        ):(
+                            <>
+                                <span>More Speakers</span>
+                                <img src={LeftArrow} alt="left arrow"/>
+                            </>
+                        )
+                    }
                 </div>
             </div>
         </div>

@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../assets/Logo.svg';
+
+import { fetchAllSpeakers } from '../../../redux/speakerSlice';
+
+import {useDispatch, useSelector} from 'react-redux';
+
 import './navbar.scss';
 
 const MENU_ITEMS = [
@@ -11,7 +16,11 @@ const MENU_ITEMS = [
     {text:"About Us", "link":"/about"},
 ];
 
-export default function navbar() {
+export default function Navbar() {
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(fetchAllSpeakers());
+    }, [dispatch])
     return (
         <div>
             <div className="navigation">
