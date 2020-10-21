@@ -18,7 +18,7 @@ const preview = ({
     companyName, specialty, services
 }) => {
     return (
-        <div class="organiser_preview">
+        <div className="organiser_preview">
             <div className="organiser_preview__cover">
                 <img
                     src={coverImage}
