@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { component as NavBar } from '../../../utilities/navbar';
 import ProfileCard from '../subcomponents/profileCard';
 import ProfileContent from '../subcomponents/profileContent';
 import { component as Footer } from '../../../utilities/footer';
+import { message } from 'antd';
 // import a sample image
 import tempHeaderImage from '../assets/temp header.jpg';
 import axios from '../../../utilities/axios';
@@ -10,6 +12,7 @@ import './speakerprofile.scss';
 
 export default function Speakerprofile(props) {
 	const [userData, setUserData] = useState({});
+	const history = useHistory();
 
 	useEffect(() => {
 		const getDetails = async () => {
@@ -18,8 +21,9 @@ export default function Speakerprofile(props) {
 				setUserData(data.data);
 				console.log(data.data);
 			} catch (err) {
-				console.log(err);
+				message.error("there was an error fetching this user");
 				setUserData({});
+				setTimeout(()=>history.push('/'), 1000)
 			}
 		};
 		getDetails();

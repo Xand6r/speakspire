@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import 'antd/dist/antd.css';
-import { ProtectedRoute } from './utilities/protectedRoute/components';
 
 const Homepage = lazy(() => import('./components/homepage' /* webpackChunkName: "Homepage" */));
 const SpeakersPage = lazy(() => import('./components/speakersPage' /* webpackChunkName: "SpeakersPage" */));
@@ -19,24 +19,36 @@ const OrganiserProfile = lazy(() => import('./components/organiserProfile' /* we
 const About = lazy(() => import('./components/about' /* webpackChunkName: "About" */));
 const IndividualSignUp = lazy(() => import('./components/individualSignup' /* webpackChunkName: "IndividualSignUp" */));
 
+
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+	const {loggedIn} = useSelector(({user}) => user);
+
+    return (
+        <Route
+            {...rest}
+            render={(props) => (loggedIn ? <Component {...props} /> : <Redirect to={{ pathname: "/login" }} />)}
+        />
+    );
+};
+
 function App() {
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
 			<Switch>
 				<Route exact path='/about' component={About} />
-				<Route exact path='/speakers' component={SpeakersPage} />
-				<Route exact path='/speakers/:id' component={SingleSpeakerPage} />
-				<Route exact path='/events' component={EventsPage} />
+				<ProtectedRoute exact path='/speakers' component={SpeakersPage} />
+				<ProtectedRoute exact path='/speakers/:id' component={SingleSpeakerPage} />
+				<ProtectedRoute exact path='/events' component={EventsPage} />
 				<Route exact path='/category' component={SignUpCategory} />
 				<Route exact path='/login' component={SignInPage} />
 				<Route path='/register' component={SpeakerSignUpPage} />
 				<Route path='/organiser' component={OrganiserSignUpPage} />
-				<Route path='/profile' component={SpeakersProfile} />
-				<Route path='/eventprofile' component={EventProfile} />
-				<Route path='/organisers' component={OrganisersPage} />
+				<ProtectedRoute path='/profile' component={SpeakersProfile} />
+				<ProtectedRoute path='/eventprofile' component={EventProfile} />
+				<ProtectedRoute path='/organisers' component={OrganisersPage} />
 				<Route path='/individual' component={IndividualSignUp} />
 				<Route path='/registerevent' component={EventSignUpPage} />
-				<Route path='/organiserprofile' component={OrganiserProfile} />
+				<ProtectedRoute path='/organiserprofile' component={OrganiserProfile} />
 				<Route exact path='/' component={Homepage} />
 			</Switch>
 		</Suspense>

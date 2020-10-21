@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs } from 'antd';
 
@@ -51,7 +52,14 @@ const filterData = (array, params) => {
 };
 
 export default function ProfileContent({ reason, primaryTopic, primarySkills, secondaryTopic, secondarySkills, userData }) {
-	const { bio, experience, education, certification, media } = userData;
+	
+	const {
+		expertise,
+		bio, experience, education, certification, media, usp,
+	} = userData;
+	
+	const speakers = useSelector(({speakers}) => speakers.data);
+	const speakersList = speakers || [];
 	return (
 		<div class='profilecontent'>
 			<div className='profilecontent__left'>
@@ -59,7 +67,7 @@ export default function ProfileContent({ reason, primaryTopic, primarySkills, se
 					<div className='--top_heading'>
 						<span>Why Choose Me?</span>
 					</div>
-					<div className='--bottom_content'>{reason}</div>
+					<div className='--bottom_content'>{usp}</div>
 				</div>
 
 				{/* the section for the first tab */}
@@ -69,10 +77,10 @@ export default function ProfileContent({ reason, primaryTopic, primarySkills, se
 						<TabPane tab='Topic Areas' key='1'>
 							{/* topic areas content */}
 							<SpeakingSkills
-								primaryTopic={primaryTopic}
-								primarySkills={primarySkills}
-								secondaryTopic={secondaryTopic}
-								secondarySkills={secondarySkills}
+								primaryTopic={expertise && expertise[0]?.primary_topic}
+								primarySkills={expertise?JSON.parse(expertise[0]?.primary_tags || {}) : []}
+								secondaryTopic={expertise &&expertise[0]?.secondary_topic}
+								secondarySkills={expertise?JSON.parse(expertise[0]?.secondary_tags || {}): []}
 							/>
 							{/* topic areas content */}
 						</TabPane>
@@ -116,14 +124,25 @@ export default function ProfileContent({ reason, primaryTopic, primarySkills, se
 				<div className='profilecontent__left__similar'>
 					<div className='similar_heading'> Similar Speakers</div>
 					<div className='similar_speakers'>
-						<HorizontalSpeaker
-							category='premium'
-							profilePicture={profileSample}
-							fullname='Onyenaturuchi Alioha'
-							position='Chief Operating Officer'
-							company='Emeks Enterprises'
-							primary='public speaker'
-						/>
+						{
+							speakersList.slice(1,2).map(speaker=>{
+								const {
+									name, experience:[{company, position}],profile_photo, id,
+									expertise: [{primary_specialty,secondary_specialty, primary_tags }]
+								} = speaker;
+								return(
+									<HorizontalSpeaker
+										id={id}
+										category='premium'
+										profilePicture={profile_photo}
+										fullname={name}
+										position={position}
+										company={company}
+										primary={primary_specialty}
+									/>
+								)
+							})
+						}
 					</div>
 				</div>
 				{/* section for similar speakers */}

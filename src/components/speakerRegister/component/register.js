@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import {
 	Switch,
@@ -48,6 +49,8 @@ export default function Register({location}) {
 	const [preference, setPreference] = useState(INITIAL_PREFERENCE_STATE);
 	const [media, setMedia] = useState(INITIAL_MEDIA_STATE);
 
+	const history = useHistory();
+
 	useEffect(() => {
 		const {pathname} = location;
 		const currentTab = pathname.split('/')[2];
@@ -86,8 +89,11 @@ export default function Register({location}) {
 		// send post request
 		axios
 			.post('/speakers/add', cleanData(finalState))
-			.then((res) => console.log(res.data))
-			.catch((err) => console.log(err.response.data));
+			.then((res) => {
+				message.success("speaker account sucesfully created");
+				setTimeout(()=>history.push('/login'), 1000)
+			})
+			.catch((err) => message.error('There was an error creating your speaker account', err.message));
 	};
 
 	return (

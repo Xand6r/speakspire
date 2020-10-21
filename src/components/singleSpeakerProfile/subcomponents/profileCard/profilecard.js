@@ -16,7 +16,10 @@ import './profilecard.scss';
 const tag = 'premium';
 
 export default function Profilecard({ userData }) {
-	const { profile_photo, name, highest_level_of_education, experience, expertise, languages } = userData;
+	const {
+		profile_photo, name, highest_level_of_education, experience, expertise, languages,
+		state, country
+	} = userData;
 
 	const splitLanguage = (data) => {
 		return data
@@ -64,7 +67,7 @@ export default function Profilecard({ userData }) {
 
 					<div className='profilecard__maincontent__right__item'>
 						<img className='--icon' src={locationIcon} alt='' />
-						<div className='--text'>Lagos, Nigeria</div>
+						<div className='--text'>{`${state}, ${country}`}</div>
 					</div>
 
 					<div className='profilecard__maincontent__right__item'>

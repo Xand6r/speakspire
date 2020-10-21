@@ -11,11 +11,15 @@ const mySlice = createSlice({
   reducers: {
     // Generic Errors for AJAX
     setUserData: (state, action) => {
-      state = {...action.payload}
+      state.user = {...action.payload}
+      return state;
+    },
+    setLoggedIn: (state, action) =>{
+      state.loggedIn = action.payload || true;
       return state;
     }
   },
 });
 
-export const { setUserData, getLoggedInUser } = mySlice.actions;
+export const { setUserData, getLoggedInUser, setLoggedIn } = mySlice.actions;
 export default mySlice.reducer;
