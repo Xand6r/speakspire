@@ -28,7 +28,7 @@ export default function Personaldetails({
 
 
     return (
-        <div className="personaldetails">
+        <div className="companypersonaldetails">
 
             <div className="companypersonaldetails__heading">
                 <div className="companypersonaldetails__heading__header">
