@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import 'antd/dist/antd.css';
 
 const Homepage = lazy(() => import('./components/homepage' /* webpackChunkName: "Homepage" */));
@@ -20,12 +21,12 @@ const IndividualSignUp = lazy(() => import('./components/individualSignup' /* we
 
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-    const foundSession = sessionStorage.getItem("speakspire_token")
+	const {loggedIn} = useSelector(({user}) => user);
 
     return (
         <Route
             {...rest}
-            render={(props) => (foundSession ? <Component {...props} /> : <Redirect to={{ pathname: "/login" }} />)}
+            render={(props) => (loggedIn ? <Component {...props} /> : <Redirect to={{ pathname: "/login" }} />)}
         />
     );
 };
@@ -36,7 +37,7 @@ function App() {
 			<Switch>
 				<Route exact path='/about' component={About} />
 				<ProtectedRoute exact path='/speakers' component={SpeakersPage} />
-				<Route exact path='/speakers/:id' component={SingleSpeakerPage} />
+				<ProtectedRoute exact path='/speakers/:id' component={SingleSpeakerPage} />
 				<ProtectedRoute exact path='/events' component={EventsPage} />
 				<Route exact path='/category' component={SignUpCategory} />
 				<Route exact path='/login' component={SignInPage} />

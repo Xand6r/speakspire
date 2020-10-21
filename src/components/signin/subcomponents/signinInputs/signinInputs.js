@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Select, Spin, message } from 'antd';
 import { useHistory } from "react-router";
+import { useDispatch } from 'react-redux';
+import {setLoggedIn} from '../../../../redux/userSlice';
 
 import { LoadingOutlined } from '@ant-design/icons';
 import axios from '../../../../utilities/axios'
@@ -10,7 +12,7 @@ import { ROLES_AND_URLS } from './constants';
 import './signinInputs.scss';
 
 export default function SigninInputs() {
-    
+    const dispatch = useDispatch();
     const antIcon = <LoadingOutlined style={{ fontSize: 24, color:'white' }} spin />;
     const history = useHistory()
     const { Option } = Select;
@@ -35,6 +37,7 @@ export default function SigninInputs() {
             const userToken = res.data.data;
             message.success("Login Sucessfull");
             sessionStorage.setItem("speakspire_token", userToken);
+            dispatch(setLoggedIn());
             setTimeout(()=>{
                 history.push("/speakers");
             }, 1000)

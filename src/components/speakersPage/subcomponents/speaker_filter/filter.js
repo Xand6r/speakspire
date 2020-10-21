@@ -108,11 +108,13 @@ export default function Filter() {
                 {
                     speakerState.data.map(speaker => {
                         const {
+                            id,
                             name, experience:[{company, position}],
                             expertise: [{primary_specialty,secondary_specialty, primary_tags }]
                         } = speaker;
                         return (
                             <SpeakerCard
+                                id={speaker.id}
                                 key={speaker.id}
                                 fullname={name}
                                 company={company}

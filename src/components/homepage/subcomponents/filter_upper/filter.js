@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Checkbox } from 'antd';
+import { useSelector } from 'react-redux';
 import MultiSelect from "@khanacademy/react-multi-select";
+
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 import { component as SpeakerCard } from '../../../../utilities/speakerCard';
 import ResetFilterIcon from '../../../../assets/resetFilterIcon.svg';
@@ -15,6 +19,8 @@ const INITIAL_STATE = {
     specialty: "",
     speakerCategory: ""
 }
+
+const antIcon = <LoadingOutlined style={{ fontSize: 24, color:'#4D75F4' }} spin />;
 
 const multi_options = [
     { label: "Grapes", value: "grapes" },
@@ -48,7 +54,8 @@ const CHECKBOX_OPTIONS = [
 export default function Filter() {
     function onChange(checkedValues) {
         console.log('checked = ', checkedValues);
-    }
+    };
+    const speakerState = useSelector(({speakers} )=> speakers);
 
     const [speakerFilterState, setSpeakerFilterState] = useState(INITIAL_STATE);
     return (
@@ -116,46 +123,29 @@ export default function Filter() {
                 </div>
 
                 <div className="filter__results">
-                    <SpeakerCard
-                        fullname={"Onyenaturuchi Alioha"}
-                        company={"Emeks Enterprises"}
-                        position={"Chief Operating Officer"}
-                        skills={['Business', "Leadership", "Management","Startup Advisory","Aquisitions"]}
-                        image={undefined}
-                        primary={'Public Speaker'}
-                        secondary={'Career Development'}
-                        tag="premium"
-                    />
-                    <SpeakerCard
-                        fullname={"Onyenaturuchi Alioha"}
-                        company={"Emeks Enterprises"}
-                        position={"Chief Operating Officer"}
-                        skills={['Business', "Leadership", "Management","Startup Advisory","Aquisitions"]}
-                        image={undefined}
-                        primary={'Public Speaker'}
-                        secondary={'Career Development'}
-                        tag="premium"
-                    />
-                    <SpeakerCard
-                        fullname={"Onyenaturuchi Alioha"}
-                        company={"Emeks Enterprises"}
-                        position={"Chief Operating Officer"}
-                        skills={['Business', "Leadership", "Management","Startup Advisory","Aquisitions"]}
-                        image={undefined}
-                        primary={'Public Speaker'}
-                        secondary={'Career Development'}
-                        tag="premium"
-                    />
-                    <SpeakerCard
-                        fullname={"Onyenaturuchi Alioha"}
-                        company={"Emeks Enterprises"}
-                        position={"Chief Operating Officer"}
-                        skills={['Business', "Leadership", "Management","Startup Advisory","Aquisitions"]}
-                        image={undefined}
-                        primary={'Public Speaker'}
-                        secondary={'Career Development'}
-                        tag="premium"
-                    />
+                {
+                    speakerState.data.map(speaker => {
+                        const {
+                            id,
+                            name, experience:[{company, position}],
+                            expertise: [{primary_specialty,secondary_specialty, primary_tags }]
+                        } = speaker;
+                        return (
+                            <SpeakerCard
+                                id={speaker.id}
+                                key={speaker.id}
+                                fullname={name}
+                                company={company}
+                                position={position}
+                                skills={JSON.parse(primary_tags)}
+                                image={speaker.profile_photo}
+                                primary={primary_specialty}
+                                secondary={secondary_specialty}
+                                tag="premium"
+                            />
+                        );
+                    })
+                    }
                     
                 </div>
 
