@@ -44,6 +44,7 @@
             }
 
             &__form{
+                position: relative;
                 box-sizing: border-box;
                 background: #F7F8FC;
                 border-radius: 10px;
@@ -51,6 +52,15 @@
                 padding: 27px 42px 40px;
                 @extend %input-date;
                 margin-bottom: 25px;
+
+                .form_close{
+                    position: absolute;
+                    height: 26px;
+                    right: 14px;
+                    top: 14px;
+                    cursor: pointer;
+                    transition: 300ms;
+                }
 
                 &.--whitebg{
                     background-color: white;

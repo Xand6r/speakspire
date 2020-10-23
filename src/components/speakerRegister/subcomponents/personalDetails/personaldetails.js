@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { DatePicker } from 'antd';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import GenderTab from './genderTab';
 import PhoneInput from 'react-phone-input-2';
 
@@ -107,6 +108,7 @@ export default function Personaldetails({
 
                         }}
                         value={state.birthdate[0]}
+                        disabledDate={d => !d || d.isAfter(moment())}
                     />
                 </div>
                 {/* wrapper for the birthdate */}

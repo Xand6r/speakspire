@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import UserLogo from '../../../../assets/user.svg';
 import UsersLogo from '../../../../assets/users.svg';
@@ -12,7 +13,8 @@ const benefits = [
     [MicrophoneLogo, 'Get more exposure and value for your work']
 ]
 
-export default function joinus() {
+export default function Joinus() {
+    const history = useHistory()
     return (
 
         <div className="vision__register">
@@ -31,7 +33,10 @@ export default function joinus() {
                     ))
                 }
             </div>
-            <div className="signup">
+            <div
+                className="signup"
+                onClick = {()=>history.push('/category')}
+            >
                 Sign Up
             </div>
         </div>

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { DatePicker } from 'antd';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
+import closeTag from '../../assets/close.svg';
+import moment from 'moment';
 
 import {
     DEFAULT_SINGLE_OPTIONS, YEARS_OF_EXPERIENCE,
@@ -40,6 +42,16 @@ export default function Experience({
           });
     };
 
+    const deleteFormItem = (index, key) => {
+		const oldItem = state[key].filter((edu, eduIndex)=>(
+			index !== eduIndex
+		));
+		stateChanger({
+			...state,
+			[key]: oldItem
+		});
+	}
+
     const monthFormat = 'MM/YY';
     const DateSuffix = () => (
         <img height="14px" src={calendarIcon} alt="calendar"/>
@@ -66,6 +78,15 @@ export default function Experience({
                     {
                         state.positions.map( (position, index) => (
                             <div className="experience__formsection__section__form">
+                            {
+									(index !== 0) &&
+									<img
+										src={closeTag}
+										alt=""
+										className="form_close"
+										onClick={() => deleteFormItem(index, 'positions')}
+									/>
+								}
                                 <div className="--input_wrapper">
                                     <label htmlFor="position">Position</label>
                                     <input
@@ -104,6 +125,7 @@ export default function Experience({
                                                 changeListData('positions', index, 'from',  [momentDate, dateString])
                                             }}
                                             value={position.from[0]}
+                                            disabledDate={d => !d || d.isAfter(moment())}
                                         />
                                         <span>to</span>
                                         <DatePicker
@@ -115,6 +137,7 @@ export default function Experience({
                                                 changeListData('positions', index, 'to',  [momentDate, dateString])
                                             }}
                                             value={position.to[0]}
+                                            disabledDate={d => !d || d.isBefore(position.from[0])}
                                         />
                                     </div>
                                 </div>

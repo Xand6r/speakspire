@@ -36,6 +36,7 @@ export default function Navbar() {
         dispatch(setLoggedIn(false));
         sessionStorage.clear();
         message.success("Logout sucessfull");
+        sessionStorage.setItem("speakspire_token", null)
         setTimeout(()=>history.push("/"), 1000)
     }
     const userState = useSelector(({user}) => user)

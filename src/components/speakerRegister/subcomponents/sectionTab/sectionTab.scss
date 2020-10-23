@@ -43,10 +43,14 @@
             background: #F0FDF6;
             color: white;
         }
+        .sectiontab__icon.unfilled{
+            background: #4D75F4;
+            color: #FFFFFF;
+        }
     }
     &.--unselected{
         color: $dark-blue;
-        background: #FFFFFF;
+        background: #FFFFFF !important;
 
         .sectiontab__icon{
             background: #EDF1FE;
