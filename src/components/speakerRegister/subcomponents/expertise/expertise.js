@@ -2,11 +2,17 @@ import React, {useState} from 'react';
 import {Upload, message, Button} from 'antd';
 import {Link} from 'react-router-dom';
 import {UploadOutlined} from '@ant-design/icons';
+import moment from 'moment';
 import {DatePicker} from 'antd';
 import Select from 'react-select';
 import TagsInput from 'react-tagsinput';
 import MultiSelect from '@khanacademy/react-multi-select';
 import PropTypes from 'prop-types';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import deleteBin from '../../assets/bin.svg';
+import closeTag from '../../assets/close.svg';
+
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 
 import {
@@ -25,7 +31,12 @@ import '../../../../stylesheets/tag.scss';
 import blueCircle from '../../assets/circlePlus.svg';
 import calendarIcon from '../../../../assets/calendar.svg';
 import fileUpload from '../../assets/uploadFile.svg';
+
+const antIcon = <LoadingOutlined style={{ fontSize: 24, color:'#4D75F4' }} spin />;
+
 export default function Expertise({stateChanger, state}) {
+	const [certLoader, setCertLoader] = useState([]);;
+	console.log(state.certifications)
 	const [tagInputState, setTagInputState] = useState('');
 	const changeTagInputState = (value) => {
 		if (value.length < 20) {
@@ -33,12 +44,27 @@ export default function Expertise({stateChanger, state}) {
 		}
 	};
 
+	const handleDeleteImage = (e,index) => {
+		e.preventDefault();
+		console.log(index);
+	}
+
 	const [secondTagInputState, setSecondTagInputState] = useState('');
 	const changeSecondTagInputState = (value) => {
 		if (value.length < 20) {
 			setSecondTagInputState(value);
 		}
 	};
+
+	const deleteFormItem = (index, key) => {
+		const oldItem = state[key].filter((edu, eduIndex)=>(
+			index !== eduIndex
+		));
+		stateChanger({
+			...state,
+			[key]: oldItem
+		});
+	}
 
 	const handleFormChange = (event) => {
 		const {name, value} = event.target;
@@ -217,6 +243,15 @@ export default function Expertise({stateChanger, state}) {
 						</div>
 						{state.education.map((education, index) => (
 							<div className='expertise__formsection__section__form'>
+								{
+									(index !== 0) &&
+									<img
+										src={closeTag}
+										alt=""
+										className="form_close"
+										onClick={() => deleteFormItem(index, 'education')}
+									/>
+								}
 								<div className='--input_wrapper'>
 									<label htmlFor='position'>School</label>
 									<input
@@ -254,6 +289,7 @@ export default function Expertise({stateChanger, state}) {
 												changeListData('education', index, 'from', [momentDate, dateString]);
 											}}
 											value={education.from[0]}
+											disabledDate={d => !d || d.isAfter(moment())}
 										/>
 										<span>to</span>
 										<DatePicker
@@ -265,6 +301,7 @@ export default function Expertise({stateChanger, state}) {
 												changeListData('education', index, 'to', [momentDate, dateString]);
 											}}
 											value={education.to[0]}
+											disabledDate={d => !d || d.isBefore(education.from[0])}
 										/>
 									</div>
 								</div>
@@ -298,6 +335,15 @@ export default function Expertise({stateChanger, state}) {
 						</div>
 						{state.certifications.map((cert, index) => (
 							<div className='expertise__formsection__section__form'>
+								{
+									(index !== 0) &&
+									<img
+										src={closeTag}
+										alt=""
+										className="form_close"
+										onClick={() => deleteFormItem(index, 'certifications')}
+									/>
+								}
 								<div className='--input_wrapper'>
 									<label htmlFor='position'>Certification Name</label>
 									<input
@@ -336,6 +382,7 @@ export default function Expertise({stateChanger, state}) {
 												changeListData('certifications', index, 'from', [momentDate, dateString]);
 											}}
 											value={cert.from[0]}
+											disabledDate={d => !d || d.isAfter(moment())}
 										/>
 										<span>to</span>
 										<DatePicker
@@ -347,6 +394,7 @@ export default function Expertise({stateChanger, state}) {
 												changeListData('certifications', index, 'to', [momentDate, dateString]);
 											}}
 											value={cert.to[0]}
+											disabledDate={d => !d || d.isBefore(cert.from[0])}
 										/>
 									</div>
 								</div>
@@ -364,15 +412,42 @@ export default function Expertise({stateChanger, state}) {
 										<Upload
 											{...props}
 											beforeUpload={(file) => {
+												const oldState = [...certLoader];
+												oldState[index] = true;
+												setCertLoader(oldState);
 												uploadImage(file)
-													.then((res) => changeListData('certifications', index, 'file', res))
-													.catch((err) => changeListData('certifications', index, 'file', err));
+													.then((res) => {changeListData('certifications', index, 'file', res)
+													}
+													)
+													.catch((err) => changeListData('certifications', index, 'file', err))
+													.finally(()=>{
+														const oldState = [...certLoader];
+														oldState[index] = false;
+														setCertLoader(oldState);
+													})
 
 												return false;
 											}}
 										>
-											<Button icon={<FileImage />}>Upload File</Button>
+											<Button icon={!certLoader[index] && <FileImage />}>
+											{
+												(certLoader[index])?
+												<Spin indicator={antIcon} /> :
+												'Upload File'
+											}
+											</Button>
 										</Upload>
+											{
+												(cert.file &&
+												<img
+													src={deleteBin}
+													alt=''
+													className='delete'
+													onClick={() => changeListData('certifications', index, 'file', null)}
+												/>
+												)
+											}
+										
 
 										<div className='--input_wrapper'>
 											<input

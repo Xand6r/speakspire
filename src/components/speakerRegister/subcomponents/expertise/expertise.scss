@@ -4,7 +4,20 @@
 .expertise{
     @extend %register-tabs-styles;
     padding: 70px 150px;
-
+    .ant-spin.ant-spin-spinning{
+        margin: auto;
+    }
+    .display{
+        position: absolute;
+    }
+    .delete{
+        position: absolute;
+        cursor: pointer;
+        bottom: -25px;
+    }
+    .ant-upload-list.ant-upload-list-text {
+        display: none;
+    }
     &__heading{
         margin-bottom: 50px;
         &__header{
@@ -44,6 +57,7 @@
             }
 
             &__form{
+                position: relative;
                 box-sizing: border-box;
                 background: #F7F8FC;
                 border-radius: 10px;
@@ -51,6 +65,21 @@
                 padding: 27px 42px 40px;
                 @extend %input-date;
                 margin-bottom: 25px;
+                
+                .form_close{
+                    position: absolute;
+                    height: 26px;
+                    right: 14px;
+                    top: 14px;
+                    cursor: pointer;
+                    transition: 300ms;
+                }
+                .form_close:hover{
+                    transform: scale(1.15);
+                }
+                .form_close:active{
+                    transform: scale(1.1);
+                }
 
                 &.--whitebg{
                     background-color: white;
@@ -241,6 +270,7 @@
                         }
                     }
                     .--date_wrapper{
+                        position: relative;
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
@@ -254,6 +284,7 @@
                     .--two_inputs{
                         display: flex;
                         align-items: center;
+                        position: relative;
                         justify-content: space-between;
 
                         .ant-btn{
