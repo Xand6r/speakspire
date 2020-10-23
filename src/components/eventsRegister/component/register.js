@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
 	Switch,
@@ -16,6 +17,8 @@ import { component as Schedule } from '../subcomponents/schedule';
 import { component as Speakercall } from '../subcomponents/speakercall';
 import { component as Media } from '../subcomponents/media';
 import cleanData from '../subcomponents/utils/cleanData';
+import axios from '../../../utilities/axios';
+import { message } from 'antd';
 
 import './register.scss';
 import defaultImage from '../assets/greycircle.svg';
@@ -28,6 +31,7 @@ export default function Register({ location }) {
 	const [schedule, setSchedule] = useState(SCHEDULE_STATE);
 	const [speakerCall, setSpeakerCall] = useState(SPEAKER_CALL);
 	const [media, setMedia] = useState(INITIAL_MEDIA_STATE);
+	const history = useHistory();
 
 	useEffect(() => {
 		const { pathname } = location;
@@ -47,10 +51,17 @@ export default function Register({ location }) {
 		const finalState = {
 			...eventInfo,
 			...schedule,
-			speakerCall,
+			speakers: speakerCall,
 			...media,
 		};
-		cleanData(finalState);
+		// send post request
+		axios
+			.post('/events/add', cleanData(finalState))
+			.then(() => {
+				message.success('Event created successfully');
+				setTimeout(() => history.push('/registerevent'), 1000);
+			})
+			.catch(() => message.error('There was an error creating the event'));
 	};
 
 	return (
