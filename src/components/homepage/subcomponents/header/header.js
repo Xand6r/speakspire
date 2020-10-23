@@ -1,9 +1,11 @@
 import React from 'react';
+import {useHistory} from 'react-router-dom';
 
 import HeaderIcon from '../../../../assets/curve.svg';
 import './header.scss';
 
-export default function header() {
+export default function Header() {
+    const history = useHistory();
     return (
         <div>
             <div className="header">
@@ -15,7 +17,10 @@ export default function header() {
                     <div className="header__text__secondary">
                         Start by SPEAKING about it.
                     </div>
-                    <div className="header__text__action">
+                    <div
+                        className="header__text__action"
+                        onClick = {()=>history.push('/category')}
+                    >
                         Sign Up
                     </div>
                 </div>

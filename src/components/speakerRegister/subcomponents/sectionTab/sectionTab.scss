@@ -46,7 +46,7 @@
     }
     &.--unselected{
         color: $dark-blue;
-        background: #FFFFFF;
+        background: #FFFFFF !important;
 
         .sectiontab__icon{
             background: #EDF1FE;
