@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ImgCrop from 'antd-img-crop';
 import whiteTick from '../../assets/whiteTick.svg';
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 
 import ImageTab from './imageTab';
 import VideoTab from './videoTab';
-import {Tabs} from 'antd';
+import { Tabs } from 'antd';
 
 import './media.scss';
 
@@ -15,16 +15,16 @@ import fileUpload from '../../assets/uploadFile.svg';
 
 import deleteBin from '../../assets/deleteBin.svg';
 
-import {Upload, message, Button} from 'antd';
+import { Upload, message, Button } from 'antd';
 
-const {TabPane} = Tabs;
+const { TabPane } = Tabs;
 
 function callback(key) {
 	console.log(key);
 }
 
-const FileImage = () => <img height='14px' style={{'margin-right': '10px'}} src={fileUpload} alt='calendar' />;
-const DoneImage = () => <img height='14px' style={{'margin-right': '10px'}} src={whiteTick} alt='calendar' />;
+const FileImage = () => <img height='14px' style={{ marginRight: '10px' }} src={fileUpload} alt='calendar' />;
+const DoneImage = () => <img height='14px' style={{ marginRight: '10px' }} src={whiteTick} alt='calendar' />;
 
 const props = {
 	name: 'file',
@@ -44,15 +44,13 @@ const props = {
 	},
 };
 
-export default function Media({stateChanger, state}) {
+export default function Media({ stateChanger, state, handleSubmit }) {
 	const changeSelectState = (name, value) => {
 		stateChanger({
 			...state,
 			[name]: value,
 		});
 	};
-
-	console.log(state);
 
 	return (
 		<div class='media'>
@@ -74,11 +72,10 @@ export default function Media({stateChanger, state}) {
 										return;
 									}
 									uploadImage(file)
-										.then((res) => changeSelectState('cover_photo', {src: res}))
-										.catch((err) => changeSelectState('cover_photo', {src: err}));
+										.then((res) => changeSelectState('cover_photo', { src: res }))
+										.catch((err) => changeSelectState('cover_photo', { src: err }));
 									return false;
-								}}
-							>
+								}}>
 								{state.cover_photo.src ? (
 									<div className='image_upload_button --uploaded'>
 										<Button disabled icon={<DoneImage />}>
@@ -96,9 +93,8 @@ export default function Media({stateChanger, state}) {
 							<div
 								className='file_delete'
 								onClick={(e) => {
-									changeSelectState('cover_photo', {src: undefined});
-								}}
-							>
+									changeSelectState('cover_photo', { src: undefined });
+								}}>
 								<img src={deleteBin} alt='' />
 								<span>Delete Photo</span>
 							</div>
@@ -136,7 +132,7 @@ export default function Media({stateChanger, state}) {
 						<div className='cancel'>Back</div>
 					</Link>
 
-					<Link className='link' to='/'>
+					<Link className='link' onClick={handleSubmit}>
 						<div className='next'>Next</div>
 					</Link>
 				</div>
