@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import Logo from '../assets/Logo.svg';
-import {setLoggedIn} from '../../../redux/userSlice';
+import {setLoggedIn, setLoggedOut} from '../../../redux/userSlice';
 
 import { fetchAllSpeakers } from '../../../redux/speakerSlice';
 
@@ -33,10 +33,9 @@ export default function Navbar() {
         }
     }, [dispatch])
     const signOut = ()=>{
-        dispatch(setLoggedIn(false));
         sessionStorage.clear();
+        dispatch(setLoggedOut());
         message.success("Logout sucessfull");
-        sessionStorage.setItem("speakspire_token", null)
         setTimeout(()=>history.push("/"), 1000)
     }
     const userState = useSelector(({user}) => user)

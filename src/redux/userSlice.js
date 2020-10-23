@@ -15,11 +15,15 @@ const mySlice = createSlice({
       return state;
     },
     setLoggedIn: (state, action) =>{
-      state.loggedIn = action.payload || true;
+      state.loggedIn = true;
+      return state;
+    },
+    setLoggedOut: (state, action) => {
+      state.loggedIn = false;
       return state;
     }
   },
 });
 
-export const { setUserData, getLoggedInUser, setLoggedIn } = mySlice.actions;
+export const { setUserData, getLoggedInUser, setLoggedIn, setLoggedOut } = mySlice.actions;
 export default mySlice.reducer;
