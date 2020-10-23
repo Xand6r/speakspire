@@ -38,7 +38,7 @@ export default (data) => {
 			time: cleanDate(timeFrom, timeTo),
 			physicalLink: JSON.stringify(physicalLink),
 			onlineLink: JSON.stringify(onlineLink),
-			interval: interval.value,
+			intervals: interval.value,
 			interval_day_of_week,
 		},
 		speakers: cleanSpeakers(speakers),
