@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Loader from './utilities/loadingScreen'
 import 'antd/dist/antd.css';
 
 const Homepage = lazy(() => import('./components/homepage' /* webpackChunkName: "Homepage" */));
@@ -33,7 +34,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 
 function App() {
 	return (
-		<Suspense fallback={<div>Loading...</div>}>
+		<Suspense fallback={<Loader />}>
 			<Switch>
 				<Route exact path='/about' component={About} />
 				<ProtectedRoute exact path='/speakers' component={SpeakersPage} />
