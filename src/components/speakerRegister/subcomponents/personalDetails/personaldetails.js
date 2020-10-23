@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DatePicker } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import GenderTab from './genderTab';
@@ -19,7 +19,8 @@ export default function Personaldetails({
     stateChanger, state
 }) {
     const [activeTab, setactiveTab] = useState(GENDER_OPTIONS.indexOf(state.gender));
-    const [passwordHidden, setPasswordHidden ] = useState(true)
+    const [passwordHidden, setPasswordHidden ] = useState(true);
+    const history = useHistory()
 
     const handleFormChange = (event)=>{
         const {name, value} = event.target;
@@ -54,7 +55,7 @@ export default function Personaldetails({
                     Personal Details
                 </div>
                 <div className="personaldetails__heading__subheading">
-                    Not a speaker? <span>Choose another account type</span>
+                    Not a speaker? <span onClick={()=>history.push('/category')}>Choose another account type</span>
                 </div>
             </div>
 
@@ -108,7 +109,7 @@ export default function Personaldetails({
 
                         }}
                         value={state.birthdate[0]}
-                        disabledDate={d => !d || d.isAfter(moment())}
+                        disabledDate={d => !d || d.isAfter(moment().subtract(18, 'years') )}
                     />
                 </div>
                 {/* wrapper for the birthdate */}
