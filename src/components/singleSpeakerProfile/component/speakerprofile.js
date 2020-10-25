@@ -27,7 +27,7 @@ export default function Speakerprofile(props) {
 			}
 		};
 		getDetails();
-	}, [props.match.params.id]);
+	}, [history, props.match.params.id]);
 	return (
 		<div class='speakerprofile'>
 			{/* the navigation bar of the site */}

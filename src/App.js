@@ -20,16 +20,10 @@ const OrganiserProfile = lazy(() => import('./components/organiserProfile' /* we
 const About = lazy(() => import('./components/about' /* webpackChunkName: "About" */));
 const IndividualSignUp = lazy(() => import('./components/individualSignup' /* webpackChunkName: "IndividualSignUp" */));
 
-
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-	const {loggedIn} = useSelector(({user}) => user);
+	const { loggedIn } = useSelector(({ user }) => user);
 
-    return (
-        <Route
-            {...rest}
-            render={(props) => (loggedIn ? <Component {...props} /> : <Redirect to={{ pathname: "/login" }} />)}
-        />
-    );
+	return <Route {...rest} render={(props) => (loggedIn ? <Component {...props} /> : <Redirect to={{ pathname: '/login' }} />)} />;
 };
 
 function App() {
@@ -38,7 +32,7 @@ function App() {
 			<Switch>
 				<Route exact path='/about' component={About} />
 				<ProtectedRoute exact path='/speakers' component={SpeakersPage} />
-				<ProtectedRoute exact path='/speakers/:id' component={SingleSpeakerPage} />
+				<Route exact path='/speakers/:id' component={SingleSpeakerPage} />
 				<ProtectedRoute exact path='/events' component={EventsPage} />
 				<Route exact path='/category' component={SignUpCategory} />
 				<Route exact path='/login' component={SignInPage} />
@@ -49,7 +43,7 @@ function App() {
 				<ProtectedRoute path='/organisers' component={OrganisersPage} />
 				<Route path='/individual' component={IndividualSignUp} />
 				<Route path='/registerevent' component={EventSignUpPage} />
-				<ProtectedRoute path='/organiserprofile' component={OrganiserProfile} />
+				<Route path='/organiserprofile/:id' component={OrganiserProfile} />
 				<Route exact path='/' component={Homepage} />
 			</Switch>
 		</Suspense>
