@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from './utilities/loadingScreen';
 import 'antd/dist/antd.css';
-import {component as Nav} from './utilities/navbar'
+// import {component as Nav} from './utilities/navbar'
 
 const Homepage = lazy(() => import('./components/homepage' /* webpackChunkName: "Homepage" */));
 const SpeakersPage = lazy(() => import('./components/speakersPage' /* webpackChunkName: "SpeakersPage" */));
