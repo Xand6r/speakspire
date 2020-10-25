@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
 	Switch,
@@ -15,6 +16,8 @@ import { component as SpeakerCard } from '../../../utilities/speakerCard';
 import { component as PersonalDetail } from '../subcomponents/personalDetails';
 import { component as Media } from '../subcomponents/media';
 import cleanData from '../subcomponents/utils/cleanData';
+import axios from '../../../utilities/axios';
+import { message } from 'antd';
 
 import './register.scss';
 import defaultImage from '../assets/greycircle.svg';
@@ -23,7 +26,7 @@ export default function Register({ location }) {
 	const [activeTab, setactiveTab] = useState(0);
 	const [previewHidden, setPreviewHidden] = useState(false);
 	const [personalDetails, setPersonalDetails] = useState(INITIAL_COMPANY_DETAILS_STATE);
-
+	const history = useHistory();
 	const [media, setMedia] = useState(INITIAL_MEDIA_STATE);
 
 	useEffect(() => {
@@ -45,7 +48,16 @@ export default function Register({ location }) {
 			...personalDetails,
 			...media,
 		};
-		console.log(cleanData(finalState));
+
+		// send post request
+
+		axios
+			.post('/organizers/add', cleanData(finalState))
+			.then(() => {
+				message.success('Organizer account sucesfully created');
+				setTimeout(() => history.push('/organiser'), 1000);
+			})
+			.catch(() => message.error('There was an error creating your speaker account'));
 	};
 
 	return (
