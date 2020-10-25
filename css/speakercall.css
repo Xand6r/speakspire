@@ -1,0 +1,372 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.speakercall__footer .--button_group .cancel, .speakercall__footer .--button_group .next, .speakercall__footer .--extra div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.speakercall__footer .--button_group .cancel, .speakercall__footer .--button_group .next {
+  background: #4D75F4;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: markpro-bold;
+  font-size: 15px;
+}
+
+.speakercall__footer .--extra div {
+  border-radius: 5px;
+  border: 1px solid #4D75F4;
+  box-sizing: border-box;
+  color: #4D75F4;
+  cursor: pointer;
+  font-family: markpro-bold;
+  font-size: 15px;
+  line-height: 19px;
+}
+
+.speakercall__formsection textarea, .speakercall__formsection .--wrapper input[type="text"], .speakercall__formsection .--wrapper input[type='tel'], .speakercall__formsection .--wrapper input[type='email'], .speakercall__formsection .--wrapper input[type='password'] {
+  box-sizing: border-box;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-family: 'markpro-medium';
+  color: #162359;
+  transition: 300ms;
+}
+
+.speakercall__formsection textarea::placeholder, .speakercall__formsection .--wrapper input[type="text"]::placeholder, .speakercall__formsection .--wrapper input[type='tel']::placeholder, .speakercall__formsection .--wrapper input[type='email']::placeholder, .speakercall__formsection .--wrapper input[type='password']::placeholder {
+  color: #CDD1DE;
+}
+
+.speakercall__formsection textarea:focus, .speakercall__formsection .--wrapper input:focus[type="text"], .speakercall__formsection .--wrapper input:focus[type='tel'], .speakercall__formsection .--wrapper input:focus[type='email'], .speakercall__formsection .--wrapper input:focus[type='password'] {
+  outline: none;
+  border: 1px solid #4D75F4;
+}
+
+.speakercall__formsection .--delete {
+  transition: 300ms;
+}
+
+.speakercall__formsection .--delete:hover {
+  transform: scale(1.2);
+}
+
+.speakercall__formsection .--delete:active {
+  transform: scale(0.9);
+}
+
+.speakercall {
+  box-sizing: border-box;
+  min-width: 744px;
+  max-width: 744px;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  padding: 70px 177px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 30px rgba(22, 35, 89, 0.04);
+}
+
+.speakercall__formsection label.double span {
+  font-size: 10px;
+  line-height: 13px;
+}
+
+.file_delete, .speakercall__heading__subheading, .speakercall__footer .--notification .--text {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.speakercall__formsection label, .speakercall__formsection .--double_wrapper span {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.speakercall__formsection textarea, .speakercall__formsection .--wrapper .--singleselect .--item *, .speakercall__formsection .--wrapper input[type="text"], .speakercall__formsection .--wrapper input[type='tel'], .speakercall__formsection .--wrapper input[type='email'], .speakercall__formsection .--wrapper input[type='password'] {
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.speakercall__heading__header {
+  line-height: 34px;
+  font-size: 28px;
+}
+
+.speakercall {
+  padding: 70px 150px;
+}
+
+.speakercall .--more-margin {
+  margin-bottom: 50px;
+}
+
+.speakercall__heading {
+  margin-bottom: 50px;
+}
+
+.speakercall__heading__header {
+  font-weight: bold;
+  font-family: 'markpro-bold';
+  color: #162359;
+}
+
+.speakercall__heading__subheading {
+  font-family: 'markpro-medium';
+  color: #8990AC;
+}
+
+.speakercall__heading__subheading span {
+  color: #4D75F4;
+  cursor: pointer;
+}
+
+.speakercall__formsection {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  padding: 25px 41px 0;
+  background: #F7F8FC;
+  border-radius: 10px;
+  position: relative;
+}
+
+.speakercall__formsection .--delete {
+  position: absolute;
+  height: 23px;
+  right: 10px;
+  top: 17px;
+  cursor: pointer;
+}
+
+.speakercall__formsection textarea {
+  border: 1px solid #CDD1DE;
+  width: 360px;
+  height: 50px;
+  min-height: 103px;
+  background: white;
+}
+
+.speakercall__formsection textarea:focus {
+  outline: none;
+  border: 1px solid #4D75F4;
+  background: #EDF1FE;
+}
+
+.speakercall__formsection label {
+  color: #767E9F;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+  font-family: 'markpro-medium';
+}
+
+.speakercall__formsection label.double {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  color: #767E9F;
+}
+
+.speakercall__formsection label.double span {
+  margin-top: 7px;
+  color: #767E9F;
+}
+
+.speakercall__formsection .--double_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.speakercall__formsection .--double_wrapper span {
+  color: #8990AC;
+  font-family: 'markpro-medium';
+}
+
+.speakercall__formsection .--wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.speakercall__formsection .--wrapper .--singleselect .--item .css-1hb7zxy-IndicatorsContainer, .speakercall__formsection .--wrapper .--singleselect .--item .css-1wy0on6 {
+  background: white;
+  cursor: pointer !important;
+}
+
+.speakercall__formsection .--wrapper .--singleselect .--item .css-g1d714-ValueContainer, .speakercall__formsection .--wrapper .--singleselect .--item .css-1hwfws3 {
+  background: white;
+  padding-left: 20px;
+  cursor: text;
+}
+
+.speakercall__formsection .--wrapper .--singleselect .--item .css-1wa3eu0-placeholder {
+  color: #CDD1DE;
+}
+
+.speakercall__formsection .--wrapper .--singleselect .--item input {
+  height: 36px;
+}
+
+.speakercall__formsection .--wrapper .--singleselect .--item * {
+  transition: 500ms !important;
+  color: #162359;
+  font-family: markpro-medium;
+}
+
+.speakercall__formsection .--wrapper input[type="text"], .speakercall__formsection .--wrapper input[type='tel'], .speakercall__formsection .--wrapper input[type='email'], .speakercall__formsection .--wrapper input[type='password'] {
+  width: 159px;
+  height: 50px;
+  border: 1px solid #CDD1DE;
+  background: white;
+}
+
+.speakercall__formsection .--wrapper input[type="text"]::placeholder, .speakercall__formsection .--wrapper input[type='tel']::placeholder, .speakercall__formsection .--wrapper input[type='email']::placeholder, .speakercall__formsection .--wrapper input[type='password']::placeholder {
+  color: #CDD1DE;
+}
+
+.speakercall__formsection .--wrapper input[type="text"]:focus, .speakercall__formsection .--wrapper input[type='tel']:focus, .speakercall__formsection .--wrapper input[type='email']:focus, .speakercall__formsection .--wrapper input[type='password']:focus {
+  outline: none;
+  border: 1px solid #4D75F4;
+  background: #EDF1FE;
+}
+
+.speakercall__formsection .--wrapper input[type="text"][name='password'], .speakercall__formsection .--wrapper input[type="text"][type='date'], .speakercall__formsection .--wrapper input[type='tel'][name='password'], .speakercall__formsection .--wrapper input[type='tel'][type='date'], .speakercall__formsection .--wrapper input[type='email'][name='password'], .speakercall__formsection .--wrapper input[type='email'][type='date'], .speakercall__formsection .--wrapper input[type='password'][name='password'], .speakercall__formsection .--wrapper input[type='password'][type='date'] {
+  text-transform: none;
+}
+
+.speakercall__formsection .--wrapper .-ant-picker {
+  background: #F7F8FC;
+}
+
+.speakercall__footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.speakercall__footer .--extra {
+  margin: 0px auto 50px;
+}
+
+.speakercall__footer .--extra div {
+  width: 360px;
+  height: 50px;
+}
+
+.speakercall__footer .--extra div img {
+  margin-right: 10px;
+}
+
+.speakercall__footer .--notification {
+  display: flex;
+  margin-bottom: 50px;
+  margin-left: 10px;
+}
+
+.speakercall__footer .--notification img {
+  margin-top: -27px;
+  margin-right: 10px;
+}
+
+.speakercall__footer .--notification .--text {
+  max-width: 292px;
+  font-family: 'markpro-medium';
+  color: #8990AC;
+}
+
+.speakercall__footer .--notification .--text span {
+  color: #4D75F4;
+}
+
+.speakercall__footer .--button_group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.speakercall__footer .--button_group .cancel {
+  width: 108.22px;
+  height: 50px;
+  background: #F5F5F9;
+  font-family: 'markpro-bold';
+  color: #162359;
+}
+
+.speakercall__footer .--button_group .next {
+  width: 183px;
+  height: 50px;
+  background: #4D75F4;
+  font-family: 'markpro-bold';
+  color: white;
+}

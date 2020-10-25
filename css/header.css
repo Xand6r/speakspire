@@ -1,0 +1,152 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.header .header__text__action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header .header__text__action {
+  background: #4D75F4;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: markpro-bold;
+  font-size: 15px;
+}
+
+.file_delete {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 150px;
+  padding-top: 200px;
+  margin-bottom: 323px;
+}
+
+.header .header__text {
+  max-width: 600px;
+}
+
+.header .header__logo {
+  padding-top: 67px;
+}
+
+.header .header__text__primary {
+  margin-bottom: 29px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 76px;
+  line-height: 120%;
+  color: #162359;
+  font-family: markpro-bold;
+}
+
+.header .header__text__secondary {
+  margin-bottom: 62px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  color: #767E9F;
+  font-family: markpro-medium;
+}
+
+.header .header__text__action {
+  width: 176px;
+  height: 50px;
+}
+
+@media (max-width: 1250px) {
+  .header__logo {
+    display: none;
+  }
+}

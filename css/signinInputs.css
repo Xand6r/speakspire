@@ -1,0 +1,252 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.signininputs__submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signininputs__submit {
+  background: #4D75F4;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: markpro-bold;
+  font-size: 15px;
+}
+
+.signininputs__headers__subheading, .signininputs__form span.blue__text {
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.file_delete {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.signininputs__form .--inputwrapper label, .signininputs__form .--inputwrapper input {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.signininputs__headers__heading {
+  line-height: 34px;
+  font-size: 28px;
+}
+
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.select-dropdown {
+  height: 50px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 20px !important;
+  color: #162359 !important;
+  font-family: 'markpro-medium';
+}
+
+.select-dropdown:hover {
+  background: #EDF1FE !important;
+}
+
+.select-dropdown[aria-selected="true"] {
+  background: #EDF1FE !important;
+  color: #4D75F4 !important;
+}
+
+.ant-select-open {
+  border: 0.5px solid #4D75F4 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border-radius: 5px !important;
+}
+
+.ant-select-focused {
+  border: 1px solid #4D75F4 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border-radius: 5px !important;
+}
+
+.signininputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.signininputs .ant-select-selector {
+  height: 50px !important;
+  display: flex;
+  align-items: center;
+  border-radius: 5px !important;
+  background: #F7F8FC !important;
+  border: 1px solid #CDD1DE !important;
+  padding: 0 20px !important;
+  font-family: 'markpro-medium';
+  color: #162359 !important;
+}
+
+.signininputs__headers {
+  margin-bottom: 50px;
+}
+
+.signininputs__headers__heading {
+  font-family: 'markpro-bold';
+  color: #162359;
+  margin-bottom: 15px;
+}
+
+.signininputs__headers__subheading {
+  color: #8990AC;
+  font-family: 'markpro-medium';
+}
+
+.signininputs__headers__subheading span {
+  cursor: pointer;
+  color: #4D75F4;
+}
+
+.signininputs__form {
+  margin-bottom: 50px;
+}
+
+.signininputs__form span.blue__text {
+  color: #4D75F4;
+  cursor: pointer;
+  font-family: 'markpro-medium';
+}
+
+.signininputs__form .--inputwrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.signininputs__form .--inputwrapper .--passwordinput {
+  display: flex;
+  align-items: center;
+}
+
+.signininputs__form .--inputwrapper .--passwordinput i {
+  margin-left: -34px;
+  cursor: pointer;
+  color: #767E9F;
+}
+
+.signininputs__form .--inputwrapper label {
+  color: #767E9F;
+  font-family: 'markpro-medium';
+  margin-bottom: 15px;
+}
+
+.signininputs__form .--inputwrapper input {
+  box-sizing: border-box;
+  width: 360px;
+  height: 50px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background: #F7F8FC;
+  border: 1px solid #CDD1DE;
+  font-family: 'markpro-medium';
+  color: #162359;
+  transition: 300ms;
+}
+
+.signininputs__form .--inputwrapper input::placeholder {
+  color: #CDD1DE;
+}
+
+.signininputs__form .--inputwrapper input:focus {
+  outline: none;
+  border: 1px solid #4D75F4;
+}
+
+.signininputs__submit {
+  width: 120px;
+  height: 50px;
+}

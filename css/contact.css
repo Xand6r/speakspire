@@ -1,0 +1,208 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.contact__subscribe__search__button, .contact__banner .--button, .contact, .contact__subscribe__search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact__subscribe__search__button {
+  background: #4D75F4;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: markpro-bold;
+  font-size: 15px;
+}
+
+.contact__banner .--button {
+  border-radius: 5px;
+  border: 1px solid #4D75F4;
+  box-sizing: border-box;
+  color: #4D75F4;
+  cursor: pointer;
+  font-family: markpro-bold;
+  font-size: 15px;
+  line-height: 19px;
+}
+
+.file_delete {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.contact__subscribe__search__input, .contact__banner .--button {
+  line-height: 27px;
+  font-size: 18px;
+}
+
+.contact__subscribe__text {
+  line-height: 34px;
+  font-size: 24px;
+}
+
+.contact__banner .--text {
+  font-size: 36px;
+  line-height: 46px;
+}
+
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.contact {
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+
+.contact__subscribe__text {
+  margin: 0 auto;
+  color: #162359;
+  text-align: center;
+  max-width: 570px;
+  font-style: normal;
+  font-weight: 500;
+  font-family: 'markpro-medium';
+  margin-bottom: 40px;
+}
+
+.contact__subscribe__search .inputgroup {
+  display: flex;
+  align-items: center;
+  border: 1px solid #B8BED0;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.contact__subscribe__search__input {
+  width: 437px;
+  height: 50px;
+  border: 1px solid #B8BED0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 18px 20px;
+  color: #162359;
+  border: 0;
+  outline: none;
+  font-family: 'markpro-medium';
+}
+
+.contact__subscribe__search__input:hover {
+  outline: none;
+}
+
+.contact__subscribe__search__button {
+  border-radius: 0px 5px 5px 0px;
+  width: 133px;
+  height: 52px;
+}
+
+.contact__banner {
+  margin-bottom: 118px;
+  color: white;
+  border-radius: 10px;
+  background: #162359;
+  box-shadow: 0px 20px 40px rgba(77, 117, 244, 0.2);
+  width: 1140px;
+  height: 252px;
+  box-sizing: border-box;
+  padding: 80px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact__banner .--text {
+  font-style: normal;
+  font-weight: bold;
+  font-family: 'markpro-bold';
+  max-width: 463px;
+}
+
+.contact__banner .--button {
+  width: 185px;
+  height: 50px;
+  font-family: 'markpro-bold';
+  border: 1px solid white;
+  color: white;
+}

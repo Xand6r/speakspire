@@ -1,0 +1,276 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.profilecard__maincontent__left .profiletext_wrapper .--footer .--contact, .profilecard .profilecard__tag.--premium {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profilecard__maincontent__left .profiletext_wrapper .--footer .--contact {
+  background: #4D75F4;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: markpro-bold;
+  font-size: 15px;
+}
+
+.file_delete, .profilecard .profilecard__tag.--premium, .profilecard__maincontent__left .profiletext_wrapper .--qualifications, .profilecard__maincontent__left .profiletext_wrapper .--company {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.profilecard__maincontent__right__item .--text, .profilecard__maincontent__right__primary, .profilecard__maincontent__left .profiletext_wrapper .--position {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 19px;
+}
+
+.profilecard__maincontent__left .profiletext_wrapper .--name {
+  line-height: 34px;
+  font-size: 28px;
+}
+
+.profilecard {
+  width: 1140px;
+  height: 303px;
+  margin-bottom: 25px;
+  background: #FFFFFF;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  position: relative;
+}
+
+.profilecard .profilecard__tag.--premium {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 92px;
+  height: 29px;
+  background: #FFF5E3;
+  border-radius: 10px 0px;
+  text-transform: capitalize;
+  line-height: 11px;
+  font-family: 'markpro-bold';
+  text-transform: uppercase;
+}
+
+.profilecard .profilecard__tag.--premium {
+  background: #FFF5E3;
+  color: #D1B072;
+}
+
+.profilecard__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 25px 25px 5px;
+}
+
+.profilecard__actions img {
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.profilecard__maincontent {
+  display: flex;
+}
+
+.profilecard__maincontent__right {
+  margin-top: 15px;
+  margin-bottom: 13px;
+}
+
+.profilecard__maincontent__right__item {
+  margin: 15px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.profilecard__maincontent__right__item .--icon {
+  margin-right: 15px;
+}
+
+.profilecard__maincontent__right__item .--text {
+  font-family: 'markpro-medium';
+  color: #767E9F;
+  text-transform: capitalize;
+}
+
+.profilecard__maincontent__right__primary {
+  display: flex;
+  width: 156px;
+  height: 31px;
+  color: #162359;
+  align-items: center;
+  font-family: 'markpro-medium';
+  background: #EDF1FE;
+  border-radius: 5px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.profilecard__maincontent__right__primary img {
+  margin-right: 10px;
+}
+
+.profilecard__maincontent__right__primary.--primaryplaceholder {
+  background: #EFF1F9;
+  color: #EFF1F9;
+  border-radius: 3px;
+}
+
+.profilecard__maincontent__right__primary.--primaryplaceholder img {
+  display: none;
+}
+
+.profilecard__maincontent__left {
+  display: flex;
+  margin: 0px 45px;
+  margin-right: 194px;
+}
+
+.profilecard__maincontent__left .profilepicture_wrapper {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 40px;
+}
+
+.profilecard__maincontent__left .profilepicture_wrapper img {
+  height: 200px;
+}
+
+.profilecard__maincontent__left .profilepicture_wrapper.--premium {
+  border: 4px solid #D1B072;
+}
+
+.profilecard__maincontent__left .profiletext_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.profilecard__maincontent__left .profiletext_wrapper .--name {
+  font-family: 'markpro-bold';
+  color: #162359;
+  margin-top: 15px;
+  margin-bottom: 3px;
+}
+
+.profilecard__maincontent__left .profiletext_wrapper .--qualifications {
+  font-family: 'markpro-medium';
+  color: #8990AC;
+  margin-bottom: 18px;
+}
+
+.profilecard__maincontent__left .profiletext_wrapper .--position {
+  font-family: 'markpro-medium';
+  color: #162359;
+}
+
+.profilecard__maincontent__left .profiletext_wrapper .--company {
+  font-family: 'markpro-medium';
+  color: #8990AC;
+  margin-bottom: 20px;
+}
+
+.profilecard__maincontent__left .profiletext_wrapper .--footer {
+  display: flex;
+}
+
+.profilecard__maincontent__left .profiletext_wrapper .--footer .--contact {
+  width: 176px;
+  height: 50px;
+  background: #4D75F4;
+  margin-right: 22px;
+  text-transform: capitalize;
+}
+
+.profilecard__maincontent__left .profiletext_wrapper .--footer img {
+  margin-left: 10px;
+}

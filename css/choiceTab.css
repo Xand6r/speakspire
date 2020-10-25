@@ -1,0 +1,180 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.choicetab__footer .button, .choicetab, .choicetab__tabs, .choicetab__footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.choicetab__footer .button {
+  background: #4D75F4;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: markpro-bold;
+  font-size: 15px;
+}
+
+.choicetab__footer .--subtext {
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.file_delete {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.choicetab__header {
+  line-height: 34px;
+  font-size: 28px;
+}
+
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.choicetab {
+  position: relative;
+  max-width: 1140px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 10px rgba(22, 35, 89, 0.04);
+  border-radius: 10px;
+  flex-direction: column;
+  margin: 0px auto;
+  padding: 70px;
+  box-sizing: border-box;
+}
+
+.choicetab__header {
+  color: #162359;
+  max-width: 389px;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'markpro-bold';
+  margin-bottom: 90px;
+}
+
+.choicetab__close {
+  position: absolute;
+  right: 40px;
+  top: 36px;
+  cursor: pointer;
+}
+
+.choicetab__icons {
+  min-width: 700px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.choicetab__tabs {
+  flex-wrap: wrap;
+}
+
+.choicetab__footer {
+  flex-direction: column;
+}
+
+.choicetab__footer .button {
+  width: 136px;
+  height: 50px;
+  margin-bottom: 30px;
+}
+
+.choicetab__footer .--subtext {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  font-family: 'markpro-medium';
+  color: #8990AC;
+}
+
+.choicetab__footer .--subtext span {
+  color: #4D75F4;
+  cursor: pointer;
+}

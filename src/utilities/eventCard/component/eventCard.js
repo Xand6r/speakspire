@@ -32,7 +32,10 @@ export default function EventCard({
         <div>
             <div className="eventcard">
                 <div className={`eventcard__headerimage ${(profileimage === 'placeholder') && 'placeholder'}`}>
-                    <img src={profileimage} alt=""/>
+                    {
+                        (profileimage !== 'placeholder') &&
+                        <img src={profileimage} alt=""/>
+                    }
                 </div>
 
                 <div className="eventcard__content">

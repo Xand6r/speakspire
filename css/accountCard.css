@@ -1,0 +1,162 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.file_delete, .accountcard__content {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.accountcard__header {
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.accountcard {
+  width: 270px;
+  height: 226px;
+  margin-bottom: 70px;
+  margin-left: 30px;
+  margin-right: 30px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 36px;
+  cursor: pointer;
+  transition: 300ms;
+}
+
+.accountcard.--blue {
+  border: 1.5px solid #EDF1FE;
+}
+
+.accountcard.--blue.--active {
+  border: 1.5px solid #4D75F4;
+  background: #EDF1FE;
+}
+
+.accountcard.--red {
+  border: 1.5px solid #FFEFF2;
+}
+
+.accountcard.--red.--active {
+  border: 1.5px solid #F84B6B;
+  background: #FFEFF2;
+}
+
+.accountcard.--green {
+  border: 1.5px solid #F1FCF6;
+}
+
+.accountcard.--green.--active {
+  border: 1.5px solid #42E56D;
+  background: #F1FCF6;
+}
+
+.accountcard:hover {
+  border: 1.5px solid transparent;
+  background: #F5F5F9;
+}
+
+.accountcard.--grey {
+  background: #F4F5F9;
+}
+
+.accountcard__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #162359;
+  font-family: 'markpro-bold';
+}
+
+.accountcard__header img {
+  margin-right: 14px;
+}
+
+.accountcard__content {
+  font-family: 'markpro-medium';
+  color: #767E9F;
+}
