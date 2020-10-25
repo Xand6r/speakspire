@@ -35,7 +35,7 @@ export default function Speakerprofile(props) {
 
 			{/* the section for the image header */}
 			<div className='speakerprofile__header_image'>
-				<img src={tempHeaderImage} alt='' />
+				<img src={userData.cover_photo} alt='' />
 			</div>
 			{/* the section for the image header */}
 

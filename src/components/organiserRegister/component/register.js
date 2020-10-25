@@ -22,12 +22,21 @@ import { message } from 'antd';
 import './register.scss';
 import defaultImage from '../assets/greycircle.svg';
 
+import {
+	validateOrganiserDetails, validateOrganiserMedia
+} from '../validators';
+
 export default function Register({ location }) {
 	const [activeTab, setactiveTab] = useState(0);
 	const [previewHidden, setPreviewHidden] = useState(false);
 	const [personalDetails, setPersonalDetails] = useState(INITIAL_COMPANY_DETAILS_STATE);
 	const history = useHistory();
 	const [media, setMedia] = useState(INITIAL_MEDIA_STATE);
+
+	const mapState = {
+		'Company details': validateOrganiserDetails(personalDetails),
+		'About & Media': validateOrganiserMedia(media)
+	}
 
 	useEffect(() => {
 		const { pathname } = location;
@@ -49,13 +58,19 @@ export default function Register({ location }) {
 			...media,
 		};
 
+		//validate fields
+		const allFilled = Object.values(mapState).every((a) => a);
+		if (!allFilled) {
+			message.error('Please Fill in All fields in the form before submitting');
+			return;
+		}
 		// send post request
 
 		axios
 			.post('/organizers/add', cleanData(finalState))
 			.then(() => {
 				message.success('Organizer account sucesfully created');
-				setTimeout(() => history.push('/organiser'), 1000);
+				setTimeout(() => history.push('/login'), 1000);
 			})
 			.catch(() => message.error('There was an error creating your speaker account'));
 	};
@@ -71,7 +86,13 @@ export default function Register({ location }) {
 				<div className='organiser__activetab__steps'>
 					{STEPS.map((step, index) => (
 						<Link key={Math.random()} className='link' to={`/organiser/${index + 1}`}>
-							<SectionTab index={index} text={step} active={index === activeTab} changeTab={makeActive} />
+							<SectionTab
+								index={index}
+								text={step}
+								active={index === activeTab}
+								changeTab={makeActive}
+								filled={mapState[step]}
+								/>
 						</Link>
 					))}
 				</div>
