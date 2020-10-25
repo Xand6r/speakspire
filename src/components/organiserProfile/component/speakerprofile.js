@@ -18,7 +18,6 @@ export default function Speakerprofile(props) {
 			try {
 				const { data } = await axios.get(`/organizers/${props.match.params.id}`);
 				setUserData(data.data);
-				console.log(data.data);
 			} catch (err) {
 				message.error('there was an error fetching this user');
 				setUserData({});

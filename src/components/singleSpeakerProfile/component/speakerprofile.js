@@ -19,11 +19,10 @@ export default function Speakerprofile(props) {
 			try {
 				const { data } = await axios.get(`/speakers/${props.match.params.id}`);
 				setUserData(data.data);
-				console.log(data.data);
 			} catch (err) {
-				message.error("there was an error fetching this user");
+				message.error('there was an error fetching this user');
 				setUserData({});
-				setTimeout(()=>history.push('/'), 1000)
+				setTimeout(() => history.push('/'), 1000);
 			}
 		};
 		getDetails();
