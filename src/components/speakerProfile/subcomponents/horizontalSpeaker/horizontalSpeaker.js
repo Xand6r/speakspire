@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom'
 import './horizontalSpeaker.scss';
 import PropTypes from 'prop-types';
 
@@ -10,10 +11,14 @@ import profile from '../../assets/profile.svg';
 
 export default function HorizontalSpeaker({
     category, profilePicture, fullname,
-    position, company, primary
+    position, company, primary, id
 }) {
+    const history=useHistory()
     return (
-        <div class="horizontalspeaker">
+        <div 
+            class="horizontalspeaker"
+            onClick={()=>history.push(`/speakers/${id}`)}
+        >
             <img
                 className={`profilepicture --${category}`}
                 src={profilePicture}

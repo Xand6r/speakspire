@@ -4,85 +4,83 @@ import ellipsisIcon from '../../assets/ellipsis.svg';
 import shareIcon from '../../assets/share.svg';
 import profileIcon from '../../assets/playIcon.svg';
 import playIcon from '../../assets/profileIcon.svg';
-import blueMic from '../../assets/blueMic.svg'
+import blueMic from '../../assets/blueMic.svg';
 
 import moneyIcon from '../../assets/money.svg';
 import planeIcon from '../../assets/plane.svg';
 import globeIcon from '../../assets/globe.svg';
-import locationIcon from '../../assets/location.svg'
-
-import profilePicture from '../../assets/potrait.jpg';
+import locationIcon from '../../assets/location.svg';
 
 import './profilecard.scss';
 
-const tag="premium"
-export default function Profilecard() {
-    return (
-        <div class="profilecard">
-            <div className={`profilecard__tag --${tag}`}>
-                {tag}
-            </div>
-            <div className="profilecard__actions">
-                <img src={shareIcon} alt="share"/>
-                <img src={ellipsisIcon} alt="ellipsis"/>
-            </div>
+const tag = 'premium';
 
-            <div className="profilecard__maincontent">
-                <div className="profilecard__maincontent__left">
+export default function Profilecard({ userData }) {
+	const {
+		profile_photo, name, highest_level_of_education, experience, expertise, languages,
+		state, country
+	} = userData;
 
-                    <div className={`profilepicture_wrapper --${tag}`}>
-                        <img src={profilePicture} alt=""/>
-                    </div>
+	const splitLanguage = (data) => {
+		return data
+			.replace(/['"]+/g, ' ')
+			.replace(/['/[]+/g, '')
+			.replace(/['/\]]+/g, '');
+	};
+	return (
+		<div class='profilecard'>
+			<div className={`profilecard__tag --${tag}`}>{tag}</div>
+			<div className='profilecard__actions'>
+				<img src={shareIcon} alt='share' />
+				<img src={ellipsisIcon} alt='ellipsis' />
+			</div>
 
-                    <div className="profiletext_wrapper">
-                        <div className="--name">Onyenaturuchi Alioha</div>
-                        <div className="--qualifications">BSc, CFA, MSc</div>
-                        <div className="--position">Chief Operating Officer</div>
-                        <div className="--company">Emeks Enterprises</div>
-                        <div className="--footer">
-                            <div className="--contact">
-                                contact me
-                            </div>
-                            <img src={profileIcon} alt=""/>
-                            <img src={playIcon} alt=""/>
-                        </div>
-                    </div>
+			<div className='profilecard__maincontent'>
+				<div className='profilecard__maincontent__left'>
+					<div className={`profilepicture_wrapper --${tag}`}>
+						<img src={profile_photo} alt='' />
+					</div>
 
-                </div>
+					<div className='profiletext_wrapper'>
+						<div className='--name'>{name}</div>
+						<div className='--qualifications'>{highest_level_of_education}</div>
+						<div className='--position'>{experience ? experience[0].position : null}</div>
+						<div className='--company'>{experience ? experience[0].company : null}</div>
+						<div className='--footer'>
+							<div className='--contact'>contact me</div>
+							<img src={profileIcon} alt='' />
+							<img src={playIcon} alt='' />
+						</div>
+					</div>
+				</div>
 
+				<div className='profilecard__maincontent__right'>
+					<div className='profilecard__maincontent__right__primary'>
+						<img src={blueMic} alt='bluemic' />
+						<div className='--text_content'>{expertise ? expertise[0].primary_specialty : null}</div>
+					</div>
 
-                <div className="profilecard__maincontent__right">
+					<div className='profilecard__maincontent__right__item'>
+						<img className='--icon' src={moneyIcon} alt='' />
+						<div className='--text'>N100,000 - N650,000</div>
+					</div>
 
-                    <div className='profilecard__maincontent__right__primary'>
-                        <img src={blueMic} alt="bluemic"/>
-                        <div className="--text_content">
-                            Public Speaker
-                        </div>
-                    </div>
+					<div className='profilecard__maincontent__right__item'>
+						<img className='--icon' src={locationIcon} alt='' />
+						<div className='--text'>{`${state}, ${country}`}</div>
+					</div>
 
-                    <div className="profilecard__maincontent__right__item">
-                        <img className="--icon" src={moneyIcon} alt="" />
-                        <div className="--text">N100,000 - N650,000</div>
-                    </div>
+					<div className='profilecard__maincontent__right__item'>
+						<img className='--icon' src={planeIcon} alt='' />
+						<div className='--text'>Global</div>
+					</div>
 
-                    <div className="profilecard__maincontent__right__item">
-                        <img className="--icon" src={locationIcon} alt="" />
-                        <div className="--text">Lagos, Nigeria</div>
-                    </div>
-
-                    <div className="profilecard__maincontent__right__item">
-                        <img className="--icon" src={planeIcon} alt="" />
-                        <div className="--text">Global</div>
-                    </div>
-
-                    <div className="profilecard__maincontent__right__item">
-                        <img className="--icon" src={globeIcon} alt="" />
-                        <div className="--text">English, Chinese</div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    )
+					<div className='profilecard__maincontent__right__item'>
+						<img className='--icon' src={globeIcon} alt='' />
+						<div className='--text'>{languages ? splitLanguage(languages) : null}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
