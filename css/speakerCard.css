@@ -1,0 +1,249 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.speakercard .--premium, .speakercard .--tagplaceholder, .speakercard__profile, .speakercard__profile__position, .speakercard__profile__skills, .speakercard__profile__footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.speakercard__profile__primary {
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.speakercard__profile__secondary {
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.file_delete {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.speakercard__profile__name {
+  line-height: 27px;
+  font-size: 18px;
+}
+
+.speakercard {
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  min-width: 262px;
+  max-width: 262px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 30px;
+  margin-bottom: 70px;
+}
+
+.speakercard .--premium, .speakercard .--tagplaceholder {
+  position: relative;
+  right: 25px;
+  width: 71px;
+  height: 22px;
+  background: #FFF5E3;
+  border-radius: 10px 0px;
+  text-transform: capitalize;
+  font-size: 9px;
+  line-height: 11px;
+  font-family: 'markpro-bold';
+  text-transform: uppercase;
+}
+
+.speakercard .--premium {
+  background: #FFF5E3;
+  color: #D1B072;
+}
+
+.speakercard .--tagplaceholder {
+  background: #EFF1F9;
+  color: #EFF1F9;
+}
+
+.speakercard__profile {
+  flex-direction: column;
+  margin-top: 30px;
+  text-transform: capitalize;
+}
+
+.speakercard__profile__picturewrapper {
+  width: 93px;
+  height: 93px;
+  border-radius: 50%;
+}
+
+.speakercard__profile__picturewrapper .pictureImage {
+  width: 93px;
+  height: 93px;
+  border-radius: 50%;
+}
+
+.speakercard__profile__name {
+  color: #162359;
+  margin-top: 17px;
+  margin-bottom: 17px;
+  font-family: 'markpro-bold';
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.speakercard__profile__position {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  flex-direction: column;
+  line-height: 14px;
+  margin-bottom: 25px;
+}
+
+.speakercard__profile__position .--title {
+  text-align: center;
+  color: #162359;
+  font-family: 'markpro-medium';
+}
+
+.speakercard__profile__position .--company {
+  color: #8990AC;
+  font-family: 'markpro-regular';
+}
+
+.speakercard__profile__primary {
+  display: flex;
+  width: 127px;
+  height: 25px;
+  color: #162359;
+  align-items: center;
+  font-family: 'markpro-medium';
+  background: #EDF1FE;
+  border-radius: 3px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.speakercard__profile__primary img {
+  margin-right: 10px;
+}
+
+.speakercard__profile__primary.--primaryplaceholder {
+  background: #EFF1F9;
+  color: #EFF1F9;
+  border-radius: 3px;
+}
+
+.speakercard__profile__primary.--primaryplaceholder img {
+  display: none;
+}
+
+.speakercard__profile__secondary {
+  font-family: 'markpro-bold';
+  color: #162359;
+  margin-bottom: 10px;
+}
+
+.speakercard__profile .--divider {
+  border: 0.05px solid #CDD1DE;
+  margin-bottom: 11px;
+  width: 100%;
+}
+
+.speakercard__profile__skills {
+  flex-wrap: wrap;
+}
+
+.speakercard__profile__footer img {
+  margin-left: 10px;
+}

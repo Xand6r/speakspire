@@ -1,0 +1,496 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.preference__footer .--button_group .cancel, .preference__footer .--button_group .next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preference__footer .--button_group .cancel, .preference__footer .--button_group .next {
+  background: #4D75F4;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: markpro-bold;
+  font-size: 15px;
+}
+
+.preference__formsection__section__form input[type="date"] {
+  background: #F7F8FC url("../assets/calendar.svg") 94% 50% no-repeat;
+}
+
+.preference__formsection__section__form input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+.preference__formsection__section__form input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.preference__formsection__section__form input[type="date"]::-webkit-clear-button {
+  display: none;
+}
+
+.preference__formsection__section__form .--input_wrapper input[type='text'], .preference__formsection__section__form .--input_wrapper textarea, .preference__formsection__section__form .--input_wrapper input[type='date'] {
+  box-sizing: border-box;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-family: 'markpro-medium';
+  color: #162359;
+  transition: 300ms;
+}
+
+.preference__formsection__section__form .--input_wrapper input[type='text']::placeholder, .preference__formsection__section__form .--input_wrapper textarea::placeholder, .preference__formsection__section__form .--input_wrapper input[type='date']::placeholder {
+  color: #CDD1DE;
+}
+
+.preference__formsection__section__form .--input_wrapper input:focus[type='text'], .preference__formsection__section__form .--input_wrapper textarea:focus, .preference__formsection__section__form .--input_wrapper input:focus[type='date'] {
+  outline: none;
+  border: 1px solid #4D75F4;
+}
+
+.preference {
+  box-sizing: border-box;
+  min-width: 744px;
+  max-width: 744px;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  padding: 70px 177px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 30px rgba(22, 35, 89, 0.04);
+}
+
+.preference__formsection__section__header .--sub_heading, .preference__formsection__section__form .--input_wrapper label.double span {
+  font-size: 10px;
+  line-height: 13px;
+}
+
+.file_delete, .preference__formsection__section__form .--input_wrapper input[type='date'] {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.preference__formsection__section__form .--input_wrapper label, .preference__formsection__section__form .--input_wrapper .--date_wrapper span, .preference__formsection__section__footer span {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--singleselect .--item *, .preference__formsection__section__form .--input_wrapper.--select .--multiselect label .item-renderer span, .preference__formsection__section__form .--input_wrapper input[type='text'], .preference__formsection__section__form .--input_wrapper textarea {
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.preference__formsection__section__header .--heading {
+  line-height: 27px;
+  font-size: 18px;
+}
+
+.preference__heading__header {
+  line-height: 34px;
+  font-size: 28px;
+}
+
+.preference {
+  padding: 70px 192px;
+}
+
+.preference__heading {
+  margin-bottom: 50px;
+}
+
+.preference__heading__header {
+  font-weight: bold;
+  font-family: 'markpro-bold';
+  color: #162359;
+}
+
+.preference__formsection {
+  display: flex;
+  flex-direction: column;
+}
+
+.preference__formsection__section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 65px;
+}
+
+.preference__formsection__section:last-of-type {
+  margin-bottom: 50px;
+}
+
+.preference__formsection__section__header {
+  margin-bottom: 20px;
+}
+
+.preference__formsection__section__header .--heading {
+  margin-bottom: 3px;
+  font-family: 'markpro-medium';
+  color: #162359;
+}
+
+.preference__formsection__section__header .--sub_heading {
+  font-family: 'markpro-medium';
+  color: #767E9F;
+}
+
+.preference__formsection__section__form {
+  box-sizing: border-box;
+  background: #F7F8FC;
+  border-radius: 10px;
+  width: 100%;
+  padding: 27px 42px 40px;
+  margin-bottom: 25px;
+}
+
+.preference__formsection__section__form.--whitebg {
+  background-color: white;
+  margin-top: 30px;
+  margin-bottom: 0;
+  padding: 0px;
+}
+
+.preference__formsection__section__form.--whitebg .--language .css-g1d714-ValueContainer, .preference__formsection__section__form.--whitebg .--language .css-1hwfws3 {
+  padding-left: 15px;
+  height: 50px;
+}
+
+.preference__formsection__section__form.--whitebg .--language .css-yk16xz-control {
+  background: #F7F8FC;
+}
+
+.preference__formsection__section__form.--whitebg .--language * {
+  font-family: 'markpro-medium';
+  color: #162359;
+}
+
+.preference__formsection__section__form.--whitebg .--language .css-1wa3eu0-placeholder {
+  color: #767E9F;
+  font-weight: 500;
+}
+
+.preference__formsection__section__form.--whitebg .--language .css-1uccc91-singleValue {
+  color: #162359;
+}
+
+.preference__formsection__section__form.--whitebg .--language input {
+  height: 38px !important;
+}
+
+.preference__formsection__section__form .--input_wrapper {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.preference__formsection__section__form .--input_wrapper:last-of-type {
+  margin-bottom: 0;
+}
+
+.preference__formsection__section__form .--input_wrapper label {
+  color: #767E9F;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  font-family: 'markpro-medium';
+}
+
+.preference__formsection__section__form .--input_wrapper label.double {
+  display: flex;
+  flex-direction: column;
+  color: #162359;
+}
+
+.preference__formsection__section__form .--input_wrapper label.double span {
+  margin-top: 7px;
+  color: #767E9F;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .circleSelect__item {
+  margin: 13px 0;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--singleselect .--item .css-1hb7zxy-IndicatorsContainer, .preference__formsection__section__form .--input_wrapper.--select .--singleselect .--item .css-1wy0on6 {
+  background: #F7F8FC;
+  cursor: pointer !important;
+  transition: 500ms !important;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--singleselect .--item .css-g1d714-ValueContainer, .preference__formsection__section__form .--input_wrapper.--select .--singleselect .--item .css-1hwfws3 {
+  background: #F7F8FC;
+  padding-left: 20px;
+  cursor: text;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--singleselect .--item .css-1wa3eu0-placeholder {
+  color: #767E9F;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--singleselect .--item input {
+  height: 36px;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--singleselect .--item * {
+  transition: 500ms !important;
+  color: #162359;
+  font-family: markpro-medium;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--multiselect .select-panel > div:first-of-type {
+  display: none;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--multiselect .dropdown-content {
+  max-height: 170px !important;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--multiselect .dropdown-heading {
+  border: 1px solid #CDD1DE !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px !important;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--multiselect .dropdown-heading-value {
+  background: #F7F8FC;
+  overflow: hidden;
+  padding: 9px 30px 9px 20px  !important;
+  font-family: 'markpro-medium';
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--multiselect .dropdown-heading-value span {
+  color: #162359 !important;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--multiselect .dropdown-heading-value .placeholding_text {
+  color: #767E9F !important;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--multiselect.--white .dropdown-heading-value {
+  background: white !important;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--multiselect label[aria-selected="true"] {
+  background-color: #4D75F4 !important;
+  color: #162359 !important;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--multiselect label {
+  margin-bottom: 1px !important;
+  padding: 15px 10px !important;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--multiselect label .item-renderer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.preference__formsection__section__form .--input_wrapper.--select .--multiselect label .item-renderer span {
+  color: #162359;
+}
+
+.preference__formsection__section__form .--input_wrapper input[type='text'], .preference__formsection__section__form .--input_wrapper textarea {
+  border: 1px solid #CDD1DE;
+  background-color: white;
+  max-width: 360px;
+  height: 50px;
+}
+
+.preference__formsection__section__form .--input_wrapper input[type='date'] {
+  height: 50px;
+  border: 1px solid #CDD1DE;
+  background-color: white;
+  max-width: 159px;
+}
+
+.preference__formsection__section__form .--input_wrapper textarea {
+  min-height: 103px;
+  background: #F7F8FC;
+}
+
+.preference__formsection__section__form .--input_wrapper .--topic .css-g1d714-ValueContainer, .preference__formsection__section__form .--input_wrapper .--topic .css-1hwfws3 {
+  padding-left: 15px;
+  height: 50px;
+}
+
+.preference__formsection__section__form .--input_wrapper .--topic * {
+  font-family: 'markpro-medium';
+  color: #162359;
+}
+
+.preference__formsection__section__form .--input_wrapper .--topic .css-1wa3eu0-placeholder {
+  color: #767E9F;
+  font-weight: 500;
+}
+
+.preference__formsection__section__form .--input_wrapper .--topic .css-1uccc91-singleValue {
+  color: #162359;
+}
+
+.preference__formsection__section__form .--input_wrapper .--topic input {
+  height: 38px !important;
+}
+
+.preference__formsection__section__form .--input_wrapper .--date_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.preference__formsection__section__form .--input_wrapper .--date_wrapper span {
+  color: #8990AC;
+  font-family: 'markpro-medium';
+}
+
+.preference__formsection__section__form .--input_wrapper .--date_wrapper input[type="date"] {
+  background-position: 87% 50%;
+}
+
+.preference__formsection__section__footer {
+  cursor: pointer;
+  color: #4D75F4;
+}
+
+.preference__formsection__section__footer img {
+  margin-right: 10px;
+}
+
+.preference__formsection__section__footer span {
+  font-family: 'markpro-medium';
+}
+
+.preference__footer {
+  width: 360px;
+  margin: 0 auto;
+}
+
+.preference__footer .--button_group {
+  display: flex;
+  justify-content: space-between;
+  max-width: 360px;
+}
+
+.preference__footer .--button_group .cancel {
+  width: 108.22px;
+  height: 50px;
+  background: #F5F5F9;
+  font-family: 'markpro-bold';
+  color: #162359;
+}
+
+.preference__footer .--button_group .next {
+  width: 108.22px;
+  height: 50px;
+  background: #4D75F4;
+  font-family: 'markpro-bold';
+  color: white;
+}
+
+.ant-picker {
+  height: 50px;
+  border-radius: 5px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-shadow: none;
+}
+
+.ant-picker-input > input {
+  font-family: 'markpro-medium';
+  color: #162359 !important;
+}
+
+.ant-picker.ant-picker-focused {
+  border-color: #4D75F4 !important;
+  box-shadow: none !important;
+}
+
+.ant-picker:hover {
+  border-color: #4D75F4 !important;
+}
+
+.--half_date .ant-picker {
+  width: 160px !important;
+}
+
+.--last {
+  margin-bottom: 20px;
+}
+
+.--no-mt {
+  margin-top: 0px !important;
+}

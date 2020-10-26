@@ -56,7 +56,7 @@ export default function VideoTab({state, stateChanger}) {
 				{state.media.filter(s=>s.category===MEDIA_TYPE).map((image, index) => (
 					<div className='videotab__images__image_wrapper' key={index}>
 						<video className='videotab__images__image' controls>
-							<source src={image.link} type={image.type} />
+							<video src={image.link} type={image.type} />
 							Your browser does not support HTML5 video.
 						</video>
 						<img src={deleteBin} alt='' className='delete' onClick={() => deleteImage(index)} />

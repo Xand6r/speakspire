@@ -1,0 +1,237 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.event__text .--button, .event__graphic__floating_card .--icons div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.event__text .--button {
+  background: #4D75F4;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: markpro-bold;
+  font-size: 15px;
+}
+
+.file_delete {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.event__graphic__floating_card .--card .--card-item {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.event__text .--subheader, .event__text__list_items .--item {
+  line-height: 27px;
+  font-size: 18px;
+}
+
+.event__text .--header {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 51px;
+}
+
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.event {
+  display: flex;
+  margin-top: 120px;
+  margin-bottom: 150px;
+  padding: 0 150px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.event__graphic {
+  margin-right: 350px;
+}
+
+.event__graphic img {
+  position: absolute;
+  z-index: -1;
+}
+
+.event__graphic__floating_card {
+  margin-left: 40%;
+  margin-top: 26%;
+}
+
+.event__graphic__floating_card .--icons {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.event__graphic__floating_card .--icons div {
+  background: white;
+  box-shadow: 0px 15px 15px rgba(77, 117, 244, 0.08);
+  border-radius: 50%;
+  width: 38.11px;
+  height: 38.11px;
+  margin: 0 5px;
+}
+
+.event__graphic__floating_card .--icons img {
+  position: relative;
+  z-index: 1;
+}
+
+.event__graphic__floating_card .--card {
+  background: #FFFFFF;
+  box-shadow: 0px 15px 20px rgba(77, 117, 244, 0.05);
+  border-radius: 10px;
+  width: 314px;
+  padding: 14px 28px;
+}
+
+.event__graphic__floating_card .--card img {
+  position: relative;
+  z-index: 1;
+}
+
+.event__graphic__floating_card .--card .--card-item {
+  padding: 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #8990AC;
+  font-family: 'markpro-bold';
+  text-transform: capitalize;
+}
+
+.event__graphic__floating_card .--card .--card-item img {
+  margin-right: 11px;
+}
+
+.event__text {
+  display: flex;
+  max-width: 489px;
+  flex-direction: column;
+}
+
+.event__text .--header {
+  color: #162359;
+  font-family: 'markpro-bold';
+  margin-bottom: 15px;
+}
+
+.event__text .--subheader {
+  color: #767E9F;
+  max-width: 321px;
+  margin-bottom: 50px;
+  font-family: 'markpro-medium';
+}
+
+.event__text__list_items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 203px;
+  max-width: 321px;
+}
+
+.event__text__list_items .--item {
+  display: flex;
+  font-family: 'markpro-bold';
+  color: #162359;
+}
+
+.event__text__list_items .--item .--number {
+  color: #4D75F4;
+  margin-right: 13px;
+}
+
+.event__text .--button {
+  width: 180px;
+  height: 50px;
+  margin-top: 50px;
+}

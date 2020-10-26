@@ -1,0 +1,320 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.userdetails__footer .--button_group .cancel, .userdetails__footer .--button_group .next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userdetails__footer .--button_group .cancel, .userdetails__footer .--button_group .next {
+  background: #4D75F4;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: markpro-bold;
+  font-size: 15px;
+}
+
+.userdetails__formsection .--wrapper input[type="date"] {
+  background: #F7F8FC url("../assets/calendar.svg") 94% 50% no-repeat;
+}
+
+.userdetails__formsection .--wrapper input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+.userdetails__formsection .--wrapper input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.userdetails__formsection .--wrapper input[type="date"]::-webkit-clear-button {
+  display: none;
+}
+
+.userdetails__formsection .--wrapper input[type="text"], .userdetails__formsection .--wrapper input[type='tel'], .userdetails__formsection .--wrapper input[type='email'], .userdetails__formsection .--wrapper input[type='password'] {
+  box-sizing: border-box;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-family: 'markpro-medium';
+  color: #162359;
+  transition: 300ms;
+}
+
+.userdetails__formsection .--wrapper input[type="text"]::placeholder, .userdetails__formsection .--wrapper input[type='tel']::placeholder, .userdetails__formsection .--wrapper input[type='email']::placeholder, .userdetails__formsection .--wrapper input[type='password']::placeholder {
+  color: #CDD1DE;
+}
+
+.userdetails__formsection .--wrapper input:focus[type="text"], .userdetails__formsection .--wrapper input:focus[type='tel'], .userdetails__formsection .--wrapper input:focus[type='email'], .userdetails__formsection .--wrapper input:focus[type='password'] {
+  outline: none;
+  border: 1px solid #4D75F4;
+}
+
+.userdetails {
+  box-sizing: border-box;
+  min-width: 744px;
+  max-width: 744px;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  padding: 70px 177px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 30px rgba(22, 35, 89, 0.04);
+}
+
+.file_delete, .userdetails__heading__subheading, .userdetails__footer .--notification .--text {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.userdetails__formsection .--wrapper label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.userdetails__formsection .--wrapper input[type="text"], .userdetails__formsection .--wrapper input[type='tel'], .userdetails__formsection .--wrapper input[type='email'], .userdetails__formsection .--wrapper input[type='password'] {
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.userdetails__heading__header {
+  line-height: 34px;
+  font-size: 28px;
+}
+
+.userdetails__wrapper {
+  background: #F5F5F9;
+  min-height: 100vh;
+  padding: 100px 0;
+}
+
+.userdetails {
+  margin: 0 auto 0;
+}
+
+.userdetails__heading {
+  margin-bottom: 50px;
+}
+
+.userdetails__heading__header {
+  font-weight: bold;
+  font-family: 'markpro-bold';
+  color: #162359;
+}
+
+.userdetails__heading__subheading {
+  font-family: 'markpro-medium';
+  color: #8990AC;
+}
+
+.userdetails__heading__subheading span {
+  color: #4D75F4;
+  cursor: pointer;
+}
+
+.userdetails__formsection {
+  display: flex;
+  flex-direction: column;
+}
+
+.userdetails__formsection .--wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.userdetails__formsection .--wrapper .--passwordinput {
+  display: flex;
+  align-items: center;
+  text-transform: none;
+}
+
+.userdetails__formsection .--wrapper .--passwordinput i {
+  margin-left: -34px;
+  cursor: pointer;
+  color: #767E9F;
+}
+
+.userdetails__formsection .--wrapper .--gendersection {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userdetails__formsection .--wrapper label {
+  color: #767E9F;
+  font-family: 'markpro-medium';
+  margin-bottom: 15px;
+}
+
+.userdetails__formsection .--wrapper input[type="text"], .userdetails__formsection .--wrapper input[type='tel'], .userdetails__formsection .--wrapper input[type='email'], .userdetails__formsection .--wrapper input[type='password'] {
+  width: 390px;
+  height: 50px;
+  border: 1px solid #CDD1DE;
+  background: #F7F8FC;
+}
+
+.userdetails__formsection .--wrapper input[type="text"]::placeholder, .userdetails__formsection .--wrapper input[type='tel']::placeholder, .userdetails__formsection .--wrapper input[type='email']::placeholder, .userdetails__formsection .--wrapper input[type='password']::placeholder {
+  color: #CDD1DE;
+}
+
+.userdetails__formsection .--wrapper input[type="text"]:focus, .userdetails__formsection .--wrapper input[type='tel']:focus, .userdetails__formsection .--wrapper input[type='email']:focus, .userdetails__formsection .--wrapper input[type='password']:focus {
+  outline: none;
+  border: 1px solid #4D75F4;
+}
+
+.userdetails__formsection .--wrapper input[type="text"][name='password'], .userdetails__formsection .--wrapper input[type="text"][type='date'], .userdetails__formsection .--wrapper input[type='tel'][name='password'], .userdetails__formsection .--wrapper input[type='tel'][type='date'], .userdetails__formsection .--wrapper input[type='email'][name='password'], .userdetails__formsection .--wrapper input[type='email'][type='date'], .userdetails__formsection .--wrapper input[type='password'][name='password'], .userdetails__formsection .--wrapper input[type='password'][type='date'] {
+  text-transform: none;
+}
+
+.userdetails__formsection .--wrapper .ant-picker {
+  background: #F7F8FC;
+}
+
+.userdetails__formsection .--wrapper .ant-picker input::placeholder {
+  color: #CDD1DE;
+}
+
+.userdetails__formsection .--wrapper.--date .react-tel-input .country-list {
+  width: 391px;
+}
+
+.userdetails__formsection .--wrapper.--date input {
+  width: 341px !important;
+  margin-left: 50px;
+}
+
+.userdetails__formsection .--wrapper.--date ul.country-list span {
+  color: #767e9f;
+  font-family: 'markpro-medium';
+}
+
+.userdetails__formsection .--wrapper.--date ul.country-list li[aria-selected="true"] span {
+  color: #162359 !important;
+}
+
+.userdetails__formsection .--wrapper.--date ul.country-list li[aria-selected="true"] {
+  background-color: #edf1fe;
+}
+
+.userdetails__footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.userdetails__footer .--notification {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.userdetails__footer .--notification img {
+  margin-top: -27px;
+  margin-right: 10px;
+}
+
+.userdetails__footer .--notification .--text {
+  max-width: 292px;
+  font-family: 'markpro-medium';
+  color: #8990AC;
+}
+
+.userdetails__footer .--notification .--text span {
+  color: #4D75F4;
+}
+
+.userdetails__footer .--button_group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userdetails__footer .--button_group .cancel {
+  width: 108.22px;
+  height: 50px;
+  background: #F5F5F9;
+  font-family: 'markpro-bold';
+  color: #162359;
+}
+
+.userdetails__footer .--button_group .next {
+  width: 200px;
+  height: 50px;
+  background: #4D75F4;
+  font-family: 'markpro-bold';
+  color: white;
+}
+
+.react-tel-input .flag-dropdown {
+  background: white !important;
+  border: none !important;
+}

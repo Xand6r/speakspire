@@ -1,0 +1,183 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.footer .divider {
+  border: 0.05px solid #CDD1DE;
+  margin-bottom: 11px;
+  width: 100%;
+}
+
+.footer__icons .--right-reserved {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer__icons .--right-reserved span {
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.file_delete {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.footer__text__section .--item {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.footer__text__section .--header {
+  line-height: 27px;
+  font-size: 18px;
+}
+
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.footer {
+  min-height: 468px;
+  background: #F4F8FF;
+  padding: 51px 150px 52px;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
+  box-sizing: border-box;
+}
+
+.footer .divider {
+  margin-bottom: 33px;
+}
+
+.footer__icons__media {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__icons .--right-reserved img {
+  margin-right: 24px;
+}
+
+.footer__icons .--right-reserved span {
+  color: #162359;
+  font-family: 'markpro-regular';
+}
+
+.footer__icons .--social-media {
+  width: 184px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__text {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.footer__text .topics {
+  display: flex;
+  justify-content: space-between;
+  width: 509px;
+  margin-right: 104px;
+}
+
+.footer__text__section .--header {
+  font-weight: 500;
+  font-family: 'markpro-medium';
+  color: #162359;
+  margin-bottom: 15px;
+}
+
+.footer__text__section .--item {
+  font-family: 'markpro-regular';
+  color: #8990AC;
+  line-height: 33px;
+}

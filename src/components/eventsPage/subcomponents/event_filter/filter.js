@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Checkbox } from 'antd';
+import moment from 'moment';
+import {useHistory} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 import MultiSelect from "@khanacademy/react-multi-select";
+import {Spin} from 'antd';
+import {LoadingOutlined} from '@ant-design/icons';
+
 
 import { component as EventCard } from '../../../../utilities/eventCard';
 import ResetFilterIcon from '../../../../assets/resetFilterIcon.svg';
@@ -45,14 +51,45 @@ const CHECKBOX_OPTIONS = [
     { label: 'Weekends', value: 'Weekends' },
     { label: 'Open to travel', value: 'Open to travel' },
 ];
+const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#4D75F4'}} spin />;
 
-const events = [
-    1,2,3,4,5,6,7,8,9,10,11,12
-]
+let parseNewDateFormat = (dateString) => {
+    // datestring is of the form dd-mm-yy
+    const splitDate = dateString.split('-');
+    return moment(`20${splitDate[2]}, ${splitDate[1]}, ${splitDate[0]}`).format("Do MMM Y");
+}
+
+function parseTime(time) {    
+    let timeInt = time.split(':')[0];
+    let minutes = time.split(':')[1];
+
+    // you could then add or subtract time here as needed
+
+    if(time > '12:00') {
+         return `${timeInt - 12}:${minutes} PM`;
+    } else {
+         return `${timeInt}:${minutes} AM`;
+    }
+}
 export default function Filter() {
     function onChange(checkedValues) {
         console.log('checked = ', checkedValues);
+    };
+    const history = useHistory();
+    const eventState = useSelector(({events} )=> events);
+
+    const [limit, setLimit] = useState(12);
+    const [loading, setLoading] = useState(false);
+
+    const increaseLimit = () => {
+        if (limit >= eventState.data.length) return
+        setLoading(true);
+        setTimeout(()=>{
+            setLimit(limit + 3);
+            setLoading(false);
+        }, 1000)
     }
+
     const [speakerFilterState, setSpeakerFilterState] = useState(INITIAL_STATE);
     return (
         <div>
@@ -125,17 +162,55 @@ export default function Filter() {
                 </div>
 
                 <div className="filter__results">
-                    {
-                        events.map(speaker => (
-                            <EventCard />
-
-                        ))
+                {
+                        eventState.data.slice(0,limit).map(event => {
+                            let tags=[];
+                            try{
+                                tags=JSON.parse(event.tags)
+                            }catch(err){
+                                tags=[]
+                            }
+                            const fs="Do-MMM-YYY"
+                            const dateFrom = parseNewDateFormat(event.schedule[0].date.slice(0,8))
+                            const dateTo = parseNewDateFormat(event.schedule[0].date.slice(9))
+                            const timeFrom = parseTime(event.schedule[0].time.split('-')[0])
+                            const timeTo = parseTime(event.schedule[0].time.split('-')[1])
+                            let dateInterval = ""
+                            if(event.schedule[0].frequency === "Single Event"){
+                                dateInterval = `${dateFrom} ${timeFrom} WAT`
+                            }else{
+                                dateInterval = `${dateFrom} - ${dateTo} ${timeFrom} WAT`
+                            }
+                            return (
+                                <EventCard
+                                    id={event.id}
+                                    eventName={event.name}
+                                    eventTitle={event.organizer}
+                                    profileimage={event.banner}
+                                    skillsList={tags}
+                                    pcs={"pcs"}
+                                    dateInterval = {dateInterval}
+                                />
+                            )
+                        })
                     }
                 </div>
 
-                <div className="filter__more_results">
-                    <span>More Events</span>
-                    <img src={LeftArrow} alt="left arrow"/>
+                <div
+                    className="filter__more_results"
+                    onClick={increaseLimit}
+                >
+                {
+                    (!(loading || eventState))?(
+                        <>
+                            <span>More Events</span>
+                            <img src={LeftArrow} alt="left arrow"/>
+                        </>
+                    ):(
+                        <Spin indicator={antIcon} />
+                    )
+
+                }
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { Tabs } from 'antd';
 
 import OrganiserCard from '../../../../utilities/organiserCard';
@@ -32,6 +33,8 @@ const filterData = (array, params) => {
 
 export default function ProfileContent({ userData, reason, primaryTopic, primarySkills, secondaryTopic, secondarySkills }) {
 	const { bio, clients, partners, media } = userData;
+	const organiserState = useSelector(({organisers} )=> organisers);
+
 	return (
 		<div className='profilecontent__organiser__wrapper'>
 			<div class='profilecontent_organiser'>
@@ -134,10 +137,23 @@ export default function ProfileContent({ userData, reason, primaryTopic, primary
 			<div className='profilecontent_organiser__bottom'>
 				<div className='--bottomtitle'>Similar Organizers</div>
 				<div className='--bottom__events'>
-					<OrganiserCard />
-					<OrganiserCard />
-					<OrganiserCard />
-					<OrganiserCard />
+				{
+					organiserState.data.slice(0,4).filter(o=>o.bio!==bio).map(organiser => {
+						return(
+							<div className="organisercard_wrapper">
+								<OrganiserCard
+									id={organiser.id}
+									coverImage={organiser.cover_photo}
+									profileImage={organiser.profile_photo}
+									companyName={organiser.name}
+									specialty={organiser.specialty}
+									//{/* services={JSON.parse(organiser.services)} */}
+								/>
+							</div>
+						);
+	
+					})
+				}
 				</div>
 			</div>
 		</div>

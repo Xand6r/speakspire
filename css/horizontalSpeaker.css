@@ -1,0 +1,207 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.horizontalspeaker__details__primary, .horizontalspeaker .speakertypetag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.horizontalspeaker .speakertypetag {
+  font-size: 10px;
+  line-height: 13px;
+}
+
+.horizontalspeaker__details__company, .horizontalspeaker__details__primary {
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.file_delete, .horizontalspeaker__details__position {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.horizontalspeaker__details__fullname {
+  line-height: 27px;
+  font-size: 18px;
+}
+
+.horizontalspeaker {
+  display: flex;
+  position: relative;
+  width: 516px;
+  background: transparent;
+  border-radius: 10px;
+  padding: 28px 25px;
+  transition: 300ms;
+}
+
+.horizontalspeaker .profilepicture {
+  width: 93px;
+  height: 93px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.horizontalspeaker .profilepicture.--premium {
+  border: 2.5px solid #D1B072;
+}
+
+.horizontalspeaker .profilepicture.--classic {
+  border: 2.5px solid #61B395;
+}
+
+.horizontalspeaker .profilepicture.--standard {
+  border: 2.5px solid #4D75F4;
+}
+
+.horizontalspeaker__details {
+  width: 100%;
+}
+
+.horizontalspeaker__details__fullname {
+  font-family: 'markpro-bold';
+  color: #162359;
+  margin-bottom: 10px;
+}
+
+.horizontalspeaker__details__position {
+  font-family: 'markpro-regular';
+  color: #162359;
+  margin-bottom: 5px;
+}
+
+.horizontalspeaker__details__company {
+  font-family: 'markpro-regular';
+  color: #767E9F;
+  margin-bottom: 10px;
+}
+
+.horizontalspeaker__details__primary {
+  height: 25px;
+  width: 127px;
+  color: #162359;
+  background: #EDF1FE;
+  border-radius: 3px;
+  font-family: 'markpro-medium';
+  text-transform: capitalize;
+}
+
+.horizontalspeaker__details__primary img {
+  margin-right: 7px;
+}
+
+.horizontalspeaker .footer_group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.horizontalspeaker .footer_group .icongroup {
+  display: none;
+  transition: 500ms;
+}
+
+.horizontalspeaker .footer_group .icongroup img {
+  margin-right: 9px;
+}
+
+.horizontalspeaker .speakertypetag {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 71px;
+  height: 22px;
+  border-radius: 0px 10px;
+  font-family: 'markpro-bold';
+  display: none;
+  transition: 500ms;
+  text-transform: uppercase;
+}
+
+.horizontalspeaker .speakertypetag.--premium {
+  color: #D1B072;
+  background: #FFF5E3;
+}
+
+.horizontalspeaker:hover {
+  background: #FFFFFF;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.horizontalspeaker:hover .speakertypetag {
+  display: flex;
+}
+
+.horizontalspeaker:hover .footer_group .icongroup {
+  display: flex;
+}

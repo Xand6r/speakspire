@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { Upload, message, Button } from 'antd';
 import ImgCrop from 'antd-img-crop';
+import {Spin} from 'antd';
 
 import './media.scss';
 import 'react-tagsinput/react-tagsinput.css';
@@ -27,6 +28,8 @@ import github from '../../assets/github.svg';
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 import { SPEAKER_SPECIALITY } from '../../component/constants';
 import cleanData from '../utils/cleanData';
+import {LoadingOutlined} from '@ant-design/icons';
+
 
 const PROFILE_LINKS = [
 	[wwwLogo, 'www'],
@@ -61,9 +64,14 @@ const props = {
 		}
 	},
 };
+const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#4D75F4'}} spin />;
 
 export default function Media({ stateChanger, state, handleSubmit }) {
 	const [tagInputState, setTagInputState] = useState('');
+	const [loadingStates, setLoadingStates] = useState({
+		coverPictureLoading: false,
+		userPictureLoading: false,
+	});
 	const changeTagInputState = (value) => {
 		if (value.length < 20) {
 			setTagInputState(value);
@@ -226,9 +234,19 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 										message.error('You can only upload JPG/PNG file!');
 										return;
 									}
+									setLoadingStates({
+										...loadingStates,
+										userPictureLoading: true,
+									});
 									uploadImage(file)
 										.then((res) => changeSelectState('profilePhoto', { file, src: res }))
-										.catch((err) => changeSelectState('profilePhoto', { file, src: err }));
+										.catch((err) => changeSelectState('profilePhoto', { file, src: err }))
+										.finally(() => {
+											setLoadingStates({
+												...loadingStates,
+												userPictureLoading: false,
+											});
+										})
 
 									return false;
 								}}>
@@ -240,7 +258,12 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 									</div>
 								) : (
 									<div className='image_upload_button'>
-										<Button icon={<FileImage />}>Upload File</Button>
+									<Button
+											disabled={loadingStates.userPictureLoading}
+											icon={!loadingStates.userPictureLoading && <FileImage />}
+										>
+											{loadingStates.userPictureLoading ? <Spin indicator={antIcon} /> : 'Upload File'}
+										</Button>
 									</div>
 								)}
 							</Upload>
@@ -272,11 +295,19 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 										message.error('You can only upload JPG/PNG file!');
 										return;
 									}
-
+									setLoadingStates({
+										...loadingStates,
+										coverPictureLoading: true,
+									});
 									uploadImage(file)
 										.then((res) => changeSelectState('coverPhoto', { file, src: res }))
-										.catch((err) => changeSelectState('coverPhoto', { file, src: err }));
-
+										.catch((err) => changeSelectState('coverPhoto', { file, src: err }))
+										.finally(() => {
+											setLoadingStates({
+												...loadingStates,
+												coverPictureLoading: false,
+											});
+										});
 									return false;
 								}}>
 								{state.coverPhoto.src ? (
@@ -287,7 +318,12 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 									</div>
 								) : (
 									<div className='image_upload_button'>
-										<Button icon={<FileImage />}>Upload File</Button>
+										<Button
+											disabled={loadingStates.coverPictureLoading}
+											icon={!loadingStates.coverPictureLoading && <FileImage />}
+										>
+											{loadingStates.coverPictureLoading ? <Spin indicator={antIcon} /> : 'Upload File'}
+										</Button>
 									</div>
 								)}
 							</Upload>
@@ -308,14 +344,14 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 				</div>
 			</div>
 
-			<div className='organiserlogin__footer'>
+			<div className='organiserlogin__footer --more-padding'>
 				<div className='--button_group'>
 					<Link className='link' to='/organiser/1'>
 						<div className='cancel'>Back</div>
 					</Link>
 
 					<Link className='link' onClick={handleSubmit}>
-						<div className='next'>Next</div>
+						<div className='next'>Create My Account</div>
 					</Link>
 				</div>
 			</div>

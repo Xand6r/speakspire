@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from './utilities/loadingScreen';
 import 'antd/dist/antd.css';
+// import {component as Nav} from './utilities/navbar'
 
 const Homepage = lazy(() => import('./components/homepage' /* webpackChunkName: "Homepage" */));
 const SpeakersPage = lazy(() => import('./components/speakersPage' /* webpackChunkName: "SpeakersPage" */));
@@ -21,13 +22,15 @@ const About = lazy(() => import('./components/about' /* webpackChunkName: "About
 const IndividualSignUp = lazy(() => import('./components/individualSignup' /* webpackChunkName: "IndividualSignUp" */));
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-	const { loggedIn } = useSelector(({ user }) => user);
+	const {loggedIn} = {loggedIn:true}//useSelector(({user}) => user);
 
 	return <Route {...rest} render={(props) => (loggedIn ? <Component {...props} /> : <Redirect to={{ pathname: '/login' }} />)} />;
 };
 
 function App() {
 	return (
+		<>
+		{/* <Nav /> */}
 		<Suspense fallback={<Loader />}>
 			<Switch>
 				<Route exact path='/about' component={About} />
@@ -47,6 +50,7 @@ function App() {
 				<Route exact path='/' component={Homepage} />
 			</Switch>
 		</Suspense>
+		</>
 	);
 }
 

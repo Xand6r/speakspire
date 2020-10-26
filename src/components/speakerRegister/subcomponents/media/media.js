@@ -263,7 +263,7 @@ export default function Media({stateChanger, state, handleSubmit}) {
 					</Link>
 
 					<Link className='link' onClick={handleSubmit}>
-						<div className='next'>Next</div>
+						<div className='next'>Create My Account</div>
 					</Link>
 				</div>
 			</div>
