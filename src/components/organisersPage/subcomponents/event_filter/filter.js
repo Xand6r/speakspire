@@ -102,14 +102,14 @@ export default function Filter() {
 						<hr className='--divider' />
 
 						<div className='filter__filter__select__items'>
-							{FILTER_TEXT.map((filterInfo) => (
-								<div className='--multiselect --white'>
+							{FILTER_TEXT.map((filterInfo, i) => (
+								<div className='--multiselect --white' key={i}>
 									<MultiSelect
 										options={filterInfo.options}
 										selected={speakerFilterState[filterInfo.state]}
 										onSelectedChanged={(selected) => setSpeakerFilterState({ ...speakerFilterState, [filterInfo.state]: selected })}
 										overrideStrings={{
-											selectSomeItems: <span class='placeholding_text'>{filterInfo.placeholder}</span>,
+											selectSomeItems: <span className='placeholding_text'>{filterInfo.placeholder}</span>,
 										}}
 									/>
 								</div>
@@ -123,9 +123,9 @@ export default function Filter() {
 				</div>
 
 				<div className='filter__results'>
-					{organiserState.data.slice(0, limit).map((organiser) => {
+					{organiserState.data.slice(0, limit).map((organiser, i) => {
 						return (
-							<div className='organisercard_wrapper'>
+							<div className='organisercard_wrapper' key={i}>
 								<OrganiserCard
 									id={organiser.id}
 									coverImage={organiser.cover_photo}

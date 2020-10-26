@@ -28,7 +28,7 @@ export default function Profilecard({ userData }) {
 			.replace(/['/\]]+/g, '');
 	};
 	return (
-		<div class='profilecard'>
+		<div className='profilecard'>
 			<div className={`profilecard__tag --${tag}`}>{tag}</div>
 			<div className='profilecard__actions'>
 				<img src={shareIcon} alt='share' />

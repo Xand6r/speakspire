@@ -209,7 +209,7 @@ export default function Experience({
 
                     <div className="experience__formsection__section__form --whitebg">
                         <div className="--input_wrapper">
-                            <label class="double" htmlFor="bio">
+                            <label className="double" htmlFor="bio">
                                 Unique Selling Proposition (USP)
                                 <span>
                                     What makes you different from other speakers? (Max. 25 words)
@@ -227,7 +227,7 @@ export default function Experience({
 
                     <div className="experience__formsection__section__form --whitebg">
                         <div className="--input_wrapper">
-                            <label class="double" htmlFor="fullbio">
+                            <label className="double" htmlFor="fullbio">
                                 Full Bio
                                 <span>
                                     Tell us more about you, your skillset and experience

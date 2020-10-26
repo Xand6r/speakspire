@@ -16,7 +16,7 @@ export default function HorizontalSpeaker({
     const history=useHistory()
     return (
         <div 
-            class="horizontalspeaker"
+        className="horizontalspeaker"
             onClick={()=>history.push(`/speakers/${id}`)}
         >
             <img

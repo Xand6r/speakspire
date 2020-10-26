@@ -167,7 +167,7 @@ export default function SpeakerCall({
 
                         {/* wrapper for teh event desription */}
                         <div className="--wrapper">
-                            <label class="double" htmlFor="fullbio">
+                            <label className="double" htmlFor="fullbio">
                                 Speaker Description
                             </label>
                             <textarea

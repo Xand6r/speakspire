@@ -31,7 +31,7 @@ export default function Speakerprofile(props) {
 	}, [history, props.match.params.id]);
 
 	return (
-		<div class='eventprofile'>
+		<div className='eventprofile'>
 			{/* the navigation bar of the site */}
 			<NavBar />
 			{/* the navigation bar of the site */}

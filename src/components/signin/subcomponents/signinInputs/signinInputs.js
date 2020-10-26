@@ -58,7 +58,7 @@ export default function SigninInputs() {
                 </div>
 
                 <div className="signininputs__headers__subheading">
-                    New to Speakspire? <span class="blue__text" onClick={()=>history.push('/category')}>Sign Up</span>
+                    New to Speakspire? <span className="blue__text" onClick={()=>history.push('/category')}>Sign Up</span>
                 </div>
             </div>
 

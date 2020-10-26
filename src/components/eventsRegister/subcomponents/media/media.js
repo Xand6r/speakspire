@@ -53,7 +53,7 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 	};
 
 	return (
-		<div class='media'>
+		<div className='media'>
 			<div className='media__heading --more-padding'>
 				<div className='media__heading__header'>Preferences</div>
 			</div>
