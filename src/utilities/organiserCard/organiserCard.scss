@@ -11,11 +11,14 @@
     min-height: 349px;
     justify-content: space-between;
     border-radius: 10px;
+    cursor: pointer;
     
 
     &__cover{
         width: 255px;
         height: 73px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
         margin-bottom: -42px;
         overflow: hidden;
         img{

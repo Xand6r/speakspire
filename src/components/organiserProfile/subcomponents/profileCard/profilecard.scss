@@ -147,8 +147,9 @@
                     margin-bottom: 15px;
                 }
                 .--specialty{
-                    width: 116px;
+                    min-width: 116px;
                     height: 31px;
+                    max-width: 175px;
                     background: #EDF1FE;
                     border-radius: 4px;
                     color: #162359;

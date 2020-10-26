@@ -57,7 +57,6 @@ export default function Filter() {
         console.log('checked = ', checkedValues);
     };
     const organiserState = useSelector(({organisers} )=> organisers);
-    console.log(organiserState)
     const [limit, setLimit] = useState(4);
     const [loading, setLoading] = useState(false);
     
@@ -144,10 +143,10 @@ export default function Filter() {
                 <div className="filter__results">
                     {
                         organiserState.data.slice(0,limit).map(organiser => {
-                            console.log(organiser);
                             return(
                                 <div className="organisercard_wrapper">
                                     <OrganiserCard
+                                        id={organiser.id}
                                         coverImage={organiser.cover_photo}
                                         profileImage={organiser.profile_photo}
                                         companyName={organiser.name}

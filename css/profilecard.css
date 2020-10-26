@@ -82,13 +82,13 @@
   transform: scale(1.1);
 }
 
-.profilecard__maincontent__left .profiletext_wrapper .--footer .--contact, .profilecard .profilecard__tag.--premium {
+.profilecard_organisers__maincontent__left .profiletext_wrapper .--footer .--contact, .profilecard_organisers .profilecard__tag.--premium, .profilecard_organisers__maincontent__right__item .services .service, .profilecard_organisers__maincontent__left .profiletext_wrapper .--specialty {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.profilecard__maincontent__left .profiletext_wrapper .--footer .--contact {
+.profilecard_organisers__maincontent__left .profiletext_wrapper .--footer .--contact {
   background: #4D75F4;
   border-radius: 5px;
   color: white;
@@ -97,28 +97,33 @@
   font-size: 15px;
 }
 
-.file_delete, .profilecard .profilecard__tag.--premium, .profilecard__maincontent__left .profiletext_wrapper .--qualifications, .profilecard__maincontent__left .profiletext_wrapper .--company {
+.profilecard_organisers__maincontent__right__item .services .service {
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.file_delete, .profilecard_organisers .profilecard__tag.--premium {
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
   line-height: 20px;
 }
 
-.profilecard__maincontent__right__item .--text, .profilecard__maincontent__right__primary, .profilecard__maincontent__left .profiletext_wrapper .--position {
+.profilecard_organisers__maincontent__right__item .--text, .profilecard_organisers__maincontent__right__primary, .profilecard_organisers__maincontent__left .profiletext_wrapper .--specialty {
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
   line-height: 19px;
 }
 
-.profilecard__maincontent__left .profiletext_wrapper .--name {
+.profilecard_organisers__maincontent__left .profiletext_wrapper .--name {
   line-height: 34px;
   font-size: 28px;
 }
 
-.profilecard {
+.profilecard_organisers {
   width: 1140px;
-  height: 303px;
+  height: 240px;
   margin-bottom: 25px;
   background: #FFFFFF;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.05);
@@ -126,7 +131,7 @@
   position: relative;
 }
 
-.profilecard .profilecard__tag.--premium {
+.profilecard_organisers .profilecard__tag.--premium {
   position: absolute;
   left: 0;
   top: 0;
@@ -140,48 +145,64 @@
   text-transform: uppercase;
 }
 
-.profilecard .profilecard__tag.--premium {
+.profilecard_organisers .profilecard__tag.--premium {
   background: #FFF5E3;
   color: #D1B072;
 }
 
-.profilecard__actions {
+.profilecard_organisers__actions {
   display: flex;
   justify-content: flex-end;
   padding: 25px 25px 5px;
 }
 
-.profilecard__actions img {
+.profilecard_organisers__actions img {
   margin-left: 15px;
   cursor: pointer;
 }
 
-.profilecard__maincontent {
+.profilecard_organisers__maincontent {
   display: flex;
 }
 
-.profilecard__maincontent__right {
-  margin-top: 15px;
+.profilecard_organisers__maincontent__right {
+  margin-top: 0px;
   margin-bottom: 13px;
 }
 
-.profilecard__maincontent__right__item {
-  margin: 15px 0px;
+.profilecard_organisers__maincontent__right__item {
+  margin: 10px 0px;
   display: flex;
   align-items: center;
 }
 
-.profilecard__maincontent__right__item .--icon {
+.profilecard_organisers__maincontent__right__item .--icon {
   margin-right: 15px;
 }
 
-.profilecard__maincontent__right__item .--text {
+.profilecard_organisers__maincontent__right__item .--text {
   font-family: 'markpro-medium';
   color: #767E9F;
   text-transform: capitalize;
 }
 
-.profilecard__maincontent__right__primary {
+.profilecard_organisers__maincontent__right__item .services {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 250px;
+}
+
+.profilecard_organisers__maincontent__right__item .services .service {
+  background: #EFF1F9;
+  border-radius: 2px;
+  margin: 5px;
+  white-space: nowrap;
+  padding: 7px 9px;
+  color: #162359;
+  font-family: 'markpro-regular';
+}
+
+.profilecard_organisers__maincontent__right__primary {
   display: flex;
   width: 156px;
   height: 31px;
@@ -194,76 +215,69 @@
   margin-bottom: 24px;
 }
 
-.profilecard__maincontent__right__primary img {
+.profilecard_organisers__maincontent__right__primary img {
   margin-right: 10px;
 }
 
-.profilecard__maincontent__right__primary.--primaryplaceholder {
+.profilecard_organisers__maincontent__right__primary.--primaryplaceholder {
   background: #EFF1F9;
   color: #EFF1F9;
   border-radius: 3px;
 }
 
-.profilecard__maincontent__right__primary.--primaryplaceholder img {
+.profilecard_organisers__maincontent__right__primary.--primaryplaceholder img {
   display: none;
 }
 
-.profilecard__maincontent__left {
+.profilecard_organisers__maincontent__left {
   display: flex;
   margin: 0px 45px;
   margin-right: 194px;
 }
 
-.profilecard__maincontent__left .profilepicture_wrapper {
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
+.profilecard_organisers__maincontent__left .profilepicture_wrapper {
+  height: 150px;
+  width: 150px;
   overflow: hidden;
   margin-right: 40px;
 }
 
-.profilecard__maincontent__left .profilepicture_wrapper img {
-  height: 200px;
+.profilecard_organisers__maincontent__left .profilepicture_wrapper img {
+  height: 150px;
 }
 
-.profilecard__maincontent__left .profilepicture_wrapper.--premium {
+.profilecard_organisers__maincontent__left .profilepicture_wrapper.--premium {
   border: 4px solid #D1B072;
 }
 
-.profilecard__maincontent__left .profiletext_wrapper {
+.profilecard_organisers__maincontent__left .profiletext_wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.profilecard__maincontent__left .profiletext_wrapper .--name {
+.profilecard_organisers__maincontent__left .profiletext_wrapper .--name {
   font-family: 'markpro-bold';
   color: #162359;
-  margin-top: 15px;
-  margin-bottom: 3px;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
-.profilecard__maincontent__left .profiletext_wrapper .--qualifications {
-  font-family: 'markpro-medium';
-  color: #8990AC;
-  margin-bottom: 18px;
-}
-
-.profilecard__maincontent__left .profiletext_wrapper .--position {
-  font-family: 'markpro-medium';
+.profilecard_organisers__maincontent__left .profiletext_wrapper .--specialty {
+  min-width: 116px;
+  height: 31px;
+  max-width: 175px;
+  background: #EDF1FE;
+  border-radius: 4px;
   color: #162359;
-}
-
-.profilecard__maincontent__left .profiletext_wrapper .--company {
   font-family: 'markpro-medium';
-  color: #8990AC;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-.profilecard__maincontent__left .profiletext_wrapper .--footer {
+.profilecard_organisers__maincontent__left .profiletext_wrapper .--footer {
   display: flex;
 }
 
-.profilecard__maincontent__left .profiletext_wrapper .--footer .--contact {
+.profilecard_organisers__maincontent__left .profiletext_wrapper .--footer .--contact {
   width: 176px;
   height: 50px;
   background: #4D75F4;
@@ -271,6 +285,6 @@
   text-transform: capitalize;
 }
 
-.profilecard__maincontent__left .profiletext_wrapper .--footer img {
+.profilecard_organisers__maincontent__left .profiletext_wrapper .--footer img {
   margin-left: 10px;
 }

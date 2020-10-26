@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './organiserCard.scss';
+import {useHistory} from 'react-router-dom';
 
 import {component as Skill} from '../../utilities/skillTab';
 
@@ -13,12 +14,18 @@ const PLACEHOLDER_SKILLS = [
     "skillplaceholder", "skillplaceholder", 
 ]
 
-const preview = ({
-    coverImage, profileImage,
+const Preview = ({
+    id, coverImage, profileImage,
     companyName, specialty, services
 }) => {
+    const history = useHistory()
     return (
-        <div className="organiser_preview">
+        <div
+            className="organiser_preview"
+            onClick={
+                () => history.push(`/organiserprofile/${id}`)
+            }
+        >
             <div className="organiser_preview__cover">
                 <img
                     src={coverImage}
@@ -49,7 +56,8 @@ const preview = ({
     )
 }
 
-preview.propTypes = {
+Preview.propTypes = {
+    id: PropTypes.number.isRequired,
     coverImage: PropTypes.string,
     profileImage: PropTypes.string,
     companyName: PropTypes.string,
@@ -57,7 +65,7 @@ preview.propTypes = {
     services: PropTypes.instanceOf(Array)
 }
 
-preview.defaultProps = {
+Preview.defaultProps = {
     coverImage: CoverPlaceholder,
     profileImage: ProfilePlaceholder,
     companyName: '',
@@ -65,4 +73,4 @@ preview.defaultProps = {
     services: PLACEHOLDER_SKILLS
 }
 
-export default preview
+export default Preview
