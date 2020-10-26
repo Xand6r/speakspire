@@ -56,8 +56,19 @@ export default function Filter() {
         console.log('checked = ', checkedValues);
     };
     const speakerState = useSelector(({speakers} )=> speakers);
-
+    const [limit, setLimit] = useState(4);
+    const [loading, setLoading] = useState(false);
     const [speakerFilterState, setSpeakerFilterState] = useState(INITIAL_STATE);
+
+    const increaseLimit = () => {
+        if (limit >= speakerState.data.length) return
+        setLoading(true);
+        setTimeout(()=>{
+            setLimit(limit + 4);
+            setLoading(false);
+        }, 1000)
+    }
+
     return (
         <div>
             <div className="filter">
@@ -124,7 +135,7 @@ export default function Filter() {
 
                 <div className="filter__results">
                 {
-                    speakerState.data.map(speaker => {
+                    speakerState.data.slice(0,limit).map(speaker => {
                         const {
                             id,
                             name, experience:[{company, position}],
@@ -149,9 +160,21 @@ export default function Filter() {
                     
                 </div>
 
-                <div className="filter__more_results">
-                    <span>More Speakers</span>
-                    <img src={LeftArrow} alt="left arrow"/>
+                <div
+                    className="filter__more_results"
+                    onClick={increaseLimit}
+                >
+                {
+                    (!(loading || speakerState.loading))?(
+                        <>
+                            <span>More Speakers</span>
+                            <img src={LeftArrow} alt="left arrow"/>
+                        </>
+                    ):(
+                        <Spin indicator={antIcon} />
+                    )
+
+                }
                 </div>
             </div>
         </div>

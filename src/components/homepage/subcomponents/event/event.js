@@ -1,4 +1,5 @@
 import React from 'react';
+import {useHistory} from 'react-router-dom'
 import './event.scss';
 
 import phoneWoman from '../../../../assets/phoneWoman.svg';
@@ -20,6 +21,7 @@ const upcomingEvents =[
 ]
 
 export default function Event() {
+    const history = useHistory();
     return (
         <div>
             <div className="event">
@@ -69,7 +71,10 @@ export default function Event() {
                         }
 
                     </div>
-                    <div className="--button">
+                    <div
+                        className="--button"
+                        onClick={() => history.push('/registerevent')}
+                    >
                         Add Event
                     </div>
                 </div>

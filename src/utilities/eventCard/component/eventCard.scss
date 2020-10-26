@@ -36,6 +36,10 @@
             align-items: flex-end;
             margin-bottom: 15px;
             margin-top: -10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
 
             .faux_image{
                 width: 50px;
@@ -67,10 +71,14 @@
             font-family: 'markpro-bold';
             margin-bottom: 15px;
             max-width: 278px;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
         }
 
         &__subtitle{
-            @extend %fourteenpx;
+            @extend %thirteenpx;
             font-family: 'markpro-medium';
             margin-bottom: 28px;
             color: #767E9F;

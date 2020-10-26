@@ -29,13 +29,7 @@ export const INITIAL_MEDIA_STATE = {
 
 //  the different options for the speaker specialty
 export const SPEAKER_SPECIALITY = [
-    { value: 'Public Speaker', label: 'Public Speaker' },
-    { value: 'Mentor', label: 'Mentor' },
-    { value: 'Tutor', label: 'Tutor' },
-    { value: 'Event Compere', label: 'Event Compere' },
-    { value: 'Show Host/Anchor ', label: 'Show Host/Anchor ' },
-    { value: 'Red Carpet Host', label: 'Red Carpet Host' },
-    { value: 'Voice-over Artiste', label: 'Voice-over Artiste' },
-    { value: 'Narrator', label: 'Narrator' },
-    { value: 'Commentator', label: 'Commentator' },
+    { value: 'Corporate Events', label: 'Corporate Events' },
+    { value: 'Wedding/Parties', label: 'Wedding/Parties' },
+    { value: 'Shows/Concerts', label: 'Shows/Concerts' },
 ];

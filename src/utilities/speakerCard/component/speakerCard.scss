@@ -74,6 +74,10 @@
             @extend %eighteenpx;
             font-family: 'markpro-bold';
             text-align: center;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
         }
 
         &__position {
@@ -87,8 +91,10 @@
             margin-bottom: 25px;
 
             .--title{
+                text-align: center;
                 color: $dark-blue;
                 font-family: 'markpro-medium';
+                
             }
             .--company{
                 color: $light-navy-blue;

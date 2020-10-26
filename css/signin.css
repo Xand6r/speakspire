@@ -1,0 +1,9 @@
+.signin {
+  background: #F5F5F9;
+  min-height: 100vh;
+}
+
+.signin .signincomponent {
+  padding: 90px 150px;
+  margin: 0 auto;
+}

@@ -1,0 +1,148 @@
+@font-face {
+  font-family: 'markpro-bold';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Bold.otf");
+}
+
+@font-face {
+  font-family: 'markpro-medium';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.Medium.otf");
+}
+
+@font-face {
+  font-family: 'markpro-regular';
+  src: url("../Fonts/FontFont_FF.Mark.Pro.otf");
+}
+
+.ant-message-custom-content.ant-message-error > span:nth-child(2) {
+  font-family: 'markpro-medium' !important;
+  color: #162359;
+}
+
+.--underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.ant-modal-header {
+  font-family: 'markpro-medium';
+}
+
+.ant-btn {
+  font-family: 'markpro-medium';
+}
+
+.ant-picker input::placeholder {
+  color: #CDD1DE !important;
+}
+
+.file_delete {
+  color: red;
+  font-family: 'markpro-medium';
+  margin-top: 17px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.file_delete img {
+  transition: 300ms;
+  margin-right: 5px;
+}
+
+.file_delete span {
+  display: inline-block;
+}
+
+.file_delete:hover img {
+  transform: scale(1.2);
+}
+
+.file_delete:active img {
+  transform: scale(1.1);
+}
+
+.--input_wrapper.--tags .react-tagsinput-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file_delete {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.--input_wrapper.--tags .react-tagsinput-tag {
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.--input_wrapper.--tags .react-tagsinput {
+  padding: 8px 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  transition: 300ms;
+}
+
+.--input_wrapper.--tags .react-tagsinput > span {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.--input_wrapper.--tags .react-tagsinput-tag {
+  margin-bottom: 3px;
+  margin-top: 3px;
+  margin-right: 6px;
+  color: #162359;
+  font-family: 'markpro-medium';
+  padding: 6px 12px;
+  box-sizing: border-box;
+  height: 27px;
+  background: #EDF1FE;
+  border-radius: 3px;
+  border: 0;
+  font-weight: 500px;
+  max-width: 200px;
+  overflow: hidden;
+}
+
+.--input_wrapper.--tags .react-tagsinput-tag a::before {
+  content: url("../assets/cliseTag.svg");
+  margin-left: 7px;
+}
+
+.--input_wrapper.--tags .react-tagsinput--focused {
+  border: 1px solid #4D75F4;
+}
+
+.--input_wrapper.--tags input {
+  border: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+  height: 27px !important;
+  width: 180px !important;
+}
+
+.--input_wrapper.--tags input:focus {
+  background-color: transparent !important;
+}
+
+.--input_wrapper.--tags.--grey .react-tagsinput {
+  background: #F7F8FC;
+}
+
+.--input_wrapper.--tags.--grey .react-tagsinput-tag {
+  background: #F7F8FC;
+  border: 0.5px solid #CDD1DE;
+}
