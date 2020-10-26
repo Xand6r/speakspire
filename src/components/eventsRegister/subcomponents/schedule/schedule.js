@@ -90,7 +90,7 @@ export default function Schedule({
                             value={state.location}
                         />
                         {
-                            (['Physical','Venue & online'].includes(state.location.label))
+                            (['Physical','Physical and Virtual'].includes(state.location.label))
                             &&
                             (
                             <div className="--optionalinput --inputandicon">
@@ -109,7 +109,7 @@ export default function Schedule({
                             )
                         }
                         {
-                            (['Virtual','Venue & online'].includes(state.location.label))
+                            (['Virtual','Physical and Virtual'].includes(state.location.label))
                             &&
                             (
                                 state.onlineLink.map((link, i)=>(

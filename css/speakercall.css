@@ -93,7 +93,7 @@
   line-height: 19px;
 }
 
-.speakercall__formsection textarea, .speakercall__formsection .--wrapper input[type="text"], .speakercall__formsection .--wrapper input[type='tel'], .speakercall__formsection .--wrapper input[type='email'], .speakercall__formsection .--wrapper input[type='password'] {
+.speakercall__formsection textarea, .speakercall__formsection .--wrapper input[type="text"], .speakercall__formsection .--wrapper input[type='tel'], .speakercall__formsection .--wrapper input[type='number'], .speakercall__formsection .--wrapper input[type='email'], .speakercall__formsection .--wrapper input[type='password'] {
   box-sizing: border-box;
   padding: 20px;
   box-sizing: border-box;
@@ -103,11 +103,11 @@
   transition: 300ms;
 }
 
-.speakercall__formsection textarea::placeholder, .speakercall__formsection .--wrapper input[type="text"]::placeholder, .speakercall__formsection .--wrapper input[type='tel']::placeholder, .speakercall__formsection .--wrapper input[type='email']::placeholder, .speakercall__formsection .--wrapper input[type='password']::placeholder {
+.speakercall__formsection textarea::placeholder, .speakercall__formsection .--wrapper input[type="text"]::placeholder, .speakercall__formsection .--wrapper input[type='tel']::placeholder, .speakercall__formsection .--wrapper input[type='number']::placeholder, .speakercall__formsection .--wrapper input[type='email']::placeholder, .speakercall__formsection .--wrapper input[type='password']::placeholder {
   color: #CDD1DE;
 }
 
-.speakercall__formsection textarea:focus, .speakercall__formsection .--wrapper input:focus[type="text"], .speakercall__formsection .--wrapper input:focus[type='tel'], .speakercall__formsection .--wrapper input:focus[type='email'], .speakercall__formsection .--wrapper input:focus[type='password'] {
+.speakercall__formsection textarea:focus, .speakercall__formsection .--wrapper input:focus[type="text"], .speakercall__formsection .--wrapper input:focus[type='tel'], .speakercall__formsection .--wrapper input:focus[type='number'], .speakercall__formsection .--wrapper input:focus[type='email'], .speakercall__formsection .--wrapper input:focus[type='password'] {
   outline: none;
   border: 1px solid #4D75F4;
 }
@@ -154,7 +154,7 @@
   line-height: 18px;
 }
 
-.speakercall__formsection textarea, .speakercall__formsection .--wrapper .--singleselect .--item *, .speakercall__formsection .--wrapper input[type="text"], .speakercall__formsection .--wrapper input[type='tel'], .speakercall__formsection .--wrapper input[type='email'], .speakercall__formsection .--wrapper input[type='password'] {
+.speakercall__formsection textarea, .speakercall__formsection .--wrapper .--singleselect .--item *, .speakercall__formsection .--wrapper input[type="text"], .speakercall__formsection .--wrapper input[type='tel'], .speakercall__formsection .--wrapper input[type='number'], .speakercall__formsection .--wrapper input[type='email'], .speakercall__formsection .--wrapper input[type='password'] {
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
@@ -286,24 +286,24 @@
   font-family: markpro-medium;
 }
 
-.speakercall__formsection .--wrapper input[type="text"], .speakercall__formsection .--wrapper input[type='tel'], .speakercall__formsection .--wrapper input[type='email'], .speakercall__formsection .--wrapper input[type='password'] {
+.speakercall__formsection .--wrapper input[type="text"], .speakercall__formsection .--wrapper input[type='tel'], .speakercall__formsection .--wrapper input[type='number'], .speakercall__formsection .--wrapper input[type='email'], .speakercall__formsection .--wrapper input[type='password'] {
   width: 159px;
   height: 50px;
   border: 1px solid #CDD1DE;
   background: white;
 }
 
-.speakercall__formsection .--wrapper input[type="text"]::placeholder, .speakercall__formsection .--wrapper input[type='tel']::placeholder, .speakercall__formsection .--wrapper input[type='email']::placeholder, .speakercall__formsection .--wrapper input[type='password']::placeholder {
+.speakercall__formsection .--wrapper input[type="text"]::placeholder, .speakercall__formsection .--wrapper input[type='tel']::placeholder, .speakercall__formsection .--wrapper input[type='number']::placeholder, .speakercall__formsection .--wrapper input[type='email']::placeholder, .speakercall__formsection .--wrapper input[type='password']::placeholder {
   color: #CDD1DE;
 }
 
-.speakercall__formsection .--wrapper input[type="text"]:focus, .speakercall__formsection .--wrapper input[type='tel']:focus, .speakercall__formsection .--wrapper input[type='email']:focus, .speakercall__formsection .--wrapper input[type='password']:focus {
+.speakercall__formsection .--wrapper input[type="text"]:focus, .speakercall__formsection .--wrapper input[type='tel']:focus, .speakercall__formsection .--wrapper input[type='number']:focus, .speakercall__formsection .--wrapper input[type='email']:focus, .speakercall__formsection .--wrapper input[type='password']:focus {
   outline: none;
   border: 1px solid #4D75F4;
   background: #EDF1FE;
 }
 
-.speakercall__formsection .--wrapper input[type="text"][name='password'], .speakercall__formsection .--wrapper input[type="text"][type='date'], .speakercall__formsection .--wrapper input[type='tel'][name='password'], .speakercall__formsection .--wrapper input[type='tel'][type='date'], .speakercall__formsection .--wrapper input[type='email'][name='password'], .speakercall__formsection .--wrapper input[type='email'][type='date'], .speakercall__formsection .--wrapper input[type='password'][name='password'], .speakercall__formsection .--wrapper input[type='password'][type='date'] {
+.speakercall__formsection .--wrapper input[type="text"][name='password'], .speakercall__formsection .--wrapper input[type="text"][type='date'], .speakercall__formsection .--wrapper input[type='tel'][name='password'], .speakercall__formsection .--wrapper input[type='tel'][type='date'], .speakercall__formsection .--wrapper input[type='number'][name='password'], .speakercall__formsection .--wrapper input[type='number'][type='date'], .speakercall__formsection .--wrapper input[type='email'][name='password'], .speakercall__formsection .--wrapper input[type='email'][type='date'], .speakercall__formsection .--wrapper input[type='password'][name='password'], .speakercall__formsection .--wrapper input[type='password'][type='date'] {
   text-transform: none;
 }
 

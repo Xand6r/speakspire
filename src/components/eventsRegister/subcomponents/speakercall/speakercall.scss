@@ -126,7 +126,7 @@
                 }
             }
 
-            input[type="text"], input[type='tel'], input[type='email'],input[type='password']{
+            input[type="text"], input[type='tel'],input[type='number'], input[type='email'],input[type='password']{
                 @extend %sixteenpx;
                 width: 159px;
                 height: 50px;

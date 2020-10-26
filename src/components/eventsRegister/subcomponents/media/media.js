@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ImgCrop from 'antd-img-crop';
+import {LoadingOutlined} from '@ant-design/icons';
 import whiteTick from '../../assets/whiteTick.svg';
+import {Spin} from 'antd';
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 
 import ImageTab from './imageTab';
@@ -17,6 +19,7 @@ import deleteBin from '../../assets/deleteBin.svg';
 
 import { Upload, message, Button } from 'antd';
 
+const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#4D75F4'}} spin />;
 const { TabPane } = Tabs;
 
 function callback(key) {
@@ -51,6 +54,7 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 			[name]: value,
 		});
 	};
+	const [loading, setLoading] = useState(false);
 
 	return (
 		<div class='media'>
@@ -71,9 +75,13 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 										message.error('You can only upload JPG/PNG file!');
 										return;
 									}
+									setLoading(true);
 									uploadImage(file)
 										.then((res) => changeSelectState('cover_photo', { src: res }))
-										.catch((err) => changeSelectState('cover_photo', { src: err }));
+										.catch((err) => changeSelectState('cover_photo', { src: err }))
+										.finally(()=>{
+											setLoading(true);
+										})
 									return false;
 								}}>
 								{state.cover_photo.src ? (
@@ -84,7 +92,12 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 									</div>
 								) : (
 									<div className='image_upload_button'>
-										<Button icon={<FileImage />}>Upload File</Button>
+										<Button
+											disabled={loading}
+											icon={!loading && <FileImage />}
+										>
+											{loading ? <Spin indicator={antIcon} /> : 'Upload File'}
+										</Button>
 									</div>
 								)}
 							</Upload>
