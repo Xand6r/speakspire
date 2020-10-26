@@ -175,6 +175,9 @@
   margin-bottom: 17px;
   font-family: 'markpro-bold';
   text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 .speakercard__profile__position {
@@ -188,6 +191,7 @@
 }
 
 .speakercard__profile__position .--title {
+  text-align: center;
   color: #162359;
   font-family: 'markpro-medium';
 }

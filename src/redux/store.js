@@ -1,13 +1,15 @@
 import {configureStore, combineReducers, getDefaultMiddleware} from '@reduxjs/toolkit';
 import userReducer from './userSlice';
 import speakerReducer from './speakerSlice';
-import eventReducer from './eventSlice'
+import eventReducer from './eventSlice';
+import organiserReducer from './organiserSlice';
 // import keywordReducer from './keywordSlice';
 
 const rootReducer = combineReducers({
 	user: userReducer,
 	speakers: speakerReducer,
-	events: eventReducer
+	events: eventReducer,
+	organisers: organiserReducer
 	// data: dataReducer,
 	// keywords: keywordReducer,
 });

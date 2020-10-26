@@ -457,3 +457,30 @@
   font-family: 'markpro-bold';
   color: white;
 }
+
+.schedule .ant-picker {
+  height: 50px;
+  border-radius: 5px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-shadow: none;
+}
+
+.schedule .ant-picker-input > input {
+  font-family: 'markpro-medium';
+  color: #162359 !important;
+  font-size: 16px !important;
+}
+
+.schedule .ant-picker.ant-picker-focused {
+  border-color: #4D75F4 !important;
+  box-shadow: none !important;
+}
+
+.schedule .ant-picker:hover {
+  border-color: #4D75F4 !important;
+}
+
+.schedule .--half_date .ant-picker {
+  width: 160px !important;
+}

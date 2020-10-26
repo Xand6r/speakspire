@@ -263,11 +263,14 @@
 }
 
 .filter__more_results {
-  width: 206px;
-  height: 50px;
+  padding: 16px 35px 16px 35px;
   border-width: 1.5px;
   justify-content: space-between;
-  padding: 0 35px;
+}
+
+.filter__more_results > span {
+  margin-right: 16px;
+  margin-left: 16px;
 }
 
 .filter__more_results > img {

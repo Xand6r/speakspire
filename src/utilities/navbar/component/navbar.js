@@ -6,6 +6,7 @@ import {setLoggedIn, setLoggedOut} from '../../../redux/userSlice';
 
 import { fetchAllSpeakers } from '../../../redux/speakerSlice';
 import { fetchAllEvents } from '../../../redux/eventSlice';
+import { fetchAllOrganizers } from '../../../redux/organiserSlice';
 
 
 import {useDispatch, useSelector} from 'react-redux';
@@ -32,6 +33,8 @@ export default function Navbar() {
         dispatch(fetchAllSpeakers());
         // fetch all events
         dispatch(fetchAllEvents());
+        // fetch all organisers
+        dispatch(fetchAllOrganizers());
 
         const foundSession = sessionStorage.getItem("speakspire_token")
         if(foundSession){

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Checkbox } from 'antd';
 import MultiSelect from "@khanacademy/react-multi-select";
+import { useSelector } from 'react-redux';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 import OrganiserCard from '../../../../utilities/organiserCard';
 import ResetFilterIcon from '../../../../assets/resetFilterIcon.svg';
@@ -9,6 +12,7 @@ import LeftArrow from '../../../../assets/leftArrow.svg';
 import './filter.scss'
 import '../../../../stylesheets/filter.scss';
 
+const antIcon = <LoadingOutlined style={{ fontSize: 24, color:'#4D75F4' }} spin />;
 
 const INITIAL_STATE = {
     location: "",
@@ -51,9 +55,23 @@ const CHECKBOX_OPTIONS = [
 export default function Filter() {
     function onChange(checkedValues) {
         console.log('checked = ', checkedValues);
-    }
+    };
+    const organiserState = useSelector(({organisers} )=> organisers);
+    console.log(organiserState)
+    const [limit, setLimit] = useState(4);
+    const [loading, setLoading] = useState(false);
+    
     const [speakerFilterState, setSpeakerFilterState] = useState(INITIAL_STATE);
     const [ speakerNumber, setSpeakerNumber ] = useState([...Array(20).keys()]);
+
+    const increaseLimit = () => {
+        if (limit >= organiserState.data.length) return
+        setLoading(true);
+        setTimeout(()=>{
+            setLimit(limit + 4);
+            setLoading(false);
+        }, 1000)
+    }
     return (
         <div>
             <div className="filter --eventspage">
@@ -125,25 +143,39 @@ export default function Filter() {
 
                 <div className="filter__results">
                     {
-                        speakerNumber.map(speaker => (
-                            <div className="organisercard_wrapper">
-                                <OrganiserCard />
-                            </div>
-                        ))
+                        organiserState.data.slice(0,limit).map(organiser => {
+                            console.log(organiser);
+                            return(
+                                <div className="organisercard_wrapper">
+                                    <OrganiserCard
+                                        coverImage={organiser.cover_photo}
+                                        profileImage={organiser.profile_photo}
+                                        companyName={organiser.name}
+                                        specialty={organiser.specialty}
+                                        //{/* services={JSON.parse(organiser.services)} */}
+                                    />
+                                </div>
+                            );
+        
+                        })
                     }
                 </div>
 
                 <div
                     className="filter__more_results"
-                    onClick={()=>{
-                        setSpeakerNumber([
-                            ...speakerNumber,
-                            ...Array(4).keys()
-                        ])
-                    }}
+                    onClick={increaseLimit}
                 >
-                    <span>More Events</span>
-                    <img src={LeftArrow} alt="left arrow"/>
+                {
+                    (!(loading || organiserState.loading))?(
+                        <>
+                            <span>More Organisers</span>
+                            <img src={LeftArrow} alt="left arrow"/>
+                        </>
+                    ):(
+                        <Spin indicator={antIcon} />
+                    )
+
+                }
                 </div>
             </div>
         </div>

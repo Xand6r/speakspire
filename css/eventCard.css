@@ -88,18 +88,11 @@
   width: 100%;
 }
 
-.file_delete {
+.file_delete, .eventcard__content__subtitle {
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
   line-height: 20px;
-}
-
-.eventcard__content__subtitle {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
 }
 
 .eventcard__content__title {
@@ -145,6 +138,9 @@
   align-items: flex-end;
   margin-bottom: 15px;
   margin-top: -10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 .eventcard__content__preheader .faux_image {
@@ -175,6 +171,9 @@
   font-family: 'markpro-bold';
   margin-bottom: 15px;
   max-width: 278px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 .eventcard__content__subtitle {
