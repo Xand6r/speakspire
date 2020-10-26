@@ -95,14 +95,14 @@ export default function Filter() {
         <div>
             <div className="filter --eventspage">
 
-                <div className="filter__header">
-                    Showcase your event and find speakers
-                </div>
+                <div className="filter__top">
+                    <div className="filter__header">
+                        Showcase your events
+                    </div>
 
-                <div className="filter__subheader">
-                    Events are only as good as the speakers at the event. 
-                     Finding the right speakers for your event couldn’t be any easier. 
-                     Simply upload your event, recieve requests from our speakers and choose your preferred speakers.
+                    <div className="filter__subheader">
+                        Get more visibility for your events and find the best speakers by adding a Call For Speakers. You can also have people register to attend your event.
+                    </div>
                 </div>
 
                 <div className="filter__filter">

@@ -37,15 +37,17 @@ export default function Filter() {
         <div>
             <div className="filter --speakerspage">
 
-                <div className="filter__header">
-                    Find the speaker of your dreams
-                </div>
+                <div className="filter__top">
+                    <div className="filter__header">
+                        Find the speaker of your dreams
+                    </div>
 
-                <div className="filter__subheader">
-                    …at first you will call them speakers and coaches, but you 
-                    will come to realize that they are more like friends who are 
-                    passionate about helping and inspiring you and your 
-                    audience to be better.
+                    <div className="filter__subheader">
+                        …at first you will call them speakers and coaches, but you 
+                        will come to realize that they are more like friends who are 
+                        passionate about helping and inspiring you and your 
+                        audience to be better.
+                    </div>
                 </div>
 
                 <div className="filter__filter">

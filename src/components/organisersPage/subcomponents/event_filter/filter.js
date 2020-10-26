@@ -71,12 +71,16 @@ export default function Filter() {
 	};
 	return (
 		<div>
-			<div className='filter --eventspage'>
-				<div className='filter__header'>Behind every memorable event is a great event organizer</div>
+			<div className='filter --organiser'>
 
-				<div className='filter__subheader'>
-					Events are only as good as the speakers at the event. Finding the right speakers for your event couldn’t be any easier. Simply upload your
-					event, recieve requests from our speakers and choose your preferred speakers.
+				<div className="filter__top">
+					<div className='filter__header'>
+						Find & hire great event organizers
+					</div>
+
+					<div className='filter__subheader'>
+						We understand how much inspiration event organizers bring to your events. That’s why we have put them in the spotlight. So go ahead, find and hire that organizer that will make your event memorable. 
+					</div>
 				</div>
 
 				<div className='filter__filter'>
