@@ -4,7 +4,9 @@
 
 .frontpage{
     display: flex;
-    padding: 200px 150px 201px;
+    padding: 200px 150px 115px;
+    margin-bottom: 85px;
+    background: #F0FDF6;
     justify-content: space-between;
     align-items: flex-end;
     &__textcontent{

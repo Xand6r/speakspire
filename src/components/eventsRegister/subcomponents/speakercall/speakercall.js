@@ -10,7 +10,7 @@ import './speakercall.scss';
 
 import '../../../../stylesheets/tag.scss';
 
-import { SPEAKER_SPECIALITY } from '../../component/constants';
+import { SPEAKER_SPECIALITY, COUNTRY_LIST } from '../../component/constants';
 
 
 export default function SpeakerCall({
@@ -129,7 +129,7 @@ export default function SpeakerCall({
                             </label>
                             <div className="--singleselect">
                                 <Select
-                                    options={SPEAKER_SPECIALITY}
+                                    options={COUNTRY_LIST}
                                     isSearchable
                                     placeholder="Select"
                                     className="--item"
@@ -150,14 +150,14 @@ export default function SpeakerCall({
                             <div className="--double_wrapper">
                                 <input
                                     value={speakercall.budgetFrom}
-                                    type="text"
+                                    type="number"
                                     placeholder="00.00 NGN"
                                     onChange={(e) =>  changeListData(index, 'budgetFrom',  e.target.value)}
                                 />
                                 <span>to</span>
                                 <input
                                     placeholder="00.00 NGN "
-                                    type="text"
+                                    type="number"
                                     value={speakercall.budgetTo}
                                     onChange={(e) =>  changeListData(index, 'budgetTo',  e.target.value)}
                                 />

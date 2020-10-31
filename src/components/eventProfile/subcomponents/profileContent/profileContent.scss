@@ -157,6 +157,7 @@ $right-item-width: 597px;;
                     margin-top: 20px;
                     display: flex;
                     white-space: nowrap;
+                    align-items: center;
                     span{
                         font-family: 'markpro-medium';
                         @extend %fourteenpx;

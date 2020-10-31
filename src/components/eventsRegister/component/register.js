@@ -6,6 +6,9 @@ import {
 	Link,
 	Route, // for later
 } from 'react-router-dom';
+import {
+	validateEventInfo, scheduleValidator, validateSpeakerCall, validateMedia
+} from './validators';
 
 import { STEPS, EVENT_INFO_STATE, SCHEDULE_STATE, SPEAKER_CALL, INITIAL_MEDIA_STATE } from './constants';
 
@@ -33,6 +36,13 @@ export default function Register({ location }) {
 	const [media, setMedia] = useState(INITIAL_MEDIA_STATE);
 	const history = useHistory();
 
+	const mapState = {
+		'Event Info':validateEventInfo(eventInfo),
+		'Schedule': scheduleValidator(schedule),
+		'Call for Speakers': validateSpeakerCall(speakerCall),
+		'Media': validateMedia(media),
+	}
+
 	useEffect(() => {
 		const { pathname } = location;
 		const currentTab = pathname.split('/')[2];
@@ -54,6 +64,12 @@ export default function Register({ location }) {
 			speakers: speakerCall,
 			...media,
 		};
+		//validate fields
+		const allFilled = Object.values(mapState).every((a) => a);
+		if (!allFilled) {
+			message.error('Please Fill in All fields in the form before submitting');
+			return;
+		}
 		// send post request
 		axios
 			.post('/events/add', cleanData(finalState))
@@ -75,7 +91,13 @@ export default function Register({ location }) {
 				<div className='registerevent__activetab__steps'>
 					{STEPS.map((step, index) => (
 						<Link key={Math.random()} className='link' to={`/registerevent/${index + 1}`}>
-							<SectionTab index={index} text={step} active={index === activeTab} changeTab={makeActive} />
+							<SectionTab
+								index={index}
+								text={step}
+								active={index === activeTab}
+								changeTab={makeActive}
+								filled={mapState[step]}
+							/>
 						</Link>
 					))}
 				</div>

@@ -3,16 +3,21 @@
 @import '../../../../stylesheets/utilities';
 @import '../../../../stylesheets/fonts';
 
-.filter.--eventspage{
-    margin-top: 170px;
+.filter.--organiser{
     margin-bottom: 92px;
 
     .filter__header{
         @extend %fiftyfivepx;
         text-align: center;
         margin-bottom: 25px;
-        max-width: 877px;
+        max-width: 901px;
         padding: 0;
+    }
+    .filter__top{
+        background-image: url('../../assets/organiserIcon.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #F0FDF6;
     }
     .filter__subheader{
         max-width: 706px;
@@ -20,7 +25,6 @@
         @extend %eighteenpx;
         text-align: center;
         font-family: 'markpro-medium';
-        margin-bottom: 60px;
     }
     .filter__results{
         margin-bottom: 26px;

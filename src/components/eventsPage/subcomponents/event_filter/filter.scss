@@ -4,8 +4,14 @@
 @import '../../../../stylesheets/fonts';
 
 .filter.--eventspage{
-    margin-top: 170px;
     margin-bottom: 92px;
+
+    .filter__top{
+        background-image: url('../../assets/eventsIcon.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #FFF5E3;;
+    }
 
     .filter__header{
         @extend %fiftyfivepx;
@@ -13,12 +19,11 @@
         margin-bottom: 25px;
     }
     .filter__subheader{
-        max-width: 706px;
+        max-width: 537px;
         color: $light-navy-blue;
         @extend %eighteenpx;
         text-align: center;
         font-family: 'markpro-medium';
-        margin-bottom: 60px;
     }
     .filter__results{
         margin-bottom: 26px;

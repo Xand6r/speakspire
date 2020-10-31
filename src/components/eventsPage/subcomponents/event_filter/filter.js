@@ -70,123 +70,147 @@ function parseTime(time) {
 	}
 }
 export default function Filter() {
-	function onChange(checkedValues) {
-		console.log('checked = ', checkedValues);
-	}
-	const history = useHistory();
-	const eventState = useSelector(({ events }) => events);
+    function onChange(checkedValues) {
+        console.log('checked = ', checkedValues);
+    };
+    const history = useHistory();
+    const eventState = useSelector(({events} )=> events);
 
-	const [limit, setLimit] = useState(12);
-	const [loading, setLoading] = useState(false);
+    const [limit, setLimit] = useState(12);
+    const [loading, setLoading] = useState(false);
 
-	const increaseLimit = () => {
-		if (limit >= eventState.data.length) return;
-		setLoading(true);
-		setTimeout(() => {
-			setLimit(limit + 3);
-			setLoading(false);
-		}, 1000);
-	};
+    const increaseLimit = () => {
+        if (limit >= eventState.data.length) return
+        setLoading(true);
+        setTimeout(()=>{
+            setLimit(limit + 3);
+            setLoading(false);
+        }, 1000)
+    }
 
-	const [speakerFilterState, setSpeakerFilterState] = useState(INITIAL_STATE);
-	return (
-		<div>
-			<div className='filter --eventspage'>
-				<div className='filter__header'>Showcase your event and find speakers</div>
+    const [speakerFilterState, setSpeakerFilterState] = useState(INITIAL_STATE);
+    return (
+        <div>
+            <div className="filter --eventspage">
 
-				<div className='filter__subheader'>
-					Events are only as good as the speakers at the event. Finding the right speakers for your event couldn’t be any easier. Simply upload your
-					event, recieve requests from our speakers and choose your preferred speakers.
-				</div>
+                <div className="filter__top">
+                    <div className="filter__header">
+                        Showcase your events
+                    </div>
 
-				<div className='filter__filter'>
-					<div className='filter__filter__search'>
-						<div className='inputgroup'>
-							<input className='filter__filter__search__input' type='text' placeholder='Search events by name, role, company, etc.' />
-						</div>
-						<div className='filter__filter__search__button'>Search</div>
-					</div>
+                    <div className="filter__subheader">
+                        Get more visibility for your events and find the best speakers by adding a Call For Speakers. You can also have people register to attend your event.
+                    </div>
+                </div>
 
-					<div className='filter__filter__select'>
-						<div className='filter__filter__select__icons'>
-							<div className='filter__filter__select__icons__icon'>
-								<div className='--text'>Filters</div>
-							</div>
+                <div className="filter__filter">
+                    <div className="filter__filter__search">
+                        <div className="inputgroup">
+                            <input 
+                                className="filter__filter__search__input" 
+                                type="text"
+                                placeholder="Search events by name, role, company, etc."
+                            />
 
-							<div className='filter__filter__select__icons__icon'>
-								<img className='--icon' src={ResetFilterIcon} alt='filtericon' />
-								<div className='--underline --small'>Reset Filters</div>
-							</div>
-						</div>
+                        </div>
+                        <div className="filter__filter__search__button">
+                            Search
+                        </div>
+                    </div>
 
-						<hr className='--divider' />
+                    <div className="filter__filter__select">
+                        <div className="filter__filter__select__icons">
 
-						<div className='filter__filter__select__items'>
-							{FILTER_TEXT.map((filterInfo, i) => (
-								<div className='--multiselect --white' key={i}>
-									<MultiSelect
-										options={filterInfo.options}
-										selected={speakerFilterState[filterInfo.state]}
-										onSelectedChanged={(selected) => setSpeakerFilterState({ ...speakerFilterState, [filterInfo.state]: selected })}
-										overrideStrings={{
-											selectSomeItems: <span className='placeholding_text'>{filterInfo.placeholder}</span>,
-										}}
-									/>
-								</div>
-							))}
-						</div>
+                            <div className="filter__filter__select__icons__icon">
+                                <div className="--text">Filters</div>
+                            </div>
 
-						<div className='filter__filter__select__checkboxes'>
-							<Checkbox.Group options={CHECKBOX_OPTIONS} defaultValue={['Apple']} onChange={onChange} />
-						</div>
-					</div>
-				</div>
+                            <div className="filter__filter__select__icons__icon">
+                                <img className="--icon" src={ResetFilterIcon} alt="filtericon"/>
+                                <div className="--underline --small">Reset Filters</div>
+                            </div>
 
-				<div className='filter__results'>
-					{eventState.data.slice(0, limit).map((event, i) => {
-						let tags = [];
-						try {
-							tags = JSON.parse(event.tags);
-						} catch (err) {
-							tags = [];
-						}
-						const fs = 'Do-MMM-YYY';
-						const dateFrom = parseNewDateFormat(event.schedule[0].date.slice(0, 8));
-						const dateTo = parseNewDateFormat(event.schedule[0].date.slice(9));
-						const timeFrom = parseTime(event.schedule[0].time.split('-')[0]);
-						const timeTo = parseTime(event.schedule[0].time.split('-')[1]);
-						let dateInterval = '';
-						if (event.schedule[0].frequency === 'Single Event') {
-							dateInterval = `${dateFrom} ${timeFrom} WAT`;
-						} else {
-							dateInterval = `${dateFrom} - ${dateTo} ${timeFrom} WAT`;
-						}
-						return (
-							<EventCard
-								id={event.id}
-								key={i}
-								eventName={event.name}
-								eventTitle={event.organizer}
-								profileimage={event.banner}
-								skillsList={tags}
-								pcs={'pcs'}
-								dateInterval={dateInterval}
-							/>
-						);
-					})}
-				</div>
+                        </div>
+                             
+                            <hr className="--divider"/>
 
-				<div className='filter__more_results' onClick={increaseLimit}>
-					{!(loading || eventState) ? (
-						<>
-							<span>More Events</span>
-							<img src={LeftArrow} alt='left arrow' />
-						</>
-					) : (
-						<Spin indicator={antIcon} />
-					)}
-				</div>
-			</div>
-		</div>
-	);
+                        <div className="filter__filter__select__items">
+                            {
+                                FILTER_TEXT.map(filterInfo => (
+                                    <div className="--multiselect --white">
+                                        <MultiSelect
+                                            options={filterInfo.options}
+                                            selected={speakerFilterState[filterInfo.state]}
+                                            onSelectedChanged={selected => setSpeakerFilterState({...speakerFilterState, [filterInfo.state]:selected})}
+                                            overrideStrings={{
+                                                selectSomeItems: <span class="placeholding_text">{filterInfo.placeholder}</span>,
+                                            }}
+                                        />
+                                    </div>
+                                ))
+                            }
+                        </div>
+
+                        
+                        <div className="filter__filter__select__checkboxes">
+                        <Checkbox.Group options={CHECKBOX_OPTIONS} defaultValue={['Apple']} onChange={onChange} />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div className="filter__results">
+                    {
+                        eventState.data.slice(0,limit).map(event => {
+                            let tags=[];
+                            try{
+                                tags=JSON.parse(event.tags)
+                            }catch(err){
+                                tags=[]
+                            }
+                            const fs="Do-MMM-YYY"
+                            const dateFrom = parseNewDateFormat(event.schedule[0].date.slice(0,8))
+                            const dateTo = parseNewDateFormat(event.schedule[0].date.slice(9))
+                            const timeFrom = parseTime(event.schedule[0].time.split('-')[0])
+                            const timeTo = parseTime(event.schedule[0].time.split('-')[1])
+                            let dateInterval = ""
+                            if(event.schedule[0].frequency === "Single Event"){
+                                dateInterval = `${dateFrom} ${timeFrom} WAT`
+                            }else{
+                                dateInterval = `${dateFrom} - ${dateTo} ${timeFrom} WAT`
+                            }
+                            return (
+                                <EventCard
+                                    id={event.id}
+                                    eventName={event.name}
+                                    eventTitle={event.organizer}
+                                    profileimage={event.banner}
+                                    skillsList={tags}
+                                    pcs={"pcs"}
+                                    dateInterval = {dateInterval}
+                                />
+                            )
+                        })
+                    }
+                </div>
+
+                <div
+                    className="filter__more_results"
+                    onClick={increaseLimit}
+                >
+                {
+                    (!(loading || eventState))?(
+                        <>
+                            <span>More Events</span>
+                            <img src={LeftArrow} alt="left arrow"/>
+                        </>
+                    ):(
+                        <Spin indicator={antIcon} />
+                    )
+
+                }
+                </div>
+            </div>
+        </div>
+    )
 }

@@ -101,6 +101,7 @@
 }
 
 .eventcard {
+  cursor: pointer;
   max-width: 353px;
   min-width: 353px;
   display: flex;
@@ -138,7 +139,6 @@
   align-items: flex-end;
   margin-bottom: 15px;
   margin-top: -10px;
-  display: -webkit-box;
   -webkit-line-clamp: 1;
   overflow: hidden;
 }
