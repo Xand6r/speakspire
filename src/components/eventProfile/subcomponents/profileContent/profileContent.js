@@ -163,7 +163,7 @@ export default function ProfileContent({ about, primaryTopic, primarySkills, sec
                             const timeFrom = parseTime(event.schedule[0].time.split('-')[0])
                             const timeTo = parseTime(event.schedule[0].time.split('-')[1])
                             let dateInterval = ""
-                            if(event.schedule[0].frequency === "Single Event"){
+                            if(event.schedule[0].frequency === "Single-day Event"){
                                 dateInterval = `${dateFrom} ${timeFrom} WAT`
                             }else{
                                 dateInterval = `${dateFrom} - ${dateTo} ${timeFrom} WAT`

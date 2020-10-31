@@ -176,7 +176,7 @@ export default function Schedule({
 
                 </div>
                 {
-                    (['Single Event'].includes(state.frequency.label))
+                    (['Single-day Event'].includes(state.frequency.label))
                     &&
                     (
                         <>

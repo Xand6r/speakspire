@@ -112,9 +112,9 @@ export default function Register({ location }) {
 						{!previewHidden ? (
 							<div className='registerevent__content__preview__card'>
 								<EventCard
-									eventName={eventInfo.eventName}
+									eventName={eventInfo.eventOrganizer}
 									skillsList={eventInfo.services}
-									eventTitle={eventInfo.eventOrganizer}
+									eventTitle={eventInfo.eventName}
 									profileimage={media.cover_photo.src}
 									pcs={schedule.location}
 									dateInterval={
