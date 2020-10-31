@@ -33,11 +33,11 @@ const filterData = (array, params) => {
 
 export default function ProfileContent({ userData, reason, primaryTopic, primarySkills, secondaryTopic, secondarySkills }) {
 	const { bio, clients, partners, media } = userData;
-	const organiserState = useSelector(({organisers} )=> organisers);
+	const organiserState = useSelector(({ organisers }) => organisers);
 
 	return (
 		<div className='profilecontent__organiser__wrapper'>
-			<div class='profilecontent_organiser'>
+			<div className='profilecontent_organiser'>
 				<div className='profilecontent_organiser__left'>
 					<div className='profilecontent_organiser__left__reason'>
 						<div className='--top_heading'>
@@ -49,8 +49,8 @@ export default function ProfileContent({ userData, reason, primaryTopic, primary
 					<div className='profilecontent_organiser__left__socialmedia'>
 						<div className='social_content'>
 							<span>Social Media</span>
-							{SOCIAL_MEDIA_ICONS.map((icon) => (
-								<img src={icon} alt='social media' />
+							{SOCIAL_MEDIA_ICONS.map((icon, i) => (
+								<img src={icon} alt='social media' key={i} />
 							))}
 						</div>
 					</div>
@@ -62,8 +62,10 @@ export default function ProfileContent({ userData, reason, primaryTopic, primary
 							<TabPane tab='Clients' key='1'>
 								<div className='experience_tab_content'>
 									<div className='experience_skills'>
-										{splitData(clients).map((partner) => (
-											<div className='experience_skill'>{partner}</div>
+										{splitData(clients).map((partner, i) => (
+											<div className='experience_skill' key={i}>
+												{partner}
+											</div>
 										))}
 									</div>
 									<div className='experience_more'>
@@ -76,8 +78,10 @@ export default function ProfileContent({ userData, reason, primaryTopic, primary
 							<TabPane tab='Partners' key='2'>
 								<div className='experience_tab_content'>
 									<div className='experience_skills'>
-										{splitData(partners).map((partner) => (
-											<div className='experience_skill'>{partner}</div>
+										{splitData(partners).map((partner, i) => (
+											<div className='experience_skill' key={i}>
+												{partner}
+											</div>
 										))}
 									</div>
 									<div className='experience_more'>
@@ -137,23 +141,23 @@ export default function ProfileContent({ userData, reason, primaryTopic, primary
 			<div className='profilecontent_organiser__bottom'>
 				<div className='--bottomtitle'>Similar Organizers</div>
 				<div className='--bottom__events'>
-				{
-					organiserState.data.slice(0,4).filter(o=>o.bio!==bio).map(organiser => {
-						return(
-							<div className="organisercard_wrapper">
-								<OrganiserCard
-									id={organiser.id}
-									coverImage={organiser.cover_photo}
-									profileImage={organiser.profile_photo}
-									companyName={organiser.name}
-									specialty={organiser.specialty}
-									//{/* services={JSON.parse(organiser.services)} */}
-								/>
-							</div>
-						);
-	
-					})
-				}
+					{organiserState.data
+						.slice(0, 4)
+						.filter((o) => o.bio !== bio)
+						.map((organiser, i) => {
+							return (
+								<div className='organisercard_wrapper' key={i}>
+									<OrganiserCard
+										id={organiser.id}
+										coverImage={organiser.cover_photo}
+										profileImage={organiser.profile_photo}
+										companyName={organiser.name}
+										specialty={organiser.specialty}
+										//{/* services={JSON.parse(organiser.services)} */}
+									/>
+								</div>
+							);
+						})}
 				</div>
 			</div>
 		</div>

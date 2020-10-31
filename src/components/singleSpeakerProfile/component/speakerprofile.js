@@ -28,7 +28,7 @@ export default function Speakerprofile(props) {
 		getDetails();
 	}, [history, props.match.params.id]);
 	return (
-		<div class='speakerprofile'>
+		<div className='speakerprofile'>
 			{/* the navigation bar of the site */}
 			<NavBar />
 			{/* the navigation bar of the site */}

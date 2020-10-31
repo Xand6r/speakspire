@@ -161,7 +161,7 @@ export default function Expertise({stateChanger, state}) {
 					</div>
 					<div className='expertise__formsection__section__form'>
 						<div className='--input_wrapper --select'>
-							<label class='double' htmlFor='position'>
+							<label className='double' htmlFor='position'>
 								Primary
 							</label>
 							<div className='--singleselect'>
@@ -199,7 +199,7 @@ export default function Expertise({stateChanger, state}) {
 						</div>
 
 						<div className='--input_wrapper --select'>
-							<label class='double' htmlFor='position'>
+							<label className='double' htmlFor='position'>
 								Secondary (optional)
 							</label>
 							<div className='--singleselect'>
@@ -518,7 +518,7 @@ export default function Expertise({stateChanger, state}) {
 										changeSelectState('languages', selected);
 									}}
 									overrideStrings={{
-										selectSomeItems: <span class='placeholding_text'>Select Language</span>,
+										selectSomeItems: <span className='placeholding_text'>Select Language</span>,
 									}}
 								/>
 							</div>

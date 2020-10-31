@@ -5,7 +5,7 @@ import WishBoneImage from '../../assets/wishbone.svg'
 
 export default function Wishbone() {
     return (
-        <div class="wishbone">
+        <div className="wishbone">
             <img
                 className="wishbone__image"
                 src={WishBoneImage}

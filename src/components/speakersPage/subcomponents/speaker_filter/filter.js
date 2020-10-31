@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Checkbox } from 'antd';
-import MultiSelect from "@khanacademy/react-multi-select";
+import MultiSelect from '@khanacademy/react-multi-select';
 import { useSelector } from 'react-redux';
 import { component as SpeakerCard } from '../../../../utilities/speakerCard';
 import ResetFilterIcon from '../../../../assets/resetFilterIcon.svg';
@@ -9,21 +9,14 @@ import LeftArrow from '../../../../assets/leftArrow.svg';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
+import { INITIAL_STATE, FILTER_TEXT, CHECKBOX_OPTIONS } from './constants';
 
-import {
-    INITIAL_STATE, FILTER_TEXT, CHECKBOX_OPTIONS
-} from './constants';
-
-import './filter.scss'
+import './filter.scss';
 import '../../../../stylesheets/filter.scss';
 
+const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#4D75F4' }} spin />;
 
-
-const antIcon = <LoadingOutlined style={{ fontSize: 24, color:'#4D75F4' }} spin />;
-
-const speakers = [
-    1,2,3,4,5,6,7,8,9,10,11,12
-]
+const speakers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 export default function Filter() {
     function onChange(checkedValues) {
         console.log('checked = ', checkedValues);

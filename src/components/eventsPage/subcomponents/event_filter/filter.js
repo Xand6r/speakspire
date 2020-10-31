@@ -1,75 +1,73 @@
 import React, { useState } from 'react';
 import { Checkbox } from 'antd';
 import moment from 'moment';
-import {useHistory} from 'react-router-dom';
-import {useSelector} from 'react-redux';
-import MultiSelect from "@khanacademy/react-multi-select";
-import {Spin} from 'antd';
-import {LoadingOutlined} from '@ant-design/icons';
-
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import MultiSelect from '@khanacademy/react-multi-select';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 import { component as EventCard } from '../../../../utilities/eventCard';
 import ResetFilterIcon from '../../../../assets/resetFilterIcon.svg';
 import LeftArrow from '../../../../assets/leftArrow.svg';
 
-import './filter.scss'
+import './filter.scss';
 import '../../../../stylesheets/filter.scss';
 
-
 const INITIAL_STATE = {
-    location: "",
-    fee:"",
-    topicArea: "",
-    specialty: "",
-    speakerCategory: ""
-}
+	location: '',
+	fee: '',
+	topicArea: '',
+	specialty: '',
+	speakerCategory: '',
+};
 
 const multi_options = [
-    { label: "Grapes", value: "grapes" },
-    { label: "Mango", value: "mango" },
-    { label: "Strawberry", value: "strawberry" },
-    { label: "Watermelon", value: "watermelon" },
-    { label: "Pear", value: "pear" },
-    { label: "Apple", value: "apple" },
-    { label: "Tangerine", value: "tangerine" },
-    { label: "Pineapple", value: "pineapple" },
-    { label: "Peach ", value: "peach" },
+	{ label: 'Grapes', value: 'grapes' },
+	{ label: 'Mango', value: 'mango' },
+	{ label: 'Strawberry', value: 'strawberry' },
+	{ label: 'Watermelon', value: 'watermelon' },
+	{ label: 'Pear', value: 'pear' },
+	{ label: 'Apple', value: 'apple' },
+	{ label: 'Tangerine', value: 'tangerine' },
+	{ label: 'Pineapple', value: 'pineapple' },
+	{ label: 'Peach ', value: 'peach' },
 ];
 
 const FILTER_TEXT = [
-    {"placeholder":"Location", state:"location", options: multi_options},
-    {"placeholder":"Fee", state:"fee", options: multi_options},
-    {"placeholder":"Topic Area", state:"topicArea", options: multi_options},
-    {"placeholder":"Specialty", state:"specialty", options: multi_options},
-    {"placeholder":"Speaker Category ", state:"speakerCategory", options: multi_options},
+	{ placeholder: 'Location', state: 'location', options: multi_options },
+	{ placeholder: 'Fee', state: 'fee', options: multi_options },
+	{ placeholder: 'Topic Area', state: 'topicArea', options: multi_options },
+	{ placeholder: 'Specialty', state: 'specialty', options: multi_options },
+	{ placeholder: 'Speaker Category ', state: 'speakerCategory', options: multi_options },
 ];
 
 const CHECKBOX_OPTIONS = [
-    { label: "Online Engagement", value: "Online Engagement" },
-    { label: "Physical Engagement", value: "Physical Engagement" },
-    { label: 'Weekdays', value: 'Weekdays' },
-    { label: 'Weekends', value: 'Weekends' },
-    { label: 'Open to travel', value: 'Open to travel' },
+	{ label: 'Online Engagement', value: 'Online Engagement' },
+	{ label: 'Physical Engagement', value: 'Physical Engagement' },
+	{ label: 'Weekdays', value: 'Weekdays' },
+	{ label: 'Weekends', value: 'Weekends' },
+	{ label: 'Open to travel', value: 'Open to travel' },
 ];
-const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#4D75F4'}} spin />;
+const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#4D75F4' }} spin />;
 
 let parseNewDateFormat = (dateString) => {
-    // datestring is of the form dd-mm-yy
-    const splitDate = dateString.split('-');
-    return moment(`20${splitDate[2]}, ${splitDate[1]}, ${splitDate[0]}`).format("Do MMM Y");
-}
+	// datestring is of the form dd-mm-yy
+	const splitDate = dateString.split('-');
+	return moment(`20${splitDate[2]}, ${splitDate[1]}, ${splitDate[0]}`).format('Do MMM Y');
+};
 
-function parseTime(time) {    
-    let timeInt = time.split(':')[0];
-    let minutes = time.split(':')[1];
+function parseTime(time) {
+	let timeInt = time.split(':')[0];
+	let minutes = time.split(':')[1];
 
-    // you could then add or subtract time here as needed
+	// you could then add or subtract time here as needed
 
-    if(time > '12:00') {
-         return `${timeInt - 12}:${minutes} PM`;
-    } else {
-         return `${timeInt}:${minutes} AM`;
-    }
+	if (time > '12:00') {
+		return `${timeInt - 12}:${minutes} PM`;
+	} else {
+		return `${timeInt}:${minutes} AM`;
+	}
 }
 export default function Filter() {
     function onChange(checkedValues) {

@@ -5,7 +5,7 @@ import Speaker from '../../assets/speaker.svg'
 
 export default function Catchphrase() {
     return (
-        <div class="catchphrase">
+        <div className="catchphrase">
 
             <div className="catchphrase__textcontent">
                 <div className="catchphrase__textcontent__header">

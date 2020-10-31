@@ -89,7 +89,7 @@ export default function Personaldetails({
 
                 {/* wrapper for teh event desription */}
                 <div className="--wrapper">
-                    <label class="double" htmlFor="fullbio">
+                    <label className="double" htmlFor="fullbio">
                         Event Description
                     </label>
                     <textarea

@@ -12,7 +12,7 @@ export default function Profilecard({ userData }) {
 	const { profile_photo, name, specialty, address, country, services } = userData;
 
 	return (
-		<div class='profilecard_organisers'>
+		<div className='profilecard_organisers'>
 			<div className='profilecard_organisers__actions'>
 				<img src={shareIcon} alt='share' />
 				<img src={ellipsisIcon} alt='ellipsis' />
@@ -42,8 +42,10 @@ export default function Profilecard({ userData }) {
 					</div>
 					<div className='profilecard_organisers__maincontent__right__item'>
 						<div className='services'>
-							{splitData(services).map((service) => (
-								<div className='service'>{service}</div>
+							{splitData(services).map((service, i) => (
+								<div className='service' key={i}>
+									{service}
+								</div>
 							))}
 						</div>
 					</div>

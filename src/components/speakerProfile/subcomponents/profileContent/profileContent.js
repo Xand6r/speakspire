@@ -26,8 +26,10 @@ const SpeakingSkills = ({ primaryTopic, primarySkills, secondaryTopic, secondary
 			<div className='tab_content_heading'>PRIMARY</div>
 			<div className='tab_content_subheading'>{primaryTopic}</div>
 			<div className='tab_content_content'>
-				{primarySkills.map((skill) => (
-					<div className='skillitem'>{skill}</div>
+				{primarySkills.map((skill, i) => (
+					<div className='skillitem' key={i}>
+						{skill}
+					</div>
 				))}
 			</div>
 		</div>
@@ -38,8 +40,10 @@ const SpeakingSkills = ({ primaryTopic, primarySkills, secondaryTopic, secondary
 			<div className='tab_content_heading'>SECONDARY</div>
 			<div className='tab_content_subheading'>{secondaryTopic}</div>
 			<div className='tab_content_content'>
-				{secondarySkills.map((skill) => (
-					<div className='skillitem'>{skill}</div>
+				{secondarySkills.map((skill, i) => (
+					<div className='skillitem' key={i}>
+						{skill}
+					</div>
 				))}
 				<More />
 			</div>
@@ -57,7 +61,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 	const speakers = useSelector(({ speakers }) => speakers.data);
 	const speakersList = speakers || [];
 	return (
-		<div class='profilecontent'>
+		<div className='profilecontent'>
 			<div className='profilecontent__left'>
 				<div className='profilecontent__left__reason'>
 					<div className='--top_heading'>
@@ -110,8 +114,8 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 				<div className='profilecontent__left__socialmedia'>
 					<div className='social_content'>
 						<span>Social Media</span>
-						{SOCIAL_MEDIA_ICONS.map((icon) => (
-							<img src={icon} alt='social media' />
+						{SOCIAL_MEDIA_ICONS.map((icon, i) => (
+							<img src={icon} alt='social media' key={i} />
 						))}
 					</div>
 				</div>
@@ -120,7 +124,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 				<div className='profilecontent__left__similar'>
 					<div className='similar_heading'> Similar Speakers</div>
 					<div className='similar_speakers'>
-						{speakersList.slice(1, 2).map((speaker) => {
+						{speakersList.slice(1, 2).map((speaker, i) => {
 							const {
 								name,
 								experience: [{ company, position }],
@@ -131,6 +135,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 							return (
 								<HorizontalSpeaker
 									id={id}
+									key={i}
 									category='premium'
 									profilePicture={profile_photo}
 									fullname={name}
@@ -170,8 +175,8 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 						<TabPane tab='Education' key='2'>
 							<div className='experience_tab_content'>
 								{education
-									? education.map(({ institution, field_of_study, from, to }, index) => (
-											<div className='past_experience'>
+									? education.map(({ institution, field_of_study, from, to }, i) => (
+											<div className='past_experience' key={i}>
 												<div className='past_experience__position'>{institution}</div>
 												<div className='past_experience__company'>{field_of_study}</div>
 												<div className='past_experience__date'>{`${from} - ${to}`}</div>
@@ -188,8 +193,8 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 						<TabPane tab='Certificates' key='3'>
 							<div className='experience_tab_content'>
 								{certification
-									? certification.map(({ from, to, institution, proof, name }, index) => (
-											<div className='past_experience'>
+									? certification.map(({ from, to, institution, proof, name }, i) => (
+											<div className='past_experience' key={i}>
 												<div className='past_experience__position'>{name}</div>
 												<div className='past_experience__company'>{institution}</div>
 												<div className='past_experience__date'>{`${from} - ${to}`}</div>

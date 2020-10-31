@@ -19,7 +19,7 @@ const tag = 'premium';
 export default function Profilecard({ userData }) {
 	const { name, organizer, schedule, language } = userData;
 	return (
-		<div class='events_profilecard'>
+		<div className='events_profilecard'>
 			<div className='events_profilecard__actions'>
 				<img src={shareIcon} alt='share' />
 				<img src={ellipsisIcon} alt='ellipsis' />

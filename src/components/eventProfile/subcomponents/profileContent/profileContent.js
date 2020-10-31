@@ -60,8 +60,8 @@ export default function ProfileContent({ about, primaryTopic, primarySkills, sec
 	const { description, tags, topic_area, type, schedule, media } = userData;
 	const eventState = useSelector(({events} )=> events);
 	return (
-		<div class='event_profilecontent_wrapper'>
-			<div class='event_profilecontent'>
+		<div className='event_profilecontent_wrapper'>
+			<div className='event_profilecontent'>
 				<div className='event_profilecontent__left'>
 					<div className='event_profilecontent__left__reason'>
 						<div className='--top_heading'>
@@ -89,8 +89,10 @@ export default function ProfileContent({ about, primaryTopic, primarySkills, sec
 								<div className='--details_details__item'>
 									<span> Event Tags </span>
 									<div className='eventtags'>
-										{splitData(tags).map((tag) => (
-											<div className='eventtag'>{tag}</div>
+										{splitData(tags).map((tag, i) => (
+											<div className='eventtag' key={i}>
+												{tag}
+											</div>
 										))}
 									</div>
 								</div>

@@ -13,7 +13,7 @@ export default function HorizontalSpeaker({
     position, company, primary
 }) {
     return (
-        <div class="horizontalspeaker">
+        <div className="horizontalspeaker">
             <img
                 className={`profilepicture --${category}`}
                 src={profilePicture}
