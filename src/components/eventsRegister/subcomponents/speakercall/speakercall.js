@@ -173,7 +173,7 @@ export default function SpeakerCall({
                             <textarea
                                 name="eventDescription"
                                 type="text"
-                                placeholder="Tell speakers more about the kind of speakers you’re looking for..."
+                                placeholder="Tell us more about the kind of speakers you’re looking for..."
                                 value={speakercall.eventDescription}
                                 onChange={(e)=>{
                                     changeListData(index, 'eventDescription',  e.target.value)

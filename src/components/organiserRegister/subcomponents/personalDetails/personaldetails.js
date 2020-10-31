@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import PhoneInput from 'react-phone-input-2';
+import PasswordStrengthBar from 'react-password-strength-bar';
+import { COUNTRY_LIST } from '../../component/constants';
+import Select from 'react-select';
+
 
 import notificationIcon from '../../assets/notification.svg';
 import './personaldetails.scss';
@@ -13,6 +17,7 @@ export default function Personaldetails({
     stateChanger, state
 }) {
     const [passwordHidden, setPasswordHidden ] = useState(true)
+    const history = useHistory()
 
     const handleFormChange = (event)=>{
         const {name, value} = event.target;
@@ -35,7 +40,7 @@ export default function Personaldetails({
                     Organizer Details
                 </div>
                 <div className="companypersonaldetails__heading__subheading">
-                    Not an Organizer? <span>Choose another account type</span>
+                    Not an Organizer? <span onClick={()=>history.push('/category')}>Choose another account type</span>
                 </div>
             </div>
 
@@ -55,23 +60,6 @@ export default function Personaldetails({
                     />
                 </div>
                 {/* wrapepr for the name */}
-                
-                {/* wrapepr for the name */}
-                <div className="--wrapper">
-                    <label htmlFor="fullname">Company Email</label>
-                    <input
-                        maxLength="30"
-                        type="text"
-                        id="companyEmail"
-                        name="companyEmail"
-                        onChange={handleFormChange}
-                        value={state.companyEmail}
-                        placeholder="Enter company email"
-                        required
-                    />
-                </div>
-                {/* wrapepr for the name */}
-
 
                 {/* wrapper for the phone number */}
                 <div className="--wrapper --date">
@@ -122,18 +110,40 @@ export default function Personaldetails({
                 {/* wrapper for the country */}
                 <div className="--wrapper">
                     <label htmlFor="coutry">Country</label>
+                    <div className="--singleselect">
+                        <Select
+                            options={COUNTRY_LIST}
+                            isSearchable
+                            placeholder="Select"
+                            className="--item --cream"
+                            onChange={(value) =>{
+                                stateChanger({
+                                    ...state,
+                                    country: value.value
+                                });
+                                console.log(state)
+                            }}
+                            // {/* value={state.country} */}
+                        />
+                    </div>
+                </div>
+                {/* wrapper for the country */}
+                
+                {/* wrapepr for the name */}
+                <div className="--wrapper">
+                    <label htmlFor="fullname">Company Email</label>
                     <input
+                        maxLength="30"
                         type="text"
-                        id="country"
-                        name="country"
-                        placeholder="Enter your country"
+                        id="companyEmail"
+                        name="companyEmail"
                         onChange={handleFormChange}
-                        value={state.country}
+                        value={state.companyEmail}
+                        placeholder="Enter company email"
                         required
                     />
                 </div>
-                {/* wrapper for the country */}
-
+                {/* wrapepr for the name */}
 
                 {/* wrapper for you password */}
                 <div className="--wrapper">
@@ -153,6 +163,9 @@ export default function Personaldetails({
                             id="togglePassword" 
                             onClick={() => setPasswordHidden(!passwordHidden)}
                         />
+                    </div>
+                    <div className="--passwordstrengthbarwrapper">
+                        <PasswordStrengthBar password={state.password} />
                     </div>
                 </div>
                 {/* wrapper for you password */}

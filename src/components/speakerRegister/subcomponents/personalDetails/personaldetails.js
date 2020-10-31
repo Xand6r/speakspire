@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import GenderTab from './genderTab';
 import PhoneInput from 'react-phone-input-2';
+import Select from 'react-select';
+import { COUNTRY_LIST } from '../../component/constants';
+import PasswordStrengthBar from 'react-password-strength-bar';
+
 
 import notificationIcon from '../../assets/notification.svg';
 import './personaldetails.scss';
@@ -12,7 +16,7 @@ import 'react-phone-input-2/lib/style.css';
 import calendarIcon from '../../../../assets/calendar.svg'
 
 const GENDER_OPTIONS = [
-    'Male', 'Female', 'Others'
+    'Male', 'Female', 'Other'
 ];
 
 export default function Personaldetails({
@@ -70,6 +74,7 @@ export default function Personaldetails({
                         name="fullname"
                         onChange={handleFormChange}
                         value={state.fullname}
+                        placeholder="Enter first name and last name"
                     />
                 </div>
                 {/* wrapepr for the name */}
@@ -147,14 +152,21 @@ export default function Personaldetails({
                 {/* wrapper for the country */}
                 <div className="--wrapper">
                     <label htmlFor="coutry">Country</label>
-                    <input
-                        type="text"
-                        id="country"
-                        name="country"
-                        placeholder="Enter your country"
-                        onChange={handleFormChange}
-                        value={state.country}
-                    />
+                    <div className="--singleselect">
+                        <Select
+                            options={COUNTRY_LIST}
+                            isSearchable
+                            placeholder="Select"
+                            className="--item --cream"
+                            onChange={(value) =>{
+                                stateChanger({
+                                    ...state,
+                                    country: value.value
+                                });
+                            }}
+                            // {/* value={state.country} */}
+                        />
+                    </div>
                 </div>
                 {/* wrapper for the country */}
 
@@ -175,9 +187,10 @@ export default function Personaldetails({
                 {/* wrapper for you password */}
                 <div className="--wrapper">
                     <label htmlFor="password"> Password </label>
-                        <div className="--passwordinput">
+                    <div className="--passwordinput">
                         <input
-                            placeholder="6+ Characters"
+                            // {/* placeholder="6+ Characters" */}
+                            placeholder="Enter your password"
                             type={(passwordHidden)?"password":"text"}
                             name="password"
                             id="password"
@@ -189,6 +202,9 @@ export default function Personaldetails({
                             id="togglePassword" 
                             onClick={() => setPasswordHidden(!passwordHidden)}
                         />
+                    </div>
+                    <div className="--passwordstrengthbarwrapper">
+                        <PasswordStrengthBar password={state.password} />
                     </div>
                 </div>
                 {/* wrapper for you password */}

@@ -27,7 +27,7 @@ const _validateLocation = (scheduleState) => {
 const _validateFrequency = (scheduleState) => {
     return(
         (
-            ["Single Event", "Multi-day Event"].includes(scheduleState.frequency.value) &&
+            ["Single-day Event", "Multi-day Event"].includes(scheduleState.frequency.value) &&
             scheduleState.dateFrom.length > 0 &&
             scheduleState.dateTo.length > 0 &&
             scheduleState.timeFrom.length > 0 &&

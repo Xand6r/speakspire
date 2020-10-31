@@ -125,7 +125,7 @@ export default function Expertise({stateChanger, state}) {
 					</div>
 					<div className='expertise__formsection__section__form --nomargin'>
 						<div className='--input_wrapper --select'>
-							<label htmlFor='position'>Primary</label>
+							<label htmlFor='position'>Primary Specialty</label>
 							<div className='--singleselect'>
 								<Select
 									options={SPEAKER_SPECIALITY}
@@ -139,7 +139,7 @@ export default function Expertise({stateChanger, state}) {
 						</div>
 
 						<div className='--input_wrapper --select'>
-							<label htmlFor='company'>Secondary (optional)</label>
+							<label htmlFor='company'>Secondary Specialty</label>
 							<div className='--singleselect'>
 								<Select
 									options={SPEAKER_SPECIALITY}
@@ -159,10 +159,10 @@ export default function Expertise({stateChanger, state}) {
 						<div className='--heading'>Topic Areas</div>
 						<div className='--sub_heading'>These are the broad topics your expertise falls under.</div>
 					</div>
-					<div className='expertise__formsection__section__form'>
+					<div className='expertise__formsection__section__form  --more-margin'>
 						<div className='--input_wrapper --select'>
 							<label className='double' htmlFor='position'>
-								Primary
+								Primary Topic Area
 							</label>
 							<div className='--singleselect'>
 								<Select
@@ -180,7 +180,7 @@ export default function Expertise({stateChanger, state}) {
 							<label className='double'>
 								Topic Tags (Primary)
 								<span>
-									These are specific topics you can easily speak about. Separate topics with commas.{' '}
+									These are specific topics under your primary topic area you can easily speak about. Separate topics with commas. 
 									{/*drag and drop to change topic arrangement.*/}
 								</span>
 							</label>
@@ -200,7 +200,7 @@ export default function Expertise({stateChanger, state}) {
 
 						<div className='--input_wrapper --select'>
 							<label className='double' htmlFor='position'>
-								Secondary (optional)
+								Secondary Topic Area
 							</label>
 							<div className='--singleselect'>
 								<Select
@@ -218,7 +218,7 @@ export default function Expertise({stateChanger, state}) {
 							<label className='double'>
 								Topic Tags (Secondary)
 								<span>
-									These are specific topics you can easily speak about. Separate topics with commas.{' '}
+									These are specific topics under your secondary topic area you can easily speak about. Separate topics with comma. 
 									{/*drag and drop to change topic arrangement.*/}
 								</span>
 							</label>
@@ -274,6 +274,7 @@ export default function Expertise({stateChanger, state}) {
 										onChange={(e) => {
 											changeListData('education', index, 'field_of_study', e.target.value);
 										}}
+										placeholder="Enter Field of Study"
 									/>
 								</div>
 
@@ -366,6 +367,7 @@ export default function Expertise({stateChanger, state}) {
 										onChange={(e) => {
 											changeListData('certifications', index, 'institution_name', e.target.value);
 										}}
+										placeholder="Enter institution Name"
 									/>
 								</div>
 
@@ -394,7 +396,7 @@ export default function Expertise({stateChanger, state}) {
 												changeListData('certifications', index, 'to', [momentDate, dateString]);
 											}}
 											value={cert.to[0]}
-											disabledDate={d => !d || d.isBefore(cert.from[0])}
+											disabledDate={d => (!d || d.isBefore(cert.from[0]) || d.isAfter(moment())) }
 										/>
 									</div>
 								</div>
@@ -496,7 +498,7 @@ export default function Expertise({stateChanger, state}) {
 								<Select
 									options={EDUCATION_OPTIONS}
 									isSearchable
-									placeholder='Location'
+									placeholder='Select'
 									className='--item --cream'
 									onChange={(value) => changeSelectState('highest_education', value)}
 									value={state.highest_education}
@@ -518,7 +520,7 @@ export default function Expertise({stateChanger, state}) {
 										changeSelectState('languages', selected);
 									}}
 									overrideStrings={{
-										selectSomeItems: <span className='placeholding_text'>Select Language</span>,
+										selectSomeItems: <span className='placeholding_text'>Select </span>,
 									}}
 								/>
 							</div>

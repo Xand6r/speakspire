@@ -7,6 +7,9 @@
     .ant-spin.ant-spin-spinning{
         margin: auto;
     }
+    .--more-margin{
+        margin-bottom: 65px;
+    }
     .display{
         position: absolute;
     }
@@ -125,7 +128,7 @@
                         @extend %fourteenpx;
                         color:$dark-blue;
                         margin-bottom: 10px;
-                        text-transform: capitalize;
+                        // text-transform: capitalize;
                         font-family: 'markpro-medium';
                         &.double{
                             display: flex;

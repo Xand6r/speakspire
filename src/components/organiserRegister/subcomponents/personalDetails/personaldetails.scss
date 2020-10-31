@@ -30,6 +30,33 @@
 
         .--wrapper{
             display: flex;
+
+            .--singleselect{
+                .--item{
+                    .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
+                        background: #F7F8FC;
+                        cursor: pointer !important;
+                    }
+                    .css-g1d714-ValueContainer, .css-1hwfws3{
+                        background: #F7F8FC;
+                        padding-left: 20px;
+                        cursor: text;
+                    }
+                    .css-1wa3eu0-placeholder{
+                        color: #767E9F;
+                        // opacity: .4;
+                    }
+                    input{
+                        height: 36px;
+                    }
+                    *{
+                        transition: 500ms !important;
+                        color: $dark-blue;
+                        font-family: markpro-medium;
+                        @extend %sixteenpx;
+                    }
+                }
+            }
             
             .--passwordinput{
                 display: flex;

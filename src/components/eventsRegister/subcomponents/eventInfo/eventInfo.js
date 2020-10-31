@@ -107,10 +107,9 @@ export default function Personaldetails({
                 {/* wrapper for the event tags */}
                 <div className="--wrapper">
                     <label className="double">
-                        Services
+                        Event Tags
                         <span>
-                            Add specific services you offer. Separate services with commas.
-                        </span>
+                            Make your event easier to find. Add tags that are relevant to your topic area. Separate tags with commas.                        </span>
                     </label>
                     <div className="--input_wrapper --tags --grey">
                         <TagsInput

@@ -108,7 +108,7 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 			<div className='organiserlogin__formsection'>
 				<div className='organiserlogin__formsection__section --more-padding'>
 					<label className='double' htmlFor='position'>
-						specialty
+						Specialty
 					</label>
 					<div className='--singleselect'>
 						<Select
