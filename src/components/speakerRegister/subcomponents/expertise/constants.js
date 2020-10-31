@@ -1,14 +1,12 @@
 //  the different options for the speaker specialty
 export const SPEAKER_SPECIALITY = [
     { value: 'Public Speaker', label: 'Public Speaker' },
-    { value: 'Mentor', label: 'Mentor' },
+    { value: 'Mentor/Coach', label: 'Mentor/Coach' },
     { value: 'Tutor', label: 'Tutor' },
     { value: 'Event Compere', label: 'Event Compere' },
-    { value: 'Show Host/Anchor ', label: 'Show Host/Anchor ' },
     { value: 'Red Carpet Host', label: 'Red Carpet Host' },
     { value: 'Voice-over Artiste', label: 'Voice-over Artiste' },
     { value: 'Narrator', label: 'Narrator' },
-    { value: 'Commentator', label: 'Commentator' },
 ];
 
 
@@ -17,14 +15,26 @@ export const TOPIC_AREAS = [
     { value: 'Health/Medicine ', label: 'Health/Medicine ' },
     { value: 'Technology ', label: 'Technology ' },
     { value: 'Sports/Fitness', label: 'Sports/Fitness' },
-    { value: ' Master of Ceremony (MC)', label: ' Master of Ceremony (MC)' },
-    { value: 'Event Host/Anchor', label: 'Event Host/Anchor' },
-    { value: 'Voice-over Artiste', label: 'Voice-over Artiste' },
-    { value: 'Narrator', label: 'Narrator' },
-    { value: 'Commentator', label: 'Commentator' },
-    { value: 'Online', label: 'Online' },
-    { value: 'Physical', label: 'Physical' },
-    { value: 'Online and Physical', label: 'Online and Physical' },
+    { value: 'Education', label: 'Education' },
+    { value: 'Entertainment', label: 'Entertainment' },
+    { value: 'Music', label: 'Music' },
+    { value: 'Personal Development', label: 'Personal Development' },
+    { value: 'Business', label: 'Business' },
+    { value: 'Career Development', label: 'Career Development' },
+    { value: 'Relationship', label: 'Relationship' },
+    { value: 'Leadership', label: 'Leadership' },
+    { value: 'Media/Digital', label: 'Media/Digital' },
+    { value: 'Lifestyle', label: 'Lifestyle' },
+    { value: 'Finance', label: 'Finance' },
+    { value: 'Agriculture', label: 'Agriculture' },
+    { value: 'Family', label: 'Family' },
+    { value: 'Politics', label: 'Politics' },
+    { value: 'Fashion', label: 'Fashion' },
+    { value: 'Design', label: 'Design' },
+    { value: 'Art', label: 'Art' },
+    { value: 'Advertising/Digital Marketing', label: 'Advertising/Digital Marketing' },
+    { value: 'Nutrition', label: 'Nutrition' },
+    { value: 'Real Estate', label: 'Real Estate' },
 ];
 
 // the different options for education

@@ -93,7 +93,7 @@ export default function Register({location}) {
 				message.success("speaker account sucesfully created");
 				setTimeout(()=>history.push('/login'), 1000)
 			})
-			.catch((err) => message.error('There was an error creating your speaker account'));
+			.catch((err) => message.error('The email adress used already exists'));
 	};
 
 	return (

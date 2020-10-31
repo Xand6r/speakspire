@@ -137,7 +137,7 @@ export default function Experience({
                                                 changeListData('positions', index, 'to',  [momentDate, dateString])
                                             }}
                                             value={position.to[0]}
-                                            disabledDate={d => !d || d.isBefore(position.from[0])}
+                                            disabledDate={d => !d || d.isBefore(position.from[0]) || d.isAfter(moment())}
                                         />
                                     </div>
                                 </div>
@@ -218,7 +218,7 @@ export default function Experience({
                             <textarea
                                 name="unique_selling_proposition"
                                 type="text"
-                                placeholder="Enter Your Unique Selling Proposition"
+                                placeholder="Enter Your Short Bio"
                                 value={state.unique_selling_proposition}
                                 onChange={handleFormChange}
                             />

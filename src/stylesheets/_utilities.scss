@@ -1,9 +1,22 @@
 @import './colors';
 @import './fonts';
 
+.ant-picker-panel-container {
+    border-radius: 5px;
+}
+.ant-picker-month-btn:hover, .ant-picker-year-btn:hover {
+    color: $light-blue !important;
+}
 .ant-message-custom-content.ant-message-error > span:nth-child(2){
     font-family: 'markpro-medium' !important;
     color: $dark-blue;
+}
+.--passwordstrengthbarwrapper{
+    margin-top: 5px;
+    p{
+        font-size: 13px !important;
+        font-family: markpro-medium !important;
+    }
 }
 
 .--underline{

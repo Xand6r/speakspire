@@ -5,12 +5,12 @@ export const AVAILABILITY_OPTIONS = [
 ];
 
 export const DELIVERY_MODE_OPTIONS = [
-    { value: 'Online Engagement', label: 'Online Engagement' },
+    { value: 'Virtual Engagement', label: 'Virtual Engagement' },
     { value: 'Physical Engagement', label: 'Physical Engagement' },
-    { value: 'Online and Physical', label: 'Online and Physical' },
+    { value: 'Virtual and Physical', label: 'Virtual and Physical' },
 ];
 
 export const TRAVEL_OPTIONS = [
-    { value: 'yes', label: 'yes' },
-    { value: 'no', label: 'no' },
+    { value: 'yes', label: 'Yes' },
+    { value: 'no', label: 'No' },
 ]
