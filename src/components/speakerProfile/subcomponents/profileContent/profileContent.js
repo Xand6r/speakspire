@@ -233,7 +233,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 							{media
 								? filterData(media, 'video').map(({ link }, index) => (
 										<div className='image_tab_content' key={index}>
-											<img src={link} alt='' />
+											<video src={link} alt='' />
 										</div>
 								  ))
 								: null}

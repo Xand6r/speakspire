@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Tabs } from 'antd';
+import moment from 'moment';
 
 import { aboutEvent } from './constants';
 
@@ -12,10 +13,12 @@ import facebook from '../../assets/facebook.svg';
 import web from '../../assets/web.svg';
 
 import { component as EventCard } from '../../../../utilities/eventCard';
+import {useSelector} from 'react-redux';
 import { component as SkillTab } from '../../../../utilities/skillTab';
 
 import './profileContent.scss';
 import bluePencilIcon from '../../assets/pencil.svg';
+import { useHistory } from 'react-router-dom';
 
 const { TabPane } = Tabs;
 
@@ -34,8 +37,28 @@ const splitData = (data) => {
 const filterData = (array, params) => {
 	return array.filter((data) => data.category === params);
 };
+
+let parseNewDateFormat = (dateString) => {
+    // datestring is of the form dd-mm-yy
+    const splitDate = dateString.split('-');
+    return moment(`20${splitDate[2]}, ${splitDate[1]}, ${splitDate[0]}`).format("Do MMM Y");
+}
+
+function parseTime(time) {    
+    let timeInt = time.split(':')[0];
+    let minutes = time.split(':')[1];
+
+    // you could then add or subtract time here as needed
+
+    if(time > '12:00') {
+         return `${timeInt - 12}:${minutes} PM`;
+    } else {
+         return `${timeInt}:${minutes} AM`;
+    }
+}
 export default function ProfileContent({ about, primaryTopic, primarySkills, secondaryTopic, secondarySkills, bio, userData }) {
 	const { description, tags, topic_area, type, schedule, media } = userData;
+	const eventState = useSelector(({events} )=> events);
 	return (
 		<div class='event_profilecontent_wrapper'>
 			<div class='event_profilecontent'>
@@ -96,7 +119,7 @@ export default function ProfileContent({ about, primaryTopic, primarySkills, sec
 								{media
 									? filterData(media, 'video').map(({ link }, index) => (
 											<div className='image_tab_content' key={index}>
-												<img src={link} alt='' />
+												<video src={link} alt='' />
 											</div>
 									  ))
 									: null}
@@ -124,9 +147,38 @@ export default function ProfileContent({ about, primaryTopic, primarySkills, sec
 			<div className='event_profilecontent__bottom'>
 				<div className='--bottomtitle'>More Events from this Organizer</div>
 				<div className='--bottom__events'>
-					<EventCard />
-					<EventCard />
-					<EventCard />
+				{
+                        eventState.data.slice(0,3).map(event => {
+                            let tags=[];
+                            try{
+                                tags=JSON.parse(event.tags)
+                            }catch(err){
+                                tags=[]
+                            }
+                            const fs="Do-MMM-YYY"
+                            const dateFrom = parseNewDateFormat(event.schedule[0].date.slice(0,8))
+                            const dateTo = parseNewDateFormat(event.schedule[0].date.slice(9))
+                            const timeFrom = parseTime(event.schedule[0].time.split('-')[0])
+                            const timeTo = parseTime(event.schedule[0].time.split('-')[1])
+                            let dateInterval = ""
+                            if(event.schedule[0].frequency === "Single Event"){
+                                dateInterval = `${dateFrom} ${timeFrom} WAT`
+                            }else{
+                                dateInterval = `${dateFrom} - ${dateTo} ${timeFrom} WAT`
+                            }
+                            return (
+                                <EventCard
+                                    id={event.id}
+                                    eventName={event.name}
+                                    eventTitle={event.organizer}
+                                    profileimage={event.banner}
+                                    skillsList={tags}
+                                    pcs={"pcs"}
+                                    dateInterval = {dateInterval}
+                                />
+                            )
+                        })
+                    }
 				</div>
 			</div>
 			<div />

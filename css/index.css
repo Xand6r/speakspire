@@ -13,3 +13,9 @@ code {
 span.dropdown-heading-value {
   font-size: 16px;
 }
+
+video {
+  object-fit: cover;
+  width: 263px;
+  height: 176px;
+}

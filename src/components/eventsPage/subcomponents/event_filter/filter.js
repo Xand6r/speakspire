@@ -162,7 +162,7 @@ export default function Filter() {
                 </div>
 
                 <div className="filter__results">
-                {
+                    {
                         eventState.data.slice(0,limit).map(event => {
                             let tags=[];
                             try{

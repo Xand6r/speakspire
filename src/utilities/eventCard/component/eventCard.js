@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {component as Skill} from '../../skillTab';
+import {useHistory} from 'react-router-dom'
 
 
 import FooterIcons from '../assets/footerIcons.svg';
@@ -26,10 +27,13 @@ const tempskills = [
 export default function EventCard({
     eventName, eventTitle,
     dateInterval, skillsList,
-    pcs, coverimage, profileimage
+    pcs, coverimage, profileimage, id
 }) {
+    const history = useHistory();
     return (
-        <div>
+        <div
+            onClick={() => history.push(`/events/${id}`)}
+        >
             <div className="eventcard">
                 <div className={`eventcard__headerimage ${(profileimage === 'placeholder') && 'placeholder'}`}>
                     {
@@ -90,6 +94,7 @@ export default function EventCard({
 }
 
 EventCard.propTypes = {
+    id: PropTypes.number.isRequired,
     eventName: PropTypes.string,
     eventTitle: PropTypes.string,
     dateInterval: PropTypes.string,
