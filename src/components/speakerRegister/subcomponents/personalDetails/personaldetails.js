@@ -153,7 +153,7 @@ export default function Personaldetails({
                 <div className="--wrapper">
                     <label htmlFor="coutry">Country</label>
                     <div className="--singleselect">
-                    <Select
+                        <Select
                             options={COUNTRY_LIST}
                             isSearchable
                             placeholder="Select"
@@ -163,7 +163,6 @@ export default function Personaldetails({
                                     ...state,
                                     country: value.value
                                 });
-                                console.log(state)
                             }}
                             // {/* value={state.country} */}
                         />
