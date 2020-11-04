@@ -72,7 +72,7 @@ export default function Register({ location }) {
 				message.success('Organizer account sucesfully created');
 				setTimeout(() => history.push('/login'), 1000);
 			})
-			.catch(() => message.error('There was an error creating your speaker account'));
+			.catch(() => message.error('An account exists with this mail already!'));
 	};
 
 	return (

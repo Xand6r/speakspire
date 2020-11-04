@@ -14,6 +14,6 @@ export const validateOrganiserMedia = (mediaDetails) =>{
         mediaDetails.partners.length > 0 &&
         mediaDetails.profilePhoto.src &&
         mediaDetails.coverPhoto.src &&
-        mediaDetails.links.length > 0
+        mediaDetails.links.length >= 0
     );
 }

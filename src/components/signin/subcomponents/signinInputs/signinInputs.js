@@ -5,7 +5,8 @@ import { useDispatch } from 'react-redux';
 import {setLoggedIn} from '../../../../redux/userSlice';
 
 import { LoadingOutlined } from '@ant-design/icons';
-import axios from '../../../../utilities/axios'
+import axios from '../../../../utilities/axios';
+import { setToken, getToken, getUser }  from '../../../../api/user'
 
 import { ROLES_AND_URLS } from './constants';
 
@@ -36,7 +37,7 @@ export default function SigninInputs() {
             setLoading(false)
             const userToken = res.data.data;
             message.success("Login Sucessfull");
-            sessionStorage.setItem("speakspire_token", userToken);
+            setToken(userToken);
             dispatch(setLoggedIn());
             setTimeout(()=>{
                 history.push("/speakers");
