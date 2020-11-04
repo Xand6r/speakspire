@@ -6,6 +6,8 @@ import {
     ADMIN, ADMIN_HOME, USER_HOME, LOGGED_OUT_VIEW
 } from './constants';
 
+import { getToken, setToken, getUser } from '../../../api/user';
+
 /**
  * A wrapper for routers, which is used to limit which route users who have not signed in can use
  *
@@ -19,7 +21,8 @@ export default function PrivateRoute({
 }) {
     // import the authentication status of both admin and user
     
-    const foundSession = sessionStorage.getItem("speakspire_token")
+    const foundSession = getToken();
+    console.log(foundSession);
 
     // upon mount of this app, check if the user is authenticated in the state
 

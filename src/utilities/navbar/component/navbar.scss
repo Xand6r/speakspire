@@ -17,7 +17,21 @@
     .navigation__menu {
         display: flex;
         align-items: center;
+        
+        .profilepicture__container{
+            display: flex;
+            margin-right: 30px;
+            cursor: pointer;
+            img.profilepicture{
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                margin-right: 15px;
+            }
+            img.arrow{
 
+            }
+        }
         .navigation__menu__item {
             margin-right: 35px;
             color: $dark-blue;

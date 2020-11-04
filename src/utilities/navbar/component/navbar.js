@@ -1,5 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { Menu, Dropdown, Button, message, Tooltip } from 'antd';
+import profilePicturePlaceholder from '../assets/avatarplaceholder.svg';
+import downArrowActive from '../assets/downArrowActive.svg';
+import downArrowNeutral from '../assets/downArrowNeutral.svg'
+import { Avatar, Image } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 import Logo from '../assets/Logo.svg';
 import { setLoggedIn, setLoggedOut } from '../../../redux/userSlice';
@@ -9,9 +15,29 @@ import { fetchAllEvents } from '../../../redux/eventSlice';
 import { fetchAllOrganizers } from '../../../redux/organiserSlice';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { getToken, setToken, getUser } from '../../../api/user';
 
 import './navbar.scss';
-import { message } from 'antd';
+
+const menu = (
+	<Menu onClick={handleMenuClick}>
+	  <Menu.Item key="1" icon={<UserOutlined />}>
+		1st menu item
+	  </Menu.Item>
+	  <Menu.Item key="2" icon={<UserOutlined />}>
+		2nd menu item
+	  </Menu.Item>
+	  <Menu.Item key="3" icon={<UserOutlined />}>
+		3rd menu item
+	  </Menu.Item>
+	</Menu>
+);
+
+
+function handleMenuClick(e) {
+	message.info('Click on menu item.');
+	console.log('click', e);
+}
 
 const MENU_ITEMS = [
 	{ text: 'Speakers', link: '/speakers' },
@@ -24,6 +50,11 @@ const MENU_ITEMS = [
 export default function Navbar() {
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const [isHovered, setIsHovered] = useState(false);
+
+	function toggleHover(){
+		setIsHovered(!isHovered);
+	}
 
 	useEffect(() => {
 		// fetch all speakers
@@ -33,17 +64,20 @@ export default function Navbar() {
 		// fetch all organisers
 		dispatch(fetchAllOrganizers());
 
-		const foundSession = sessionStorage.getItem('speakspire_token');
+		const foundSession = getToken();
 		if (foundSession) {
+			console.log(getUser());
 			dispatch(setLoggedIn());
 		}
 	}, [dispatch]);
+
 	const signOut = () => {
 		sessionStorage.clear();
 		dispatch(setLoggedOut());
 		message.success('Logout sucessfull');
 		setTimeout(() => history.push('/'), 1000);
 	};
+
 	const userState = useSelector(({ user }) => user);
 	return (
 		<div>
@@ -72,9 +106,32 @@ export default function Navbar() {
 							</Link>
 						</>
 					) : (
-						<Link className='link' onClick={signOut}>
-							<div className='navigation__menu__item --filledbutton'> Sign Out</div>
-						</Link>
+						<>
+							<Dropdown
+								overlay={menu}
+								placement="bottomCenter"
+							>
+								<div
+									className="profilepicture__container"
+									onMouseEnter={toggleHover} onMouseLeave={toggleHover}
+								>
+									<img
+										className="profilepicture"
+										src={profilePicturePlaceholder}
+										alt=""
+									/>
+									<img
+										className="arrow" 
+										src={!isHovered ? downArrowNeutral: downArrowActive}
+										alt=""
+									/>
+									
+								</div>
+							</Dropdown>
+							<Link className='link' to='/registerevent'>
+								<div className='navigation__menu__item --outlinedbutton'> Add Event </div>
+							</Link>
+						</>
 					)}
 				</div>
 			</div>
