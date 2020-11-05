@@ -30,6 +30,17 @@ export default function Speakerprofile(props) {
 		getDetails();
 	}, [history, props.match.params.id]);
 
+	const [offset, setOffset] = useState(0)
+	useEffect(() => {
+	  function handleScroll() {
+		setOffset(window.pageYOffset)
+	  }
+	  window.addEventListener("scroll", handleScroll)
+	  return () => {
+		window.removeEventListener("scroll", handleScroll)
+	  }
+	}, [])
+
 	return (
 		<div className='eventprofile'>
 			{/* the navigation bar of the site */}
@@ -38,7 +49,14 @@ export default function Speakerprofile(props) {
 
 			{/* the section for the image header */}
 			<div className='eventprofile__header_image'>
-				<img src={userData.banner} alt='' />
+				<img
+					src={userData.banner}
+					alt=''
+					style={{
+						transform: `translateY(${Math.abs(offset) * 0.25}px)`,
+						transition: '200ms'
+					}}
+				/>
 			</div>
 			{/* the section for the image header */}
 

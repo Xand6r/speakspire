@@ -30,7 +30,18 @@ export default function Speakerprofile() {
 		if(id && role !== 'speaker'){
 			getDetails();
 		}
-	}, [history, id]);
+	}, [history, id, role]);
+
+	const [offset, setOffset] = useState(0)
+	useEffect(() => {
+	  function handleScroll() {
+		setOffset(window.pageYOffset)
+	  }
+	  window.addEventListener("scroll", handleScroll)
+	  return () => {
+		window.removeEventListener("scroll", handleScroll)
+	  }
+	}, [])
 
 	return (
 		<div className='speakerprofile'>
@@ -40,7 +51,14 @@ export default function Speakerprofile() {
 
 			{/* the section for the image header */}
 			<div className='speakerprofile__header_image'>
-				<img src={userData.cover_photo} alt='' />
+				<img
+					src={userData.cover_photo}
+					alt=''
+					style={{
+						transform: `translateY(${Math.abs(offset) * 0.25}px)`,
+						transition: '200ms'
+					}}
+				/>
 			</div>
 			{/* the section for the image header */}
 
