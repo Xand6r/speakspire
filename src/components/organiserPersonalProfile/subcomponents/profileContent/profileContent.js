@@ -42,6 +42,7 @@ export default function ProfileContent({ userData, reason, primaryTopic, primary
 					<div className='profilecontent_organiser__left__reason'>
 						<div className='--top_heading'>
 							<span>About this Organisation</span>
+							<EditIcon />
 						</div>
 						<div className='--bottom_content'>{bio}</div>
 					</div>
@@ -53,11 +54,12 @@ export default function ProfileContent({ userData, reason, primaryTopic, primary
 								<img src={icon} alt='social media' key={i} />
 							))}
 						</div>
+						<EditIcon />
 					</div>
 				</div>
 				<div className='profilecontent_organiser__right'>
 					<div className='profilecontent_organiser__right__experiences --tabs'>
-						<Tabs defaultActiveKey='1'>
+						<Tabs defaultActiveKey='1' tabBarExtraContent={<EditIcon />}>
 							{/* the tab to upload images */}
 							<TabPane tab='Clients' key='1'>
 								<div className='experience_tab_content'>
@@ -93,7 +95,7 @@ export default function ProfileContent({ userData, reason, primaryTopic, primary
 					</div>
 
 					<div className='profilecontent_organiser__right__media --tabs'>
-						<Tabs defaultActiveKey='1'>
+						<Tabs defaultActiveKey='1' tabBarExtraContent={<EditIcon />}>
 							{/* the tab to upload images */}
 							<TabPane tab='Photos' key='1'>
 								{media
@@ -153,7 +155,7 @@ export default function ProfileContent({ userData, reason, primaryTopic, primary
 										profileImage={organiser.profile_photo}
 										companyName={organiser.name}
 										specialty={organiser.specialty}
-										//{/* services={JSON.parse(organiser.services)} */}
+										services={JSON.parse(organiser.services)}
 									/>
 								</div>
 							);
