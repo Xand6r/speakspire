@@ -4,6 +4,35 @@
 @import '../../../stylesheets/fonts';
 
 
+.navigation-dropdown {
+    .dropdown-content{
+        width: 127px;
+        box-sizing: border-box;
+        width: 127px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        padding: 19px 14px;
+        font-family: 'markpro-medium';
+        cursor: pointer;
+        color: #162359;
+        @extend %fourteenpx;
+        .profileimage{
+            fill: #162359;
+        }
+    
+        &:hover{
+            background: #EDF1FE;
+            color: #4D75F4;
+        }
+        &:hover .profileimage{
+            fill: #4D75F4;
+        }
+        &__image{
+            margin-right: 8px;
+        }
+    }
+}
 // main styles
 .navigation {
     height: 80px;
