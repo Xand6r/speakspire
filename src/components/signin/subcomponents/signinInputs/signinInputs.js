@@ -6,7 +6,7 @@ import { setLoggedIn } from '../../../../redux/userSlice';
 
 import { LoadingOutlined } from '@ant-design/icons';
 import axios from '../../../../utilities/axios';
-import { setToken, getToken, getUser, saveID, saveRole } from '../../../../api/user';
+import { setToken, saveID, saveRole } from '../../../../api/user';
 
 import { ROLES_AND_URLS } from './constants';
 

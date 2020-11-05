@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
 	Switch,
 	Link,
 	Route, // for later
 } from 'react-router-dom';
+import { setToken, saveID, saveRole } from '../../../api/user';
+import { setLoggedIn } from '../../../redux/userSlice';
+import { useDispatch } from 'react-redux';
 
-import {
-	STEPS, INITIAL_COMPANY_DETAILS_STATE, INITIAL_MEDIA_STATE,
-	ORGANISER_MEDIA_KEY, ORGANISER_PERSONAL_DETAILS_KEY
-} from './constants';
+import { STEPS, INITIAL_COMPANY_DETAILS_STATE, INITIAL_MEDIA_STATE, ORGANISER_MEDIA_KEY, ORGANISER_PERSONAL_DETAILS_KEY } from './constants';
 
 import OrganiserCard from '../../../utilities/organiserCard';
 import { component as NavBar } from '../../../utilities/navbar';
 import { component as SectionTab } from '../../speakerRegister/subcomponents/sectionTab';
-import { component as SpeakerCard } from '../../../utilities/speakerCard';
 import { component as PersonalDetail } from '../subcomponents/personalDetails';
 import { component as Media } from '../subcomponents/media';
 import cleanData from '../subcomponents/utils/cleanData';
@@ -23,31 +21,22 @@ import axios from '../../../utilities/axios';
 import { message } from 'antd';
 
 import './register.scss';
-import defaultImage from '../assets/greycircle.svg';
 
-import {
-	validateOrganiserDetails, validateOrganiserMedia
-} from '../validators';
+import { validateOrganiserDetails, validateOrganiserMedia } from '../validators';
 
-import {
-	getFormState, deleteFormState
-}  from '../../../utilities/dataPersist';
+import { getFormState, deleteFormState } from '../../../utilities/dataPersist';
 
 export default function Register({ location }) {
+	const dispatch = useDispatch();
 	const [activeTab, setactiveTab] = useState(0);
 	const [previewHidden, setPreviewHidden] = useState(false);
-	const [personalDetails, setPersonalDetails] = useState(
-		getFormState(ORGANISER_PERSONAL_DETAILS_KEY) || INITIAL_COMPANY_DETAILS_STATE
-	);
-	const [media, setMedia] = useState(
-		getFormState(ORGANISER_MEDIA_KEY) || INITIAL_MEDIA_STATE
-	);
-	const history = useHistory();
+	const [personalDetails, setPersonalDetails] = useState(getFormState(ORGANISER_PERSONAL_DETAILS_KEY) || INITIAL_COMPANY_DETAILS_STATE);
+	const [media, setMedia] = useState(getFormState(ORGANISER_MEDIA_KEY) || INITIAL_MEDIA_STATE);
 
 	const mapState = {
 		'Company details': validateOrganiserDetails(personalDetails),
-		'About & Media': validateOrganiserMedia(media)
-	}
+		'About & Media': validateOrganiserMedia(media),
+	};
 
 	useEffect(() => {
 		const { pathname } = location;
@@ -79,21 +68,26 @@ export default function Register({ location }) {
 
 		return axios
 			.post('/organizers/add', cleanData(finalState))
-			.then(() => {
+			.then((res) => {
+				const { data, role, id } = res.data;
+				setToken(data);
+				saveID(id);
+				saveRole(role);
+				dispatch(setLoggedIn());
 				message.success('Organiser account sucesfully created');
 				// clear the saved states
 				deleteFormState([ORGANISER_MEDIA_KEY, ORGANISER_PERSONAL_DETAILS_KEY]);
-				setTimeout(() => history.push('/login'), 1000);
+				setTimeout(() => (window.location.href = '/profile'), 1000);
 			})
 			.catch((err) => {
-				const {email} = err.response.data.message;
-				if(email){
+				const { email } = err.response.data.message;
+				if (email) {
 					message.error(email);
 					return;
-				}else{
+				} else {
 					message.error(err.response.data.message);
 				}
-			})
+			});
 	};
 
 	return (
@@ -107,13 +101,7 @@ export default function Register({ location }) {
 				<div className='organiser__activetab__steps'>
 					{STEPS.map((step, index) => (
 						<Link key={Math.random()} className='link' to={`/organiser/${index + 1}`}>
-							<SectionTab
-								index={index}
-								text={step}
-								active={index === activeTab}
-								changeTab={makeActive}
-								filled={mapState[step]}
-								/>
+							<SectionTab index={index} text={step} active={index === activeTab} changeTab={makeActive} filled={mapState[step]} />
 						</Link>
 					))}
 				</div>

@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
 	Switch,
 	Link,
 	Route, // for later
 } from 'react-router-dom';
+import { setToken, saveID, saveRole } from '../../../api/user';
+import { setLoggedIn } from '../../../redux/userSlice';
+import { useDispatch } from 'react-redux';
 
 import {
 	STEPS,
@@ -19,21 +21,19 @@ import {
 	SPEAKER_MEDIA_KEY,
 	SPEAKER_PERSONAL_DETAILS_KEY,
 	SPEAKER_PREFERENCE_KEY,
-	SPEAKER_EXPERTISE_KEY
+	SPEAKER_EXPERTISE_KEY,
 } from './constants';
 
-import {
-	getFormState, deleteFormState
-} from '../../../utilities/dataPersist'
+import { getFormState, deleteFormState } from '../../../utilities/dataPersist';
 
-import {component as NavBar} from '../../../utilities/navbar';
-import {component as SectionTab} from '../subcomponents/sectionTab';
-import {component as SpeakerCard} from '../../../utilities/speakerCard';
-import {component as PersonalDetail} from '../subcomponents/personalDetails';
-import {component as Expertise} from '../subcomponents/expertise';
-import {component as Experience} from '../subcomponents/experience';
-import {component as Preference} from '../subcomponents/preference';
-import {component as Media} from '../subcomponents/media';
+import { component as NavBar } from '../../../utilities/navbar';
+import { component as SectionTab } from '../subcomponents/sectionTab';
+import { component as SpeakerCard } from '../../../utilities/speakerCard';
+import { component as PersonalDetail } from '../subcomponents/personalDetails';
+import { component as Expertise } from '../subcomponents/expertise';
+import { component as Experience } from '../subcomponents/experience';
+import { component as Preference } from '../subcomponents/preference';
+import { component as Media } from '../subcomponents/media';
 
 import {
 	validatePersonaDetails,
@@ -45,33 +45,22 @@ import {
 
 import './register.scss';
 import defaultImage from '../assets/greycircle.svg';
-import {message} from 'antd';
+import { message } from 'antd';
 import cleanData from '../subcomponents/utils/cleanData';
 import axios from '../../../utilities/axios';
 
-export default function Register({location}) {
+export default function Register({ location }) {
+	const dispatch = useDispatch();
 	const [activeTab, setactiveTab] = useState(0);
 	const [previewHidden, setPreviewHidden] = useState(false);
-	const [personalDetails, setPersonalDetails] = useState(
-		getFormState(SPEAKER_PERSONAL_DETAILS_KEY) || INITIAL_PERSONAL_DETAILS_STATE
-	);
-	const [expertise, setExpertise] = useState(
-		getFormState(SPEAKER_EXPERTISE_KEY) || INITIAL_EXPERTISE_STATE
-	);
-	const [experience, setExperience] = useState(
-		getFormState(SPEAKER_EXPERIENCE_KEY) || INITIAL_EXPERIENCE_STATE
-	);
-	const [preference, setPreference] = useState(
-		getFormState(SPEAKER_PREFERENCE_KEY) || INITIAL_PREFERENCE_STATE)
-	;
-	const [media, setMedia] = useState(
-		getFormState(SPEAKER_MEDIA_KEY) || INITIAL_MEDIA_STATE
-	);
-
-	const history = useHistory();
+	const [personalDetails, setPersonalDetails] = useState(getFormState(SPEAKER_PERSONAL_DETAILS_KEY) || INITIAL_PERSONAL_DETAILS_STATE);
+	const [expertise, setExpertise] = useState(getFormState(SPEAKER_EXPERTISE_KEY) || INITIAL_EXPERTISE_STATE);
+	const [experience, setExperience] = useState(getFormState(SPEAKER_EXPERIENCE_KEY) || INITIAL_EXPERIENCE_STATE);
+	const [preference, setPreference] = useState(getFormState(SPEAKER_PREFERENCE_KEY) || INITIAL_PREFERENCE_STATE);
+	const [media, setMedia] = useState(getFormState(SPEAKER_MEDIA_KEY) || INITIAL_MEDIA_STATE);
 
 	useEffect(() => {
-		const {pathname} = location;
+		const { pathname } = location;
 		const currentTab = pathname.split('/')[2];
 		if (!currentTab) {
 			setactiveTab(0);
@@ -109,21 +98,22 @@ export default function Register({location}) {
 		return axios
 			.post('/speakers/add', cleanData(finalState))
 			.then((res) => {
-				message.success("speaker account sucesfully created");
+				const { data, role, id } = res.data;
+				setToken(data);
+				saveID(id);
+				saveRole(role);
+				dispatch(setLoggedIn());
+				message.success('speaker account sucesfully created');
 				// clear the state upon submit
-				deleteFormState([
-					SPEAKER_EXPERIENCE_KEY, SPEAKER_EXPERTISE_KEY,
-					SPEAKER_MEDIA_KEY, SPEAKER_PERSONAL_DETAILS_KEY,
-					SPEAKER_PREFERENCE_KEY]
-				)
-				setTimeout(()=>history.push('/login'), 1000)
+				deleteFormState([SPEAKER_EXPERIENCE_KEY, SPEAKER_EXPERTISE_KEY, SPEAKER_MEDIA_KEY, SPEAKER_PERSONAL_DETAILS_KEY, SPEAKER_PREFERENCE_KEY]);
+				setTimeout(() => (window.location.href = '/profile'), 1000);
 			})
 			.catch((err) => {
-				const {email} = err.response.data.message;
-				if(email){
+				const { email } = err.response.data.message;
+				if (email) {
 					message.error(email);
 					return;
-				}else{
+				} else {
 					message.error(err.response.data.message);
 				}
 			});
@@ -139,13 +129,7 @@ export default function Register({location}) {
 			<div className='register__activetab'>
 				{STEPS.map((step, index) => (
 					<Link key={Math.random()} className='link' to={`/register/${index + 1}`}>
-						<SectionTab
-							index={index}
-							text={step}
-							active={index === activeTab}
-							changeTab={makeActive}
-							filled={mapState[step]}
-						/>
+						<SectionTab index={index} text={step} active={index === activeTab} changeTab={makeActive} filled={mapState[step]} />
 					</Link>
 				))}
 			</div>
@@ -161,8 +145,7 @@ export default function Register({location}) {
 								onClick={() => {
 									setPreviewHidden(!previewHidden);
 								}}
-								className={previewHidden ? 'fa fa-eye' : 'fa fa-eye-slash'}
-							></i>
+								className={previewHidden ? 'fa fa-eye' : 'fa fa-eye-slash'}></i>
 						</div>
 						{!previewHidden ? (
 							<div className='register__content__preview__card'>
@@ -171,12 +154,8 @@ export default function Register({location}) {
 									company={experience.positions[0].company}
 									position={experience.positions[0].position}
 									skills={
-										expertise.primary_topic_tags.filter(
-											(tag) => !INITIAL_EXPERTISE_STATE.primary_topic_tags.includes(tag)
-										).length > 0
-											? expertise.primary_topic_tags.filter(
-													(tag) => !INITIAL_EXPERTISE_STATE.primary_topic_tags.includes(tag)
-											  )
+										expertise.primary_topic_tags.filter((tag) => !INITIAL_EXPERTISE_STATE.primary_topic_tags.includes(tag)).length > 0
+											? expertise.primary_topic_tags.filter((tag) => !INITIAL_EXPERTISE_STATE.primary_topic_tags.includes(tag))
 											: undefined
 									}
 									image={media.profile_photo.src || undefined}
@@ -197,31 +176,15 @@ export default function Register({location}) {
 						<Route
 							path='/register/(1)?'
 							exact
-							render={(props) => (
-								<PersonalDetail {...props} stateChanger={setPersonalDetails} state={personalDetails} />
-							)}
+							render={(props) => <PersonalDetail {...props} stateChanger={setPersonalDetails} state={personalDetails} />}
 						/>
-						<Route
-							path='/register/2'
-							exact
-							render={(props) => <Expertise {...props} stateChanger={setExpertise} state={expertise} />}
-						/>
-						<Route
-							path='/register/3'
-							exact
-							render={(props) => <Experience {...props} stateChanger={setExperience} state={experience} />}
-						/>
-						<Route
-							path='/register/4'
-							exact
-							render={(props) => <Preference {...props} stateChanger={setPreference} state={preference} />}
-						/>
+						<Route path='/register/2' exact render={(props) => <Expertise {...props} stateChanger={setExpertise} state={expertise} />} />
+						<Route path='/register/3' exact render={(props) => <Experience {...props} stateChanger={setExperience} state={experience} />} />
+						<Route path='/register/4' exact render={(props) => <Preference {...props} stateChanger={setPreference} state={preference} />} />
 						<Route
 							path='/register/5'
 							exact
-							render={(props) => (
-								<Media {...props} stateChanger={setMedia} state={media} handleSubmit={handleSubmit} />
-							)}
+							render={(props) => <Media {...props} stateChanger={setMedia} state={media} handleSubmit={handleSubmit} />}
 						/>
 					</Switch>
 				</div>
