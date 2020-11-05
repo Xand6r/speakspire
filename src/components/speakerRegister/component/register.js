@@ -106,7 +106,7 @@ export default function Register({location}) {
 			return;
 		}
 		// send post request
-		axios
+		return axios
 			.post('/speakers/add', cleanData(finalState))
 			.then((res) => {
 				message.success("speaker account sucesfully created");
@@ -118,7 +118,15 @@ export default function Register({location}) {
 				)
 				setTimeout(()=>history.push('/login'), 1000)
 			})
-			.catch((err) => message.error('The email adress used already exists'));
+			.catch((err) => {
+				const {email} = err.response.data.message;
+				if(email){
+					message.error(email);
+					return;
+				}else{
+					message.error(err.response.data.message);
+				}
+			});
 	};
 
 	return (

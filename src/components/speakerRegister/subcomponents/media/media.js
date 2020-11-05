@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import ImgCrop from 'antd-img-crop';
@@ -28,6 +28,14 @@ import deleteBin from '../../assets/deleteBin.svg';
 import {LoadingOutlined} from '@ant-design/icons';
 
 import {Upload, message, Button} from 'antd';
+
+import {
+    SPEAKER_MEDIA_KEY
+} from '../../component/constants';
+
+import {
+    cacheFormState
+} from '../../../../utilities/dataPersist';
 
 const {TabPane} = Tabs;
 
@@ -80,7 +88,19 @@ export default function Media({stateChanger, state, handleSubmit}) {
 	const [loadingStates, setLoadingStates] = useState({
 		coverPictureLoading: false,
 		userPictureLoading: false,
+		submitLoading: false
 	});
+
+	const handleSubmitForm = () =>{
+		setLoadingStates({...loadingStates, submitLoading:true});
+		handleSubmit()
+		.finally(()=>{
+			setLoadingStates({...loadingStates, submitLoading:false});
+		})
+	}
+	useEffect(()=>{
+		cacheFormState(SPEAKER_MEDIA_KEY, state)
+	}, [state]);
 
 	return (
 		<div className='media'>
@@ -126,7 +146,7 @@ export default function Media({stateChanger, state, handleSubmit}) {
 								) : (
 									<div className='image_upload_button'>
 										<Button
-											disabled={loadingStates.userPictureLoading}
+											disabled={loadingStates.coverPictureLoading || loadingStates.userPictureLoading}
 											icon={!loadingStates.userPictureLoading && <FileImage />}
 										>
 											{loadingStates.userPictureLoading ? <Spin indicator={antIcon} /> : 'Upload File'}
@@ -188,7 +208,7 @@ export default function Media({stateChanger, state, handleSubmit}) {
 								) : (
 									<div className='image_upload_button'>
 										<Button
-											disabled={loadingStates.coverPictureLoading}
+											disabled={loadingStates.coverPictureLoading || loadingStates.userPictureLoading}
 											icon={!loadingStates.coverPictureLoading && <FileImage />}
 										>
 											{loadingStates.coverPictureLoading ? <Spin indicator={antIcon} /> : 'Upload File'}
@@ -262,8 +282,16 @@ export default function Media({stateChanger, state, handleSubmit}) {
 						<div className='cancel'>Back</div>
 					</Link>
 
-					<Link className='link' onClick={handleSubmit}>
-						<div className='next'>Create My Account</div>
+					<Link className='link' onClick={handleSubmitForm}>
+						<div className='next'>
+							{
+								loadingStates.submitLoading?
+								<Spin indicator={
+									<LoadingOutlined style={{fontSize: 24, color: '#fff'}} spin />
+								} />:
+								"Create My Account"
+							}
+						</div>
 					</Link>
 				</div>
 			</div>

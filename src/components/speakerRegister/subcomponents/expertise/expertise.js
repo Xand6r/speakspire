@@ -30,7 +30,7 @@ import {
 
 import {
     cacheFormState
-} from '../../../../utilities/dataPersist'
+} from '../../../../utilities/dataPersist';
 
 import './expertise.scss';
 import 'react-tagsinput/react-tagsinput.css';
