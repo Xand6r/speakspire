@@ -36,6 +36,7 @@ export default function Navbar() {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const [isHovered, setIsHovered] = useState(false);
+	const [userDetails, setUserDetails] = useState(null);
 
 	const goTo = (path) => {
 		history.push(path)
@@ -55,11 +56,11 @@ export default function Navbar() {
 
 		const foundSession = getToken();
 		if (foundSession) {
-			console.log(getUser());
+			setUserDetails(getUser().user_id)
 			dispatch(setLoggedIn());
 		}
 	}, [dispatch]);
-
+	console.log(userDetails)
 	const signOut = () => {
 		sessionStorage.clear();
 		message.success('Logout sucessfull');
@@ -129,7 +130,7 @@ export default function Navbar() {
 						<>
 							<Dropdown onOpenChange={([...inp])=>console.log(inp)} overlay={menu} placement='bottomCenter'>
 								<div className='profilepicture__container' onMouseEnter={toggleHover} onMouseLeave={toggleHover}>
-									<img className='profilepicture' src={profilePicturePlaceholder} alt='' />
+									<img className='profilepicture' src={userDetails.profile_photo || profilePicturePlaceholder} alt='' />
 									<img className='arrow' src={!isHovered ? downArrowNeutral : downArrowActive} alt='' />
 								</div>
 							</Dropdown>

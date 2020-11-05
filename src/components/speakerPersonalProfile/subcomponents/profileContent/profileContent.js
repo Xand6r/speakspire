@@ -14,6 +14,12 @@ import web from '../../assets/web.svg';
 import './profileContent.scss';
 import bluePencilIcon from '../../assets/pencil.svg';
 
+const EditIcon = () => (
+	<div className='editicon'>
+		<img src={bluePencilIcon} alt='' />
+	</div>
+);
+
 const { TabPane } = Tabs;
 const SOCIAL_MEDIA_ICONS = [instagram, linkedin, twitter, facebook, web];
 
@@ -66,13 +72,14 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 				<div className='profilecontent__left__reason'>
 					<div className='--top_heading'>
 						<span>Why Choose Me?</span>
+						<EditIcon />
 					</div>
 					<div className='--bottom_content'>{usp}</div>
 				</div>
 
 				{/* the section for the first tab */}
 				<div className='profilecontent__left__speaking --tabs'>
-					<Tabs defaultActiveKey='1'>
+					<Tabs defaultActiveKey='1' tabBarExtraContent={<EditIcon />} >
 						{/* the tab to upload images */}
 						<TabPane tab='Topic Areas' key='1'>
 							{/* topic areas content */}
@@ -118,6 +125,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 							<img src={icon} alt='social media' key={i} />
 						))}
 					</div>
+					<EditIcon />
 				</div>
 
 				{/* section for similar speakers */}
@@ -151,7 +159,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 			</div>
 			<div className='profilecontent__right'>
 				<div className='profilecontent__right__experiences --tabs'>
-					<Tabs defaultActiveKey='1'>
+					<Tabs defaultActiveKey='1' tabBarExtraContent={<EditIcon />}>
 						{/* the tab to upload images */}
 						<TabPane tab='Position' key='1'>
 							<div className='experience_tab_content'>
@@ -212,12 +220,13 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 				<div className='profilecontent__right__bio'>
 					<div className='--top_heading'>
 						<span>Bio</span>
+						<EditIcon />
 					</div>
 					<div className='--bottom_content'>{bio}</div>
 				</div>
 
 				<div className='profilecontent__right__media --tabs'>
-					<Tabs defaultActiveKey='1'>
+					<Tabs defaultActiveKey='1' tabBarExtraContent={<EditIcon />}>
 						{/* the tab to upload images */}
 						<TabPane tab='Photos' key='1'>
 							{media

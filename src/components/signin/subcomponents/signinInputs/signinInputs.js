@@ -44,7 +44,8 @@ export default function SigninInputs() {
 					if (role === 'individual') {
 						history.push('/');
 					} else {
-						history.push('/profile');
+						// history.push('/profile');
+						history.push('/');
 					}
 					dispatch(setLoggedIn());
 				}, 1000);
