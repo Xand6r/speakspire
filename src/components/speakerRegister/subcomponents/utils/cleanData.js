@@ -39,7 +39,7 @@ export default (data) => {
 		name: fullname ? fullname : '',
 		email: email ? email : '',
 		sex: gender ? gender : '',
-		birthday: birthdate ? birthdate[1] : '',
+		birthday: birthdate,
 		phone: phonenumber ? phonenumber : '',
 		state: city ? city : '',
 		country: country ? country : '',

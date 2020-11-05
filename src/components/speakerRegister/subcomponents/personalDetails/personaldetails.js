@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DatePicker } from 'antd';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -9,6 +9,13 @@ import Select from 'react-select';
 import { COUNTRY_LIST } from '../../component/constants';
 import PasswordStrengthBar from 'react-password-strength-bar';
 
+import {
+    SPEAKER_PERSONAL_DETAILS_KEY
+} from '../../component/constants';
+
+import {
+    cacheFormState
+} from '../../../../utilities/dataPersist'
 
 import notificationIcon from '../../assets/notification.svg';
 import './personaldetails.scss';
@@ -45,6 +52,10 @@ export default function Personaldetails({
             gender: GENDER_OPTIONS[clickedIndex]
           })
     }
+    useEffect(()=>{
+        cacheFormState(SPEAKER_PERSONAL_DETAILS_KEY, state)
+    }, [state])
+
 
     const monthFormat = 'DD-MM-YY';
     const DateSuffix = () => (
@@ -109,11 +120,11 @@ export default function Personaldetails({
                         onChange={(momentDate, dateString)=>{
                             stateChanger({
                                 ...state,
-                                birthdate: [momentDate, dateString]
+                                birthdate: dateString
                             });
 
                         }}
-                        value={state.birthdate[0]}
+                        value={moment(state.birthdate, 'DD-MM-YY')}
                         disabledDate={d => !d || d.isAfter(moment().subtract(18, 'years') )}
                     />
                 </div>
@@ -158,13 +169,18 @@ export default function Personaldetails({
                             isSearchable
                             placeholder="Select"
                             className="--item --cream"
-                            onChange={(value) =>{
+                            onChange={(country) =>{
                                 stateChanger({
                                     ...state,
-                                    country: value.value
+                                    country: country.value
                                 });
                             }}
-                            // {/* value={state.country} */}
+                            value={
+                                {
+                                    value: state.country,
+                                    label: state.country
+                                }
+                            }
                         />
                     </div>
                 </div>
