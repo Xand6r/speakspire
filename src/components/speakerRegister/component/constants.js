@@ -1,3 +1,4 @@
+import moment from 'moment';
 //  teh overall number of steps involved in the process of the registration
 export const STEPS = [
     'Personal Details', 'Expertise', 'Experience',
@@ -6,10 +7,11 @@ export const STEPS = [
 
 
 // the default state for the personal details state
+export const SPEAKER_PERSONAL_DETAILS_KEY = "SPEAKER_PERSONAL_DETAILS";
 export const INITIAL_PERSONAL_DETAILS_STATE = {
     fullname:'',
     gender:'',
-    birthdate:[],
+    birthdate:moment().subtract(18, 'years').format('DD-MM-YY'),
     phonenumber:'',
     city:'',
     country:'',
@@ -21,8 +23,8 @@ export const INITIAL_PERSONAL_DETAILS_STATE = {
 const INITIAL_EDUCATION_STATE = {
     institution:'',
     field_of_study:'',
-    from:[],
-    to:[],
+    from:'',
+    to:'',
 }
 const INITIAL_CERTIFICATIONS_STATE = {
     certification_name:'',
@@ -33,6 +35,8 @@ const INITIAL_CERTIFICATIONS_STATE = {
     link:"",
 
 }
+
+export const SPEAKER_EXPERTISE_KEY = "SPEAKER_EXPERTISE";
 
 export const INITIAL_EXPERTISE_STATE = {
     primary_specialty:'',
@@ -51,9 +55,12 @@ export const INITIAL_EXPERTISE_STATE = {
 const INITIAL_POSITIONS_STATE = {
     position:'',
     company:'',
-    from:[],
-    to:[],
+    from:'',
+    to:'',
 }
+
+export const SPEAKER_EXPERIENCE_KEY = "SPEAKER_EXPERIENCE";
+
 export const INITIAL_EXPERIENCE_STATE = {
     positions: [INITIAL_POSITIONS_STATE],
     experience_years: "",
@@ -61,12 +68,16 @@ export const INITIAL_EXPERIENCE_STATE = {
     unique_selling_proposition: "",
     fullbio: ""
 }
+
+export const SPEAKER_PREFERENCE_KEY = "SPEAKER_PREFERENCE";
 export const INITIAL_PREFERENCE_STATE = {
     availability: "",
     mode_of_delivery: "",
     open_for_travel: "",
     travel_places: []
 }
+
+export const SPEAKER_MEDIA_KEY = "SPEAKER_MEDIA";
 export const INITIAL_MEDIA_STATE = {
     profile_photo:{src:null},
     cover_photo:{src:null},

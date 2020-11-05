@@ -15,7 +15,16 @@ import {
 	INITIAL_PREFERENCE_STATE,
 	INITIAL_MEDIA_STATE,
 	ERROR_MESSAGES,
+	SPEAKER_EXPERIENCE_KEY,
+	SPEAKER_MEDIA_KEY,
+	SPEAKER_PERSONAL_DETAILS_KEY,
+	SPEAKER_PREFERENCE_KEY,
+	SPEAKER_EXPERTISE_KEY
 } from './constants';
+
+import {
+	getFormState, deleteFormState
+} from '../../../utilities/dataPersist'
 
 import {component as NavBar} from '../../../utilities/navbar';
 import {component as SectionTab} from '../subcomponents/sectionTab';
@@ -43,11 +52,21 @@ import axios from '../../../utilities/axios';
 export default function Register({location}) {
 	const [activeTab, setactiveTab] = useState(0);
 	const [previewHidden, setPreviewHidden] = useState(false);
-	const [personalDetails, setPersonalDetails] = useState(INITIAL_PERSONAL_DETAILS_STATE);
-	const [expertise, setExpertise] = useState(INITIAL_EXPERTISE_STATE);
-	const [experience, setExperience] = useState(INITIAL_EXPERIENCE_STATE);
-	const [preference, setPreference] = useState(INITIAL_PREFERENCE_STATE);
-	const [media, setMedia] = useState(INITIAL_MEDIA_STATE);
+	const [personalDetails, setPersonalDetails] = useState(
+		getFormState(SPEAKER_PERSONAL_DETAILS_KEY) || INITIAL_PERSONAL_DETAILS_STATE
+	);
+	const [expertise, setExpertise] = useState(
+		getFormState(SPEAKER_EXPERTISE_KEY) || INITIAL_EXPERTISE_STATE
+	);
+	const [experience, setExperience] = useState(
+		getFormState(SPEAKER_EXPERIENCE_KEY) || INITIAL_EXPERIENCE_STATE
+	);
+	const [preference, setPreference] = useState(
+		getFormState(SPEAKER_PREFERENCE_KEY) || INITIAL_PREFERENCE_STATE)
+	;
+	const [media, setMedia] = useState(
+		getFormState(SPEAKER_MEDIA_KEY) || INITIAL_MEDIA_STATE
+	);
 
 	const history = useHistory();
 
@@ -87,13 +106,27 @@ export default function Register({location}) {
 			return;
 		}
 		// send post request
-		axios
+		return axios
 			.post('/speakers/add', cleanData(finalState))
 			.then((res) => {
 				message.success("speaker account sucesfully created");
+				// clear the state upon submit
+				deleteFormState([
+					SPEAKER_EXPERIENCE_KEY, SPEAKER_EXPERTISE_KEY,
+					SPEAKER_MEDIA_KEY, SPEAKER_PERSONAL_DETAILS_KEY,
+					SPEAKER_PREFERENCE_KEY]
+				)
 				setTimeout(()=>history.push('/login'), 1000)
 			})
-			.catch((err) => message.error('The email adress used already exists'));
+			.catch((err) => {
+				const {email} = err.response.data.message;
+				if(email){
+					message.error(email);
+					return;
+				}else{
+					message.error(err.response.data.message);
+				}
+			});
 	};
 
 	return (

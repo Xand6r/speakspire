@@ -28,6 +28,8 @@
     }
     .filter__results{
         margin-bottom: 26px;
+        display: grid;
+        grid-template-columns: 25.8% 25.8% 25.8% 26%;
     }
     .organisercard_wrapper{
         margin-bottom: 50px;

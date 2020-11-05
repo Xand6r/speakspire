@@ -143,10 +143,12 @@
     }
 
     &__results{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
+        // display: flex;
+        // justify-content: space-between;
+        // align-items: center;
+        // flex-wrap: wrap;
+        // display: grid;
+        // grid-template-columns: 25% 25% 25% 25%;
         width: 1140px;
     }
 

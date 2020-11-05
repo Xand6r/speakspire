@@ -11,7 +11,7 @@ import ResetFilterIcon from '../../../../assets/resetFilterIcon.svg';
 import LeftArrow from '../../../../assets/leftArrow.svg';
 
 import '../../../../stylesheets/filter.scss';
-
+import './filter_lower.scss'
 const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#4D75F4' }} spin />;
 const INITIAL_STATE = {
 	location: '',
@@ -87,7 +87,7 @@ export default function Filter() {
 	const [speakerFilterState, setSpeakerFilterState] = useState(INITIAL_STATE);
 	return (
 		<div>
-			<div className='filter'>
+			<div className='filter home__lowerfilter'>
 				<div className='filter__header'>Showcase and find events</div>
 
 				<div className='filter__filter'>

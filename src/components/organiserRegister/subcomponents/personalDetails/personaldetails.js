@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import PhoneInput from 'react-phone-input-2';
@@ -10,6 +10,12 @@ import Select from 'react-select';
 import notificationIcon from '../../assets/notification.svg';
 import './personaldetails.scss';
 import 'react-phone-input-2/lib/style.css';
+import {
+    ORGANISER_PERSONAL_DETAILS_KEY
+} from '../../component/constants';
+import {
+	cacheFormState
+}  from '../../../../utilities/dataPersist';
 
 
 
@@ -20,16 +26,20 @@ export default function Personaldetails({
     const history = useHistory()
 
     const handleFormChange = (event)=>{
+
         const {name, value} = event.target;
         stateChanger({
             ...state,
             [name]: value
-          });
+        });
     }
 
-    const savePersonalDetails = (event)=>{
-        console.log(state);
-    }
+	/**
+	 * watch for changes in the state and uplod accordingly
+	*/
+    useEffect(()=>{
+        cacheFormState(ORGANISER_PERSONAL_DETAILS_KEY,state);
+    }, [state])
 
 
     return (
@@ -187,7 +197,7 @@ export default function Personaldetails({
                         </div>
                     </Link>
 
-                    <Link onClick={savePersonalDetails} className="link" to="/organiser/2">
+                    <Link className="link" to="/organiser/2">
                         <div className="next">
                             Next
                         </div>

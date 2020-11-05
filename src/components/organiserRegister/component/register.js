@@ -7,7 +7,10 @@ import {
 	Route, // for later
 } from 'react-router-dom';
 
-import { STEPS, INITIAL_COMPANY_DETAILS_STATE, INITIAL_MEDIA_STATE } from './constants';
+import {
+	STEPS, INITIAL_COMPANY_DETAILS_STATE, INITIAL_MEDIA_STATE,
+	ORGANISER_MEDIA_KEY, ORGANISER_PERSONAL_DETAILS_KEY
+} from './constants';
 
 import OrganiserCard from '../../../utilities/organiserCard';
 import { component as NavBar } from '../../../utilities/navbar';
@@ -26,12 +29,20 @@ import {
 	validateOrganiserDetails, validateOrganiserMedia
 } from '../validators';
 
+import {
+	getFormState, deleteFormState
+}  from '../../../utilities/dataPersist';
+
 export default function Register({ location }) {
 	const [activeTab, setactiveTab] = useState(0);
 	const [previewHidden, setPreviewHidden] = useState(false);
-	const [personalDetails, setPersonalDetails] = useState(INITIAL_COMPANY_DETAILS_STATE);
+	const [personalDetails, setPersonalDetails] = useState(
+		getFormState(ORGANISER_PERSONAL_DETAILS_KEY) || INITIAL_COMPANY_DETAILS_STATE
+	);
+	const [media, setMedia] = useState(
+		getFormState(ORGANISER_MEDIA_KEY) || INITIAL_MEDIA_STATE
+	);
 	const history = useHistory();
-	const [media, setMedia] = useState(INITIAL_MEDIA_STATE);
 
 	const mapState = {
 		'Company details': validateOrganiserDetails(personalDetails),
@@ -66,10 +77,12 @@ export default function Register({ location }) {
 		}
 		// send post request
 
-		axios
+		return axios
 			.post('/organizers/add', cleanData(finalState))
 			.then(() => {
-				message.success('Organizer account sucesfully created');
+				message.success('Organiser account sucesfully created');
+				// clear the saved states
+				deleteFormState([ORGANISER_MEDIA_KEY, ORGANISER_PERSONAL_DETAILS_KEY]);
 				setTimeout(() => history.push('/login'), 1000);
 			})
 			.catch(() => message.error('An account exists with this mail already!'));

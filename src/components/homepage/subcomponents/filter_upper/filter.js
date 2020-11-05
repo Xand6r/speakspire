@@ -11,6 +11,7 @@ import ResetFilterIcon from '../../../../assets/resetFilterIcon.svg';
 import LeftArrow from '../../../../assets/leftArrow.svg';
 
 import '../../../../stylesheets/filter.scss';
+import './filter_upper.scss'
 
 const INITIAL_STATE = {
 	location: '',
@@ -70,7 +71,7 @@ export default function Filter() {
 
 	return (
 		<div>
-			<div className='filter'>
+			<div className='filter home__upperfilter'>
 				<div className='filter__header'>Find the speaker of your dreams</div>
 
 				<div className='filter__filter'>

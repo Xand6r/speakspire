@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
 import { Link } from 'react-router-dom';
 
@@ -10,6 +10,13 @@ import {
     TRAVEL_OPTIONS
 } from './constants'
 
+import {
+    SPEAKER_PREFERENCE_KEY
+} from '../../component/constants';
+
+import {
+    cacheFormState
+} from '../../../../utilities/dataPersist'
 import './preference.scss';
 import 'react-tagsinput/react-tagsinput.css';
 import '../../../../stylesheets/tag.scss'
@@ -30,6 +37,10 @@ export default function Preference({
         "Asia", "Europe", "North America",
         "South America", "Australia"
     ];
+
+    useEffect(()=>{
+        cacheFormState(SPEAKER_PREFERENCE_KEY, state)
+    },[state]);
 
     const [activeCircle, setActiveCircle] = useState([]);
 

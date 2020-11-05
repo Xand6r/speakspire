@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { DatePicker } from 'antd';
 import Select from 'react-select';
@@ -10,6 +10,14 @@ import {
     DEFAULT_SINGLE_OPTIONS, YEARS_OF_EXPERIENCE,
     NUMBER_OF_ENGAGEMENTS
 } from './constants';
+
+import {
+    SPEAKER_EXPERIENCE_KEY
+} from '../../component/constants';
+
+import {
+    cacheFormState
+} from '../../../../utilities/dataPersist'
 
 import './experience.scss';
 import 'react-tagsinput/react-tagsinput.css';
@@ -27,6 +35,10 @@ export default function Experience({
             [name]: value
           });
     }
+
+    useEffect(()=>{
+        cacheFormState(SPEAKER_EXPERIENCE_KEY, state)
+    },[state])
      
     const changeListData = (property, index, subproperty,  value) =>{
         const updatedState = {...state};
@@ -122,9 +134,12 @@ export default function Experience({
                                             placeholder="mm/yy"
                                             suffixIcon={<DateSuffix />}
                                             onChange={(momentDate, dateString)=>{
-                                                changeListData('positions', index, 'from',  [momentDate, dateString])
+                                                changeListData('positions', index, 'from', dateString)
                                             }}
-                                            value={position.from[0]}
+                                            value={
+                                                position.from?
+												moment(position.from, monthFormat):''
+                                            }
                                             disabledDate={d => !d || d.isAfter(moment())}
                                         />
                                         <span>to</span>
@@ -134,10 +149,13 @@ export default function Experience({
                                             placeholder="mm/yy"
                                             suffixIcon={<DateSuffix />}
                                             onChange={(momentDate, dateString)=>{
-                                                changeListData('positions', index, 'to',  [momentDate, dateString])
+                                                changeListData('positions', index, 'to', dateString)
                                             }}
-                                            value={position.to[0]}
-                                            disabledDate={d => !d || d.isBefore(position.from[0]) || d.isAfter(moment())}
+                                            value={
+                                                position.to?
+												moment(position.to, monthFormat):''   
+                                            }
+                                            disabledDate={d => !d || d.isBefore(position.from) || d.isAfter(moment())}
                                         />
                                     </div>
                                 </div>
@@ -153,8 +171,8 @@ export default function Experience({
                                 positions: [...state.positions, {
                                     position:'',
                                     company:'',
-                                    from:[],
-                                    to:[],
+                                    from:'',
+                                    to:'',
                                 }]
                             })
                         }}
