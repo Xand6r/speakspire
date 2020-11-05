@@ -27,6 +27,8 @@
     }
     .filter__results{
         margin-bottom: 26px;
+        display: grid;
+        grid-template-columns: 34% 34% 38%;
     }
 
 }
