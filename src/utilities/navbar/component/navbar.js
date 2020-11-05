@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Menu, Dropdown, Button, message, Tooltip } from 'antd';
 import profilePicturePlaceholder from '../assets/avatarplaceholder.svg';
 import downArrowActive from '../assets/downArrowActive.svg';
-import downArrowNeutral from '../assets/downArrowNeutral.svg'
+import downArrowNeutral from '../assets/downArrowNeutral.svg';
 import { Avatar, Image } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
@@ -19,26 +19,6 @@ import { getToken, setToken, getUser } from '../../../api/user';
 
 import './navbar.scss';
 
-const menu = (
-	<Menu onClick={handleMenuClick}>
-	  <Menu.Item key="1" icon={<UserOutlined />}>
-		1st menu item
-	  </Menu.Item>
-	  <Menu.Item key="2" icon={<UserOutlined />}>
-		2nd menu item
-	  </Menu.Item>
-	  <Menu.Item key="3" icon={<UserOutlined />}>
-		3rd menu item
-	  </Menu.Item>
-	</Menu>
-);
-
-
-function handleMenuClick(e) {
-	message.info('Click on menu item.');
-	console.log('click', e);
-}
-
 const MENU_ITEMS = [
 	{ text: 'Speakers', link: '/speakers' },
 	{ text: 'Organizers', link: '/organisers' },
@@ -52,7 +32,24 @@ export default function Navbar() {
 	const history = useHistory();
 	const [isHovered, setIsHovered] = useState(false);
 
-	function toggleHover(){
+	const menu = (
+		<Menu onClick={handleMenuClick}>
+			<Menu.Item key='/profile' icon={<UserOutlined />}>
+				Profile
+			</Menu.Item>
+			<Menu.Item key='/events' icon={<UserOutlined />}>
+				Events
+			</Menu.Item>
+			<Menu.Item key='3' icon={<UserOutlined />}>
+				Favorites
+			</Menu.Item>
+			<Menu.Item key='logout' icon={<UserOutlined />}>
+				Logout
+			</Menu.Item>
+		</Menu>
+	);
+
+	function toggleHover() {
 		setIsHovered(!isHovered);
 	}
 
@@ -77,6 +74,15 @@ export default function Navbar() {
 		message.success('Logout sucessfull');
 		setTimeout(() => history.push('/'), 1000);
 	};
+
+	function handleMenuClick(event) {
+		const { key } = event;
+		if (key === 'logout') {
+			signOut();
+		} else {
+			history.push(key);
+		}
+	}
 
 	const userState = useSelector(({ user }) => user);
 	return (
@@ -107,25 +113,10 @@ export default function Navbar() {
 						</>
 					) : (
 						<>
-							<Dropdown
-								overlay={menu}
-								placement="bottomCenter"
-							>
-								<div
-									className="profilepicture__container"
-									onMouseEnter={toggleHover} onMouseLeave={toggleHover}
-								>
-									<img
-										className="profilepicture"
-										src={profilePicturePlaceholder}
-										alt=""
-									/>
-									<img
-										className="arrow" 
-										src={!isHovered ? downArrowNeutral: downArrowActive}
-										alt=""
-									/>
-									
+							<Dropdown overlay={menu} placement='bottomCenter'>
+								<div className='profilepicture__container' onMouseEnter={toggleHover} onMouseLeave={toggleHover}>
+									<img className='profilepicture' src={profilePicturePlaceholder} alt='' />
+									<img className='arrow' src={!isHovered ? downArrowNeutral : downArrowActive} alt='' />
 								</div>
 							</Dropdown>
 							<Link className='link' to='/registerevent'>
