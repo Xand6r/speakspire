@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import TagsInput from 'react-tagsinput';
 import { Link } from 'react-router-dom';
@@ -30,6 +30,13 @@ import { SPEAKER_SPECIALITY } from '../../component/constants';
 import cleanData from '../utils/cleanData';
 import {LoadingOutlined} from '@ant-design/icons';
 
+import {
+    ORGANISER_MEDIA_KEY
+} from '../../component/constants';
+import {
+	cacheFormState
+}  from '../../../../utilities/dataPersist';
+
 
 const PROFILE_LINKS = [
 	[wwwLogo, 'www'],
@@ -46,6 +53,7 @@ const PROFILE_LINKS = [
 const FileImage = () => <img height='14px' style={{ marginRight: '10px' }} src={fileUpload} alt='calendar' />;
 
 const DoneImage = () => <img height='14px' style={{ marginRight: '10px' }} src={whiteTick} alt='calendar' />;
+
 
 const props = {
 	name: 'file',
@@ -71,6 +79,7 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 	const [loadingStates, setLoadingStates] = useState({
 		coverPictureLoading: false,
 		userPictureLoading: false,
+		submitLoading: false
 	});
 	const changeTagInputState = (value) => {
 		if (value.length < 20) {
@@ -98,6 +107,21 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 			[name]: value,
 		});
 	};
+
+	const handleCreateAccount = () => {
+		if(loadingStates.submitLoading) return;
+		setLoadingStates({...loadingStates, submitLoading: true})
+		handleSubmit().finally(()=>{
+			setLoadingStates({...loadingStates, submitLoading: false})
+		})
+	}
+
+	/**
+	 * watch for changes in the state and uplod accordingly
+	*/
+	useEffect(()=>{
+		cacheFormState(ORGANISER_MEDIA_KEY,state);
+	},[state])
 
 	return (
 		<div className='organiserlogin'>
@@ -259,7 +283,7 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 								) : (
 									<div className='image_upload_button'>
 									<Button
-											disabled={loadingStates.userPictureLoading}
+											disabled={loadingStates.userPictureLoading || loadingStates.coverPictureLoading}
 											icon={!loadingStates.userPictureLoading && <FileImage />}
 										>
 											{loadingStates.userPictureLoading ? <Spin indicator={antIcon} /> : 'Upload File'}
@@ -319,7 +343,7 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 								) : (
 									<div className='image_upload_button'>
 										<Button
-											disabled={loadingStates.coverPictureLoading}
+											disabled={loadingStates.coverPictureLoading || loadingStates.userPictureLoading}
 											icon={!loadingStates.coverPictureLoading && <FileImage />}
 										>
 											{loadingStates.coverPictureLoading ? <Spin indicator={antIcon} /> : 'Upload File'}
@@ -350,8 +374,14 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 						<div className='cancel'>Back</div>
 					</Link>
 
-					<Link className='link' onClick={handleSubmit}>
-						<div className='next'>Create My Account</div>
+					<Link className='link' onClick={handleCreateAccount}>
+					<div className='next'>
+						{
+							loadingStates.submitLoading?
+							<Spin indicator={<LoadingOutlined style={{fontSize: 24, color: '#fff'}} spin />} /> :
+							'Create My Account'
+						}
+					</div>
 					</Link>
 				</div>
 			</div>
