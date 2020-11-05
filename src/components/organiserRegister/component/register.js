@@ -5,6 +5,7 @@ import {
 	Link,
 	Route, // for later
 } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import { setToken, saveID, saveRole } from '../../../api/user';
 import { setLoggedIn } from '../../../redux/userSlice';
 import { useDispatch } from 'react-redux';
@@ -47,7 +48,7 @@ export default function Register({ location }) {
 		}
 		setactiveTab(Number(currentTab) - 1);
 	}, [setactiveTab, location]);
-
+	const history = useHistory();
 	const makeActive = (clickedIndex) => {
 		setactiveTab(clickedIndex);
 	};
@@ -73,14 +74,24 @@ export default function Register({ location }) {
 				setToken(data);
 				saveID(id);
 				saveRole(role);
-				dispatch(setLoggedIn());
+
 				message.success('Organiser account sucesfully created');
 				// clear the saved states
 				deleteFormState([ORGANISER_MEDIA_KEY, ORGANISER_PERSONAL_DETAILS_KEY]);
-				setTimeout(() => (window.location.href = '/profile'), 1000);
+				setTimeout(() => {
+					if(role !== 'individual'){
+						history.push('/profile')
+					}
+					else{
+						history.push('/')
+					}
+					dispatch(setLoggedIn({
+						role, id
+					}));
+				}, 1000);
 			})
 			.catch((err) => {
-				const { email } = err.response.data.message;
+				const { email } = err.response?.data?.message || {email: "Unknown error"};
 				if (email) {
 					message.error(email);
 					return;

@@ -131,9 +131,11 @@ export default function Personaldetails({
                                     ...state,
                                     country: value.value
                                 });
-                                console.log(state)
                             }}
-                            // {/* value={state.country} */}
+                            value={{
+                                value: state.country,
+                                label: state.country
+                            }}
                         />
                     </div>
                 </div>
