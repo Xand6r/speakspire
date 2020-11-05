@@ -85,7 +85,15 @@ export default function Register({ location }) {
 				deleteFormState([ORGANISER_MEDIA_KEY, ORGANISER_PERSONAL_DETAILS_KEY]);
 				setTimeout(() => history.push('/login'), 1000);
 			})
-			.catch(() => message.error('An account exists with this mail already!'));
+			.catch((err) => {
+				const {email} = err.response.data.message;
+				if(email){
+					message.error(email);
+					return;
+				}else{
+					message.error(err.response.data.message);
+				}
+			})
 	};
 
 	return (
