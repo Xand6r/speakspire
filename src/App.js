@@ -29,6 +29,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 };
 
 function App() {
+	const role = useSelector(({user}) => user.role)
 	return (
 		<>
 			{/* <Nav /> */}
@@ -39,7 +40,7 @@ function App() {
 					<ProtectedRoute
 						exact path='/profile'
 						component={
-							(getRole() === 'speaker')?(SpeakerPersonalProfile): (OrganiserPersonalProfile)
+							(role === 'speaker')?(SpeakerPersonalProfile): (OrganiserPersonalProfile)
 						}
 					/>
 					<ProtectedRoute exact path='/speakers/:id' component={SpeakersProfile} />

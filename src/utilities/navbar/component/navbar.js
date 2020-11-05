@@ -15,7 +15,7 @@ import { fetchAllEvents } from '../../../redux/eventSlice';
 import { fetchAllOrganizers } from '../../../redux/organiserSlice';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getToken, setToken, getUser } from '../../../api/user';
+import { getToken, setToken, getUser, getRole, getID } from '../../../api/user';
 
 import profile from '../assets/profile.svg';
 import {
@@ -58,10 +58,12 @@ export default function Navbar() {
 		if (foundSession) {
 			console.log(getUser())
 			setUserDetails(getUser().user_id)
-			dispatch(setLoggedIn());
+			dispatch(setLoggedIn({
+				role: getRole(),
+				id: getID()
+			}));
 		}
 	}, [dispatch]);
-	console.log(userDetails)
 	const signOut = () => {
 		sessionStorage.clear();
 		message.success('Logout sucessfull');

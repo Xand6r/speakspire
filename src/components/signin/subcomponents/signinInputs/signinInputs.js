@@ -47,7 +47,7 @@ export default function SigninInputs() {
 						// history.push('/profile');
 						history.push('/');
 					}
-					dispatch(setLoggedIn());
+					dispatch(setLoggedIn({role, id}));
 				}, 1000);
 			})
 			.catch((err) => {

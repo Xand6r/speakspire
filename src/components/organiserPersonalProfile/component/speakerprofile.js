@@ -7,13 +7,14 @@ import { component as Footer } from '../../../utilities/footer';
 // import a sample image
 import axios from '../../../utilities/axios';
 import { message } from 'antd';
-import { getID } from '../../../api/user';
+import { getID, getRole } from '../../../api/user';
 
 import './speakerprofile.scss';
 export default function Speakerprofile() {
 	const [userData, setUserData] = useState({});
 	const history = useHistory();
 	const id = getID();
+	const role = getRole();
 
 	useEffect(() => {
 		const getDetails = async () => {
@@ -26,7 +27,9 @@ export default function Speakerprofile() {
 				setTimeout(() => history.push('/'), 1000);
 			}
 		};
-		getDetails();
+		if(id && role !== 'speaker'){
+			getDetails();
+		}
 	}, [history, id]);
 
 	return (
