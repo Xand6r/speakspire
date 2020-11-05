@@ -37,6 +37,7 @@ export default function Navbar() {
 	const history = useHistory();
 	const [isHovered, setIsHovered] = useState(false);
 	const [userDetails, setUserDetails] = useState(null);
+	const userRole = useSelector(({user}) => user.role);
 
 	const goTo = (path) => {
 		history.push(path)
@@ -56,7 +57,6 @@ export default function Navbar() {
 
 		const foundSession = getToken();
 		if (foundSession) {
-			console.log(getUser())
 			setUserDetails(getUser().user_id)
 			dispatch(setLoggedIn({
 				role: getRole(),
@@ -75,12 +75,16 @@ export default function Navbar() {
 
 	const menu = (
 		<Menu className = "navigation-dropdown" >
-			<div className="dropdown-content dropdown-content-navigation" onClick={() => goTo('/profile')}>
-				<div className="dropdown-content__image">
-					<RenderProfileIcon/>
+			{
+				(userRole !== 'individual') &&
+				<div className="dropdown-content dropdown-content-navigation" onClick={() => goTo('/profile')}>
+					<div className="dropdown-content__image">
+						<RenderProfileIcon/>
+					</div>
+					Profile
 				</div>
-				Profile
-			</div>
+
+			}
 			<div className="dropdown-content" onClick={() => goTo('/events')}>
 				<div className="dropdown-content__image">
 					<RenderEventIcon />
