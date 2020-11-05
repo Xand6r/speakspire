@@ -10,7 +10,9 @@
         background-image: url('../../assets/eventsIcon.svg');
         background-repeat: no-repeat;
         background-position: center;
-        background-color: #FFF5E3;;
+        background-color: #FFF5E3;
+        background-attachment: fixed;
+        background-position: 50% 40%;
     }
 
     .filter__header{
