@@ -55,8 +55,8 @@ export const INITIAL_EXPERTISE_STATE = {
 const INITIAL_POSITIONS_STATE = {
     position:'',
     company:'',
-    from:[],
-    to:[],
+    from:'',
+    to:'',
 }
 
 export const SPEAKER_EXPERIENCE_KEY = "SPEAKER_EXPERIENCE";

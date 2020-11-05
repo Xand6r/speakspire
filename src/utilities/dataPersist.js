@@ -3,6 +3,7 @@
 */
 
 export const cacheFormState = (key, dataToCache) => {
+    if(!dataToCache) return;
     localStorage.setItem(key, JSON.stringify(dataToCache));
 }
 
