@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Upload, message, Button} from 'antd';
 import {Link} from 'react-router-dom';
 import {UploadOutlined} from '@ant-design/icons';
@@ -24,6 +24,14 @@ import {
 	LANGUAGE_OPTIONS,
 } from './constants';
 
+import {
+    SPEAKER_EXPERTISE_KEY
+} from '../../component/constants';
+
+import {
+    cacheFormState
+} from '../../../../utilities/dataPersist'
+
 import './expertise.scss';
 import 'react-tagsinput/react-tagsinput.css';
 import '../../../../stylesheets/tag.scss';
@@ -44,10 +52,9 @@ export default function Expertise({stateChanger, state}) {
 		}
 	};
 
-	const handleDeleteImage = (e,index) => {
-		e.preventDefault();
-		console.log(index);
-	}
+	useEffect(()=>{
+		cacheFormState(SPEAKER_EXPERTISE_KEY, state);
+	},[state])
 
 	const [secondTagInputState, setSecondTagInputState] = useState('');
 	const changeSecondTagInputState = (value) => {
@@ -66,19 +73,6 @@ export default function Expertise({stateChanger, state}) {
 		});
 	}
 
-	const handleFormChange = (event) => {
-		const {name, value} = event.target;
-		stateChanger({
-			...state,
-			[name]: value,
-		});
-	};
-	const changeDate = (momentDate, dateString, name) => {
-		stateChanger({
-			...state,
-			[name]: [momentDate, dateString],
-		});
-	};
 	const changeSelectState = (name, value) => {
 		stateChanger({
 			...state,
@@ -110,7 +104,7 @@ export default function Expertise({stateChanger, state}) {
 	const monthFormat = 'MM/YY';
 	const DateSuffix = () => <img height='14px' src={calendarIcon} alt='calendar' />;
 	const FileImage = () => <img height='14px' style={{'margin-right': '10px'}} src={fileUpload} alt='calendar' />;
-
+	console.log(state)
 	return (
 		<div className='expertise'>
 			<div className='personaldetails__heading'>
@@ -287,9 +281,12 @@ export default function Expertise({stateChanger, state}) {
 											placeholder='mm/yy'
 											suffixIcon={<DateSuffix />}
 											onChange={(momentDate, dateString) => {
-												changeListData('education', index, 'from', [momentDate, dateString]);
+												changeListData('education', index, 'from', dateString);
 											}}
-											value={education.from[0]}
+											value={
+												education.from?
+												moment(education.from, monthFormat):''
+											}
 											disabledDate={d => !d || d.isAfter(moment())}
 										/>
 										<span>to</span>
@@ -299,10 +296,13 @@ export default function Expertise({stateChanger, state}) {
 											placeholder='mm/yy'
 											suffixIcon={<DateSuffix />}
 											onChange={(momentDate, dateString) => {
-												changeListData('education', index, 'to', [momentDate, dateString]);
+												changeListData('education', index, 'to', dateString);
 											}}
-											value={education.to[0]}
-											disabledDate={d => !d || d.isBefore(education.from[0])}
+											value={
+												education.to?
+												moment(education.to, monthFormat):''
+											}
+											disabledDate={d => !d || d.isBefore(education.from)}
 										/>
 									</div>
 								</div>
@@ -318,8 +318,8 @@ export default function Expertise({stateChanger, state}) {
 										{
 											institution: '',
 											field_of_study: '',
-											from: [],
-											to: [],
+											from: '',
+											to: '',
 										},
 									],
 								});
@@ -380,10 +380,12 @@ export default function Expertise({stateChanger, state}) {
 											placeholder='mm/yy'
 											suffixIcon={<DateSuffix />}
 											onChange={(momentDate, dateString) => {
-												console.log('changed')
-												changeListData('certifications', index, 'from', [momentDate, dateString]);
+												changeListData('certifications', index, 'from', dateString);
 											}}
-											value={cert.from[0]}
+											value={
+												cert.from?
+												moment(cert.from, monthFormat):''
+											}
 											disabledDate={d => !d || d.isAfter(moment())}
 										/>
 										<span>to</span>
@@ -393,10 +395,13 @@ export default function Expertise({stateChanger, state}) {
 											placeholder='mm/yy'
 											suffixIcon={<DateSuffix />}
 											onChange={(momentDate, dateString) => {
-												changeListData('certifications', index, 'to', [momentDate, dateString]);
+												changeListData('certifications', index, 'to', dateString);
 											}}
-											value={cert.to[0]}
-											disabledDate={d => (!d || d.isBefore(cert.from[0]) || d.isAfter(moment())) }
+											value={
+												cert.to?
+												moment(cert.to, monthFormat):''
+											}
+											disabledDate={d => (!d || d.isBefore(cert.from) || d.isAfter(moment())) }
 										/>
 									</div>
 								</div>

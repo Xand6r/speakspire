@@ -4,8 +4,8 @@ export const cleanCertification = (params) => {
 		data.push({
 			institution: params[i].institution_name,
 			name: params[i].certification_name,
-			from: params[i].from[1],
-			to: params[i].to[1],
+			from: params[i].from,
+			to: params[i].to,
 			proof: params[i].link,
 		});
 	}
@@ -18,8 +18,8 @@ export const cleanEducation = (params) => {
 		data.push({
 			institution: params[i].institution,
 			field_of_study: params[i].field_of_study,
-			from: params[i].from[1],
-			to: params[i].to[1],
+			from: params[i].from,
+			to: params[i].to,
 		});
 	}
 	return data;
@@ -31,8 +31,8 @@ export const cleanExperience = (params) => {
 		data.push({
 			company: params[i].company,
 			position: params[i].position,
-			from: params[i].from[1],
-			to: params[i].to[1],
+			from: params[i].from,
+			to: params[i].to,
 		});
 	}
 	return data;

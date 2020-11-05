@@ -23,8 +23,8 @@ export const INITIAL_PERSONAL_DETAILS_STATE = {
 const INITIAL_EDUCATION_STATE = {
     institution:'',
     field_of_study:'',
-    from:[],
-    to:[],
+    from:'',
+    to:'',
 }
 const INITIAL_CERTIFICATIONS_STATE = {
     certification_name:'',
