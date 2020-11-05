@@ -7,13 +7,14 @@ import { component as Footer } from '../../../utilities/footer';
 // import a sample image
 import axios from '../../../utilities/axios';
 import { message } from 'antd';
-import { getID } from '../../../api/user';
+import { getID, getRole } from '../../../api/user';
 
 import './speakerprofile.scss';
 export default function Speakerprofile() {
 	const [userData, setUserData] = useState({});
 	const history = useHistory();
 	const id = getID();
+	const role = getRole();
 
 	useEffect(() => {
 		const getDetails = async () => {
@@ -26,8 +27,21 @@ export default function Speakerprofile() {
 				setTimeout(() => history.push('/'), 1000);
 			}
 		};
-		getDetails();
-	}, [history, id]);
+		if(id && role !== 'speaker'){
+			getDetails();
+		}
+	}, [history, id, role]);
+
+	const [offset, setOffset] = useState(0)
+	useEffect(() => {
+	  function handleScroll() {
+		setOffset(window.pageYOffset)
+	  }
+	  window.addEventListener("scroll", handleScroll)
+	  return () => {
+		window.removeEventListener("scroll", handleScroll)
+	  }
+	}, [])
 
 	return (
 		<div className='speakerprofile'>
@@ -37,7 +51,14 @@ export default function Speakerprofile() {
 
 			{/* the section for the image header */}
 			<div className='speakerprofile__header_image'>
-				<img src={userData.cover_photo} alt='' />
+				<img
+					src={userData.cover_photo}
+					alt=''
+					style={{
+						transform: `translateY(${Math.abs(offset) * 0.25}px)`,
+						transition: '200ms'
+					}}
+				/>
 			</div>
 			{/* the section for the image header */}
 

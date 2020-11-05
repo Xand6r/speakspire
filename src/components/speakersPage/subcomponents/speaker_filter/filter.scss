@@ -11,6 +11,8 @@
         background-repeat: no-repeat;
         background-position: center;
         background-color: #EDF1FE;
+        background-attachment: fixed;
+        background-position: 50% 40%;
     }
     .filter__header{
         @extend %fiftyfivepx;

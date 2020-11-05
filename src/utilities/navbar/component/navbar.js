@@ -15,8 +15,13 @@ import { fetchAllEvents } from '../../../redux/eventSlice';
 import { fetchAllOrganizers } from '../../../redux/organiserSlice';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getToken, setToken, getUser } from '../../../api/user';
+import { getToken, setToken, getUser, getRole, getID } from '../../../api/user';
 
+import profile from '../assets/profile.svg';
+import {
+	RenderProfileIcon, RenderEventIcon,
+	RenderFavouriteIcon, RenderLogOuticon
+} from './svgs'
 import './navbar.scss';
 
 const MENU_ITEMS = [
@@ -31,23 +36,12 @@ export default function Navbar() {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const [isHovered, setIsHovered] = useState(false);
+	const [userDetails, setUserDetails] = useState(null);
+	const userRole = useSelector(({user}) => user.role);
 
-	const menu = (
-		<Menu onClick={handleMenuClick}>
-			<Menu.Item key='/profile' icon={<UserOutlined />}>
-				Profile
-			</Menu.Item>
-			<Menu.Item key='/events' icon={<UserOutlined />}>
-				Events
-			</Menu.Item>
-			<Menu.Item key='3' icon={<UserOutlined />}>
-				Favorites
-			</Menu.Item>
-			<Menu.Item key='logout' icon={<UserOutlined />}>
-				Logout
-			</Menu.Item>
-		</Menu>
-	);
+	const goTo = (path) => {
+		history.push(path)
+	}
 
 	function toggleHover() {
 		setIsHovered(!isHovered);
@@ -63,26 +57,54 @@ export default function Navbar() {
 
 		const foundSession = getToken();
 		if (foundSession) {
-			console.log(getUser());
-			dispatch(setLoggedIn());
+			setUserDetails(getUser().user_id)
+			dispatch(setLoggedIn({
+				role: getRole(),
+				id: getID()
+			}));
 		}
 	}, [dispatch]);
-
 	const signOut = () => {
 		sessionStorage.clear();
-		dispatch(setLoggedOut());
 		message.success('Logout sucessfull');
-		setTimeout(() => history.push('/'), 1000);
+		setTimeout(() => {
+			history.push('/')
+			dispatch(setLoggedOut());
+		}, 1000);
 	};
 
-	function handleMenuClick(event) {
-		const { key } = event;
-		if (key === 'logout') {
-			signOut();
-		} else {
-			history.push(key);
-		}
-	}
+	const menu = (
+		<Menu className = "navigation-dropdown" >
+			{
+				(userRole !== 'individual') &&
+				<div className="dropdown-content dropdown-content-navigation" onClick={() => goTo('/profile')}>
+					<div className="dropdown-content__image">
+						<RenderProfileIcon/>
+					</div>
+					Profile
+				</div>
+
+			}
+			<div className="dropdown-content" onClick={() => goTo('/events')}>
+				<div className="dropdown-content__image">
+					<RenderEventIcon />
+				</div>
+				Events
+			</div>
+			<div className="dropdown-content" onClick={() => goTo('/events')}>
+				<div className="dropdown-content__image">
+					<RenderFavouriteIcon />
+				</div>
+				Favorites
+			</div>
+			<div className="dropdown-content" onClick={signOut}>
+				<div className="dropdown-content__image">
+					<RenderLogOuticon />
+				</div>
+				Logout
+			</div>
+		</Menu>
+	);
 
 	const userState = useSelector(({ user }) => user);
 	return (
@@ -115,7 +137,7 @@ export default function Navbar() {
 						<>
 							<Dropdown overlay={menu} placement='bottomCenter'>
 								<div className='profilepicture__container' onMouseEnter={toggleHover} onMouseLeave={toggleHover}>
-									<img className='profilepicture' src={profilePicturePlaceholder} alt='' />
+									<img className='profilepicture' src={userDetails?.profile_photo || profilePicturePlaceholder} alt='' />
 									<img className='arrow' src={!isHovered ? downArrowNeutral : downArrowActive} alt='' />
 								</div>
 							</Dropdown>

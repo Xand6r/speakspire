@@ -9,10 +9,8 @@ import { getToken, setToken, getUser, getRole } from './api/user';
 const Homepage = lazy(() => import('./components/homepage' /* webpackChunkName: "Homepage" */));
 const SpeakersPage = lazy(() => import('./components/speakersPage' /* webpackChunkName: "SpeakersPage" */));
 const SpeakersProfile = lazy(() => import('./components/speakerProfile' /* webpackChunkName: "SingleSpeakerPage" */));
-const Profile =
-	getRole() === 'speaker'
-		? lazy(() => import('./components/speakerPersonalProfile' /* webpackChunkName: "Profile" */))
-		: lazy(() => import('./components/organiserPersonalProfile' /* webpackChunkName: "Profile" */));
+const SpeakerPersonalProfile =  lazy(() => import('./components/speakerPersonalProfile' /* webpackChunkName: "Profile" */))
+const OrganiserPersonalProfile = lazy(() => import('./components/organiserPersonalProfile' /* webpackChunkName: "Profile" */));
 const SignUpCategory = lazy(() => import('./components/category' /* webpackChunkName: "SignUpCategory" */));
 const SignInPage = lazy(() => import('./components/signin' /* webpackChunkName: "SignInPage" */));
 const SpeakerSignUpPage = lazy(() => import('./components/speakerRegister' /* webpackChunkName: "SpeakerSignUpPage" */));
@@ -31,14 +29,20 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 };
 
 function App() {
+	const role = useSelector(({user}) => user.role)
 	return (
 		<>
 			{/* <Nav /> */}
 			<Suspense fallback={<Loader />}>
 				<Switch>
 					<Route exact path='/about' component={About} />
-					<ProtectedRoute exact path='/speakers' component={SpeakersPage} />
-					<ProtectedRoute exact path='/profile' component={Profile} />
+					<ProtectedRoute exact path='/speakers' component={SpeakersPage}/>
+					<ProtectedRoute
+						exact path='/profile'
+						component={
+							(role === 'speaker')?(SpeakerPersonalProfile): (OrganiserPersonalProfile)
+						}
+					/>
 					<ProtectedRoute exact path='/speakers/:id' component={SpeakersProfile} />
 					<ProtectedRoute exact path='/events' component={EventsPage} />
 					<Route exact path='/category' component={SignUpCategory} />

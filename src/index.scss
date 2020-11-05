@@ -24,3 +24,21 @@ video{
     width: 263px;
     height: 176px;
 }
+
+.--no-border{
+  border: 0 !important;
+  .css-yk16xz-control{
+    border: 0 !important;
+  }
+  .multi-select{
+    .dropdown{
+      .dropdown-heading{
+        border-width: 0 !important;
+      }
+    }
+  }
+}
+
+.css-g1d714-ValueContainer, .css-1hwfws3, .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
+  border-radius: 5px !important; 
+}

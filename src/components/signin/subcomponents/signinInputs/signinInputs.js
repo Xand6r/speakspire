@@ -40,13 +40,14 @@ export default function SigninInputs() {
 				setToken(data);
 				saveID(id);
 				saveRole(role);
-				dispatch(setLoggedIn());
 				setTimeout(() => {
 					if (role === 'individual') {
 						history.push('/');
 					} else {
-						history.push('/profile');
+						// history.push('/profile');
+						history.push('/');
 					}
+					dispatch(setLoggedIn({role, id}));
 				}, 1000);
 			})
 			.catch((err) => {

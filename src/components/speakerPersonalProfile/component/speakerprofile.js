@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import {useSelector} from 'react-redux';
 import { component as NavBar } from '../../../utilities/navbar';
 import ProfileCard from '../subcomponents/profileCard';
 import ProfileContent from '../subcomponents/profileContent';
@@ -12,7 +13,7 @@ import { getID } from '../../../api/user';
 export default function Speakerprofile() {
 	const [userData, setUserData] = useState({});
 	const history = useHistory();
-	const id = getID();
+	const id = useSelector(({user}) => user.id)
 
 	useEffect(() => {
 		const getDetails = async () => {
@@ -20,13 +21,29 @@ export default function Speakerprofile() {
 				const { data } = await axios.get(`/speakers/${id}`);
 				setUserData(data.data);
 			} catch (err) {
+				console.log(err)
 				message.error('there was an error fetching this user');
 				setUserData({});
 				setTimeout(() => history.push('/'), 1000);
 			}
 		};
-		getDetails();
+		if(id){
+			getDetails();
+			console.log(id)
+		}
 	}, [history, id]);
+
+	const [offset, setOffset] = useState(0)
+	useEffect(() => {
+	  function handleScroll() {
+		setOffset(window.pageYOffset)
+	  }
+	  window.addEventListener("scroll", handleScroll)
+	  return () => {
+		window.removeEventListener("scroll", handleScroll)
+	  }
+	}, [])
+
 	return (
 		<div className='speakerprofile'>
 			{/* the navigation bar of the site */}
@@ -35,7 +52,14 @@ export default function Speakerprofile() {
 
 			{/* the section for the image header */}
 			<div className='speakerprofile__header_image'>
-				<img src={userData.cover_photo} alt='' />
+				<img
+					src={userData.cover_photo}
+					alt=''
+					style={{
+						transform: `translateY(${Math.abs(offset) * 0.25}px)`,
+						transition: '200ms'
+					}}	
+				/>
 			</div>
 			{/* the section for the image header */}
 

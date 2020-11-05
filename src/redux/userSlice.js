@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user:{},
+  role:null,
+  id:null,
   loggedIn: false
 };
 
@@ -16,6 +18,8 @@ const mySlice = createSlice({
     },
     setLoggedIn: (state, action) =>{
       state.loggedIn = true;
+      state.role = action.payload.role
+      state.id = action.payload.id
       return state;
     },
     setLoggedOut: (state, action) => {
