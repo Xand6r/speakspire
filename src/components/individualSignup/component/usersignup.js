@@ -69,9 +69,11 @@ export default function Userdetails() {
 				setToken(data);
 				saveID(id);
 				saveRole(role);
-				dispatch(setLoggedIn());
+				dispatch(setLoggedIn({
+					role, id
+				}));
 				setTimeout(() => {
-					history.push('');
+					history.push('/');
 				}, 1500);
 			})
 			.catch((err) => {
