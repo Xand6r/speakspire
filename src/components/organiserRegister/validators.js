@@ -12,8 +12,6 @@ export const validateOrganiserMedia = (mediaDetails) =>{
         mediaDetails.bio !== "" &&   
         mediaDetails.clients.length > 0 &&
         mediaDetails.partners.length > 0 &&
-        mediaDetails.profilePhoto.src &&
-        mediaDetails.coverPhoto.src &&
         mediaDetails.links.length >= 0
     );
 }

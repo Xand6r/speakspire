@@ -31,7 +31,7 @@ export default (data) => {
 		clients: JSON.stringify(clients),
 		partners: JSON.stringify(partners),
 		links: JSON.stringify(links),
-		profile_photo: profilePhoto.src ? profilePhoto.src : '',
-		cover_photo: coverPhoto.src ? coverPhoto.src : '',
+		profile_photo: profilePhoto.src ? profilePhoto.src : 'https://res.cloudinary.com/xand6r/image/upload/v1604961781/speakspire/speakspire_user_ojnefq.svg',
+		cover_photo: coverPhoto.src ? coverPhoto.src : 'https://res.cloudinary.com/xand6r/image/upload/v1604961724/speakspire/Cover_Photo_-_Speakspire_pc3buw.png',
 	});
 };

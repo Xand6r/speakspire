@@ -27,17 +27,30 @@ import { validateOrganiserDetails, validateOrganiserMedia } from '../validators'
 
 import { getFormState, deleteFormState } from '../../../utilities/dataPersist';
 
+const INITIAL_ERROR_STATES = [true, true]
 export default function Register({ location }) {
 	const dispatch = useDispatch();
 	const [activeTab, setactiveTab] = useState(0);
 	const [previewHidden, setPreviewHidden] = useState(false);
 	const [personalDetails, setPersonalDetails] = useState(getFormState(ORGANISER_PERSONAL_DETAILS_KEY) || INITIAL_COMPANY_DETAILS_STATE);
 	const [media, setMedia] = useState(getFormState(ORGANISER_MEDIA_KEY) || INITIAL_MEDIA_STATE);
+	const [errorStates, setErrorStates] = useState(INITIAL_ERROR_STATES)
 
 	const mapState = {
 		'Company details': validateOrganiserDetails(personalDetails),
 		'About & Media': validateOrganiserMedia(media),
 	};
+	useEffect(() => {
+		const NO_ERRORS = [...errorStates];
+		NO_ERRORS[0] = true;
+		setErrorStates(NO_ERRORS);
+	}, [personalDetails]);
+
+	useEffect(() => {
+		const NO_ERRORS = [...errorStates];
+		NO_ERRORS[1] = true;
+		setErrorStates(NO_ERRORS);
+	}, [media]);
 
 	useEffect(() => {
 		const { pathname } = location;
@@ -63,7 +76,9 @@ export default function Register({ location }) {
 		const allFilled = Object.values(mapState).every((a) => a);
 		if (!allFilled) {
 			message.error('Please Fill in All fields in the form before submitting');
-			return;
+			const errorMap = Object.values(mapState).map(a=>Boolean(a));
+			setErrorStates(errorMap);
+			return Promise.resolve();
 		}
 		// send post request
 
@@ -112,7 +127,14 @@ export default function Register({ location }) {
 				<div className='organiser__activetab__steps'>
 					{STEPS.map((step, index) => (
 						<Link key={Math.random()} className='link' to={`/organiser/${index + 1}`}>
-							<SectionTab index={index} text={step} active={index === activeTab} changeTab={makeActive} filled={mapState[step]} />
+							<SectionTab
+								index={index}
+								text={step}
+								active={index === activeTab}
+								changeTab={makeActive}
+								filled={mapState[step]}
+								error={!errorStates[index]}
+							/>
 						</Link>
 					))}
 				</div>
