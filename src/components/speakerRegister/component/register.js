@@ -139,14 +139,14 @@ export default function Register({ location }) {
 				setToken(data);
 				saveID(id);
 				saveRole(role);
-				dispatch(setLoggedIn());
+				dispatch(setLoggedIn({role, id}));
 				message.success('speaker account sucesfully created');
 				// clear the state upon submit
 				deleteFormState([SPEAKER_EXPERIENCE_KEY, SPEAKER_EXPERTISE_KEY, SPEAKER_MEDIA_KEY, SPEAKER_PERSONAL_DETAILS_KEY, SPEAKER_PREFERENCE_KEY]);
 				setTimeout(() => (window.location.href = '/profile'), 1000);
 			})
 			.catch((err) => {
-				const { email } = err.response.data.message;
+				const { email } = err.response?.data?.message || {email: "Unknown error"};
 				if (email) {
 					message.error(email);
 					return;

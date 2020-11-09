@@ -59,8 +59,9 @@ export const validatePreferenceState = (preference) => {
 }
 
 export const validateMedia = (media) =>{
-    return (
-        media.profile_photo.src && media.cover_photo.src
-        && media.links.length >= 0
-    )
+    return true
+    // return (
+    //     media.profile_photo.src && media.cover_photo.src
+    //     && media.links.length >= 0
+    // )
 };
