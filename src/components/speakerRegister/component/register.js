@@ -49,10 +49,13 @@ import { message } from 'antd';
 import cleanData from '../subcomponents/utils/cleanData';
 import axios from '../../../utilities/axios';
 
+const INITIAL_ERROR_STATES = [true, true, true, true, true]
+
 export default function Register({ location }) {
 	const dispatch = useDispatch();
 	const [activeTab, setactiveTab] = useState(0);
 	const [previewHidden, setPreviewHidden] = useState(false);
+	const [errorStates, setErrorStates] = useState(INITIAL_ERROR_STATES)
 	const [personalDetails, setPersonalDetails] = useState(getFormState(SPEAKER_PERSONAL_DETAILS_KEY) || INITIAL_PERSONAL_DETAILS_STATE);
 	const [expertise, setExpertise] = useState(getFormState(SPEAKER_EXPERTISE_KEY) || INITIAL_EXPERTISE_STATE);
 	const [experience, setExperience] = useState(getFormState(SPEAKER_EXPERIENCE_KEY) || INITIAL_EXPERIENCE_STATE);
@@ -68,6 +71,37 @@ export default function Register({ location }) {
 		}
 		setactiveTab(Number(currentTab) - 1);
 	}, [setactiveTab, location]);
+
+	useEffect(() => {
+		const NO_ERRORS = [...errorStates];
+		NO_ERRORS[0] = true;
+		setErrorStates(NO_ERRORS);
+	}, [personalDetails]);
+
+	useEffect(() => {
+		const NO_ERRORS = [...errorStates];
+		NO_ERRORS[1] = true;
+		setErrorStates(NO_ERRORS);
+	}, [expertise]);
+
+	useEffect(() => {
+		const NO_ERRORS = [...errorStates];
+		NO_ERRORS[2] = true;
+		setErrorStates(NO_ERRORS);
+	}, [experience]);
+
+	useEffect(() => {
+		const NO_ERRORS = [...errorStates];
+		NO_ERRORS[3] = true;
+		setErrorStates(NO_ERRORS);
+	}, [preference]);
+
+	useEffect(() => {
+		const NO_ERRORS = [...errorStates];
+		NO_ERRORS[4] = true;
+		setErrorStates(NO_ERRORS);
+	}, [media]);
+
 
 	const makeActive = (clickedIndex) => {
 		setactiveTab(clickedIndex);
@@ -92,7 +126,10 @@ export default function Register({ location }) {
 		const allFilled = Object.values(mapState).every((a) => a);
 		if (!allFilled) {
 			message.error(ERROR_MESSAGES.INCOMPLETE_PARAMETERS);
-			return;
+			const errorMap = Object.values(mapState).map(a=>Boolean(a));
+			console.log(errorMap)
+			setErrorStates(errorMap);
+			return Promise.resolve();
 		}
 		// send post request
 		return axios
@@ -129,7 +166,14 @@ export default function Register({ location }) {
 			<div className='register__activetab'>
 				{STEPS.map((step, index) => (
 					<Link key={Math.random()} className='link' to={`/register/${index + 1}`}>
-						<SectionTab index={index} text={step} active={index === activeTab} changeTab={makeActive} filled={mapState[step]} />
+						<SectionTab
+							index={index}
+							text={step}
+							active={index === activeTab}
+							changeTab={makeActive}
+							filled={mapState[step]}
+							error={!errorStates[index]}
+						/>
 					</Link>
 				))}
 			</div>

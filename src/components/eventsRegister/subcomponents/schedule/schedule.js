@@ -289,7 +289,7 @@ export default function Schedule({
                                     {/* <Checkbox onChange={onChange}>
                                         Edit the time or location for each day
                                     </Checkbox> */}
-							</div>
+                                </div>
 							<div className='--date_wrapper --half_date'>
 								<TimePicker
 									format={'HH:mm'}

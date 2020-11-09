@@ -50,8 +50,8 @@ export default (data) => {
 		usp: unique_selling_proposition ? unique_selling_proposition : '',
 		bio: fullbio ? fullbio : '',
 		links: JSON.stringify(links),
-		profile_photo: profile_photo.src ? profile_photo.src : '',
-		cover_photo: cover_photo.src ? cover_photo.src : '',
+		profile_photo: profile_photo.src ? profile_photo.src : 'https://res.cloudinary.com/xand6r/image/upload/v1604961781/speakspire/speakspire_user_ojnefq.svg',
+		cover_photo: cover_photo.src ? cover_photo.src : 'https://res.cloudinary.com/xand6r/image/upload/v1604961724/speakspire/Cover_Photo_-_Speakspire_pc3buw.png',
 		password: password ? password : '',
 		education: cleanEducation(education),
 		expertise: cleanExpertise({

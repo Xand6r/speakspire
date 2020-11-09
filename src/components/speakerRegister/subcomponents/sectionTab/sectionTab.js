@@ -8,14 +8,17 @@ const SectionTab = ({
     text,
     active,
     changeTab,
-    filled
+    filled,
+    error
 }) => {
     return (
         <div 
             onClick={()=>{changeTab(index)}}
-            className={`sectiontab ${(active)?'--selected':'--unselected'}`}
+            className={`sectiontab ${(active)?'--selected':'--unselected'} ${error && '--error'}`}
         >
-            <div className={`sectiontab__icon ${(!filled)? "unfilled":"filled"}`}>
+            <div
+                className={`sectiontab__icon ${(!filled)? "unfilled":"filled"}`}
+            >
                 {
                     !filled ? index+1 : (
                         <img src={greenTick} alt="green" />
@@ -34,7 +37,8 @@ SectionTab.propTypes = {
     text:PropTypes.string.isRequired,
     active:PropTypes.bool.isRequired,
     changeTab:PropTypes.func.isRequired,
-    filled:PropTypes.bool.isRequired
+    filled:PropTypes.bool.isRequired,
+    error: PropTypes.bool.isRequired
 }
 
 export default SectionTab

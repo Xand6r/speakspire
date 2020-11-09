@@ -61,4 +61,14 @@
             color: white;
         }
     }
+    &.--error{
+        background: #FBEFF2;
+        .sectiontab__icon.unfilled{
+            background: #E1486A;
+            color: white;
+        }
+        .sectiontab__text{
+            color: #E1486A;
+        }
+    }
 }

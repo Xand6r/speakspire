@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {Upload, message, Button} from 'antd';
+import {Upload, message, Button, Checkbox} from 'antd';
 import {Link} from 'react-router-dom';
-import {UploadOutlined} from '@ant-design/icons';
+import { UploadOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import {DatePicker} from 'antd';
 import Select from 'react-select';
@@ -51,6 +51,10 @@ export default function Expertise({stateChanger, state}) {
 			setTagInputState(value);
 		}
 	};
+
+	function onChange(e) {
+		console.log(`checked = ${e.target.checked}`);
+	}
 
 	useEffect(()=>{
 		cacheFormState(SPEAKER_EXPERTISE_KEY, state);
@@ -305,6 +309,19 @@ export default function Expertise({stateChanger, state}) {
 											disabledDate={d => !d || d.isBefore(education.from)}
 										/>
 									</div>
+									<div className="--tilldate">
+										<Checkbox 
+											onChange={(e)=>{
+												if(e.target.checked){
+													changeListData('education', index, 'to', moment().format(monthFormat))
+												}else{
+													changeListData('education', index, 'to', '')
+												}
+											}}
+										>
+											Till Date
+										</Checkbox>
+									</div>
 								</div>
 							</div>
 						))}
@@ -371,40 +388,6 @@ export default function Expertise({stateChanger, state}) {
 									/>
 								</div>
 
-								<div className='--input_wrapper'>
-									<label htmlFor='dates'>From</label>
-									<div className='--date_wrapper --half_date'>
-										<DatePicker
-											format={monthFormat}
-											picker='month'
-											placeholder='mm/yy'
-											suffixIcon={<DateSuffix />}
-											onChange={(momentDate, dateString) => {
-												changeListData('certifications', index, 'from', dateString);
-											}}
-											value={
-												cert.from?
-												moment(cert.from, monthFormat):''
-											}
-											disabledDate={d => !d || d.isAfter(moment())}
-										/>
-										<span>to</span>
-										<DatePicker
-											format={monthFormat}
-											picker='month'
-											placeholder='mm/yy'
-											suffixIcon={<DateSuffix />}
-											onChange={(momentDate, dateString) => {
-												changeListData('certifications', index, 'to', dateString);
-											}}
-											value={
-												cert.to?
-												moment(cert.to, monthFormat):''
-											}
-											disabledDate={d => (!d || d.isBefore(cert.from) || d.isAfter(moment())) }
-										/>
-									</div>
-								</div>
 
 								<div className='--input_wrapper'>
 									<label className='double'>
@@ -467,6 +450,54 @@ export default function Expertise({stateChanger, state}) {
 												}}
 											/>
 										</div>
+									</div>
+								</div>
+
+								<div className='--input_wrapper'>
+									<label htmlFor='dates'>From</label>
+									<div className='--date_wrapper --half_date'>
+										<DatePicker
+											format={monthFormat}
+											picker='month'
+											placeholder='mm/yy'
+											suffixIcon={<DateSuffix />}
+											onChange={(momentDate, dateString) => {
+												changeListData('certifications', index, 'from', dateString);
+											}}
+											value={
+												cert.from?
+												moment(cert.from, monthFormat):''
+											}
+											disabledDate={d => !d || d.isAfter(moment())}
+										/>
+										<span>to</span>
+										<DatePicker
+											format={monthFormat}
+											picker='month'
+											placeholder='mm/yy'
+											suffixIcon={<DateSuffix />}
+											onChange={(momentDate, dateString) => {
+												changeListData('certifications', index, 'to', dateString);
+											}}
+											value={
+												cert.to?
+												moment(cert.to, monthFormat):''
+											}
+											disabledDate={d => (!d || d.isBefore(cert.from) || d.isAfter(moment())) }
+										/>
+									</div>
+									<div className="--tilldate">
+										<Checkbox 
+											onChange={(e)=>{
+												if(e.target.checked){
+													changeListData('certifications', index, 'to', moment().format(monthFormat))
+												}else{
+													changeListData('certifications', index, 'to', '')
+												}
+											}}
+										>
+											Till Date
+										</Checkbox>
 									</div>
 								</div>
 							</div>

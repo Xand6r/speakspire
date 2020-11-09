@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { DatePicker } from 'antd';
+import { DatePicker, Checkbox } from 'antd';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
 import closeTag from '../../assets/close.svg';
@@ -158,6 +158,19 @@ export default function Experience({
                                             disabledDate={d => !d || d.isBefore(position.from) || d.isAfter(moment())}
                                         />
                                     </div>
+                                    <div className="--tilldate">
+										<Checkbox 
+											onChange={(e)=>{
+												if(e.target.checked){
+													changeListData('positions', index, 'to', moment().format(monthFormat))
+												}else{
+													changeListData('positions', index, 'to', '')
+												}
+											}}
+										>
+											Till Date
+										</Checkbox>
+									</div>
                                 </div>
                             </div>
                             
