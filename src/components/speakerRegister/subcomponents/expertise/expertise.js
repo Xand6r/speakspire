@@ -264,7 +264,7 @@ export default function Expertise({stateChanger, state}) {
 								</div>
 
 								<div className='--input_wrapper'>
-									<label htmlFor='field_of_study'>field of study</label>
+									<label htmlFor='field_of_study'>Field of Study</label>
 									<input
 										name='field_of_study'
 										type='text'
@@ -308,19 +308,6 @@ export default function Expertise({stateChanger, state}) {
 											}
 											disabledDate={d => !d || d.isBefore(education.from)}
 										/>
-									</div>
-									<div className="--tilldate">
-										<Checkbox 
-											onChange={(e)=>{
-												if(e.target.checked){
-													changeListData('education', index, 'to', moment().format(monthFormat))
-												}else{
-													changeListData('education', index, 'to', '')
-												}
-											}}
-										>
-											Till Date
-										</Checkbox>
 									</div>
 								</div>
 							</div>

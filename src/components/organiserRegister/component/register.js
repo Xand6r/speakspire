@@ -167,7 +167,7 @@ export default function Register({ location }) {
 							''
 						)}
 						<div className='organiser__content__preview__footer'>
-							Your detials are being automatically saved. You can skip a question and come back to it later.
+							Your details are being automatically saved. You can skip a question and come back to it later.
 						</div>
 					</div>
 				</div>

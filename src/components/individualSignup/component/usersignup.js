@@ -13,9 +13,11 @@ import { message } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 import axios from '../../../utilities/axios';
+import newaxios from 'axios';
 import notificationIcon from '../assets/notification.svg';
 import { setToken, saveID, saveRole } from '../../../api/user';
 import './usersignup.scss';
+import { useEffect } from 'react';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24, color: 'white' }} spin />;
 
@@ -34,6 +36,20 @@ export default function Userdetails() {
 			[name]: value,
 		});
 	};
+
+	useEffect(()=>{
+		alert('here')
+		const tokens = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNodWFpYnVhbGV4YW5kZXJAZ21haWwuY29tIiwiaWQiOiJYOVdyMzRLWFA4IiwiaWF0IjoxNjAzMjI2OTQwLCJleHAiOjE2MzQ3NjI5NDB9.nFBd85ElfPTk9Qvnhm1U-yJsnNcAvBK1t45pzkWq7eU'
+		newaxios.get('https://prodeus-api.herokuapp.com/class/all',{
+			headers : {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${tokens}`
+			  }
+		})
+		.then(data=>{
+			console.log(data);
+		})
+	},[])
 
 	const validateFields = () => {
 		if (state.name.length < 6) {

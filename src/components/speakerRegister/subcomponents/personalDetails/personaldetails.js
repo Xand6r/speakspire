@@ -120,7 +120,7 @@ export default function Personaldetails({
                         onChange={(momentDate, dateString)=>{
                             stateChanger({
                                 ...state,
-                                birthdate: dateString
+                                birthdate: dateString || moment().subtract(18, 'years').format(monthFormat)
                             });
 
                         }}
