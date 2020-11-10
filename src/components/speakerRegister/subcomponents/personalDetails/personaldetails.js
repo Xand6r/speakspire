@@ -120,11 +120,11 @@ export default function Personaldetails({
                         onChange={(momentDate, dateString)=>{
                             stateChanger({
                                 ...state,
-                                birthdate: dateString || moment().subtract(18, 'years').format(monthFormat)
+                                birthdate: dateString
                             });
 
                         }}
-                        value={moment(state.birthdate, 'DD-MM-YY')}
+                        value={state.birthdate? moment(state.birthdate, 'DD-MM-YY') : ''}
                         disabledDate={d => !d || d.isAfter(moment().subtract(18, 'years') )}
                     />
                 </div>
@@ -176,10 +176,12 @@ export default function Personaldetails({
                                 });
                             }}
                             value={
+                                state.country? 
                                 {
                                     value: state.country,
                                     label: state.country
                                 }
+                                : ""
                             }
                         />
                     </div>
