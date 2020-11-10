@@ -15,8 +15,6 @@ export const validateExpertiseState = (expertise) => {
         &&
         expertise.primary_topic_tags.length !== 0
         &&
-        expertise.secondary_topic_tags.length !== 0
-        &&
         expertise.languages.length !== 0
         &&
         expertise.education.every(cert=>{

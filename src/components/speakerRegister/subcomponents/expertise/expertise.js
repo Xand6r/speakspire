@@ -44,7 +44,6 @@ const antIcon = <LoadingOutlined style={{ fontSize: 24, color:'#4D75F4' }} spin 
 
 export default function Expertise({stateChanger, state}) {
 	const [certLoader, setCertLoader] = useState([]);;
-	console.log(state.certifications)
 	const [tagInputState, setTagInputState] = useState('');
 	const changeTagInputState = (value) => {
 		if (value.length < 20) {
@@ -108,7 +107,6 @@ export default function Expertise({stateChanger, state}) {
 	const monthFormat = 'MM/YY';
 	const DateSuffix = () => <img height='14px' src={calendarIcon} alt='calendar' />;
 	const FileImage = () => <img height='14px' style={{'margin-right': '10px'}} src={fileUpload} alt='calendar' />;
-	console.log(state)
 	return (
 		<div className='expertise'>
 			<div className='personaldetails__heading'>
