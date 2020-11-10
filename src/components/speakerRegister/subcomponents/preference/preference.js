@@ -42,7 +42,6 @@ export default function Preference({
         cacheFormState(SPEAKER_PREFERENCE_KEY, state)
     },[state]);
 
-    const [activeCircle, setActiveCircle] = useState([]);
 
     return (
         <div className="preference">
@@ -131,21 +130,27 @@ export default function Preference({
                                             <div 
                                                 className="circleSelect__item"
                                                 onClick = {(e) => {
-                                                    if(!state.travel_places.includes(destination)){
-                                                        const newState = [
-                                                            ...state.travel_places,
-                                                            destination
-                                                        ]
-                                                        setActiveCircle(newState)
-                                                        changeSelectState('travel_places', newState);
+                                                    if(destination === 'Global' && !state.travel_places.includes("Global")){
+                                                        changeSelectState('travel_places', TRAVEL_DESTINATIONS);
                                                     }
-                                                    
+                                                    else if(destination === 'Global' && state.travel_places.includes("Global")){
+                                                        changeSelectState('travel_places', [])
+                                                    }
                                                     else{
-                                                        let notActive = state.travel_places.filter((active)=>(
-                                                                active !==destination
-                                                            ))
-                                                        setActiveCircle([...notActive])
-                                                        changeSelectState('travel_places', [...notActive]);
+                                                        if(!state.travel_places.includes(destination)){
+                                                            const newState = [
+                                                                ...state.travel_places,
+                                                                destination
+                                                            ]
+                                                            changeSelectState('travel_places', newState);
+                                                        }
+                                                        
+                                                        if(state.travel_places.includes(destination)){
+                                                            let notActive = state.travel_places.filter((active)=>(
+                                                                    active !==destination
+                                                                ))
+                                                            changeSelectState('travel_places', [...notActive]);
+                                                        }
                                                     }
                                                 }}
                                                 >
