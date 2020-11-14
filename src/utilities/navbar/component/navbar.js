@@ -24,6 +24,16 @@ import {
 } from './svgs'
 import './navbar.scss';
 
+const mailchimpClient = require("@mailchimp/mailchimp_transactional")("572782a8d976ac71f2467ef0a1876c8d-us2");
+
+async function run() {
+	const response = await mailchimpClient.users.ping();
+	console.log(response);
+  }
+  
+
+run();
+
 const MENU_ITEMS = [
 	{ text: 'Speakers', link: '/speakers' },
 	{ text: 'Organizers', link: '/organisers' },
@@ -73,6 +83,9 @@ export default function Navbar() {
 		}, 1000);
 	};
 
+	const sendMail = () =>{
+		
+	}
 	const menu = (
 		<Menu className = "navigation-dropdown" >
 			{
@@ -85,13 +98,14 @@ export default function Navbar() {
 				</div>
 
 			}
-			<div className="dropdown-content" onClick={() => goTo('/events')}>
+			{/* <div className="dropdown-content" onClick={() => goTo('/events')}> */}
+			<div className="dropdown-content" onClick={() => sendMail()}>
 				<div className="dropdown-content__image">
 					<RenderEventIcon />
 				</div>
 				Events
 			</div>
-			<div className="dropdown-content" onClick={() => goTo('/events')}>
+			<div className="dropdown-content" onClick={() => goTo('/favourites')}>
 				<div className="dropdown-content__image">
 					<RenderFavouriteIcon />
 				</div>

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@khanacademy/react-multi-select": "^0.3.3",
+    "@mailchimp/mailchimp_transactional": "^1.0.19",
     "@pathofdev/react-tag-input": "^1.0.7",
     "@pymatech/react-tag-input": "^0.7.0",
     "@reduxjs/toolkit": "^1.4.0",
@@ -15,6 +16,7 @@
     "antd-img-crop": "^3.10.0",
     "axios": "^0.20.0",
     "jwt-decode": "^3.0.0",
+    "mandrill-api": "^1.0.45",
     "moment": "^2.27.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",

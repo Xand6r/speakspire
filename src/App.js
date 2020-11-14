@@ -22,6 +22,7 @@ const EventSignUpPage = lazy(() => import('./components/eventsRegister' /* webpa
 const OrganiserProfile = lazy(() => import('./components/organiserProfile' /* webpackChunkName: "OrganiserProfile" */));
 const About = lazy(() => import('./components/about' /* webpackChunkName: "About" */));
 const IndividualSignUp = lazy(() => import('./components/individualSignup' /* webpackChunkName: "IndividualSignUp" */));
+const Favourites = lazy(() => import('./components/favourites' /* webpackChunkName: "IndividualSignUp" */));
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
 	const loggedIn = getToken();
@@ -55,6 +56,7 @@ function App() {
 					<Route path='/registerevent' component={EventSignUpPage} />
 					<ProtectedRoute path='/organiserprofile/:id' component={OrganiserProfile} />
 					<Route exact path='/' component={Homepage} />
+					<ProtectedRoute exact path='/favourites' component={Favourites} />
 				</Switch>
 			</Suspense>
 		</>
