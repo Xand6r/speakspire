@@ -87,7 +87,7 @@ export default function Register({ location }) {
 			.post('/organizers/add', cleanData(finalState))
 			.then((res) => {
 				deleteFormState([ORGANISER_MEDIA_KEY, ORGANISER_PERSONAL_DETAILS_KEY]);
-				setMail(personalDetails.email);
+				setMail(personalDetails.companyEmail);
 				setTimeout(() => {
 					history.push('/confirm');
 				}, 500);
