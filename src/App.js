@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Loader from './utilities/loadingScreen';
 import 'antd/dist/antd.css';
 import { getToken, setToken, getUser, getRole } from './api/user';
+import ConfirmMail from './components/confirmMail/index';
 // import {component as Nav} from './utilities/navbar'
 
 const Homepage = lazy(() => import('./components/homepage' /* webpackChunkName: "Homepage" */));
@@ -56,6 +57,7 @@ function App() {
 					<Route path='/registerevent' component={EventSignUpPage} />
 					<ProtectedRoute path='/organiserprofile/:id' component={OrganiserProfile} />
 					<Route exact path='/' component={Homepage} />
+					<Route exact path="/confirm" component={ConfirmMail} />
 					<ProtectedRoute exact path='/favourites' component={Favourites} />
 				</Switch>
 			</Suspense>

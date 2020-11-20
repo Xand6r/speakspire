@@ -22,6 +22,7 @@ import axios from '../../../utilities/axios';
 import { message } from 'antd';
 
 import './register.scss';
+import {setMail} from '../../../api/user'
 
 import { validateOrganiserDetails, validateOrganiserMedia } from '../validators';
 
@@ -85,25 +86,11 @@ export default function Register({ location }) {
 		return axios
 			.post('/organizers/add', cleanData(finalState))
 			.then((res) => {
-				const { data, role, id } = res.data;
-				setToken(data);
-				saveID(id);
-				saveRole(role);
-
-				message.success('Organiser account sucesfully created');
-				// clear the saved states
 				deleteFormState([ORGANISER_MEDIA_KEY, ORGANISER_PERSONAL_DETAILS_KEY]);
+				setMail(personalDetails.email);
 				setTimeout(() => {
-					if(role !== 'individual'){
-						history.push('/profile')
-					}
-					else{
-						history.push('/')
-					}
-					dispatch(setLoggedIn({
-						role, id
-					}));
-				}, 1000);
+					history.push('/confirm');
+				}, 500);
 			})
 			.catch((err) => {
 				const { email } = err.response?.data?.message || {email: "Unknown error"};
