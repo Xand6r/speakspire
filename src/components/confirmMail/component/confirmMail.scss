@@ -1,0 +1,37 @@
+@import '../../../stylesheets/colors';
+@import '../../../stylesheets/utilities';
+@import '../../../stylesheets/fonts';
+
+
+.confirmmail{
+    background: #E5E5E5;
+    min-width: 100%;
+    min-height: 100vh;
+
+    &__banner{
+        margin: 100px auto;
+        max-width: 513px;
+        padding: 51px 90px 71px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 10px rgba(22, 35, 89, 0.04);
+        border-radius: 10px;
+
+        img{
+        }
+
+        &__text{
+            &__header{
+                font-family: 'markpro-bold';
+                color: #162359;
+                @extend %twentyeightpx;
+                margin-bottom: 20px;
+                margin-top: 30px;
+            }
+            &__subtext{
+                color: #767E9F;
+                font-family: 'markpro-regular';
+                @extend %eighteenpx;
+            }
+        }
+    }
+}

@@ -5,9 +5,10 @@ import {
 	Link,
 	Route, // for later
 } from 'react-router-dom';
-import { setToken, saveID, saveRole } from '../../../api/user';
+import { setToken, saveID, saveRole, setMail } from '../../../api/user';
 import { setLoggedIn } from '../../../redux/userSlice';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 
 import {
 	STEPS,
@@ -53,6 +54,7 @@ const INITIAL_ERROR_STATES = [true, true, true, true, true]
 
 export default function Register({ location }) {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const [activeTab, setactiveTab] = useState(0);
 	const [previewHidden, setPreviewHidden] = useState(false);
 	const [errorStates, setErrorStates] = useState(INITIAL_ERROR_STATES)
@@ -135,15 +137,11 @@ export default function Register({ location }) {
 		return axios
 			.post('/speakers/add', cleanData(finalState))
 			.then((res) => {
-				const { data, role, id } = res.data;
-				setToken(data);
-				saveID(id);
-				saveRole(role);
-				dispatch(setLoggedIn({role, id}));
-				message.success('speaker account sucesfully created');
-				// clear the state upon submit
+				setMail(personalDetails.email);
 				deleteFormState([SPEAKER_EXPERIENCE_KEY, SPEAKER_EXPERTISE_KEY, SPEAKER_MEDIA_KEY, SPEAKER_PERSONAL_DETAILS_KEY, SPEAKER_PREFERENCE_KEY]);
-				setTimeout(() => (window.location.href = '/profile'), 1000);
+				setTimeout(() => {
+					history.push('/confirm');
+				}, 500);
 			})
 			.catch((err) => {
 				const { email } = err.response?.data?.message || {email: "Unknown error"};

@@ -15,7 +15,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import axios from '../../../utilities/axios';
 import newaxios from 'axios';
 import notificationIcon from '../assets/notification.svg';
-import { setToken, saveID, saveRole } from '../../../api/user';
+import { setMail } from '../../../api/user';
 import './usersignup.scss';
 import { useEffect } from 'react';
 
@@ -36,20 +36,6 @@ export default function Userdetails() {
 			[name]: value,
 		});
 	};
-
-	useEffect(()=>{
-		alert('here')
-		const tokens = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNodWFpYnVhbGV4YW5kZXJAZ21haWwuY29tIiwiaWQiOiJYOVdyMzRLWFA4IiwiaWF0IjoxNjAzMjI2OTQwLCJleHAiOjE2MzQ3NjI5NDB9.nFBd85ElfPTk9Qvnhm1U-yJsnNcAvBK1t45pzkWq7eU'
-		newaxios.get('https://prodeus-api.herokuapp.com/class/all',{
-			headers : {
-				'Content-Type': 'application/json',
-				'Authorization': `Bearer ${tokens}`
-			  }
-		})
-		.then(data=>{
-			console.log(data);
-		})
-	},[])
 
 	const validateFields = () => {
 		if (state.name.length < 6) {
@@ -78,19 +64,10 @@ export default function Userdetails() {
 		axios
 			.post('/individuals/add', state)
 			.then((res) => {
-				const { data, role, id } = res.data;
-				message.success(`Welcome to Speakspire ${state.name}`);
-				// save user to local storage
-				localStorage.setItem('last_registered', JSON.stringify(data));
-				setToken(data);
-				saveID(id);
-				saveRole(role);
-				dispatch(setLoggedIn({
-					role, id
-				}));
+				setMail(state.email);
 				setTimeout(() => {
-					history.push('/');
-				}, 1500);
+					history.push('/confirm');
+				}, 500);
 			})
 			.catch((err) => {
 				const errorMessage = err.response?.data?.message?.email;

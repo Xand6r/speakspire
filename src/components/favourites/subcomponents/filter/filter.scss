@@ -1,0 +1,53 @@
+@import '../../../../stylesheets/colors';
+@import '../../../../stylesheets/utilities';
+
+.favouritesfilter{
+    margin-bottom: 150px;
+    &__tabswrapper{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 62px;
+
+        &__tab{
+            display: flex;
+            margin: 0 25px;
+            color: $dark-blue;
+            opacity: 0.5;
+            cursor: pointer;
+            font-family: markpro-medium;
+            @extend %eighteenpx;
+            transition: 500ms;
+            align-items: center;
+            border-bottom: 2px solid transparent;
+
+            img{
+                margin-right: 7px;
+            }
+            &.--active{
+                border-bottom: 2px solid #162359;
+                opacity: 1;
+            }
+        }
+    }
+
+    &__tabscontent{
+        max-width: 1140px;
+        margin: 0 auto;
+
+
+        &__content{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            .speakercard{
+                margin: 0 11px 50px;
+            }
+            .organiser_preview{
+                margin: 0 15px 50px;
+            }
+            .eventcard{
+                margin: 0 13px 50px;
+            }
+        }
+    }
+}
