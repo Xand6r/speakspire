@@ -220,13 +220,13 @@ export default function ProfileContent({ reason, primaryTopic, primarySkills, se
 					<Tabs defaultActiveKey='1'>
 						{/* the tab to upload images */}
 						<TabPane tab='Photos' key='1'>
+							<div className='image_tab_content'>
 							{media
 								? filterData(media, 'photo').map(({ link }, index) => (
-										<div className='image_tab_content' key={index}>
-											<img src={link} alt='' />
-										</div>
+											<img src={link} alt='' key={index} />
 								  ))
 								: null}
+							</div>
 
 							<div className='moreimages'>
 								<More />

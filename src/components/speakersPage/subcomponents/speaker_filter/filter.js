@@ -105,7 +105,7 @@ export default function Filter() {
                         const {
                             id,
                             name, experience:[{company, position}],
-                            expertise: [{primary_specialty,secondary_specialty, primary_tags }]
+                            expertise: [{primary_specialty,secondary_specialty, primary_tags, primary_topic }]
                         } = speaker;
                         return (
                             <SpeakerCard
@@ -117,7 +117,7 @@ export default function Filter() {
                                 skills={jsonParse(primary_tags)}
                                 image={speaker.profile_photo}
                                 primary={primary_specialty}
-                                secondary={secondary_specialty}
+                                secondary={primary_topic}
                                 tag="premium"
                             />
                         );

@@ -229,13 +229,15 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 					<Tabs defaultActiveKey='1' tabBarExtraContent={<EditIcon />}>
 						{/* the tab to upload images */}
 						<TabPane tab='Photos' key='1'>
-							{media
-								? filterData(media, 'photo').map(({ link }, index) => (
-										<div className='image_tab_content' key={index}>
-											<img src={link} alt='' />
-										</div>
-								  ))
-								: null}
+							<div className='image_tab_content'>
+								{
+									media
+									? filterData(media, 'photo').map(({ link }, index) => (
+												<img src={link} alt=''  key={index}/>
+									))
+									: null
+								}
+							</div>
 
 							<div className='moreimages'>
 								<More />
@@ -244,26 +246,30 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 						{/* the tab to upload images */}
 
 						<TabPane tab='Videos' key='2'>
-							{media
-								? filterData(media, 'video').map(({ link }, index) => (
-										<div className='image_tab_content' key={index}>
-											<video src={link} alt='' />
-										</div>
-								  ))
-								: null}
+							<div className='image_tab_content'>
+								{
+									media
+									? filterData(media, 'video').map(({ link }, index) => (
+												<video src={link} alt=''  key={index}/>
+									))
+									: null
+								}
+							</div>
 							<div className='moreimages'>
 								<More />
 							</div>
 						</TabPane>
 
 						<TabPane tab='Presentation' key='3'>
-							{media
-								? filterData(media, 'presentation').map(({ link }, index) => (
-										<div className='image_tab_content' key={index}>
-											<img src={link} alt='' />
-										</div>
-								  ))
-								: null}
+							<div className='image_tab_content'>
+								{
+									media
+									? filterData(media, 'presentation').map(({ link }, index) => (
+												<img src={link} alt=''  key={index} />
+									))
+									: null
+								}
+							</div>
 							<div className='moreimages'>
 								<More />
 							</div>
