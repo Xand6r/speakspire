@@ -41,7 +41,9 @@ export default function Speakerprofile(props) {
 	return (
 		<div className='speakerprofile'>
 			{/* the navigation bar of the site */}
-			<NavBar />
+            <div className="--sticky">
+				<NavBar />
+			</div>
 			{/* the navigation bar of the site */}
 
 			{/* the section for the image header */}

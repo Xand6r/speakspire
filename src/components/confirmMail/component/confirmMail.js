@@ -10,7 +10,9 @@ export default function confirmMail() {
     return (
         <div className="confirmmail">
             {/* the navigation bar of the page */}
-            <Nav />
+            <div className="--sticky">
+                <Nav />
+            </div>
             {/* the navigation bar of the page */}
 
             {/* the notification banner */}

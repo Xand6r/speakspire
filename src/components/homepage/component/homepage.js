@@ -13,7 +13,9 @@ export default function homepage() {
     return (
         <div className="hompage">
             {/* the top navigation bar of the site */}
-            <NavBar />
+            <div className="--sticky">
+                <NavBar />
+            </div>
             {/* the top navigation bar of the site */}
 
             {/* The headver page of the webiste */}

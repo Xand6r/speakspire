@@ -11,12 +11,12 @@ import { LoadingOutlined } from '@ant-design/icons';
 
 import { INITIAL_STATE, FILTER_TEXT, CHECKBOX_OPTIONS } from './constants';
 
+import {jsonParse} from '../../../../utilities/utils';
 import './filter.scss';
 import '../../../../stylesheets/filter.scss';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#4D75F4' }} spin />;
 
-const speakers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 export default function Filter() {
     function onChange(checkedValues) {
         console.log('checked = ', checkedValues);
@@ -114,7 +114,7 @@ export default function Filter() {
                                 fullname={name}
                                 company={company}
                                 position={position}
-                                skills={JSON.parse(primary_tags)}
+                                skills={jsonParse(primary_tags)}
                                 image={speaker.profile_photo}
                                 primary={primary_specialty}
                                 secondary={secondary_specialty}

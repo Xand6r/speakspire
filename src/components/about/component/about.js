@@ -13,7 +13,9 @@ export default function about() {
         <div className="about">
 
             {/* the navigation bar component */}
-            <NavBar />
+            <div className="--sticky">
+                <NavBar />
+            </div>
             {/* the navigation bar component */}
             
             {/* the catchy frontpage */}
