@@ -47,7 +47,7 @@ const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#4D75F4'}} spin /
 const PROFILE_LINKS = [
 	[wwwLogo, 'www'],
 	[Instagram, 'instagram.com/'],
-	[LinkedIn, 'linkedin.com/in/'],
+	[LinkedIn, 'linkedin.com/'],
 	[Twitter, 'twitter.com/'],
 	[Facebook, 'facebook.com/ '],
 	[behance, 'behance.net/'],
@@ -244,7 +244,19 @@ export default function Media({stateChanger, state, handleSubmit}) {
 									placeholder={profileLink[1]}
 									onChange={(e) => {
 										let newState = [...state.links];
-										newState[index] = e.target.value;
+										const textContent = e.target.value;
+										if(textContent.length === 1 && !newState[index]){
+											newState[index] = `${profileLink[1]}${textContent}`;
+											changeSelectState('links', newState);
+											return;
+
+										}else if(textContent === profileLink[1]){
+											newState[index] = '';
+											changeSelectState('links', newState);
+											return;
+										}
+
+										newState[index] = textContent;
 										changeSelectState('links', newState);
 									}}
 									value={state.links[index]}

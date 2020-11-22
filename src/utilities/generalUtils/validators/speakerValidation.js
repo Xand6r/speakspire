@@ -20,20 +20,20 @@ export const validateExpertiseState = (expertise) => {
         expertise.education.every(cert=>{
             return Object.values(cert).every(o=>o.length)
         })
-        &&
-        expertise.certifications.every((cert) => {
-            return (
-                cert.certification_name
-                &&
-                cert.institution_name
-                &&
-                cert.from
-                &&
-                cert.to
-                &&
-                (cert.file || cert.link)
-            )
-        })
+        // &&
+        // expertise.certifications.every((cert) => {
+        //     return (
+        //         cert.certification_name
+        //         &&
+        //         cert.institution_name
+        //         &&
+        //         cert.from
+        //         &&
+        //         cert.to
+        //         &&
+        //         (cert.file || cert.link)
+        //     )
+        // })
     )
 };
 

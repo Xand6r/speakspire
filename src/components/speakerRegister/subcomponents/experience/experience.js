@@ -113,7 +113,7 @@ export default function Experience({
                                 </div>
 
                                 <div className="--input_wrapper">
-                                    <label htmlFor="company">company</label>
+                                    <label htmlFor="company">Company</label>
                                     <input
                                         name="company"
                                         type="text"

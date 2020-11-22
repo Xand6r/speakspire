@@ -21,7 +21,7 @@ export default function confirmMail() {
                 />
                 <div className="confirmmail__banner__text">
                     <div className="confirmmail__banner__text__header">
-                        Confirm Your Mail
+                        Confirm Your Email
                     </div>
                     <div className="confirmmail__banner__text__subtext">
                         Hello! Thank you for signing up on Speakspire. 
