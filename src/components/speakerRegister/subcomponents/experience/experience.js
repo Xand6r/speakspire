@@ -195,7 +195,7 @@ export default function Experience({
                             alt=""
                         />
                         <span>
-                            Add New Education
+                            Add New Position
                         </span>
                     </div>
                 </div>

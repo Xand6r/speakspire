@@ -74,7 +74,11 @@ export const INITIAL_PREFERENCE_STATE = {
     availability: "",
     mode_of_delivery: "",
     open_for_travel: "",
-    travel_places: []
+    travel_places: [],
+    volunteering: "",
+    contactMail:"",
+    contactWhatsapp: "",
+    contactPhone:""
 }
 
 export const SPEAKER_MEDIA_KEY = "SPEAKER_MEDIA";

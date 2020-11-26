@@ -151,6 +151,7 @@
                 }
                 .--footer{
                     display: flex;
+                    position: relative;
                     .--contact{
                         @extend %filled-button;
                         width: 176px;
@@ -159,7 +160,7 @@
                         margin-right: 22px;
                         text-transform: capitalize;
                     }
-                    img{
+                    & > img{
                         margin-left: 10px;
                     }
                 }

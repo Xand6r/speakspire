@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import ContactMe from '../../../../utilities/contactMethods';
 
 import ellipsisIcon from '../../assets/ellipsis.svg';
 import shareIcon from '../../assets/share.svg';
@@ -20,6 +21,7 @@ export default function Profilecard({ userData }) {
 		profile_photo, name, highest_level_of_education, experience, expertise, languages,
 		state, country
 	} = userData;
+	const [hideContacts, setHideContacts] = useState(true);
 
 	const splitLanguage = (data) => {
 		return data
@@ -27,8 +29,15 @@ export default function Profilecard({ userData }) {
 			.replace(/['/[]+/g, '')
 			.replace(/['/\]]+/g, '');
 	};
+
+	window.addEventListener('click', e=>{
+		setHideContacts(true);
+	});
+
 	return (
-		<div className='profilecard'>
+		<div
+			className='profilecard'
+		>
 			<div className={`profilecard__tag --${tag}`}>{tag}</div>
 			<div className='profilecard__actions'>
 				<img src={shareIcon} alt='share' />
@@ -47,9 +56,26 @@ export default function Profilecard({ userData }) {
 						<div className='--position'>{experience ? experience[0].position : null}</div>
 						<div className='--company'>{experience ? experience[0].company : null}</div>
 						<div className='--footer'>
-							<div className='--contact'>contact me</div>
+							<div
+								className='--contact'
+								onClick={
+									(e) => {
+										e.stopPropagation()
+										setHideContacts(!hideContacts);
+									}
+								}
+							>
+								contact me
+							</div>
 							<img src={profileIcon} alt='' />
 							<img src={playIcon} alt='' />
+							<ContactMe
+								closed={hideContacts}
+								onClose={(e) => {
+									e.stopPropagation()
+									setHideContacts(true)
+								}}
+							/>
 						</div>
 					</div>
 				</div>

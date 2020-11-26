@@ -37,28 +37,28 @@ function App() {
 			{/* <Nav /> */}
 			<Suspense fallback={<Loader />}>
 				<Switch>
-					<Route exact path='/about' component={About} />
-					<ProtectedRoute exact path='/speakers' component={SpeakersPage}/>
 					<ProtectedRoute
 						exact path='/profile'
 						component={
 							(role === 'speaker')?(SpeakerPersonalProfile): (OrganiserPersonalProfile)
 						}
 					/>
-					<ProtectedRoute exact path='/speakers/:id' component={SpeakersProfile} />
-					<ProtectedRoute exact path='/events' component={EventsPage} />
+					<ProtectedRoute exact path='/favourites' component={Favourites} />
+					<Route exact path='/about' component={About} />
+					<Route exact path='/speakers' component={SpeakersPage}/>
+					<Route exact path='/speakers/:id' component={SpeakersProfile} />
+					<Route exact path='/events' component={EventsPage} />
 					<Route exact path='/category' component={SignUpCategory} />
 					<Route exact path='/login' component={SignInPage} />
 					<Route path='/register' component={SpeakerSignUpPage} />
 					<Route path='/organiser' component={OrganiserSignUpPage} />
-					<ProtectedRoute path='/events/:id' component={EventProfile} />
-					<ProtectedRoute path='/organisers' component={OrganisersPage} />
+					<Route path='/events/:id' component={EventProfile} />
+					<Route path='/organisers' component={OrganisersPage} />
 					<Route path='/individual' component={IndividualSignUp} />
 					<Route path='/registerevent' component={EventSignUpPage} />
-					<ProtectedRoute path='/organiserprofile/:id' component={OrganiserProfile} />
+					<Route path='/organiserprofile/:id' component={OrganiserProfile} />
 					<Route exact path='/' component={Homepage} />
 					<Route exact path="/confirm" component={ConfirmMail} />
-					<ProtectedRoute exact path='/favourites' component={Favourites} />
 				</Switch>
 			</Suspense>
 		</>

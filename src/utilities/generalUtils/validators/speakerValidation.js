@@ -47,12 +47,19 @@ export const validateExperienceState = (experience) => {
 
 export const validatePreferenceState = (preference) => {
     return (
-        Object.values(preference).every(o => o!== '')
+        (
+            preference.availability !== "" &&
+            preference.mode_of_delivery !=="" &&
+            preference.open_for_travel !== "" &&
+            preference.volunteering !==  ""
+        )
         &&
         ((preference.open_for_travel.value === "yes" && preference.travel_places.length > 0 )
             ||
             preference.open_for_travel.value === "no"
         )
+        &&
+        (preference.contactMail || preference.contactPhone || preference.contactWhatsapp)
     )
 }
 

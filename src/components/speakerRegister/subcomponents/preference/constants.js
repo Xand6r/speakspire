@@ -14,3 +14,8 @@ export const TRAVEL_OPTIONS = [
     { value: 'yes', label: 'Yes' },
     { value: 'no', label: 'No' },
 ]
+
+export const VOLUNTEERING_OPTIONS = [
+    { value: 'yes', label: 'Yes' },
+    { value: 'no', label: 'No' },
+]

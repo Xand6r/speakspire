@@ -1,17 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
 import { Link } from 'react-router-dom';
+import {jsonParse} from '../../../../utilities/utils'
 
 import PropTypes from 'prop-types';
 import CircleSelect from './circleSelect';
 
 import {
     AVAILABILITY_OPTIONS, DELIVERY_MODE_OPTIONS,
-    TRAVEL_OPTIONS
+    TRAVEL_OPTIONS, VOLUNTEERING_OPTIONS
 } from './constants'
 
 import {
-    SPEAKER_PREFERENCE_KEY
+    SPEAKER_PREFERENCE_KEY, SPEAKER_PERSONAL_DETAILS_KEY
 } from '../../component/constants';
 
 import {
@@ -42,6 +43,14 @@ export default function Preference({
         cacheFormState(SPEAKER_PREFERENCE_KEY, state)
     },[state]);
 
+    useEffect(()=>{
+        if(!state.contactMail){
+            const {email, phonenumber} = jsonParse(localStorage.getItem(SPEAKER_PERSONAL_DETAILS_KEY))
+            changeSelectState('contactMail', email)
+            changeSelectState('contactPhone', phonenumber)
+        }
+    },[])
+
 
     return (
         <div className="preference">
@@ -61,7 +70,7 @@ export default function Preference({
                         <div className="--input_wrapper --select">
                             <label className="double" htmlFor="position">
                                 Availability
-                                <span>hese are days you’re available for engagements.</span>
+                                <span>These are days you’re available for engagements.</span>
                             </label>
                             <div className="--singleselect">
                             <Select
@@ -89,6 +98,24 @@ export default function Preference({
                                 className="--item"
                                 onChange={(value) => changeSelectState('mode_of_delivery', value)}
                                 value={state.mode_of_delivery}
+                            />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="preference__formsection__section__form --whitebg">
+                        <div className="--input_wrapper --select">
+                            <label className="double" htmlFor="position">
+                                Volunteering
+                            </label>
+                            <div className="--singleselect">
+                            <Select
+                                options={VOLUNTEERING_OPTIONS}
+                                isSearchable
+                                placeholder="Select"
+                                className="--item"
+                                onChange={(value) => changeSelectState('volunteering', value)}
+                                value={state.volunteering}
                             />
                             </div>
                         </div>
@@ -168,6 +195,48 @@ export default function Preference({
                         ): ""
                     }
 
+                </div>
+                
+                <div className="contacts__header">
+                    Contact Details
+                </div>
+                <div className="preference__formsection__section__form --wide">
+
+                    <div className="--input_wrapper">
+                        <label className="double --contact" htmlFor="position">
+                            Email
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Enter email"
+                            onChange={({target}) => changeSelectState('contactMail', target.value)}
+                            value = {state.contactMail}
+                        />
+                    </div>
+
+                    <div className="--input_wrapper">
+                        <label className="double --contact" htmlFor="position">
+                            Whatsapp
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Enter WhatsApp link"
+                            onChange={({target}) => changeSelectState('contactWhatsapp', target.value)}
+                            value = {state.contactWhatsapp}
+                        />
+                    </div>
+
+                    <div className="--input_wrapper">
+                        <label className="double --contact" htmlFor="position">
+                            Call
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Enter Phone Number"
+                            onChange={({target}) => changeSelectState('contactPhone', target.value)}
+                            value = {state.contactPhone}
+                        />
+                    </div>
                 </div>
             
             </div>
