@@ -15,6 +15,10 @@ import {
     SPEAKER_PREFERENCE_KEY, SPEAKER_PERSONAL_DETAILS_KEY
 } from '../../component/constants';
 
+import callIcon from './assets/call.svg'
+import emailIcon from './assets/email.svg'
+import whatsappIcon from './assets/whatsapp.svg'
+
 import {
     cacheFormState
 } from '../../../../utilities/dataPersist'
@@ -44,7 +48,7 @@ export default function Preference({
     },[state]);
 
     useEffect(()=>{
-        if(!state.contactMail){
+        if(!state.contactMail && !state.contactPhone){
             const {email, phonenumber} = jsonParse(localStorage.getItem(SPEAKER_PERSONAL_DETAILS_KEY))
             changeSelectState('contactMail', email)
             changeSelectState('contactPhone', phonenumber)
@@ -204,7 +208,7 @@ export default function Preference({
 
                     <div className="--input_wrapper">
                         <label className="double --contact" htmlFor="position">
-                            Email
+                           <img src={emailIcon} alt=""/> Email
                         </label>
                         <input
                             type="text"
@@ -216,7 +220,7 @@ export default function Preference({
 
                     <div className="--input_wrapper">
                         <label className="double --contact" htmlFor="position">
-                            Whatsapp
+                        <img src={whatsappIcon} alt=""/> Whatsapp
                         </label>
                         <input
                             type="text"
@@ -228,7 +232,7 @@ export default function Preference({
 
                     <div className="--input_wrapper">
                         <label className="double --contact" htmlFor="position">
-                            Call
+                        <img src={callIcon} alt=""/>Call
                         </label>
                         <input
                             type="text"

@@ -122,6 +122,13 @@
 
                             &.--contact{
                                 color: $grey;
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+
+                                img{
+                                    margin-right: 9px;
+                                }
                             }
                             span{
                                 margin-top: 7px;
