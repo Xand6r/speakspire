@@ -8,7 +8,7 @@ import CircleSelect from './circleSelect';
 
 import {
     AVAILABILITY_OPTIONS, DELIVERY_MODE_OPTIONS,
-    TRAVEL_OPTIONS, VOLUNTEERING_OPTIONS
+    TRAVEL_OPTIONS, VOLUNTEERING_OPTIONS, PAYMENT_OPTIONS
 } from './constants'
 
 import {
@@ -29,7 +29,7 @@ import '../../../../stylesheets/tag.scss'
 export default function Preference({
     stateChanger, state
 }) {
-
+    const CURRENCY_LIMIT = 300000;
     const changeSelectState = (name, value)=>{
         stateChanger({
             ...state,
@@ -53,7 +53,7 @@ export default function Preference({
             changeSelectState('contactMail', email)
             changeSelectState('contactPhone', phonenumber)
         }
-    },[])
+    },[]);
 
 
     return (
@@ -131,14 +131,14 @@ export default function Preference({
                                 Are you open to travel?
                             </label>
                             <div className="--singleselect">
-                            <Select
-                                options={TRAVEL_OPTIONS}
-                                isSearchable
-                                placeholder="Select"
-                                className="--item"
-                                onChange={(value) => changeSelectState('open_for_travel', value)}
-                                value={state.open_for_travel}
-                            />
+                                <Select
+                                    options={TRAVEL_OPTIONS}
+                                    isSearchable
+                                    placeholder="Select"
+                                    className="--item"
+                                    onChange={(value) => changeSelectState('open_for_travel', value)}
+                                    value={state.open_for_travel}
+                                />
                             </div>
                         </div>
                     </div>
@@ -241,6 +241,55 @@ export default function Preference({
                             value = {state.contactPhone}
                         />
                     </div>
+                </div>
+
+                <div className="contacts__header">
+                    Speaker Fee
+                </div>
+                <div className="preference__formsection__section__form --wide">
+
+                    <div className="--input_wrapper">
+                        <div className="--input_wrapper --select">
+                            <label htmlFor="position">
+                                Currency
+                            </label>
+                            <div className="--singleselect">
+                                <Select
+                                    options={PAYMENT_OPTIONS}
+                                    isSearchable
+                                    placeholder="Select"
+                                    className="--item --white"
+                                    onChange={(value) => changeSelectState('currency', value)}
+                                    value={state.currency}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="--input_wrapper">
+                        <label className="double --contact" htmlFor="position">
+                            Fee Range
+                        </label>
+                        
+                        <div className="--double_wrapper">
+                            <input
+                                value={state.budgetFrom}
+                                type="number"
+                                placeholder="00.00 NGN"
+                                min="0"
+                                onChange={({target}) => changeSelectState('budgetFrom',  Number(target.value) < 0 ? 0 : target.value )}
+                            />
+                            <span> - </span>
+                            <input
+                                placeholder="00.00 NGN "
+                                type="number"
+                                value={state.budgetTo}
+                                max="300000"
+                                onChange={({target}) => changeSelectState('budgetTo', Number(target.value) > CURRENCY_LIMIT? CURRENCY_LIMIT : target.value )}
+                            />
+                        </div>
+                    </div>
+
                 </div>
             
             </div>

@@ -13,9 +13,14 @@ export const DELIVERY_MODE_OPTIONS = [
 export const TRAVEL_OPTIONS = [
     { value: 'yes', label: 'Yes' },
     { value: 'no', label: 'No' },
-]
+];
 
 export const VOLUNTEERING_OPTIONS = [
     { value: 'yes', label: 'Yes' },
     { value: 'no', label: 'No' },
-]
+];
+
+export const PAYMENT_OPTIONS = [
+    { value: 'dollars', label: 'Dollars' },
+    { value: 'naira', label: 'Naira' },
+];

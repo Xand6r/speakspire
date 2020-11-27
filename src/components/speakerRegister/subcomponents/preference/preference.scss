@@ -106,6 +106,19 @@
                     display: flex;
                     flex-direction: column;
 
+                    .--double_wrapper{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                 
+                        span{
+                            color:$light-navy-blue;
+                            @extend %fourteenpx;
+                            font-family: 'markpro-medium';
+                        }
+                
+                    }
+
                     &:last-of-type{
                         margin-bottom: 0;
                     }
@@ -143,6 +156,14 @@
                         }
                         .--singleselect{
                             .--item{
+                                &.--white{
+                                    .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
+                                        background: #fff;
+                                    }
+                                    .css-g1d714-ValueContainer, .css-1hwfws3{
+                                        background: #fff;
+                                    }
+                                }
                                 .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
                                     background: #F7F8FC;
                                     cursor: pointer !important;
@@ -218,7 +239,7 @@
                             }
                         }
                     }
-                    input[type='text'], textarea{
+                    input[type='text'],input[type='number'], textarea{
                         @extend %input-styles;
                         @extend %sixteenpx;
                         border: 1px solid #CDD1DE;
@@ -237,6 +258,9 @@
                     textarea{
                         min-height: 103px;
                         background: #F7F8FC;
+                    }
+                    input[type='number']{
+                        width: 45%;
                     }
                     .--topic{
                         .css-g1d714-ValueContainer, .css-1hwfws3{

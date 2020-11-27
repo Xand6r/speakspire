@@ -78,7 +78,10 @@ export const INITIAL_PREFERENCE_STATE = {
     volunteering: "",
     contactMail:"",
     contactWhatsapp: "",
-    contactPhone:""
+    contactPhone:"",
+    currency: "",
+    budgetFrom: "",
+    budgetTo: ""
 }
 
 export const SPEAKER_MEDIA_KEY = "SPEAKER_MEDIA";

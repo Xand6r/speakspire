@@ -13,8 +13,9 @@ body {
 .--sticky{
   position: sticky;
   top: 0;
-  z-index: 100000;
+  z-index: 1;
 }
+
 .--tilldate{
   margin-top: 10px;
   margin-top: 18px;
