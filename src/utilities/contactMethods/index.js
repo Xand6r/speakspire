@@ -10,6 +10,7 @@ export default function Index({closed, onClose, contacts}) {
 
     const contactProfile = (contactKeyValue) => {
         const [[key, value]] = Object.entries(contactKeyValue);
+        if(!value) return;
         switch (key) {
             case "whatsapp":
                 window.open(value, '_blank');

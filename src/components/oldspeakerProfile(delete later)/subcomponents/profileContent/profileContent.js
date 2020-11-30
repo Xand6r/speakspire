@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs } from 'antd';
 
-import HorizontalSpeaker from '../../subcomponents/horizontalSpeaker';
+import HorizontalSpeaker from '../horizontalSpeaker';
 import profileSample from '../../assets/potrait.jpg';
 import instagram from '../../assets/instagram.svg';
 import linkedin from '../../assets/linkedin.svg';

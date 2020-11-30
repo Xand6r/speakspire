@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs } from 'antd';
@@ -14,16 +14,20 @@ import web from '../../assets/web.svg';
 import './profileContent.scss';
 import bluePencilIcon from '../../assets/pencil.svg';
 
-const EditIcon = () => (
-	<div className='editicon'>
-		<img src={bluePencilIcon} alt='' />
-	</div>
-);
 
 const { TabPane } = Tabs;
-const SOCIAL_MEDIA_ICONS = [instagram, linkedin, twitter, facebook, web];
 
-const More = () => <div className='more'>More...</div>;
+const getLink = (allLinks, linkType) => {
+	console.log(allLinks)
+	try{
+		return (JSON.parse(allLinks) || []).find(oneLink => oneLink.includes(linkType))
+	}catch(err){
+		return ""
+	}
+}
+
+
+const More = ({text}) => <div className='more'>{text || 'More'}...</div>;
 
 const SpeakingSkills = ({ primaryTopic, primarySkills, secondaryTopic, secondarySkills }) => (
 	<>
@@ -37,6 +41,7 @@ const SpeakingSkills = ({ primaryTopic, primarySkills, secondaryTopic, secondary
 						{skill}
 					</div>
 				))}
+				{/* <More /> */}
 			</div>
 		</div>
 		{/* secondary skills bar */}
@@ -51,7 +56,7 @@ const SpeakingSkills = ({ primaryTopic, primarySkills, secondaryTopic, secondary
 						{skill}
 					</div>
 				))}
-				<More />
+				{/* <More /> */}
 			</div>
 		</div>
 	</>
@@ -61,11 +66,30 @@ const filterData = (array, params) => {
 	return array.filter((data) => data.category === params);
 };
 
-export default function ProfileContent({ primaryTopic, primarySkills, secondaryTopic, secondarySkills, userData }) {
-	const { expertise, bio, experience, education, certification, media, usp } = userData;
+export default function ProfileContent({ primaryTopic, primarySkills, secondaryTopic, secondarySkills, userData, isAdmin }) {
 
+	const [positionsLimit, setPositionsLimit] = useState(2);
+	const [educationsLimit, setEducationsLimit] = useState(2);
+	const [certificatesLimit, setcertificatesLimit] = useState(2);
+	const [pictureLimit, setPictureLimit] = useState(2);
+	const [videoLimit, setVideoLimit] = useState(2);
+	const [presentationLimit, setPresentationLimit] = useState(2);
+
+
+	const { expertise, bio, experience, education, certification, media, usp, links } = userData;
 	const speakers = useSelector(({ speakers }) => speakers.data);
 	const speakersList = speakers || [];
+
+	const SOCIAL_MEDIA_ICONS = [[instagram, getLink(links, 'instagram')], [linkedin, getLink(links, 'linkedin')], [twitter, getLink(links, 'twitter')], [facebook, getLink(links, 'facebook')], [web, getLink(links, 'www')]];
+
+
+	const EditIcon = () => (
+		isAdmin &&
+		<div className='editicon'>
+			<img src={bluePencilIcon} alt='' />
+		</div>
+	);
+
 	return (
 		<div className='profilecontent'>
 			<div className='profilecontent__left'>
@@ -121,8 +145,9 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 				<div className='profilecontent__left__socialmedia'>
 					<div className='social_content'>
 						<span>Social Media</span>
-						{SOCIAL_MEDIA_ICONS.map((icon, i) => (
-							<img src={icon} alt='social media' key={i} />
+						{SOCIAL_MEDIA_ICONS.map(([icon, link], i) => (
+							link &&
+							<img src={icon} alt='social media' key={i} onClick={() => window.open(`http://${link}`,'_blank')} />
 						))}
 					</div>
 					<EditIcon />
@@ -164,7 +189,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 						<TabPane tab='Position' key='1'>
 							<div className='experience_tab_content'>
 								{experience
-									? experience.map(({ company, from, position, to }, index) => (
+									? experience.slice(0,positionsLimit).map(({ company, from, position, to }, index) => (
 											<div className='past_experience' key={index}>
 												<div className='past_experience__position'>{position}</div>
 												<div className='past_experience__company'>{company}</div>
@@ -174,7 +199,14 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 									: null}
 
 								<div className='experience_more'>
-									<More />
+									{
+										experience && experience.length > positionsLimit && experience.length > 2 && 
+										<div onClick = {() => setPositionsLimit(lim => lim +2)} > <More/> </div>
+									}
+									{
+										experience && experience.length <= positionsLimit && experience.length > 2 && 
+										<div onClick = {() => setPositionsLimit(lim => lim - 2)} > <More text="Less"/> </div>
+									}
 								</div>
 							</div>
 						</TabPane>
@@ -183,7 +215,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 						<TabPane tab='Education' key='2'>
 							<div className='experience_tab_content'>
 								{education
-									? education.map(({ institution, field_of_study, from, to }, i) => (
+									? education.slice(0, educationsLimit).map(({ institution, field_of_study, from, to }, i) => (
 											<div className='past_experience' key={i}>
 												<div className='past_experience__position'>{institution}</div>
 												<div className='past_experience__company'>{field_of_study}</div>
@@ -193,7 +225,14 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 									: null}
 
 								<div className='experience_more'>
-									<More />
+									{
+										education && education.length > educationsLimit && education.length > 2 && 
+										<div onClick = {() => setEducationsLimit(lim => lim +2)} > <More/> </div>
+									}
+									{
+										education && education.length <= educationsLimit && education.length > 2 && 
+										<div onClick = {() => setEducationsLimit(lim => lim - 2)} > <More text="Less"/> </div>
+									}
 								</div>
 							</div>
 						</TabPane>
@@ -201,7 +240,8 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 						<TabPane tab='Certificates' key='3'>
 							<div className='experience_tab_content'>
 								{certification
-									? certification.map(({ from, to, institution, proof, name }, i) => (
+									? certification.slice(0, certificatesLimit).map(({ from, to, institution, proof, name }, i) => (
+										institution &&
 											<div className='past_experience' key={i}>
 												<div className='past_experience__position'>{name}</div>
 												<div className='past_experience__company'>{institution}</div>
@@ -210,7 +250,14 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 									  ))
 									: null}
 								<div className='experience_more'>
-									<More />
+								{
+										certification && certification.length > certificatesLimit && certification.length > 2 && 
+										<div onClick = {() => setcertificatesLimit(lim => lim +2)} > <More/> </div>
+									}
+									{
+										certification && certification.length <= certificatesLimit && certification.length > 2 && 
+										<div onClick = {() => setcertificatesLimit(lim => lim - 2)} > <More text="Less"/> </div>
+									}
 								</div>
 							</div>
 						</TabPane>
@@ -232,7 +279,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 							<div className='image_tab_content'>
 								{
 									media
-									? filterData(media, 'photo').map(({ link }, index) => (
+									? filterData(media, 'photo').slice(0, pictureLimit).map(({ link }, index) => (
 												<img src={link} alt=''  key={index}/>
 									))
 									: null
@@ -240,7 +287,14 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 							</div>
 
 							<div className='moreimages'>
-								<More />
+								{
+									media && filterData(media, 'photo').length > pictureLimit && filterData(media, 'photo').length > 2 && 
+									<div onClick = {() => setPictureLimit(lim => lim +2)} > <More/> </div>
+								}
+								{
+									media && filterData(media, 'photo').length <= pictureLimit && filterData(media, 'photo').length > 2 && 
+									<div onClick = {() => setPictureLimit(lim => lim - 2)} > <More text="Less"/> </div>
+								}
 							</div>
 						</TabPane>
 						{/* the tab to upload images */}
@@ -260,7 +314,14 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 								}
 							</div>
 							<div className='moreimages'>
-								<More />
+								{
+									media && filterData(media, 'video').length > videoLimit && filterData(media, 'video').length > 2 && 
+									<div onClick = {() => setVideoLimit(lim => lim +2)} > <More/> </div>
+								}
+								{
+									media && filterData(media, 'video').length <= videoLimit && filterData(media, 'video').length > 2 && 
+									<div onClick = {() => setVideoLimit(lim => lim - 2)} > <More text="Less"/> </div>
+								}
 							</div>
 						</TabPane>
 
@@ -275,7 +336,14 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 								}
 							</div>
 							<div className='moreimages'>
-								<More />
+							{
+									media && filterData(media, 'presentation').length > presentationLimit && filterData(media, 'presentation').length > 2 && 
+									<div onClick = {() => setPresentationLimit(lim => lim +2)} > <More/> </div>
+								}
+								{
+									media && filterData(media, 'presentation').length <= presentationLimit && filterData(media, 'presentation').length > 2 && 
+									<div onClick = {() => setPresentationLimit(lim => lim - 2)} > <More text="Less"/> </div>
+								}
 							</div>
 						</TabPane>
 					</Tabs>

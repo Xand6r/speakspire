@@ -9,7 +9,7 @@ import ConfirmMail from './components/confirmMail/index';
 
 const Homepage = lazy(() => import('./components/homepage' /* webpackChunkName: "Homepage" */));
 const SpeakersPage = lazy(() => import('./components/speakersPage' /* webpackChunkName: "SpeakersPage" */));
-const SpeakersProfile = lazy(() => import('./components/speakerProfile' /* webpackChunkName: "SingleSpeakerPage" */));
+// const SpeakersProfile = lazy(() => import('./components/speakerProfile' /* webpackChunkName: "SingleSpeakerPage" */));
 const SpeakerPersonalProfile =  lazy(() => import('./components/speakerPersonalProfile' /* webpackChunkName: "Profile" */))
 const OrganiserPersonalProfile = lazy(() => import('./components/organiserPersonalProfile' /* webpackChunkName: "Profile" */));
 const SignUpCategory = lazy(() => import('./components/category' /* webpackChunkName: "SignUpCategory" */));
@@ -46,7 +46,7 @@ function App() {
 					<ProtectedRoute exact path='/favourites' component={Favourites} />
 					<Route exact path='/about' component={About} />
 					<Route exact path='/speakers' component={SpeakersPage}/>
-					<Route exact path='/speakers/:id' component={SpeakersProfile} />
+					<Route exact path='/speakers/:id' component={SpeakerPersonalProfile} />
 					<Route exact path='/events' component={EventsPage} />
 					<Route exact path='/category' component={SignUpCategory} />
 					<Route exact path='/login' component={SignInPage} />

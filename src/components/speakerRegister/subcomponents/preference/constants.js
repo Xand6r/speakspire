@@ -7,7 +7,7 @@ export const AVAILABILITY_OPTIONS = [
 export const DELIVERY_MODE_OPTIONS = [
     { value: 'Virtual Engagement', label: 'Virtual Engagement' },
     { value: 'Physical Engagement', label: 'Physical Engagement' },
-    { value: 'Virtual and Physical', label: 'Virtual and Physical' },
+    { value: 'Virtual and Physical Engagement', label: 'Virtual and Physical Engagement' },
 ];
 
 export const TRAVEL_OPTIONS = [

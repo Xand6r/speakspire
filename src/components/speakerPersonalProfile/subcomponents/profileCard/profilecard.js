@@ -11,17 +11,18 @@ import moneyIcon from '../../assets/money.svg';
 import planeIcon from '../../assets/plane.svg';
 import globeIcon from '../../assets/globe.svg';
 import locationIcon from '../../assets/location.svg';
+import greyPencil from '../../assets/greyPencil.svg';
 
 import './profilecard.scss';
 
 const tag = 'premium';
 
-export default function Profilecard({ userData }) {
+export default function Profilecard({ userData, isAdmin }) {
 	const [userContacts, setUserContacts] = useState({});
 
 	const {
 		profile_photo, name, highest_level_of_education, experience, expertise, languages,
-		state, country, contact = []
+		state, country, contact = [], preferences, price = "1000 - 300000$naira"
 	} = userData;
 	const [hideContacts, setHideContacts] = useState(true);
 	const splitLanguage = (data) => {
@@ -30,10 +31,31 @@ export default function Profilecard({ userData }) {
 			.replace(/['/[]+/g, '')
 			.replace(/['/\]]+/g, '');
 	};
-
+	const travelLocation = preferences?JSON.parse(preferences[0].travel)[0]: "Nigeria";
+	const physical = preferences && preferences[0].delivery_mode.includes('Physical');
+	const virtual = preferences && preferences[0].delivery_mode.includes('Virtual');
+	const formatPrice = (priceString) =>{
+		return Number(priceString.replace(' ','')).toLocaleString()
+	}
+	const getPrice = () => {
+		try{
+			const priceRange = price.split('$')[0].split(" - ");
+			const formattedPriceRange = `${formatPrice(priceRange[0])} NGN - ${formatPrice(priceRange[1])} NGN`
+			return formattedPriceRange;
+		}catch(err){
+			return "100,000 NGN - 650,000 NGN"
+		}
+	}
 	window.addEventListener('click', e=>{
 		setHideContacts(true);
 	});
+
+	const EditIcon = () => (
+		isAdmin &&
+		<div className='editicon'>
+			<img src={greyPencil} alt='' />
+		</div>
+	);
 
 	useEffect(()=>{
 		contact.forEach((oneContact) => {
@@ -48,7 +70,7 @@ export default function Profilecard({ userData }) {
 			<div className={`profilecard__tag --${tag}`}>{tag}</div>
 			<div className='profilecard__actions'>
 				<img src={shareIcon} alt='share' />
-				<img src={ellipsisIcon} alt='ellipsis' />
+				<EditIcon />
 			</div>
 
 			<div className='profilecard__maincontent'>
@@ -74,8 +96,8 @@ export default function Profilecard({ userData }) {
 							>
 								contact me
 							</div>
-							<img src={profileIcon} alt='' />
-							<img src={playIcon} alt='' />
+							{physical && <img src={profileIcon} alt='' />}
+							{virtual && <img src={playIcon} alt='' />}
 							<ContactMe
 								closed={hideContacts}
 								contacts={userContacts}
@@ -95,22 +117,22 @@ export default function Profilecard({ userData }) {
 					</div>
 
 					<div className='profilecard__maincontent__right__item'>
-						<img className='--icon' src={moneyIcon} alt='' />
-						<div className='--text'>N100,000 - N650,000</div>
+						<div className='--icon' > <img src={moneyIcon} alt='' /> </div>
+						<div className='--text'>{getPrice()}</div>
 					</div>
 
 					<div className='profilecard__maincontent__right__item'>
-						<img className='--icon' src={locationIcon} alt='' />
+						<div className='--icon' > <img src={locationIcon} alt='' /> </div>
 						<div className='--text'>{`${state}, ${country}`}</div>
 					</div>
 
 					<div className='profilecard__maincontent__right__item'>
-						<img className='--icon' src={planeIcon} alt='' />
-						<div className='--text'>Global</div>
+						<div className='--icon' > <img src={planeIcon} alt='' /> </div>
+						<div className='--text'>{travelLocation}</div>
 					</div>
 
 					<div className='profilecard__maincontent__right__item'>
-						<img className='--icon' src={globeIcon} alt='' />
+						<div className='--icon' > <img src={globeIcon} alt='' /> </div>
 						<div className='--text'>{languages ? splitLanguage(languages) : null}</div>
 					</div>
 				</div>

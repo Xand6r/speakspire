@@ -10,10 +10,14 @@ import axios from '../../../utilities/axios';
 import './speakerprofile.scss';
 import { getID } from '../../../api/user';
 
-export default function Speakerprofile() {
+export default function Speakerprofile(props) {
 	const [userData, setUserData] = useState({});
 	const history = useHistory();
-	const id = useSelector(({user}) => user.id)
+
+	const userId = useSelector(({user}) => user.id)
+	const id = props.match.params.id || userId;
+
+	const isAdmin = userId === id
 
 	useEffect(() => {
 		const getDetails = async () => {
@@ -67,13 +71,13 @@ export default function Speakerprofile() {
 
 			{/* the section containing the profilecard */}
 			<div className='speakerprofile__profile_card'>
-				<ProfileCard userData={userData} />
+				<ProfileCard userData={userData} isAdmin={isAdmin} />
 			</div>
 			{/* the section containing the profilecard */}
 
 			{/* the section containing the main content */}
 			<div className='speakerprofile__profile_content'>
-				<ProfileContent userData={userData} />
+				<ProfileContent userData={userData} isAdmin={isAdmin} />
 			</div>
 			{/* the section containing the main content */}
 			{/* the footer */}
