@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ContactMe from '../../../../utilities/contactMethods';
 
 import ellipsisIcon from '../../assets/ellipsis.svg';
@@ -17,12 +17,13 @@ import './profilecard.scss';
 const tag = 'premium';
 
 export default function Profilecard({ userData }) {
+	const [userContacts, setUserContacts] = useState({});
+
 	const {
 		profile_photo, name, highest_level_of_education, experience, expertise, languages,
-		state, country
+		state, country, contact = []
 	} = userData;
 	const [hideContacts, setHideContacts] = useState(true);
-
 	const splitLanguage = (data) => {
 		return data
 			.replace(/['"]+/g, ' ')
@@ -33,6 +34,12 @@ export default function Profilecard({ userData }) {
 	window.addEventListener('click', e=>{
 		setHideContacts(true);
 	});
+
+	useEffect(()=>{
+		contact.forEach((oneContact) => {
+			setUserContacts(oneContact);
+		});
+	},[contact])
 
 	return (
 		<div
@@ -71,6 +78,7 @@ export default function Profilecard({ userData }) {
 							<img src={playIcon} alt='' />
 							<ContactMe
 								closed={hideContacts}
+								contacts={userContacts}
 								onClose={(e) => {
 									e.stopPropagation()
 									setHideContacts(true)

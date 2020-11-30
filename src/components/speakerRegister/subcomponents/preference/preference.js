@@ -31,10 +31,10 @@ export default function Preference({
 }) {
     const CURRENCY_LIMIT = 300000;
     const changeSelectState = (name, value)=>{
-        stateChanger({
+        stateChanger(state => ({
             ...state,
             [name]: value
-          });
+          }));
     }
 
     const TRAVEL_DESTINATIONS = [
@@ -55,7 +55,7 @@ export default function Preference({
         }
     },[]);
 
-
+    console.log(state)
     return (
         <div className="preference">
 

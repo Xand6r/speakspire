@@ -21,6 +21,6 @@ export const VOLUNTEERING_OPTIONS = [
 ];
 
 export const PAYMENT_OPTIONS = [
-    { value: 'dollars', label: 'Dollars' },
-    { value: 'naira', label: 'Naira' },
+    { value: 'dollars', label: 'Dollars ($)' },
+    { value: 'naira', label: 'Naira (NGN)' },
 ];

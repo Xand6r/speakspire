@@ -60,6 +60,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 
 	const speakers = useSelector(({ speakers }) => speakers.data);
 	const speakersList = speakers || [];
+	console.log(media)
 	return (
 		<div className='profilecontent'>
 			<div className='profilecontent__left'>
@@ -239,7 +240,10 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 								{
 									media
 									? filterData(media, 'video').map(({ link }, index) => (
-												<video src={link} alt=''  key={index} />
+										<video controls  key={index}>
+											<source src={link} type="video/mp4"/>
+											Your browser does not support the video tag.
+										</video>
 									))
 									: null
 								}

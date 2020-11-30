@@ -43,7 +43,7 @@ export default (data) => {
 	} = data;
 	return Object.freeze({
 		name: fullname ? fullname : '',
-		email: email ? email : '',
+		email: email ? email.toLowerCase() : '',
 		sex: gender ? gender : '',
 		birthday: birthdate,
 		phone: phonenumber ? phonenumber : '',
@@ -77,6 +77,6 @@ export default (data) => {
 			email: contactMail,
 			phone: contactPhone
 		},
-		price:`${budgetFrom} - ${budgetTo}$${currency}`
+		price:`${budgetFrom} - ${budgetTo}$${currency.value}`
 	});
 };

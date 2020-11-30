@@ -60,6 +60,8 @@ export const validatePreferenceState = (preference) => {
         )
         &&
         (preference.contactMail || preference.contactPhone || preference.contactWhatsapp)
+        &&
+        (preference.currency && preference.budgetFrom && preference.budgetTo)
     )
 }
 

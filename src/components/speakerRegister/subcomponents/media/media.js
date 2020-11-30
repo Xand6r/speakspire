@@ -45,15 +45,15 @@ function callback(key) {
 
 const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#4D75F4'}} spin />;
 const PROFILE_LINKS = [
-	[wwwLogo, 'www'],
+	[wwwLogo, 'www.'],
 	[Instagram, 'instagram.com/'],
 	[LinkedIn, 'linkedin.com/'],
 	[Twitter, 'twitter.com/'],
 	[Facebook, 'facebook.com/ '],
 	[behance, 'behance.net/'],
-	[dribbble, 'dribbble.com/ '],
-	[pintrest, 'pintrest.com/ '],
-	[github, 'github.com/ '],
+	[dribbble, 'dribbble.com/'],
+	[pintrest, 'pintrest.com/'],
+	[github, 'github.com/'],
 ];
 
 const FileImage = () => <img height='14px' style={{marginRight: '10px'}} src={fileUpload} alt='calendar' />;
