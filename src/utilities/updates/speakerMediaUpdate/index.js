@@ -11,6 +11,8 @@ import dribbble from './assets/dribbble.svg';
 import pintrest from './assets/pintrest.svg';
 import github from './assets/github.svg';
 
+import {message} from 'antd';
+
 import {initialState} from './constants';
 import './speakermediaupdate.scss';
 import { useEffect } from 'react';
@@ -22,8 +24,8 @@ export default function Index({onClose, initialData}) {
         [Instagram, 'instagram.com/', 'instagram'],
         [LinkedIn, 'linkedin.com/', 'linkedin'],
         [Twitter, 'twitter.com/', 'twitter'],
-        [Facebook, 'facebook.com/', 'benhance'],
-        [behance, 'behance.net/', 'facebook'],
+        [Facebook, 'facebook.com/', 'facebook'],
+        [behance, 'behance.net/', 'benhance'],
         [dribbble, 'dribbble.com/', 'dribble'],
         [pintrest, 'pintrest.com/', 'pintrest'],
         [github, 'github.com/', 'github'],
@@ -32,6 +34,7 @@ export default function Index({onClose, initialData}) {
         const submittedLinks = Object.values(state).filter( o => o)
         console.log(submittedLinks);
         // logic for saving media details
+        message.success("Profile sucesfully updated");
         onClose();
     }
     const changeFormState = (key, value) => {
@@ -86,18 +89,18 @@ export default function Index({onClose, initialData}) {
                                 onChange={(e) => {
 										const textContent = e.target.value;
                                         const newState = {...state}
-										if(textContent.length === 1 && !newState[profileLink[1]]){
-											newState[profileLink[1]] = `${profileLink[1]}${textContent}`;
+										if(textContent.length === 1 && !newState[profileLink[2]]){
+											newState[profileLink[2]] = `${profileLink[1]}${textContent}`;
 											setState(newState)
 											return;
 
 										}else if(textContent === profileLink[1]){
-											newState[profileLink[1]] = '';
+											newState[profileLink[2]] = '';
 											setState(newState)
 											return;
 										}
 
-										newState[index] = textContent;
+										newState[profileLink[2]] = textContent;
                                         setState(newState)
 									}}
                                 value={state[profileLink[2]]}
