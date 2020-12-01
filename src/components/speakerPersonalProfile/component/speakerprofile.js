@@ -1,17 +1,45 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Upload, message } from 'antd';
+import ImgCrop from 'antd-img-crop';
 import {useSelector} from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import {Spin} from 'antd';
+import uploadImage from '../../../utilities/generalUtils/uploadImage';
+
+import {LoadingOutlined} from '@ant-design/icons';
+
 import { component as NavBar } from '../../../utilities/navbar';
 import ProfileCard from '../subcomponents/profileCard';
 import ProfileContent from '../subcomponents/profileContent';
 import { component as Footer } from '../../../utilities/footer';
-import { message } from 'antd';
 import axios from '../../../utilities/axios';
+import imageOverlay from '../assets/overlay.svg';
+
 import './speakerprofile.scss';
-import { getID } from '../../../api/user';
+const antIcon = <LoadingOutlined style={{fontSize: 54, color: '#F1F3F9'}} spin />;
+
+const props = {
+	name: 'file',
+	action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+	headers: {
+		authorization: 'authorization-text',
+	},
+	onChange(info) {
+		if (info.file.status !== 'uploading') {
+			console.log(info.file, info.fileList);
+		}
+		if (info.file.status === 'done') {
+			message.success(`${info.file.name} file uploaded successfully`);
+		} else if (info.file.status === 'error') {
+			message.error(`${info.file.name} file upload failed.`);
+		}
+	},
+};
 
 export default function Speakerprofile(props) {
 	const [userData, setUserData] = useState({});
+	const [uploadLoading, setUploadLoading] = useState(false);
+	const [imageLink, setImageLink] = useState(null);
 	const history = useHistory();
 
 	const userId = useSelector(({user}) => user.id)
@@ -66,6 +94,47 @@ export default function Speakerprofile(props) {
 						transition: '200ms'
 					}}	
 				/>
+				{
+					isAdmin &&
+					<ImgCrop shape='round'>
+							<Upload
+								{...props}
+								beforeUpload={(file) => {
+									const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+									if (!isJpgOrPng) {
+										message.error('You can only upload JPG/PNG file!');
+										return;
+									}
+									if(uploadLoading){
+										message.error('Still Uploading one image!');
+
+									}
+									setUploadLoading(true);
+									uploadImage(file)
+										.then((res) => setImageLink(res))
+										.catch((err) => message.error("There was an error uploading image"))
+										.then(() => {
+											// make request to upload image to server
+										})
+										.finally(() =>{
+											setUploadLoading(false)
+										})
+									return false;
+								}}
+							>
+							<div className="speakerprofile__header_image__overlay">
+								{
+									!uploadLoading ?
+									<img
+										src={imageOverlay} 
+										alt=""
+									/> :
+									<Spin indicator={antIcon} />
+								}
+							</div>
+						</Upload>
+					</ImgCrop>
+				}
 			</div>
 			{/* the section for the image header */}
 

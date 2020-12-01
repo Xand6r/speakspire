@@ -18,7 +18,6 @@ import bluePencilIcon from '../../assets/pencil.svg';
 const { TabPane } = Tabs;
 
 const getLink = (allLinks, linkType) => {
-	console.log(allLinks)
 	try{
 		return (JSON.parse(allLinks) || []).find(oneLink => oneLink.includes(linkType))
 	}catch(err){
