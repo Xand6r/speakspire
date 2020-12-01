@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs } from 'antd';
+import {LoadingOutlined} from '@ant-design/icons';
+import {Spin} from 'antd';
+
 
 import HorizontalSpeaker from '../../subcomponents/horizontalSpeaker';
 import profileSample from '../../assets/potrait.jpg';
@@ -14,7 +17,7 @@ import web from '../../assets/web.svg';
 import './profileContent.scss';
 import bluePencilIcon from '../../assets/pencil.svg';
 
-
+const antIcon = <LoadingOutlined style={{fontSize: 46, color: '#F1F3F9'}} spin />;
 const { TabPane } = Tabs;
 
 const getLink = (allLinks, linkType) => {

@@ -4,19 +4,19 @@ import ImgCrop from 'antd-img-crop';
 import {useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {Spin} from 'antd';
-import uploadImage from '../../../utilities/generalUtils/uploadImage';
+import { LoadingOutlined } from '@ant-design/icons';
 
-import {LoadingOutlined} from '@ant-design/icons';
 
-import { component as NavBar } from '../../../utilities/navbar';
-import ProfileCard from '../subcomponents/profileCard';
-import ProfileContent from '../subcomponents/profileContent';
-import { component as Footer } from '../../../utilities/footer';
 import axios from '../../../utilities/axios';
 import imageOverlay from '../assets/overlay.svg';
+import ProfileCard from '../subcomponents/profileCard';
+import ProfileContent from '../subcomponents/profileContent';
+import { component as NavBar } from '../../../utilities/navbar';
+import { component as Footer } from '../../../utilities/footer';
+import uploadImage from '../../../utilities/generalUtils/uploadImage';
 
 import './speakerprofile.scss';
-const antIcon = <LoadingOutlined style={{fontSize: 54, color: '#F1F3F9'}} spin />;
+const antIcon = <LoadingOutlined style={{fontSize: 46, color: '#F1F3F9'}} spin />;
 
 const props = {
 	name: 'file',
