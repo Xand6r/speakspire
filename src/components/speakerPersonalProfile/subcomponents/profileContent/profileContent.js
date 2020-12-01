@@ -1,15 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs, message } from 'antd';
 import {LoadingOutlined} from '@ant-design/icons';
-import {Spin} from 'antd';
+import {Spin, Button, Upload} from 'antd';
+import ImgCrop from 'antd-img-crop';
+
 
 import Popup from '../../../../utilities/popup/index';
 import UpdateUsp from '../../../../utilities/updates/speakerUspUpdates';
 import UpdateBio from '../../../../utilities/updates/speakerBioUpdates';
 import UpdateMedia from '../../../../utilities/updates/speakerMediaUpdate';
 
+import uploadImage from '../../../../utilities/generalUtils/uploadImage';
+
+import UploadImage from '../../assets/upload.svg'
+import Delete from '../../assets/delete.svg'
 import HorizontalSpeaker from '../../subcomponents/horizontalSpeaker';
 import profileSample from '../../assets/potrait.jpg';
 import instagram from '../../assets/instagram.svg';
@@ -20,8 +26,9 @@ import web from '../../assets/web.svg';
 
 import './profileContent.scss';
 import bluePencilIcon from '../../assets/pencil.svg';
+import { act } from '@testing-library/react';
 
-const antIcon = <LoadingOutlined style={{fontSize: 46, color: '#F1F3F9'}} spin />;
+const imageLoadingIcon = <LoadingOutlined style={{fontSize: 20, color: '#4D75F4'}} spin />;
 const { TabPane } = Tabs;
 
 const getLink = (allLinks, linkType) => {
@@ -82,7 +89,14 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 	const [videoLimit, setVideoLimit] = useState(2);
 	const [presentationLimit, setPresentationLimit] = useState(2);
 	const [popupClosed, setClosePopup] = useState(true);
+	const [mediaState, setMediaState] = useState([]);
+	const [activeMediaTab, setActiveMediaTab] = useState({
+		activeTab: 1,
+		edit: false
+	});
 
+	const [mediaLoading, setMediaLoading] = useState(false);
+	const FileImage = () => <img height='14px' style={{'marginRight': '10px'}} src={UploadImage} alt='calendar' />;
 
 	const { expertise, bio, experience, education, certification, media, usp, links } = userData;
 	const speakers = useSelector(({ speakers }) => speakers.data);
@@ -98,6 +112,31 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 		</div>
 	);
 
+	const showMediaEditItems = (tab) => {
+		return activeMediaTab.edit && `${activeMediaTab.activeTab}` === `${tab}`
+	}
+
+	useEffect(() => {
+		setMediaState(media);
+	}, [media])
+
+	const AddMedia = (link, category) => {
+		setMediaState([
+			...mediaState,
+			{
+				link,
+				category
+			}
+		])
+	}
+
+	const removeMedia = (link) => {
+		setMediaState(
+			mediaState.filter(ms => ms.link!==link)
+		)
+	}
+	
+
 	const componentUpdateMap = {
 		why: <UpdateUsp
 				initialData={{usp}}
@@ -112,12 +151,91 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 			onClose={() => setClosePopup(true)}
 		/>,
 		}
-
 	const openEditPopup = (key) => {
 		setEditField(key);
 		setClosePopup(false);
 	}
+
+	const imageUploadProps = {
+		name: 'file',
+		onChange(info) {
+
+		},
+		beforeUpload: (file) => {
+			const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+			if (!isJpgOrPng) {
+				message.error('You can only upload JPG/PNG file!');
+				return;
+			}
+			setMediaLoading(true);
+			uploadImage(file)
+				.then((res) => 	AddMedia(res, "photo"))
+				.catch((err) => message.error("There was an error uploading this image, please try again later"))
+				.finally(()=>setMediaLoading(false));
+			return false;
+		},
+		disabled: mediaLoading,
+
+	};
+	const videoProps = {
+		name: 'file',
+		onChange(info) {
+
+		},
+		beforeUpload: (file) => {
+			const sizeInMb = file.size/1000000;
+			if(sizeInMb > 50){
+				message.error("Please upload a video file of less than 50MB");
+				return;
+			}
+			const isMp4OrMkv = file.type === 'video/mp4' || file.type === 'video/x-matroska';
+			if (!isMp4OrMkv) {
+				message.error('You can only upload an MP4/MKV file!');
+				return;
+			}
+			setMediaLoading(true);
+			uploadImage(file)
+				.then((res) => 	AddMedia(res, "video"))
+				.catch((err) => message.error("There was an error uploading this image, please try again later"))
+				.finally(()=>setMediaLoading(false));
+			return false;
+		},
+		disabled: mediaLoading,
+	};
 	
+	const docsProps = {
+		name: 'file',
+		onChange(info) {
+
+		},
+		beforeUpload: (file) => {
+            const sizeInMb = file.size/1000000;
+			if(sizeInMb > 50){
+				message.error("Please upload a video file of less than 50MB");
+				return;
+            }
+			const isPDF = file.type === 'application/pdf';
+			if (!isPDF) {
+				message.error('You can only upload a PDF file!');
+				return;
+			}
+			setMediaLoading(true);
+			uploadImage(file)
+				.then((res) => AddMedia(res, "presentation"))
+				.catch((err) => message.error("There was an error uploading this image, please try again later"))
+				.finally(()=>setMediaLoading(false));
+			return false;
+		},
+		disabled: mediaLoading,
+	};
+
+	const saveMedia = () =>{
+		// logic about uploading images
+			setActiveMediaTab({
+				...activeMediaTab,
+				edit: false
+			})
+	}
 
 	return (
 		<>
@@ -318,14 +436,40 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 					</div>
 
 					<div className='profilecontent__right__media --tabs'>
-						<Tabs defaultActiveKey='1' tabBarExtraContent={<EditIcon />}>
+						<Tabs
+							defaultActiveKey='1'
+							tabBarExtraContent={
+								<div onClick={() => {
+									setActiveMediaTab({
+										...activeMediaTab,
+										edit: !activeMediaTab.edit
+									})
+								}}>
+									<EditIcon />
+								</div>
+							}
+							onChange={(active) => setActiveMediaTab({
+								edit: false,
+								activeTab: active
+							})}
+						>
 							{/* the tab to upload images */}
 							<TabPane tab='Photos' key='1'>
 								<div className='image_tab_content'>
 									{
-										media
-										? filterData(media, 'photo').slice(0, pictureLimit).map(({ link }, index) => (
-													<img src={link} alt=''  key={index}/>
+										mediaState
+										? filterData(mediaState, 'photo').slice(0, pictureLimit).map(({ link }, index) => (
+											<div  key={index} className="media_wrapper">
+												<img className="show_media" src={link} alt='' />
+												{
+													showMediaEditItems(1) &&
+													<img
+														className="delete_media"
+														src={Delete} alt=''
+														onClick={() => removeMedia(link)}
+													/>
+												}
+											</div>
 										))
 										: null
 									}
@@ -333,63 +477,179 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 
 								<div className='moreimages'>
 									{
-										media && filterData(media, 'photo').length > pictureLimit && filterData(media, 'photo').length > 2 && 
+										mediaState && filterData(mediaState, 'photo').length > pictureLimit && filterData(mediaState, 'photo').length > 2 && 
 										<div onClick = {() => setPictureLimit(lim => lim +2)} > <More/> </div>
 									}
 									{
-										media && filterData(media, 'photo').length <= pictureLimit && filterData(media, 'photo').length > 2 && 
+										mediaState && filterData(mediaState, 'photo').length <= pictureLimit && filterData(mediaState, 'photo').length > 2 && 
 										<div onClick = {() => setPictureLimit(lim => lim - 2)} > <More text="Less"/> </div>
 									}
 								</div>
+								{
+									showMediaEditItems(1) &&
+									<div className="adminfooter">
+										<ImgCrop aspect='1.49' >
+											<Upload {...imageUploadProps}>
+												<div className="addmedia">
+													{
+													(mediaLoading)?
+													<Spin indicator={imageLoadingIcon} /> :
+														<>
+															<img src={UploadImage} alt=""/>Add Photo
+														</>
+													}
+												</div>
+											</Upload>
+										</ImgCrop>
+										<div className="actiongroup">
+											<div
+												className="cancel"
+												onClick={
+													() => {
+														setMediaState(media)
+													}
+												}
+											>
+												cancel
+											</div>
+											<div
+												className="save"
+												onClick={saveMedia}
+											>
+												save
+											</div>
+										</div>
+									</div>
+								
+								}
 							</TabPane>
 							{/* the tab to upload images */}
 
 							<TabPane tab='Videos' key='2'>
 								<div className='image_tab_content'>
 									{
-										media
-										? filterData(media, 'video').map(({ link }, index) => (
-											<video controls  key={index}>
-												<source src={link} type="video/mp4"/>
-												Your browser does not support the video tag.
-											</video>
-													
+										mediaState
+										? filterData(mediaState, 'video').slice(0, videoLimit).map(({ link }, index) => (
+											<div  key={index} className="media_wrapper">
+												<video className="show_media" controls  key={index}>
+													<source src={link} type="video/mp4"/>
+													Your browser does not support the video tag.
+												</video>
+												{
+													showMediaEditItems(2) &&
+													<img
+														className="delete_media"
+														src={Delete} alt=''
+														onClick={() => removeMedia(link)}
+													/>
+												}
+											</div>	
 										))
 										: null
 									}
 								</div>
 								<div className='moreimages'>
 									{
-										media && filterData(media, 'video').length > videoLimit && filterData(media, 'video').length > 2 && 
+										mediaState && filterData(mediaState, 'video').length > videoLimit && filterData(mediaState, 'video').length > 2 && 
 										<div onClick = {() => setVideoLimit(lim => lim +2)} > <More/> </div>
 									}
 									{
-										media && filterData(media, 'video').length <= videoLimit && filterData(media, 'video').length > 2 && 
+										mediaState && filterData(mediaState, 'video').length <= videoLimit && filterData(mediaState, 'video').length > 2 && 
 										<div onClick = {() => setVideoLimit(lim => lim - 2)} > <More text="Less"/> </div>
 									}
 								</div>
+								{
+									showMediaEditItems(2) &&
+									<div className="adminfooter">
+										<Upload {...videoProps}>
+											<div className="addmedia">
+												{
+												(mediaLoading)?
+												<Spin indicator={imageLoadingIcon} /> :
+													<>
+														<img src={UploadImage} alt=""/>Add Video
+													</>
+												}
+											</div>
+											</Upload>
+										<div className="actiongroup">
+											<div
+												className="cancel"
+												onClick={
+													() => {
+														setMediaState(media)
+													}
+												}
+											>
+												cancel
+											</div>
+											<div
+												className="save"
+												onClick={saveMedia}
+											>
+												save
+											</div>
+										</div>
+									</div>
+								
+								}
 							</TabPane>
 
 							<TabPane tab='Presentation' key='3'>
 								<div className='image_tab_content'>
 									{
-										media
-										? filterData(media, 'presentation').map(({ link }, index) => (
-													<img src={link} alt=''  key={index} />
+										mediaState 
+										? filterData(mediaState, 'presentation').slice(0, presentationLimit).map(({ link }, index) => (
+											<img src={link} alt=''  key={index} />
 										))
 										: null
 									}
 								</div>
 								<div className='moreimages'>
 								{
-										media && filterData(media, 'presentation').length > presentationLimit && filterData(media, 'presentation').length > 2 && 
+										mediaState && filterData(mediaState, 'presentation').length > presentationLimit && filterData(mediaState, 'presentation').length > 2 && 
 										<div onClick = {() => setPresentationLimit(lim => lim +2)} > <More/> </div>
 									}
 									{
-										media && filterData(media, 'presentation').length <= presentationLimit && filterData(media, 'presentation').length > 2 && 
+										mediaState && filterData(mediaState, 'presentation').length <= presentationLimit && filterData(mediaState, 'presentation').length > 2 && 
 										<div onClick = {() => setPresentationLimit(lim => lim - 2)} > <More text="Less"/> </div>
 									}
 								</div>
+								{
+									showMediaEditItems(3) &&
+									<div className="adminfooter">
+										<Upload {...docsProps}>
+											<div className="addmedia">
+												{
+												(mediaLoading)?
+												<Spin indicator={imageLoadingIcon} /> :
+													<>
+														<img src={UploadImage} alt=""/>Add Presentation
+													</>
+												}
+											</div>
+										</Upload>
+										<div className="actiongroup">
+											<div
+												className="cancel"
+												onClick={
+													() => {
+														setMediaState(media)
+													}
+												}
+											>
+												cancel
+											</div>
+											<div
+												className="save"
+												onClick={saveMedia}
+											>
+												save
+											</div>
+										</div>
+									</div>
+								
+								}
 							</TabPane>
 						</Tabs>
 					</div>
