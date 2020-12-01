@@ -1,0 +1,113 @@
+@import '../../stylesheets/colors';
+@import '../../stylesheets/utilities';
+
+.updates{
+    background: #FFFFFF;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    padding: 70px 101px;
+
+    &.textareawrapper{
+        padding: 70px 78px 50px 78px;
+    }
+
+    &__action{
+        display: flex;
+        justify-content: space-between;
+        
+        .cancel{
+            @extend %filled-button;
+            width: 108.22px;
+            height: 50px;
+            background: #F5F5F9;
+            font-family: 'markpro-bold';
+            color: $dark-blue;
+        }
+
+        .save{
+            @extend %filled-button;
+            width: 108.22px;
+            height: 50px;
+            background: $light-blue;
+            font-family: 'markpro-bold';
+            color: white
+        }
+    }
+
+    &__form{
+        margin-bottom: 50px;
+        &__header{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            @extend %twentyfourpx;
+            color: $dark-blue;
+            font-family: 'markpro-bold';
+            font-weight: bold;
+            color: #162359;
+
+            span{
+                margin-top: 3px;
+                color: #767E9F;
+                font-style: normal;
+                @extend %elevenpx;
+                font-family: 'markpro-regular';
+            }
+        }
+
+        &__textareacontent{
+            textarea{
+                background: #F7F8FC;
+                border: 1px solid #CDD1DE;
+                box-sizing: border-box;
+                border-radius: 5px;
+
+                @extend %input-styles;
+                @extend %sixteenpx;
+                border: 1px solid #CDD1DE;
+                width: 360px;
+                min-height: 119px;
+            }
+        }
+
+        &__content{
+            padding: 30px 42px 40px;
+            background: #F7F8FC;
+            border-radius: 10px;
+
+            &__item{
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 30px;
+
+                label{
+                    @extend %fourteenpx;
+                    color:$grey;
+                    margin-bottom: 10px;
+                    font-family: 'markpro-medium';
+                    &.double{
+                        display: flex;
+                        flex-direction: column;
+                        color: $dark-blue;
+
+                        span{
+                            margin-top: 7px;
+                            color: $grey;
+                            @extend %tenpx;
+                        }
+                    }
+                }
+
+                input{
+                    @extend %input-styles;
+                    @extend %sixteenpx;
+                    border: 1px solid #CDD1DE;
+                    background-color: white;
+                    width: 360px;
+                    height: 50px;
+                }
+            }
+        }
+    }
+
+}

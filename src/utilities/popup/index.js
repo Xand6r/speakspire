@@ -11,7 +11,7 @@ export default function Index({closed, onClose, Component}) {
             onClick={onClose}
         >   
             <div onClick={(e) => e.stopPropagation()}>
-                <Component />
+                {Component}
             </div>
         </div>
     )

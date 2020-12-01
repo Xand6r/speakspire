@@ -52,7 +52,7 @@ export default function Profilecard({ userData, isAdmin }) {
 	const [popupClosed, setClosePopup] = useState(true);
 
 	const {
-		profile_photo, name, highest_level_of_education, experience, expertise, languages,
+		profile_photo, name, highest_level_of_education, experience, expertise, languages, phone, email,
 		state, country, contact = [], preferences, price = "1000 - 300000$naira"
 	} = userData;
 	const [hideContacts, setHideContacts] = useState(true);
@@ -100,7 +100,12 @@ export default function Profilecard({ userData, isAdmin }) {
 		<>
 			<Popup
 				closed={popupClosed}
-				Component={UpdateProfile}
+				Component={
+					<UpdateProfile
+						initialData={{name, phone, email}}
+						onClose={() => setClosePopup(true)}
+					/>
+				}
 				onClose={
 					() => setClosePopup(true)
 				}
