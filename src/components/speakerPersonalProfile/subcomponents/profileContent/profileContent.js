@@ -237,6 +237,14 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 			})
 	}
 
+	const cancelMedia = () =>{
+		setMediaState(media);
+		setActiveMediaTab({
+		...activeMediaTab,
+		edit: false
+		})
+	}
+
 	return (
 		<>
 			<Popup
@@ -504,11 +512,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 										<div className="actiongroup">
 											<div
 												className="cancel"
-												onClick={
-													() => {
-														setMediaState(media)
-													}
-												}
+												onClick={cancelMedia}
 											>
 												cancel
 											</div>
@@ -575,11 +579,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 										<div className="actiongroup">
 											<div
 												className="cancel"
-												onClick={
-													() => {
-														setMediaState(media)
-													}
-												}
+												onClick={cancelMedia}
 											>
 												cancel
 											</div>
@@ -632,11 +632,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 										<div className="actiongroup">
 											<div
 												className="cancel"
-												onClick={
-													() => {
-														setMediaState(media)
-													}
-												}
+												onClick={cancelMedia}
 											>
 												cancel
 											</div>
