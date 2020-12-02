@@ -11,6 +11,7 @@ import Popup from '../../../../utilities/popup/index';
 import UpdateUsp from '../../../../utilities/updates/speakerUspUpdates';
 import UpdateBio from '../../../../utilities/updates/speakerBioUpdates';
 import UpdateMedia from '../../../../utilities/updates/speakerMediaUpdate';
+import UpdateTopics from '../../../../utilities/updates/speakerTopicUpdate';
 
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 
@@ -97,6 +98,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 		activeTab: 1,
 		edit: false
 	});
+	const [activeTalkTab, setactiveTalkTab] = useState(1)
 
 	const [mediaLoading, setMediaLoading] = useState(false);
 	const FileImage = () => <img height='14px' style={{'marginRight': '10px'}} src={UploadImage} alt='calendar' />;
@@ -139,7 +141,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 		)
 	}
 	
-
+	const topicTalkEditTabs = ["","topicArea", "why", "bio"]
 	const componentUpdateMap = {
 		why: <UpdateUsp
 				initialData={{usp}}
@@ -151,6 +153,17 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 			/>,
 		socials: <UpdateMedia
 			initialData={{links}}
+			onClose={() => setClosePopup(true)}
+		/>,
+		topicArea: <UpdateTopics
+			initialData={{
+				primarySpecialty: expertise ? expertise[0].primary_specialty : "",
+				secondarySpecialty: expertise ? expertise[0].secondary_specialty : "",
+				primaryTopic: expertise && expertise[0]?.primary_topic,
+				primarySkills: expertise ? JSON.parse(expertise[0]?.primary_tags || {}) : [],
+				secondaryTopic: expertise && expertise[0]?.secondary_topic,
+				secondarySkills: expertise ? JSON.parse(expertise[0]?.secondary_tags || {}) : []
+			}}
 			onClose={() => setClosePopup(true)}
 		/>,
 		}
@@ -273,7 +286,19 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 
 					{/* the section for the first tab */}
 					<div className='profilecontent__left__speaking --tabs'>
-						<Tabs defaultActiveKey='1' tabBarExtraContent={<EditIcon />} >
+						<Tabs
+							defaultActiveKey='1'
+							tabBarExtraContent={
+								<div onClick={
+									() =>{
+										openEditPopup(topicTalkEditTabs[activeTalkTab])
+									}
+								}>
+									<EditIcon />
+								</div>
+							}
+							onChange={(active) => setactiveTalkTab(active)}
+						>
 							{/* the tab to upload images */}
 							<TabPane tab='Topic Areas' key='1'>
 								{/* topic areas content */}
@@ -289,39 +314,74 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 
 							<TabPane tab='Past Talk' key='2'>
 								{/* topic areas content */}
-								{/* <SpeakingSkills
-									primaryTopic={primaryTopic}
-									primarySkills={primarySkills}
-									secondaryTopic={secondaryTopic}
-									secondarySkills={secondarySkills}
-								/> */}
-								{/* topic areas content */}
-								<div className="noitem">
+								{/* <div className="noitem">
 									<img src={noTalksIcon} alt="" className="noitem__image"/>
 									<div className="noitem__header">No Talks</div>
 									<div className="noitem__textcontent">Tell people more about where you delivered talks and what you talked about.</div>
 									<div className="noitem__action">
 										Add Past Talks
 									</div>
+								</div> */}
+
+								<div className='experience_tab_content'>
+									<div className='past_experience'>
+										<div className='past_experience__position'>Digital Disruption: The Role of AI and Machine Learning</div>
+										<div className='past_experience__company'>Microsoft Tech Conference</div>
+										<div className='past_experience__date'>Lagos, Nigeria 2019</div>
+									</div>
+
+									<div className='past_experience'>
+										<div className='past_experience__position'>Digital Disruption: The Role of AI and Machine Learning</div>
+										<div className='past_experience__company'>Microsoft Tech Conference</div>
+										<div className='past_experience__date'>Lagos, Nigeria 2019</div>
+									</div>
+								</div>
+
+								<div>
+									<More />
 								</div>
 							</TabPane>
 
 							<TabPane tab='Publications' key='3'>
 								{/* topic areas content */}
-								{/* <SpeakingSkills
-									primaryTopic={primaryTopic}
-									primarySkills={primarySkills}
-									secondaryTopic={secondaryTopic}
-									secondarySkills={secondarySkills}
-								/> */}
-								{/* topic areas content */}
-								<div className="noitem">
+								{/* <div className="noitem">
 									<img src={noPublicationIcon} alt="" className="noitem__image"/>
 									<div className="noitem__header">No Publications</div>
 									<div className="noitem__textcontent">Add books, articles, e-books and blog posts written by you.</div>
 									<div className="noitem__action">
 										Add Publications
 									</div>
+								</div> */}
+								<div className="publication_tab_content">
+									<div className="previous_publication">
+										<div className="previous_publication__type">
+											<span>ARTICLE</span> 2019
+										</div>
+										<div className="previous_publication__title">
+											The Health Technology Revolution
+										</div>
+										<a target="_blank" href="/" className="previous_publication__link">
+											View Publication
+										</a>
+									</div>
+								</div>
+
+								<div className="publication_tab_content">
+									<div className="previous_publication">
+										<div className="previous_publication__type">
+											<span>ARTICLE</span> 2019
+										</div>
+										<div className="previous_publication__title">
+											The Health Technology Revolution
+										</div>
+										<a  target="_blank" href="/" className="previous_publication__link">
+											View Publication
+										</a>
+									</div>
+								</div>
+
+								<div>
+									<More/>
 								</div>
 							</TabPane>
 						</Tabs>

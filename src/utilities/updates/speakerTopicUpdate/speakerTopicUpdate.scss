@@ -1,0 +1,65 @@
+@import '../../../stylesheets/colors';
+@import '../../../stylesheets/utilities';
+@import '../../../stylesheets/fonts';
+
+.updates.topics{
+    label{
+        color: $dark-blue;
+    }
+
+    .updates__form__header__preform{
+        font-family: "markpro-medium";
+        display: flex;
+        flex-direction: column;
+        @extend %eighteenpx;
+        color: #162359;
+        margin-bottom: 10px;
+    
+        span{
+            @extend %elevenpx;
+            color: #767E9F;
+        }
+    
+    }
+    .updates__form__content__item{
+        width: 360px;
+    }
+    .--singleselect{
+        .--item{
+            .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
+                background: white;
+                cursor: pointer !important;
+            }
+            .css-g1d714-ValueContainer, .css-1hwfws3{
+                background: white;
+                padding-left: 20px;
+                cursor: text;
+            }
+            .css-1wa3eu0-placeholder{
+                color: $light-navy-blue_two;
+                // opacity: .4;
+            }
+            input{
+                height: 36px;
+            }
+            *{
+                transition: 500ms !important;
+                color: $dark-blue;
+                font-family: markpro-medium;
+                @extend %sixteenpx;
+            }
+        }
+        .--item.--cream{
+            .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
+                background: #F7F8FC;
+                transition: 500ms !important;
+                cursor: pointer !important;
+            }
+            .css-g1d714-ValueContainer, .css-1hwfws3{
+                background: #F7F8FC;
+                padding-left: 20px;
+                cursor: text;
+            }
+        }
+    }
+}

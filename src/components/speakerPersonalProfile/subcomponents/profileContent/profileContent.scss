@@ -47,6 +47,39 @@ $right-item-width: 597px;;
             box-sizing: border-box;
         }
     }
+    .previous_publication{
+        margin-bottom: 25px;
+
+        .previous_publication__type{
+            color: #A1A8C1;
+            @extend %tenpx;
+            font-family: 'markpro-medium';
+            
+            span{
+                color: #767E9F;
+                margin-right: 8px;
+            }
+            margin-bottom: 5px;
+        }
+    
+        .previous_publication__title{
+            color: #162359;
+            @extend %fifteenpx;
+            font-weight: bold;
+            margin-bottom: 3px;
+            font-family: 'markpro-bold';
+        }
+    
+        .previous_publication__link{
+            font-family: 'markpro-medium';
+            color: #4D75F4;
+    
+            &:hover{
+                color: #4D75F4;
+            }
+        }
+    }
+
 
     .media_wrapper{
         position: relative;
@@ -236,31 +269,33 @@ $right-item-width: 597px;;
         &__experiences{
             width: $right-item-width;
             margin-bottom: 25px;
-            .experience_tab_content{
-                margin-top: 10px;
-            }
-            .past_experience{
-                margin-bottom: 20px;
-                &__position{
-                    color: $dark-blue;
-                    @extend %fifteenpx;
-                    font-family: 'markpro-bold';
-                    margin-bottom: 5px;
-                }
 
-                &__company{
-                    color: $dark-blue;
-                    font-family: 'markpro-regular';
-                    margin-bottom: 3px;
-                    @extend %thirteenpx;
-                }
+        }
 
-                &__date{
-                    color: #767E9F;
-                    @extend %thirteenpx;
-                    font-family: 'markpro-regular';
-                }
-            }
+    }
+    .experience_tab_content{
+        margin-top: 10px;
+    }
+    .past_experience{
+        margin-bottom: 20px;
+        &__position{
+            color: $dark-blue;
+            @extend %fifteenpx;
+            font-family: 'markpro-bold';
+            margin-bottom: 5px;
+        }
+
+        &__company{
+            color: $dark-blue;
+            font-family: 'markpro-regular';
+            margin-bottom: 3px;
+            @extend %thirteenpx;
+        }
+
+        &__date{
+            color: #767E9F;
+            @extend %thirteenpx;
+            font-family: 'markpro-regular';
         }
     }
 
