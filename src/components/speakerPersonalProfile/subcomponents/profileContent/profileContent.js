@@ -24,6 +24,9 @@ import twitter from '../../assets/twitter.svg';
 import facebook from '../../assets/facebook.svg';
 import web from '../../assets/web.svg';
 
+import noPublicationIcon from '../../assets/publicationsnone.svg';
+import noTalksIcon from '../../assets/talksnone.svg';
+
 import './profileContent.scss';
 import bluePencilIcon from '../../assets/pencil.svg';
 import { act } from '@testing-library/react';
@@ -286,24 +289,40 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 
 							<TabPane tab='Past Talk' key='2'>
 								{/* topic areas content */}
-								<SpeakingSkills
+								{/* <SpeakingSkills
 									primaryTopic={primaryTopic}
 									primarySkills={primarySkills}
 									secondaryTopic={secondaryTopic}
 									secondarySkills={secondarySkills}
-								/>
+								/> */}
 								{/* topic areas content */}
+								<div className="noitem">
+									<img src={noTalksIcon} alt="" className="noitem__image"/>
+									<div className="noitem__header">No Talks</div>
+									<div className="noitem__textcontent">Tell people more about where you delivered talks and what you talked about.</div>
+									<div className="noitem__action">
+										Add Past Talks
+									</div>
+								</div>
 							</TabPane>
 
 							<TabPane tab='Publications' key='3'>
 								{/* topic areas content */}
-								<SpeakingSkills
+								{/* <SpeakingSkills
 									primaryTopic={primaryTopic}
 									primarySkills={primarySkills}
 									secondaryTopic={secondaryTopic}
 									secondarySkills={secondarySkills}
-								/>
+								/> */}
 								{/* topic areas content */}
+								<div className="noitem">
+									<img src={noPublicationIcon} alt="" className="noitem__image"/>
+									<div className="noitem__header">No Publications</div>
+									<div className="noitem__textcontent">Add books, articles, e-books and blog posts written by you.</div>
+									<div className="noitem__action">
+										Add Publications
+									</div>
+								</div>
 							</TabPane>
 						</Tabs>
 					</div>
@@ -408,7 +427,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 
 							<TabPane tab='Certificates' key='3'>
 								<div className='experience_tab_content'>
-									{certification
+									{certification && certification.length && certification[0].institution
 										? certification.slice(0, certificatesLimit).map(({ from, to, institution, proof, name }, i) => (
 											institution &&
 												<div className='past_experience' key={i}>
@@ -417,7 +436,18 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 													<div className='past_experience__date'>{`${from} - ${to}`}</div>
 												</div>
 										))
-										: null}
+										:
+										(
+											<div className="noitem">
+												<img src={noPublicationIcon} alt="" className="noitem__image"/>
+												<div className="noitem__header">No Certifications</div>
+												<div className="noitem__textcontent">Tell people more about your certificates and where you acquired them from.</div>
+												<div className="noitem__action">
+													Add Certificates
+												</div>
+											</div>
+										)
+									}
 									<div className='experience_more'>
 									{
 											certification && certification.length > certificatesLimit && certification.length > 2 && 

@@ -14,6 +14,40 @@ $right-item-width: 597px;;
     display: flex;
     justify-content: space-between;
 
+    .noitem{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 40px 0;
+
+        &__image{
+            margin-bottom: 15px;
+        }
+
+        &__header{
+            color: #162359;
+            @extend %fifteenpx;
+            margin-bottom: 10px;
+            font-family: 'markpro-bold';
+        }
+
+        &__textcontent{
+            color: #767E9F;
+            font-family: 'markpro-regular';
+            max-width:  268px;
+            @extend %thirteenpx;
+            margin-bottom: 22px;
+        }
+
+        &__action{
+            @extend %outlined-button;
+            padding: 0px 35px;
+            min-height: 50px;
+            box-sizing: border-box;
+        }
+    }
+
     .media_wrapper{
         position: relative;
         margin-bottom: 10px;
