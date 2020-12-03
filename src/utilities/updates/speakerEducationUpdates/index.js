@@ -43,7 +43,7 @@ export default function Index({
     }
     const savePositionDetails = () => {
         // sucesfully save details and then alert
-        if(!validate){
+        if(!validate(state)){
             message.error("Please fill in all fields before proceeding!");
             return;
         }
