@@ -24,15 +24,7 @@ import {
 } from './svgs'
 import './navbar.scss';
 
-const mailchimpClient = require("@mailchimp/mailchimp_transactional")("572782a8d976ac71f2467ef0a1876c8d-us2");
 
-async function run() {
-	const response = await mailchimpClient.users.ping();
-	console.log(response);
-  }
-  
-
-run();
 
 const MENU_ITEMS = [
 	{ text: 'Speakers', link: '/speakers' },

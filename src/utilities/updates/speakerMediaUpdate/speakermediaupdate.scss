@@ -1,0 +1,26 @@
+@import '../../../stylesheets/colors';
+@import '../../../stylesheets/utilities';
+.updates__form__links{
+    margin-bottom: 50px;
+    &__wrapper{
+        display: flex;
+        margin-bottom: 12px;
+        .imgwrapper{
+            width: 40px;
+            display: flex;
+            align-items: center;
+        }
+        img{
+            
+        }
+
+        input{
+            width: 320px;
+            @extend %input-styles;
+            @extend %sixteenpx;
+            border: 1px solid #CDD1DE;
+            background-color: white;
+            height: 40px;
+        }
+    }
+}

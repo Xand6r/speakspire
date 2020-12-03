@@ -10,7 +10,9 @@ export default function category() {
     return (
         <div className="category">
             {/* the navigation bar component */}
-            <NavBar />
+            <div className="--sticky">
+                <NavBar />
+            </div>
             {/* the navigation bar component */}
             
             {/* teh choice section component */}

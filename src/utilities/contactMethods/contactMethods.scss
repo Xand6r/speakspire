@@ -1,0 +1,113 @@
+// import the dependencies
+@import '../../stylesheets/colors';
+@import '../../stylesheets/utilities';
+@import '../../stylesheets/fonts';
+
+
+.contactmethod{
+    position: absolute;
+    top: 60px;
+    left: -20%;
+    flex-direction: row;
+    background: white;
+
+    &__close{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    &__wrapper{
+        padding: 39px 33px 22px;
+        display: flex;
+        background: #FFFFFF;
+        border-radius: 10px;
+        box-shadow: 9px 13px 5px rgba(0, 0, 0, 0.05), -6px -14px 15px rgba(0, 0, 0, 0.05);
+
+        &__item{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #767E9F;
+            font-family: 'markpro-medium';
+            font-weight: 500;
+            transition: 300ms;
+            
+            cursor: pointer;
+            @extend %elevenpx;
+            
+            &>.img{
+                width: 64px;
+                height: 50px;
+                margin-bottom: 8px;
+                transition: 300ms;
+            }
+
+            &#call {
+                & > .img{
+                    background-image: url('./assets/call-normal.svg');
+                }
+
+                &:hover{
+                    color: #162359;
+                    & > .img{
+                        background-image: url('./assets/call-hover.svg');
+                    }
+                }
+
+                &.--disabled{
+                    cursor: not-allowed;
+                    color: #CDD1DE;
+                    & > .img{
+                        background-image: url('./assets/call-disabled.svg');
+                    }
+                }
+            }
+
+            &#mail {
+                margin: 0 20px;
+                & > .img{
+                    background-image: url('./assets/mail-normal.svg');
+                }
+
+                &:hover{
+                    color: #4D75F4;
+                    & > .img{
+                        background-image: url('./assets/mail-hover.svg');
+                    }
+                }
+
+                &.--disabled{
+                    cursor: not-allowed;
+                    color: #CDD1DE;
+                    & > .img{
+                        background-image: url('./assets/mail-disabled.svg');
+                    }
+                }
+            }
+
+            &#whatsapp {
+                & > .img{
+                    background-image: url('./assets/whatsapp-normal.svg');
+                }
+
+                &:hover{
+                    color: #61B295;
+                    & > .img{
+                        background-image: url('./assets/whatsapp-hover.svg');
+                    }
+                }
+
+                &.--disabled{
+                    cursor: not-allowed;
+                    
+                    color: #CDD1DE;
+                    & > .img{
+                        background-image: url('./assets/whatsapp-disabled.svg');
+                    }
+                }
+            }
+        }
+    }
+}

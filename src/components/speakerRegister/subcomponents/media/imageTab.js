@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import ImgCrop from 'antd-img-crop';
 import './imageTab.scss';
 
 import { Spin } from 'antd';
@@ -54,18 +55,20 @@ export default function ImageTab({
 					</div>
 				))}
 			</div>
-			<Upload {...props}>
-				<Button
-					disabled={loading}
-					icon={!loading && <FileImage />}
-				>
-				{
-					(loading)?
-					<Spin indicator={antIcon} /> :
-					"Upload File"
-				}
-				</Button>
-			</Upload>
+			<ImgCrop aspect='1.49' >
+				<Upload {...props}>
+					<Button
+						disabled={loading}
+						icon={!loading && <FileImage />}
+					>
+					{
+						(loading)?
+						<Spin indicator={antIcon} /> :
+						"Upload File"
+					}
+					</Button>
+				</Upload>
+			</ImgCrop>
 		</div>
 	);
 

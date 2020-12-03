@@ -45,15 +45,15 @@ function callback(key) {
 
 const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#4D75F4'}} spin />;
 const PROFILE_LINKS = [
-	[wwwLogo, 'www'],
+	[wwwLogo, 'www.'],
 	[Instagram, 'instagram.com/'],
-	[LinkedIn, 'linkedin.com/in/'],
+	[LinkedIn, 'linkedin.com/'],
 	[Twitter, 'twitter.com/'],
 	[Facebook, 'facebook.com/ '],
 	[behance, 'behance.net/'],
-	[dribbble, 'dribbble.com/ '],
-	[pintrest, 'pintrest.com/ '],
-	[github, 'github.com/ '],
+	[dribbble, 'dribbble.com/'],
+	[pintrest, 'pintrest.com/'],
+	[github, 'github.com/'],
 ];
 
 const FileImage = () => <img height='14px' style={{marginRight: '10px'}} src={fileUpload} alt='calendar' />;
@@ -244,7 +244,19 @@ export default function Media({stateChanger, state, handleSubmit}) {
 									placeholder={profileLink[1]}
 									onChange={(e) => {
 										let newState = [...state.links];
-										newState[index] = e.target.value;
+										const textContent = e.target.value;
+										if(textContent.length === 1 && !newState[index]){
+											newState[index] = `${profileLink[1]}${textContent}`;
+											changeSelectState('links', newState);
+											return;
+
+										}else if(textContent === profileLink[1]){
+											newState[index] = '';
+											changeSelectState('links', newState);
+											return;
+										}
+
+										newState[index] = textContent;
 										changeSelectState('links', newState);
 									}}
 									value={state.links[index]}

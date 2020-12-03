@@ -12,7 +12,9 @@ export default function Favourites() {
     return (
         <div className="favourites">
             {/* the top navigation bar of the site */}
-            <NavBar />
+            <div className="--sticky">
+                <NavBar />
+            </div>
             {/* the top navigation bar of the site */}
 
             {/* the banner of the site */}

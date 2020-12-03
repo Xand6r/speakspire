@@ -5,6 +5,17 @@
     @extend %register-tabs-styles;
     padding: 70px 192px;
 
+    .newformsection{
+        align-self: center;
+    }
+    .contacts__header{
+        margin-left: -42px;
+        margin-bottom: 20px;
+        @extend %eighteenpx;
+        color: $dark-blue;
+        font-family: 'markpro-medium';
+    }
+
     &__heading{
         margin-bottom: 50px;
         &__header{
@@ -52,6 +63,12 @@
                 @extend %input-date;
                 margin-bottom: 25px;
 
+                &.--wide{
+                    box-sizing: content-box;
+                    align-self: center;
+                    margin-bottom: 50px;
+                }
+
                 &.--whitebg{
                     background-color: white;
                     margin-top: 30px;
@@ -89,6 +106,19 @@
                     display: flex;
                     flex-direction: column;
 
+                    .--double_wrapper{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                 
+                        span{
+                            color:$light-navy-blue;
+                            @extend %fourteenpx;
+                            font-family: 'markpro-medium';
+                        }
+                
+                    }
+
                     &:last-of-type{
                         margin-bottom: 0;
                     }
@@ -102,6 +132,17 @@
                             display: flex;
                             flex-direction: column;
                             color: $dark-blue;
+
+                            &.--contact{
+                                color: $grey;
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+
+                                img{
+                                    margin-right: 9px;
+                                }
+                            }
                             span{
                                 margin-top: 7px;
                                 color: $grey;
@@ -115,6 +156,14 @@
                         }
                         .--singleselect{
                             .--item{
+                                &.--white{
+                                    .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
+                                        background: #fff;
+                                    }
+                                    .css-g1d714-ValueContainer, .css-1hwfws3{
+                                        background: #fff;
+                                    }
+                                }
                                 .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
                                     background: #F7F8FC;
                                     cursor: pointer !important;
@@ -190,7 +239,7 @@
                             }
                         }
                     }
-                    input[type='text'], textarea{
+                    input[type='text'],input[type='number'], textarea{
                         @extend %input-styles;
                         @extend %sixteenpx;
                         border: 1px solid #CDD1DE;
@@ -209,6 +258,9 @@
                     textarea{
                         min-height: 103px;
                         background: #F7F8FC;
+                    }
+                    input[type='number']{
+                        width: 45%;
                     }
                     .--topic{
                         .css-g1d714-ValueContainer, .css-1hwfws3{

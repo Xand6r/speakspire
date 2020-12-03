@@ -1,0 +1,21 @@
+@import '../../../stylesheets/colors';
+@import '../../../stylesheets/utilities';
+
+.updates.talks{
+    position: relative;
+    .ant-picker{
+        background: white !important;
+        border-radius: 5px !important;
+        box-shadow: none !important;
+        input{
+            width: unset !important;
+            border: none !important;
+            height: 44px !important;
+            padding: 11px !important;
+        }
+    }
+    .ant-picker.ant-picker-focused{
+        box-shadow: none !important;
+    }
+
+}

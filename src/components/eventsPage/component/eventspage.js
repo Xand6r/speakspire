@@ -11,7 +11,9 @@ export default function EventsPage() {
     return (
         <div className="eventspage">
             {/* the top navigation bar of the site */}
-            <NavBar className="navbar" />
+            <div className="--sticky">
+                <NavBar className="navbar" />
+            </div>
             {/* the top navigation bar of the site */}
 
             {/* the speaker filter section of the site */}

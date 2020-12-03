@@ -30,4 +30,30 @@
         max-height: 275px;
         align-self: center;
     }
+
+    &__mailcontent{
+        max-width: 404px;
+        margin-right: 174px;
+        width: 100%;
+        padding-left: 100px;
+        padding-top: 100px;
+        
+        &__header{
+            font-family: 'markpro-bold';
+            color: #162359;
+            @extend %twentyeightpx;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+
+        &__text{
+            color: #767E9F;
+            font-family: 'markpro-regular';
+            @extend %eighteenpx;
+
+            span{
+                text-transform: capitalize;
+            }
+        }
+    }
 }

@@ -202,7 +202,7 @@ export default function Register({ location }) {
 									}
 									image={media.profile_photo.src || undefined}
 									primary={expertise.primary_specialty.value}
-									secondary={expertise.secondary_specialty.value}
+									secondary={expertise.primary_topic_area.value}
 								/>
 							</div>
 						) : (

@@ -34,10 +34,16 @@ export default (data) => {
 		travel_places,
 		positions,
 		media,
+		contactMail,
+		contactWhatsapp,
+		contactPhone,
+		budgetFrom,
+		budgetTo,
+		currency
 	} = data;
 	return Object.freeze({
 		name: fullname ? fullname : '',
-		email: email ? email : '',
+		email: email ? email.toLowerCase() : '',
 		sex: gender ? gender : '',
 		birthday: birthdate,
 		phone: phonenumber ? phonenumber : '',
@@ -66,5 +72,11 @@ export default (data) => {
 		preferences: cleanPreferences({ availability, mode_of_delivery, open_for_travel, travel_places }),
 		experience: cleanExperience(positions),
 		media,
+		contact:{
+			whatsapp : contactWhatsapp,
+			email: contactMail,
+			phone: contactPhone
+		},
+		price:`${budgetFrom} - ${budgetTo}$${currency.value}`
 	});
 };
