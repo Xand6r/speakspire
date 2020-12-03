@@ -183,10 +183,10 @@ export default function Index({
 												)
 											}
 										
-
+                                        <span className="filelinkor">or</span>
 										<div className='--input_wrapper'>
 											<input
-												name='field_of_study'
+												name='publicationLink'
 												type='text'
 												value={publication.publicationLink}
 												placeholder='Add Link'

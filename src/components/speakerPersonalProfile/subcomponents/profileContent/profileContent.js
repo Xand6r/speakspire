@@ -95,6 +95,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 	const [videoLimit, setVideoLimit] = useState(2);
 	const [presentationLimit, setPresentationLimit] = useState(2);
 	const [talksLimit, setTalksLimit] = useState(2);
+	const [publicationsLimit, setPublicationsLimit] = useState(2);
 	const [popupClosed, setClosePopup] = useState(true);
 	const [mediaState, setMediaState] = useState([]);
 	const [activeMediaTab, setActiveMediaTab] = useState({
@@ -102,6 +103,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 		edit: false
 	});
 	const [activeTalkTab, setactiveTalkTab] = useState(1);
+	const [positionsTab, setPositionsTab] = useState(1);
 
 	const [mediaLoading, setMediaLoading] = useState(false);
 	const FileImage = () => <img height='14px' style={{'marginRight': '10px'}} src={UploadImage} alt='calendar' />;
@@ -144,7 +146,8 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 		)
 	}
 	
-	const topicTalkEditTabs = ["","topicArea", "talks", "publications"]
+	const topicTalkEditTabs = ["","topicArea", "talks", "publications"];
+	const positionsEditTabs = ["","topicArea", "talks", "publications"];
 	const componentUpdateMap = {
 		why: <UpdateUsp
 				initialData={{usp}}
@@ -464,7 +467,21 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 				</div>
 				<div className='profilecontent__right'>
 					<div className='profilecontent__right__experiences --tabs'>
-						<Tabs defaultActiveKey='1' tabBarExtraContent={<EditIcon />}>
+						<Tabs
+							defaultActiveKey='1'
+							onChange={ (changedKey) =>{
+								setPositionsTab(changedKey);
+								alert(changedKey)
+							}}
+							tabBarExtraContent={
+							<div onClick={
+									() =>{
+										openEditPopup(positionsEditTabs[positionsTab])
+									}
+								}>
+									<EditIcon />
+							</div>
+						}>
 							{/* the tab to upload images */}
 							<TabPane tab='Position' key='1'>
 								<div className='experience_tab_content'>

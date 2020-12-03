@@ -117,6 +117,12 @@
                 padding-left: 50px;
             }
 
+            span.filelinkor{
+                font-family: 'markpro-medium';
+                @extend %fourteenpx;
+                color: #8990AC;
+            }
+
             &.--file{
                 .ant-btn{
                     width: 360px !important;

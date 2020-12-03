@@ -59,7 +59,7 @@ export default function Index({
             
             <div className="updates__form">
                 <div className="updates__form__header">
-                    Edit Topic Areas
+                    Add Past Talks
                 </div>
                 {
                     state.map((talk, index) => (
@@ -149,7 +149,7 @@ export default function Index({
                     }}
                 >
                     <img src={blueCircle} alt='' />
-                    <span>Add New Education</span>
+                    <span>Add New Talk</span>
                 </div>
             </div>
 
