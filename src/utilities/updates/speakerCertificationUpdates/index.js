@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-
+import axios from '../../axios/index';
 import moment from 'moment';
 import {message, DatePicker, Upload, Button, Spin} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -10,6 +10,7 @@ import uploadImage from '../../../utilities/generalUtils/uploadImage';
 import calendarIcon from '../../../assets/calendar.svg';
 import blueCircle from '../assets/blueCircle.svg';
 import closeTag from '../assets/closeTag.svg';
+import {useSelector} from 'react-redux';
 
 import validateDetails from './validate';
 
@@ -17,8 +18,9 @@ import '../updates.scss';
 import './speakerCertificationUpdates.scss';
 
 export default function Index({
-    onClose, initialData
+    onClose, initialData, onSuccess
 }) {
+    const [loading, setLoading] = useState(false);
     const [state, setState] = useState([
         {
             name: "",
@@ -29,6 +31,7 @@ export default function Index({
             link:""
         }
     ]);
+    const userID = useSelector(({user}) => user.id);
 
     useEffect(() => {
         if(!initialData) return;
@@ -41,7 +44,6 @@ export default function Index({
                 name, institution, from, to, link: proof
             }
         })
-        console.log(newState)
         setState(newState);
 
     }, [initialData])
@@ -74,9 +76,20 @@ export default function Index({
         if(!validateDetails(state)){
             message.error("Please fill in all details before submitting!");
         }
-        // sucesfully save details and then alert
-        message.success("Profile Sucessfully updated!");
-        onClose()
+
+        setLoading(true)
+        axios.patch(`/speakers/${userID}/certification`,{
+            certification: state
+        }).then((res) => {
+            message.success("Details updated sucesfully!");
+            onSuccess();
+            onClose();
+        }).catch((err) => {
+            message.error("There was an error updating user!", err.response.data.message);
+            onClose();
+        }).finally(()=>{
+            setLoading(false)
+        })
     }
     const changeListData = (index, property, value) => {
 		const updatedState = [...state];
@@ -116,7 +129,7 @@ export default function Index({
                             } 
                             <div className="updates__form__content__item">
                                 <label htmlFor="fullname">
-                                    Institution
+                                    Certification Name
                                 </label>
                                 <input
                                     type="text"
@@ -134,7 +147,7 @@ export default function Index({
                                 <input
                                     type="text"
                                     name="institution"
-                                    placeholder="Enter Field of Study"
+                                    placeholder="Enter Institution Name"
                                     value={certification.institution}
                                     onChange={({target: {value, name}}) => changeListData(index, name, value)}
                                 />
@@ -282,7 +295,10 @@ export default function Index({
                     className="save"
                     onClick={saveCertificationDetails}
                 >
-                    Save
+                {
+                    loading? <Spin indicator={antIcon} />
+                    : "Save"
+                }
                 </div>
             </div>
 

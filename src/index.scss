@@ -9,6 +9,12 @@ body {
   min-width: 1455px;
 
 }
+.ant-message{
+  span{
+    font-family: 'markpro-medium';
+    color: #162359;
+  }
+}
 
 .--sticky{
   position: sticky;
