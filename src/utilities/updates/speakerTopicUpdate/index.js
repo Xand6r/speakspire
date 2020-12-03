@@ -16,7 +16,7 @@ import { cleanData, validateData } from './validator';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#fff' }} spin />;
 
-export default function Index({ onClose, initialData }) {
+export default function Index({ onClose, initialData, onSuccess }) {
 	const [state, setState] = useState({
 		primarySpecialty: '',
 		secondarySpecialty: '',
@@ -56,6 +56,7 @@ export default function Index({ onClose, initialData }) {
 				.then(() => {
 					message.success('Details updated sucesfully!');
 					onClose();
+					onSuccess();
 				})
 				.catch((err) => {
 					console.log(err);

@@ -7,6 +7,7 @@ import { DatePicker } from 'antd';
 import calendarIcon from '../../../assets/calendar.svg';
 import blueCircle from '../assets/blueCircle.svg';
 import closeTag from '../assets/closeTag.svg';
+import {validateData} from './validator';
 
 import '../updates.scss';
 import './speakerTalksUpdate.scss';
@@ -16,7 +17,7 @@ import axios from '../../axios';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#fff' }} spin />;
 
-export default function Index({ onClose, initialData }) {
+export default function Index({ onClose, initialData, onSuccess, init }) {
 	const [state, setState] = useState([
 		{
 			eventName: '',
@@ -33,6 +34,10 @@ export default function Index({ onClose, initialData }) {
 		setState(oldItem);
 	};
 	const saveTalkDetails = () => {
+		if(!validateData(state)){
+			message.error('Please fill in all fields before proceeding!');
+			return
+		}
 		// set lading state
 		setLoading(true);
 		// make patch request
@@ -42,7 +47,8 @@ export default function Index({ onClose, initialData }) {
 				// copy and paste from here
 			})
 			.then((res) => {
-				message.success('Details updated sucesfully!');
+				message.success('Profile Sucessfully updated!');
+				onSuccess()
 				onClose();
 			})
 			.catch((err) => {
@@ -52,10 +58,6 @@ export default function Index({ onClose, initialData }) {
 			.finally(() => {
 				setLoading(false);
 			});
-
-		// sucesfully save details and then alert
-		message.success('Profile Sucessfully updated!');
-		onClose();
 	};
 
 	const changeListData = (index, property, value) => {
@@ -66,9 +68,15 @@ export default function Index({ onClose, initialData }) {
 
 	useEffect(() => {
 		// set the state locally
+		const newState = initialData.map((datum) => ({
+			eventName: datum.name,
+			talkTopic: datum.topic,
+			location: datum.location,
+			talkYear: datum.year,
+		}))
+		setState(newState);
 	}, [initialData]);
 
-	const monthFormat = 'YYYY';
 	const DateSuffix = () => <img height='14px' src={calendarIcon} alt='calendar' />;
 	return (
 		<div className='updates talks'>
@@ -94,7 +102,7 @@ export default function Index({ onClose, initialData }) {
 								placeholder='Enter topic'
 								type='text'
 								name='talkTopic'
-								value={state.talkTopic}
+								value={talk.talkTopic}
 								onChange={({ target: { value, name } }) => changeListData(index, name, value)}
 							/>
 						</div>

@@ -11,4 +11,10 @@ const cleanData = (params) => {
 	return data;
 };
 
-export { cleanData };
+const validateData = (state) => {
+	return state.every(detail=>{
+        return Object.values(detail).every(o=>o)
+    })
+}
+
+export { cleanData, validateData };

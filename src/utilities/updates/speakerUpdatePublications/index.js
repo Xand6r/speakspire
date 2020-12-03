@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { message, DatePicker, Upload, Button, Spin } from 'antd';
 import { useSelector } from 'react-redux';
 import calendarIcon from '../../../assets/calendar.svg';
@@ -16,13 +16,12 @@ import { PUBLICATION_TYPES } from './constants';
 
 import '../updates.scss';
 import './speakerUpdatePublications.scss';
-import { cleanData } from './validator';
+import { cleanData, validateData } from './validator';
 
 import axios from '../../axios';
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#fff' }} spin />;
 
-export default function Index({ onClose }) {
+export default function Index({ onClose , onSuccess, initialData}) {
 	const [state, setState] = useState([
 		{
 			publicationType: '',
@@ -41,7 +40,25 @@ export default function Index({ onClose }) {
 		setState(updatedState);
 	};
 
+	useEffect(() => {
+		if(initialData){
+			const newState = initialData.map((datum) => (
+				{
+					publicationType: datum.type || "",
+					publicationTitle: datum.title || "",
+					publicationYear: datum.year || "",
+					publicationLink: datum.link || "",
+				}
+			))
+			setState(newState);
+		}
+	}, [initialData])
+
 	const savePublicationDetails = () => {
+		if(!validateData(state)){
+			message.error("Please fill in all fields before proceeding!");
+			return;
+		}
 		// set lading state
 		setLoading(true);
 		// make patch request
@@ -51,8 +68,9 @@ export default function Index({ onClose }) {
 				// copy and paste from here
 			})
 			.then((res) => {
-				message.success('Details updated sucesfully!');
+				message.success('Profile sucesfully updated!');
 				onClose();
+				onSuccess()
 			})
 			.catch((err) => {
 				message.error('There was an error updating user!', err.response.data.message);
@@ -61,9 +79,6 @@ export default function Index({ onClose }) {
 			.finally(() => {
 				setLoading(false);
 			});
-		// logic for saving details here
-		message.success('Profile sucesfully updated!');
-		onClose();
 	};
 	const deleteFormItem = (index) => {
 		const oldItem = state.filter((s, eduIndex) => index !== eduIndex);
