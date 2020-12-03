@@ -16,6 +16,7 @@ import UpdateTalks from '../../../../utilities/updates/speakerTalkUpdate';
 import UpdatePub from '../../../../utilities/updates/speakerUpdatePublications';
 import UpdatePos from '../../../../utilities/updates/speakerPositionUpdates';
 import UpdateEdu from '../../../../utilities/updates/speakerEducationUpdates';
+import UpdateCert from '../../../../utilities/updates/speakerCertificationUpdates';
 
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 
@@ -149,7 +150,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 	}
 	
 	const topicTalkEditTabs = ["","topicArea", "talks", "publications"];
-	const positionsEditTabs = ["","position", "education", "publications"];
+	const positionsEditTabs = ["","position", "education", "certifications"];
 	const componentUpdateMap = {
 		why: <UpdateUsp
 				initialData={{usp}}
@@ -172,6 +173,10 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 			onClose={() => setClosePopup(true)}
 		/>,
 		position: <UpdatePos
+			initialData={experience}
+			onClose={() => setClosePopup(true)}
+		/>,
+		certifications: <UpdateCert
 			initialData={{links}}
 			onClose={() => setClosePopup(true)}
 		/>,

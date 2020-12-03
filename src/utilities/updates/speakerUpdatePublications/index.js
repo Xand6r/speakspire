@@ -182,8 +182,10 @@ export default function Index({
 												/>
 												)
 											}
-										
-                                        <span className="filelinkor">or</span>
+										{
+                                            !publication.publicationFile && !publication.publicationLink?
+                                            <span className="filelinkor">or</span>: null
+                                        }
 										<div className='--input_wrapper'>
 											<input
 												name='publicationLink'
@@ -198,6 +200,7 @@ export default function Index({
 									</div>
                             </div>
 
+                            
                             <div className="updates__form__content__item">
                                 <label htmlFor="fullname">
                                     Year

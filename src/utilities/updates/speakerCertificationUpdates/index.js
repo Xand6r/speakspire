@@ -1,8 +1,12 @@
 import React,{useState} from 'react';
 
 import moment from 'moment';
-import {message, Checkbox} from 'antd';
-import { DatePicker } from 'antd';
+import {message, DatePicker, Upload, Button, Spin} from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+import fileUpload from '../../../components/speakerRegister/assets/uploadFile.svg';
+import deleteBin from '../../../components/speakerRegister/assets/bin.svg';
+import uploadImage from '../../../utilities/generalUtils/uploadImage';
 import calendarIcon from '../../../assets/calendar.svg';
 import blueCircle from '../assets/blueCircle.svg';
 import closeTag from '../assets/closeTag.svg';
@@ -15,19 +19,40 @@ export default function Index({
 }) {
     const [state, setState] = useState([
         {
+            name: "",
             institution: "",
-            field: "",
             from: "",
-            to: ""
+            to: "",
+            file: "",
+            link:""
         }
     ]);
+    const props = {
+		name: 'file',
+		action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+		headers: {
+			authorization: 'authorization-text',
+		},
+		onChange(info) {
+			if (info.file.status !== 'uploading') {
+				// console.log(info.file, info.fileList);
+			}
+			if (info.file.status === 'done') {
+				message.success(`${info.file.name} file uploaded successfully`);
+			} else if (info.file.status === 'error') {
+				message.error(`${info.file.name} file upload failed.`);
+			}
+		},
+    };
+    const [certLoader, setCertLoader] = useState([]);;
+
     const deleteFormItem = (index) => {
 		const oldItem = state.filter((s, eduIndex)=>(
 			index !== eduIndex
 		));
 		setState(oldItem)
     }
-    const savePositionDetails = () => {
+    const saceCertificationDetails = () => {
         // sucesfully save details and then alert
         message.success("Profile Sucessfully updated!");
         onClose()
@@ -41,19 +66,22 @@ export default function Index({
     const DateSuffix = () => (
         <img height="14px" src={calendarIcon} alt="calendar"/>
     );
+    const FileImage = () => <img height='14px' style={{'margin-right': '10px'}} src={fileUpload} alt='calendar' />;
+    const antIcon = <LoadingOutlined style={{ fontSize: 24, color:'#4D75F4' }} spin />;
+
 
     return (
         <div className="updates position">
 
             <div className="updates__form">
                 <div className="updates__form__header">
-                    Education
+                    Certifications & Licsences
                 </div>
 
                 {
-                    state.map((education, index) => (
+                    state.map((certification, index) => (
                         <div
-                            key={`${index}-education`}
+                            key={`${index}-certification`}
                             className="updates__form__content --withmargin"
                         >
                             {
@@ -71,22 +99,22 @@ export default function Index({
                                 </label>
                                 <input
                                     type="text"
-                                    name="institution"
-                                    placeholder="Enter School Name"
-                                    value={education.institution}
+                                    name="name"
+                                    placeholder="Enter Institution Name"
+                                    value={certification.name}
                                     onChange={({target: {value, name}}) => changeListData(index, name, value)}
                                 />
                             </div>
 
                             <div className="updates__form__content__item">
                                 <label htmlFor="fullname">
-                                    Field of Study
+                                    Institution
                                 </label>
                                 <input
                                     type="text"
-                                    name="field"
+                                    name="institution"
                                     placeholder="Enter Field of Study"
-                                    value={education.field}
+                                    value={certification.institution}
                                     onChange={({target: {value, name}}) => changeListData(index, name, value)}
                                 />
                             </div>
@@ -96,37 +124,108 @@ export default function Index({
                                     From
                                 </label>
                                 <div className="--date_wrapper --half_date">
-                                        <DatePicker
-                                            format={monthFormat}
-                                            picker="month"
-                                            placeholder="mm/yy"
-                                            suffixIcon={<DateSuffix />}
-                                            onChange={(momentDate, dateString)=>{
-                                                changeListData(index, 'from', dateString)
-                                            }}
-                                            value={
-                                                education.from?
-												moment(education.from, monthFormat):''
-                                            }
-                                            disabledDate={d => !d || d.isAfter(moment())}
-                                        />
-                                        <span>to</span>
-                                        <DatePicker
-                                            format={monthFormat}
-                                            picker="month"
-                                            placeholder="mm/yy"
-                                            suffixIcon={<DateSuffix />}
-                                            onChange={(momentDate, dateString)=>{
-                                                changeListData(index, 'to', dateString)
-                                            }}
-                                            value={
-                                                education.to?
-												moment(education.to, monthFormat):''   
-                                            }
-                                            disabledDate={d => !d || d.isBefore(education.from)}
-                                        />
-                                    </div>
+                                    <DatePicker
+                                        format={monthFormat}
+                                        picker="month"
+                                        placeholder="mm/yy"
+                                        suffixIcon={<DateSuffix />}
+                                        onChange={(momentDate, dateString)=>{
+                                            changeListData(index, 'from', dateString)
+                                        }}
+                                        value={
+                                            certification.from?
+                                            moment(certification.from, monthFormat):''
+                                        }
+                                        disabledDate={d => !d || d.isAfter(moment())}
+                                    />
+                                    <span>to</span>
+                                    <DatePicker
+                                        format={monthFormat}
+                                        picker="month"
+                                        placeholder="mm/yy"
+                                        suffixIcon={<DateSuffix />}
+                                        onChange={(momentDate, dateString)=>{
+                                            changeListData(index, 'to', dateString)
+                                        }}
+                                        value={
+                                            certification.to?
+                                            moment(certification.to, monthFormat):''   
+                                        }
+                                        disabledDate={d => !d || d.isBefore(certification.from)}
+                                    />
+                                </div>
                             </div>
+
+                            <div className="updates__form__content__item">
+                                <label htmlFor="fullname">
+                                    Publication File or Link
+                                </label>
+                                <div
+										className={`--two_inputs --half_date ${certification.link ? '--link' : ''} ${
+											certification.file ? '--file' : ''
+										}`}
+									>
+										<Upload
+											{...props}
+											beforeUpload={(file) => {
+												const oldState = [...certLoader];
+												oldState[index] = true;
+												setCertLoader(oldState);
+												uploadImage(file)
+													.then((res) => {changeListData(index, 'file', res)
+													}
+													)
+													.catch((err) => changeListData(index, 'file', err))
+													.finally(()=>{
+														const oldState = [...certLoader];
+														oldState[index] = false;
+														setCertLoader(oldState);
+													})
+
+												return false;
+											}}
+										>
+											<Button
+                                                icon={!certLoader[index] && !certification.file  && <FileImage />}
+                                                disabled={certLoader[index] || certification.file}
+                                            >
+											{
+												(certLoader[index])?
+												<Spin indicator={antIcon} /> :
+                                                certification.file ? "File uploaded":
+												'Upload File'
+											}
+											</Button>
+										</Upload>
+											{
+												(certification.file &&
+												<img
+													src={deleteBin}
+													alt=''
+													className='delete'
+													onClick={() => changeListData(index, 'file', null)}
+												/>
+												)
+											}
+										{
+                                            !certification.file && !certification.link?
+                                            <span className="filelinkor">or</span>: null
+                                        }
+										<div className='--input_wrapper'>
+											<input
+												name='link'
+												type='text'
+												value={certification.link}
+												placeholder='Add Link'
+												onChange={(e) => {
+													changeListData(index, 'link', e.target.value);
+												}}
+											/>
+										</div>
+									</div>
+                            </div>
+
+                            
 
                         </div>
                     ))
@@ -146,7 +245,7 @@ export default function Index({
                     }}
                 >
                     <img src={blueCircle} alt='' />
-                    <span>Add New Position</span>
+                    <span>Add New Certification</span>
                 </div>
             </div>
 
@@ -160,7 +259,7 @@ export default function Index({
 
                 <div
                     className="save"
-                    onClick={savePositionDetails}
+                    onClick={saceCertificationDetails}
                 >
                     Save
                 </div>
