@@ -177,11 +177,11 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 			onClose={() => setClosePopup(true)}
 		/>,
 		certifications: <UpdateCert
-			initialData={{links}}
+			initialData={certification}
 			onClose={() => setClosePopup(true)}
 		/>,
 		education: <UpdateEdu
-			initialData={{links}}
+			initialData={education}
 			onClose={() => setClosePopup(true)}
 		/>,
 		topicArea: <UpdateTopics

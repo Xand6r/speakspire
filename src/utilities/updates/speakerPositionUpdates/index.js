@@ -21,10 +21,7 @@ export default function Index({
             to: ""
         }
     ]);
-    // 0: {id: 82, position: "Freelance Developer", company: "Alexander", from: "10/20", to: "11/20"}
-    // 1: {id: 83, position: "Software dev", company: "lifestores", from: "02/20", to: "10/20"}
-    // 2: {id: 84, position: "Software intern", company: "Enye", from: "11/19", to: "02/20"}
-    // 3: {id: 85, position: "Data scientist", company: "Carbon", from: "05/19", to: "04/20"}
+
     useEffect(() => {
         if(!initialData) return;
         setState(initialData);

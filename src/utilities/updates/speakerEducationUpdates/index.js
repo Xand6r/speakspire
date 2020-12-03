@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 
 import moment from 'moment';
 import {message, Checkbox} from 'antd';
@@ -16,11 +16,17 @@ export default function Index({
     const [state, setState] = useState([
         {
             institution: "",
-            field: "",
+            field_of_study: "",
             from: "",
             to: ""
         }
     ]);
+
+    useEffect(() => {
+        if(!initialData)return;
+        setState(initialData);
+    }, [initialData]);
+
     const deleteFormItem = (index) => {
 		const oldItem = state.filter((s, eduIndex)=>(
 			index !== eduIndex
@@ -84,9 +90,9 @@ export default function Index({
                                 </label>
                                 <input
                                     type="text"
-                                    name="field"
+                                    name="field_of_study"
                                     placeholder="Enter Field of Study"
-                                    value={education.field}
+                                    value={education.field_of_study}
                                     onChange={({target: {value, name}}) => changeListData(index, name, value)}
                                 />
                             </div>

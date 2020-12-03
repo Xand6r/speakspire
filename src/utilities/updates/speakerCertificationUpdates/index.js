@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 
 import moment from 'moment';
 import {message, DatePicker, Upload, Button, Spin} from 'antd';
@@ -27,6 +27,22 @@ export default function Index({
             link:""
         }
     ]);
+
+    useEffect(() => {
+        if(!initialData) return;
+        const newState = initialData.map(datum => {
+            const {
+                name, institution, from, to, proof
+            } = datum
+
+            return {
+                name, institution, from, to, link: proof
+            }
+        })
+        console.log(newState)
+        setState(newState);
+
+    }, [initialData])
     const props = {
 		name: 'file',
 		action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
