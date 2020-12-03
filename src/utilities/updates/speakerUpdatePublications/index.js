@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { message, DatePicker, Upload, Button, Spin } from 'antd';
 import { useSelector } from 'react-redux';
 import calendarIcon from '../../../assets/calendar.svg';
@@ -20,9 +20,8 @@ import { cleanData, validateData } from './validator';
 
 import axios from '../../axios';
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#fff' }} spin />;
 
-export default function Index({ onClose , onSuccess}) {
+export default function Index({ onClose , onSuccess, initialData}) {
 	const [state, setState] = useState([
 		{
 			publicationType: '',
@@ -40,6 +39,20 @@ export default function Index({ onClose , onSuccess}) {
 		updatedState[index][property] = value;
 		setState(updatedState);
 	};
+
+	useEffect(() => {
+		if(initialData){
+			const newState = initialData.map((datum) => (
+				{
+					publicationType: datum.type || "",
+					publicationTitle: datum.title || "",
+					publicationYear: datum.year || "",
+					publicationLink: datum.link || "",
+				}
+			))
+			setState(newState);
+		}
+	}, [initialData])
 
 	const savePublicationDetails = () => {
 		if(!validateData(state)){

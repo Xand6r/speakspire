@@ -7,11 +7,14 @@
         background: white !important;
         border-radius: 5px !important;
         box-shadow: none !important;
+        font-family: 'markpro-medium';
         input{
+            color: $dark-blue !important;
             width: unset !important;
             border: none !important;
             height: 44px !important;
             padding: 11px !important;
+            @extend %sixteenpx;
         }
     }
     .ant-picker.ant-picker-focused{

@@ -182,12 +182,12 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 			onSuccess={refetch}
 		/>,
 		talks: <UpdateTalks
-			initialData={{links}}
+			initialData={allTalks}
 			onClose={() => setClosePopup(true)}
 			onSuccess={refetch}
 		/>,
 		publications: <UpdatePub
-			initialData={{links}}
+			initialData={allPublications}
 			onClose={() => setClosePopup(true)}
 			onSuccess={refetch}
 		/>,

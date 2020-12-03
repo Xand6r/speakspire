@@ -17,7 +17,7 @@ import axios from '../../axios';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#fff' }} spin />;
 
-export default function Index({ onClose, initialData, onSuccess }) {
+export default function Index({ onClose, initialData, onSuccess, init }) {
 	const [state, setState] = useState([
 		{
 			eventName: '',
@@ -68,9 +68,15 @@ export default function Index({ onClose, initialData, onSuccess }) {
 
 	useEffect(() => {
 		// set the state locally
+		const newState = initialData.map((datum) => ({
+			eventName: datum.name,
+			talkTopic: datum.topic,
+			location: datum.location,
+			talkYear: datum.year,
+		}))
+		setState(newState);
 	}, [initialData]);
 
-	const monthFormat = 'YYYY';
 	const DateSuffix = () => <img height='14px' src={calendarIcon} alt='calendar' />;
 	return (
 		<div className='updates talks'>
@@ -96,7 +102,7 @@ export default function Index({ onClose, initialData, onSuccess }) {
 								placeholder='Enter topic'
 								type='text'
 								name='talkTopic'
-								value={state.talkTopic}
+								value={talk.talkTopic}
 								onChange={({ target: { value, name } }) => changeListData(index, name, value)}
 							/>
 						</div>
