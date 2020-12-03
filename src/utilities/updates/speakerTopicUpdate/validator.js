@@ -1,3 +1,17 @@
+const validateData = (data) => {
+	let valid = false;
+	const primary_specialty = data.primarySpecialty;
+	const primary_topic = data.primaryTopicArea;
+	const primary_tags = data.primary_topic_tags;
+	if (primary_specialty.trim() === '' || primary_topic.trim() === '' || primary_tags.length < 1) {
+		valid = false;
+	} else {
+		valid = true;
+	}
+
+	return valid;
+};
+
 const cleanData = (data) => {
 	const primary_specialty = data.primarySpecialty;
 	const secondary_specialty = data.secondarySpecialty;
@@ -14,20 +28,6 @@ const cleanData = (data) => {
 		primary_tags,
 		secondary_tags,
 	});
-};
-
-const validateData = (data) => {
-	let valid = false;
-	const primary_specialty = data.primarySpecialty;
-	const primary_topic = data.primaryTopicArea;
-	const primary_tags = data.primary_topic_tags;
-	if (primary_specialty.trim() === '' || primary_topic.trim() === '' || primary_tags.length < 1) {
-		valid = false;
-	} else {
-		valid = true;
-	}
-
-	return valid;
 };
 
 export { cleanData, validateData };
