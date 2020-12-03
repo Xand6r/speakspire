@@ -75,6 +75,74 @@
                 @extend %elevenpx;
                 font-family: 'markpro-regular';
             }
+
+        }
+        .delete{
+            position: absolute;
+            cursor: pointer;
+            bottom: -25px;
+        }
+        .ant-upload-list.ant-upload-list-text {
+            display: none;
+        }
+        .ant-spin.ant-spin-spinning{
+            margin: auto;
+        }
+        .--two_inputs{
+            display: flex;
+            align-items: center;
+            position: relative;
+            justify-content: space-between;
+
+            .ant-btn{
+                height: 50px !important;
+                width: 160px !important;
+                font-family: 'markpro-medium';
+                display: flex;
+                align-items: center;
+                font-size: 16px !important;
+                color: $light-blue;
+                border-color:$light-blue !important;
+                background: #F7F8FC;
+                border-radius: 5px;
+                transition: 300ms;
+            }
+
+            input{
+                height: 50px;
+                width: 160px ;
+                background-image: url('../../components/speakerRegister/assets/link.svg');
+                background-position: 20px 50%;
+                background-repeat: no-repeat;
+                padding-left: 50px;
+            }
+
+            &.--file{
+                .ant-btn{
+                    width: 360px !important;
+                    justify-content: center;
+                }
+                input{
+                    display: none;
+                }
+            }
+
+            &.--link{
+                .ant-btn{
+                    display: none;
+                }
+                input{
+                    width: 360px;
+                }
+            }
+
+            .ant-btn:hover, .ant-btn:focus {
+                background: #EDF1FE;
+                border-color:$light-blue !important;
+                box-shadow: none !important;
+                color: $light-blue !important;
+            }
+
         }
 
         &__textareacontent{
@@ -92,10 +160,32 @@
             }
         }
 
+        &__footer{
+            cursor: pointer;
+            color: $light-blue;
+            margin-top: -15px;
+            img{
+                margin-right: 10px;
+            }
+            span{
+                @extend %fourteenpx;
+                font-family:'markpro-medium';
+            }
+        }
+
         &__content{
             padding: 30px 42px 40px;
             background: #F7F8FC;
             border-radius: 10px;
+            position: relative;
+
+            &.--withmargin{
+                margin-bottom: 30px;
+
+                &:last-of-type{
+                    margin-bottom: 0;
+                }
+            }
 
             &__item{
                 display: flex;

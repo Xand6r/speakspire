@@ -26,6 +26,7 @@ export default function UpdateProfile({
     const changeInputState = ({target: {name, value}}) =>{
         changeFormState(name, value);
     }
+    
 
     const savePersonalDetails = () =>{
         // update the details logic
@@ -34,7 +35,7 @@ export default function UpdateProfile({
     }
 
     return (
-        <div className="updates">
+        <div className="updates talks">
 
             <div className="updates__form">
                 <div className="updates__form__header">

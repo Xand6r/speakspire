@@ -12,6 +12,8 @@ import UpdateUsp from '../../../../utilities/updates/speakerUspUpdates';
 import UpdateBio from '../../../../utilities/updates/speakerBioUpdates';
 import UpdateMedia from '../../../../utilities/updates/speakerMediaUpdate';
 import UpdateTopics from '../../../../utilities/updates/speakerTopicUpdate';
+import UpdateTalks from '../../../../utilities/updates/speakerTalkUpdate';
+import UpdatePub from '../../../../utilities/updates/speakerUpdatePublications';
 
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 
@@ -92,13 +94,14 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 	const [pictureLimit, setPictureLimit] = useState(2);
 	const [videoLimit, setVideoLimit] = useState(2);
 	const [presentationLimit, setPresentationLimit] = useState(2);
+	const [talksLimit, setTalksLimit] = useState(2);
 	const [popupClosed, setClosePopup] = useState(true);
 	const [mediaState, setMediaState] = useState([]);
 	const [activeMediaTab, setActiveMediaTab] = useState({
 		activeTab: 1,
 		edit: false
 	});
-	const [activeTalkTab, setactiveTalkTab] = useState(1)
+	const [activeTalkTab, setactiveTalkTab] = useState(1);
 
 	const [mediaLoading, setMediaLoading] = useState(false);
 	const FileImage = () => <img height='14px' style={{'marginRight': '10px'}} src={UploadImage} alt='calendar' />;
@@ -141,7 +144,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 		)
 	}
 	
-	const topicTalkEditTabs = ["","topicArea", "why", "bio"]
+	const topicTalkEditTabs = ["","topicArea", "talks", "publications"]
 	const componentUpdateMap = {
 		why: <UpdateUsp
 				initialData={{usp}}
@@ -155,6 +158,14 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 			initialData={{links}}
 			onClose={() => setClosePopup(true)}
 		/>,
+		talks: <UpdateTalks
+			initialData={{links}}
+			onClose={() => setClosePopup(true)}
+		/>,
+		publications: <UpdatePub
+			initialData={{links}}
+			onClose={() => setClosePopup(true)}
+		/>,
 		topicArea: <UpdateTopics
 			initialData={{
 				primarySpecialty: expertise ? expertise[0].primary_specialty : "",
@@ -165,7 +176,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 				secondarySkills: expertise ? JSON.parse(expertise[0]?.secondary_tags || {}) : []
 			}}
 			onClose={() => setClosePopup(true)}
-		/>,
+			/>,
 		}
 	const openEditPopup = (key) => {
 		setEditField(key);
@@ -314,45 +325,54 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 
 							<TabPane tab='Past Talk' key='2'>
 								{/* topic areas content */}
-								{/* <div className="noitem">
+								<div className="noitem">
 									<img src={noTalksIcon} alt="" className="noitem__image"/>
 									<div className="noitem__header">No Talks</div>
 									<div className="noitem__textcontent">Tell people more about where you delivered talks and what you talked about.</div>
-									<div className="noitem__action">
+									<div className="noitem__action"
+										onClick={() => openEditPopup(topicTalkEditTabs[activeTalkTab])}
+									>
 										Add Past Talks
+									</div>
+								</div>
+
+								{/* <div className='experience_tab_content'>
+									<div className='past_experience'>
+										<div className='past_experience__position'>Digital Disruption: The Role of AI and Machine Learning</div>
+										<div className='past_experience__company'>Microsoft Tech Conference</div>
+										<div className='past_experience__date'>Lagos, Nigeria 2019</div>
+									</div>
+
+									<div className='past_experience'>
+										<div className='past_experience__position'>Digital Disruption: The Role of AI and Machine Learning</div>
+										<div className='past_experience__company'>Microsoft Tech Conference</div>
+										<div className='past_experience__date'>Lagos, Nigeria 2019</div>
 									</div>
 								</div> */}
 
-								<div className='experience_tab_content'>
-									<div className='past_experience'>
-										<div className='past_experience__position'>Digital Disruption: The Role of AI and Machine Learning</div>
-										<div className='past_experience__company'>Microsoft Tech Conference</div>
-										<div className='past_experience__date'>Lagos, Nigeria 2019</div>
-									</div>
-
-									<div className='past_experience'>
-										<div className='past_experience__position'>Digital Disruption: The Role of AI and Machine Learning</div>
-										<div className='past_experience__company'>Microsoft Tech Conference</div>
-										<div className='past_experience__date'>Lagos, Nigeria 2019</div>
-									</div>
-								</div>
-
-								<div>
-									<More />
-								</div>
+								{/* <div className='experience_more'>
+									{
+										experience && experience.length > talksLimit && experience.length > 2 && 
+										<div onClick = {() => setTalksLimit(lim => lim +2)} > <More/> </div>
+									}
+									{
+										experience && experience.length <= talksLimit && experience.length > 2 && 
+										<div onClick = {() => setTalksLimit(lim => lim - 2)} > <More text="Less"/> </div>
+									}
+								</div> */}
 							</TabPane>
 
 							<TabPane tab='Publications' key='3'>
 								{/* topic areas content */}
-								{/* <div className="noitem">
+								<div className="noitem">
 									<img src={noPublicationIcon} alt="" className="noitem__image"/>
 									<div className="noitem__header">No Publications</div>
 									<div className="noitem__textcontent">Add books, articles, e-books and blog posts written by you.</div>
-									<div className="noitem__action">
+									<div className="noitem__action" onClick={() => openEditPopup(topicTalkEditTabs[activeTalkTab])}>
 										Add Publications
 									</div>
-								</div> */}
-								<div className="publication_tab_content">
+								</div>
+								{/* <div className="publication_tab_content">
 									<div className="previous_publication">
 										<div className="previous_publication__type">
 											<span>ARTICLE</span> 2019
@@ -378,11 +398,11 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 											View Publication
 										</a>
 									</div>
-								</div>
+								</div> */}
 
-								<div>
+								{/* <div>
 									<More/>
-								</div>
+								</div> */}
 							</TabPane>
 						</Tabs>
 					</div>
