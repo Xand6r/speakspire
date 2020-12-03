@@ -150,7 +150,11 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 												}
 												setUploadLoading(true);
 												uploadSpeakerCover(file, id)
-													.then((res) => setImageLink(res))
+													.then((res) => {
+														setImageLink(res)
+														refetch()
+														}
+													)
 													.catch((err) => message.error("There was an error uploading image"))
 													.finally(() =>{
 														setUploadLoading(false)

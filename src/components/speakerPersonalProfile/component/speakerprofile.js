@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Upload, message } from 'antd';
 import ImgCrop from 'antd-img-crop';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {Spin} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import {setUserData as setUserDataRedux} from '../../../redux/userSlice';
 
 
 import axios from '../../../utilities/axios';
@@ -41,16 +42,17 @@ export default function Speakerprofile(props) {
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const [imageLink, setImageLink] = useState("");
 	const history = useHistory();
+	const dispatch = useDispatch()
 
 	const userId = useSelector(({user}) => user.id)
 	const id = props.match.params.id || userId;
 
 	const isAdmin = userId === id
-
 	const getDetails = async () => {
 		try {
 			const { data } = await axios.get(`/speakers/${id}`);
 			setUserData(data.data);
+			dispatch(setUserDataRedux(data.data))
 		} catch (err) {
 			console.log(err)
 			message.error('there was an error fetching this user');

@@ -4,7 +4,8 @@ const initialState = {
   user:{},
   role:null,
   id:null,
-  loggedIn: false
+  loggedIn: false,
+  image:null
 };
 
 const mySlice = createSlice({
@@ -25,9 +26,11 @@ const mySlice = createSlice({
     setLoggedOut: (state, action) => {
       state.loggedIn = false;
       return state;
-    }
+    },
   },
 });
 
-export const { setUserData, getLoggedInUser, setLoggedIn, setLoggedOut } = mySlice.actions;
+const { setUserData, getLoggedInUser, setLoggedIn, setLoggedOut } = mySlice.actions;
+
+export { setUserData, getLoggedInUser, setLoggedIn, setLoggedOut }  
 export default mySlice.reducer;
