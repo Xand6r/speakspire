@@ -14,6 +14,7 @@ import UpdateMedia from '../../../../utilities/updates/speakerMediaUpdate';
 import UpdateTopics from '../../../../utilities/updates/speakerTopicUpdate';
 import UpdateTalks from '../../../../utilities/updates/speakerTalkUpdate';
 import UpdatePub from '../../../../utilities/updates/speakerUpdatePublications';
+import UpdatePos from '../../../../utilities/updates/speakerPositionUpdates';
 
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 
@@ -147,7 +148,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 	}
 	
 	const topicTalkEditTabs = ["","topicArea", "talks", "publications"];
-	const positionsEditTabs = ["","topicArea", "talks", "publications"];
+	const positionsEditTabs = ["","position", "talks", "publications"];
 	const componentUpdateMap = {
 		why: <UpdateUsp
 				initialData={{usp}}
@@ -166,6 +167,10 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 			onClose={() => setClosePopup(true)}
 		/>,
 		publications: <UpdatePub
+			initialData={{links}}
+			onClose={() => setClosePopup(true)}
+		/>,
+		position: <UpdatePos
 			initialData={{links}}
 			onClose={() => setClosePopup(true)}
 		/>,
@@ -471,7 +476,6 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 							defaultActiveKey='1'
 							onChange={ (changedKey) =>{
 								setPositionsTab(changedKey);
-								alert(changedKey)
 							}}
 							tabBarExtraContent={
 							<div onClick={

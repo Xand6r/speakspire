@@ -58,6 +58,15 @@
 
     &__form{
         margin-bottom: 50px;
+
+        .form_close{
+            position: absolute;
+            height: 26px;
+            right: 14px;
+            top: 14px;
+            cursor: pointer;
+            transition: 300ms;
+        }
         &__header{
             display: flex;
             flex-direction: column;
@@ -180,7 +189,8 @@
         }
 
         &__content{
-            padding: 30px 42px 40px;
+            padding: 30px 42px 10px;
+            // padding: 30px 42px 40px;
             background: #F7F8FC;
             border-radius: 10px;
             position: relative;
@@ -215,7 +225,7 @@
                     }
                 }
 
-                input{
+                input[type='text'], input[type='date']{
                     @extend %input-styles;
                     @extend %sixteenpx;
                     border: 1px solid #CDD1DE;
