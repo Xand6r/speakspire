@@ -8,15 +8,15 @@ import blueCircle from '../assets/blueCircle.svg';
 import closeTag from '../assets/closeTag.svg';
 
 import '../updates.scss';
-import './speakerPositionUpdates.scss';
+import './speakerEducationUpdates.scss';
 
 export default function Index({
     onClose, initialData
 }) {
     const [state, setState] = useState([
         {
-            position: "",
-            company: "",
+            institution: "",
+            field: "",
             from: "",
             to: ""
         }
@@ -47,13 +47,13 @@ export default function Index({
 
             <div className="updates__form">
                 <div className="updates__form__header">
-                    Position
+                    Education
                 </div>
 
                 {
-                    state.map((position, index) => (
+                    state.map((education, index) => (
                         <div
-                            key={`${index}-position`}
+                            key={`${index}-education`}
                             className="updates__form__content --withmargin"
                         >
                             {
@@ -67,33 +67,33 @@ export default function Index({
                             } 
                             <div className="updates__form__content__item">
                                 <label htmlFor="fullname">
-                                    Position
+                                    Institution
                                 </label>
                                 <input
                                     type="text"
-                                    name="position"
-                                    placeholder="Enter Position"
-                                    value={position.position}
+                                    name="institution"
+                                    placeholder="Enter School Name"
+                                    value={education.institution}
                                     onChange={({target: {value, name}}) => changeListData(index, name, value)}
                                 />
                             </div>
 
                             <div className="updates__form__content__item">
                                 <label htmlFor="fullname">
-                                    Company
+                                    Field of Study
                                 </label>
                                 <input
                                     type="text"
-                                    name="company"
-                                    placeholder="Enter Company"
-                                    value={position.company}
+                                    name="field"
+                                    placeholder="Enter Field of Study"
+                                    value={education.field}
                                     onChange={({target: {value, name}}) => changeListData(index, name, value)}
                                 />
                             </div>
 
                             <div className="updates__form__content__item">
                                 <label htmlFor="fullname">
-                                    Company
+                                    From
                                 </label>
                                 <div className="--date_wrapper --half_date">
                                         <DatePicker
@@ -105,8 +105,8 @@ export default function Index({
                                                 changeListData(index, 'from', dateString)
                                             }}
                                             value={
-                                                position.from?
-												moment(position.from, monthFormat):''
+                                                education.from?
+												moment(education.from, monthFormat):''
                                             }
                                             disabledDate={d => !d || d.isAfter(moment())}
                                         />
@@ -120,25 +120,12 @@ export default function Index({
                                                 changeListData(index, 'to', dateString)
                                             }}
                                             value={
-                                                position.to?
-												moment(position.to, monthFormat):''   
+                                                education.to?
+												moment(education.to, monthFormat):''   
                                             }
-                                            disabledDate={d => !d || d.isBefore(position.from) || d.isAfter(moment())}
+                                            disabledDate={d => !d || d.isBefore(education.from)}
                                         />
                                     </div>
-                                    <div className="--tilldate">
-										<Checkbox 
-											onChange={(e)=>{
-												if(e.target.checked){
-													changeListData(index, 'to', moment().format(monthFormat))
-												}else{
-													changeListData(index, 'to', '')
-												}
-											}}
-										>
-											Till Date
-										</Checkbox>
-									</div>
                             </div>
 
                         </div>
