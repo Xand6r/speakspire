@@ -127,6 +127,7 @@ export default function Index({
                                     name="fullname"
                                     placeholder="Enter publication title"
                                     value={publication.publicationTitle}
+                                    onChange={(e) => changeListData(index, 'publicationTitle', e.target.value)}
                                 />
                             </div>
 

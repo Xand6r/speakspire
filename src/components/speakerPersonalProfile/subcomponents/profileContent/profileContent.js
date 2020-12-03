@@ -328,12 +328,18 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 								<div className="noitem">
 									<img src={noTalksIcon} alt="" className="noitem__image"/>
 									<div className="noitem__header">No Talks</div>
-									<div className="noitem__textcontent">Tell people more about where you delivered talks and what you talked about.</div>
-									<div className="noitem__action"
-										onClick={() => openEditPopup(topicTalkEditTabs[activeTalkTab])}
-									>
-										Add Past Talks
-									</div>
+									{
+										isAdmin && (
+											<>
+											<div className="noitem__textcontent">Tell people more about where you delivered talks and what you talked about.</div>
+											<div className="noitem__action"
+												onClick={() => openEditPopup(topicTalkEditTabs[activeTalkTab])}
+											>
+												Add Past Talks
+											</div>
+											</>
+										)
+									}
 								</div>
 
 								{/* <div className='experience_tab_content'>
@@ -367,10 +373,16 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 								<div className="noitem">
 									<img src={noPublicationIcon} alt="" className="noitem__image"/>
 									<div className="noitem__header">No Publications</div>
-									<div className="noitem__textcontent">Add books, articles, e-books and blog posts written by you.</div>
-									<div className="noitem__action" onClick={() => openEditPopup(topicTalkEditTabs[activeTalkTab])}>
-										Add Publications
-									</div>
+									{
+										isAdmin && (
+											<>
+											<div className="noitem__textcontent">Add books, articles, e-books and blog posts written by you.</div>
+											<div className="noitem__action" onClick={() => openEditPopup(topicTalkEditTabs[activeTalkTab])}>
+												Add Publications
+											</div>
+											</>
+										)
+									}
 								</div>
 								{/* <div className="publication_tab_content">
 									<div className="previous_publication">
@@ -521,10 +533,16 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 											<div className="noitem">
 												<img src={noPublicationIcon} alt="" className="noitem__image"/>
 												<div className="noitem__header">No Certifications</div>
-												<div className="noitem__textcontent">Tell people more about your certificates and where you acquired them from.</div>
-												<div className="noitem__action">
-													Add Certificates
-												</div>
+												{
+													isAdmin && (
+														<>
+															<div className="noitem__textcontent">Tell people more about your certificates and where you acquired them from.</div>
+															<div className="noitem__action">
+																Add Certificates
+															</div>
+														</>
+													)
+												}
 											</div>
 										)
 									}
