@@ -11,13 +11,22 @@ import dribbble from './assets/dribbble.svg';
 import pintrest from './assets/pintrest.svg';
 import github from './assets/github.svg';
 
-import {message} from 'antd';
+import {message, Spin} from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+import {useSelector} from 'react-redux';
 
 import {initialState} from './constants';
 import './speakermediaupdate.scss';
 import { useEffect } from 'react';
-export default function Index({onClose, initialData}) {
+import axios from '../../axios';
+
+const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#fff'}} spin />;
+
+export default function Index({onClose, initialData, onSuccess}) {
     const [state, setState] = useState(initialState);
+    const [loading, setLoading] = useState(false);
+    const userID = useSelector(({user}) => user.id);
     
     const PROFILE_LINKS = [
         [wwwLogo, 'www.', 'website'],
@@ -32,10 +41,19 @@ export default function Index({onClose, initialData}) {
     ];
     const saveMediaDetails = () => {
         const submittedLinks = Object.values(state).filter( o => o)
-        console.log(submittedLinks);
-        // logic for saving media details
-        message.success("Profile sucesfully updated");
-        onClose();
+        setLoading(true);
+        axios.patch(`/speakers/`,{
+            links: submittedLinks
+        }).then(() =>{
+            message.success("Profile sucesfully updated");
+            onSuccess();
+            onClose();
+        }).catch((err) => {
+            message.error("There was an error updating user!", err.response.data.message);
+            onClose();
+        }).finally(() => {
+            setLoading(false)
+        })
     }
     const changeFormState = (key, value) => {
         setState({
@@ -123,7 +141,10 @@ export default function Index({onClose, initialData}) {
                     className="save"
                     onClick={saveMediaDetails}
                 >
-                    Save
+                {
+                    loading? <Spin indicator={antIcon} />
+                    : "Save"
+                }
                 </div>
             </div>
 
