@@ -563,7 +563,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 													isAdmin && (
 														<>
 															<div className="noitem__textcontent">Tell people more about your certificates and where you acquired them from.</div>
-															<div className="noitem__action">
+															<div className="noitem__action" onClick={() => openEditPopup(positionsEditTabs[positionsTab])}>
 																Add Certificates
 															</div>
 														</>

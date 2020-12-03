@@ -1,0 +1,58 @@
+@import '../../../stylesheets/colors';
+@import '../../../stylesheets/utilities';
+
+.updates.position{
+    input[type='date']{
+        height: 50px;
+        @extend %input-styles;
+        border: 1px solid #CDD1DE;
+        background-color: white;
+        @extend %thirteenpx ;
+        max-width: 159px;
+    }
+    .--half_date .ant-picker {
+        width: 160px !important;
+        height: 48px !important;
+        border-radius: 5px;
+    }
+    
+    .--date_wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        span{
+            color:$light-navy-blue;
+            @extend %fourteenpx;
+            font-family: 'markpro-medium';
+        }
+        input[type="date"] {
+            background-position: 87% 50% ;
+        }
+    }
+
+    .ant-picker{
+        height: 50px;
+        border-radius: 5px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        box-shadow: none;
+    }
+    .ant-picker-input > input{
+        font-family: 'markpro-medium';
+        color: $dark-blue !important;
+    }
+    .ant-picker.ant-picker-focused{
+        border-color:$light-blue !important;
+        box-shadow: none !important;
+    }
+    .ant-picker:hover{
+        border-color:$light-blue !important;
+    }
+    .--half_date .ant-picker {
+        width: 160px !important;
+    }
+    
+    .--last{
+        margin-bottom: 20px;
+    }
+}
