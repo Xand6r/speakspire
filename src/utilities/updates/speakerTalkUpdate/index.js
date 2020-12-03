@@ -16,7 +16,7 @@ import axios from '../../axios';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#fff' }} spin />;
 
-export default function Index({ onClose, initialData }) {
+export default function Index({ onClose, initialData, onSuccess }) {
 	const [state, setState] = useState([
 		{
 			eventName: '',
@@ -42,7 +42,8 @@ export default function Index({ onClose, initialData }) {
 				// copy and paste from here
 			})
 			.then((res) => {
-				message.success('Details updated sucesfully!');
+				message.success('Profile Sucessfully updated!');
+				onSuccess()
 				onClose();
 			})
 			.catch((err) => {
@@ -52,10 +53,6 @@ export default function Index({ onClose, initialData }) {
 			.finally(() => {
 				setLoading(false);
 			});
-
-		// sucesfully save details and then alert
-		message.success('Profile Sucessfully updated!');
-		onClose();
 	};
 
 	const changeListData = (index, property, value) => {

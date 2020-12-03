@@ -107,6 +107,8 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 		activeTab: 1,
 		edit: false
 	});
+	const [allTalks, setAllTalks] = useState([]);
+	const [allPublications, setAllPublications] = useState([]);
 	const [activeTalkTab, setactiveTalkTab] = useState(1);
 	const [positionsTab, setPositionsTab] = useState(1);
 
@@ -131,6 +133,15 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 	const showMediaEditItems = (tab) => {
 		return activeMediaTab.edit && `${activeMediaTab.activeTab}` === `${tab}`
 	}
+
+	useEffect(() => {
+		if(!userData) return;
+		const {
+			talks, publications
+		} = userData
+		setAllPublications(publications || []);
+		setAllTalks(talks || []);
+	}, [userData])
 
 	useEffect(() => {
 		setMediaState(media);
@@ -365,96 +376,102 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 
 							<TabPane tab='Past Talk' key='2'>
 								{/* topic areas content */}
-								<div className="noitem">
-									<img src={noTalksIcon} alt="" className="noitem__image"/>
-									<div className="noitem__header">No Talks</div>
+								{
+									allTalks.length === 0? (
+										<div className="noitem">
+											<img src={noTalksIcon} alt="" className="noitem__image"/>
+											<div className="noitem__header">No Talks</div>
+											{
+												isAdmin && (
+													<>
+													<div className="noitem__textcontent">Tell people more about where you delivered talks and what you talked about.</div>
+													<div className="noitem__action"
+														onClick={() => openEditPopup(topicTalkEditTabs[activeTalkTab])}
+													>
+														Add Past Talks
+													</div>
+													</>
+												)
+											}
+										</div>
+									):
+									(
+										<div className='experience_tab_content'>
+											{
+												allTalks.map(({name , location, topic, year}, index) => (
+														<div key={index} className='past_experience'>
+															<div className='past_experience__position'>{topic}</div>
+															<div className='past_experience__company'>{name}</div>
+															<div className='past_experience__date'>{`${location} ${year}`}</div>
+														</div>
+												))
+											}
+										</div>
+
+									)
+								}
+
+								<div className='experience_more'>
 									{
-										isAdmin && (
-											<>
-											<div className="noitem__textcontent">Tell people more about where you delivered talks and what you talked about.</div>
-											<div className="noitem__action"
-												onClick={() => openEditPopup(topicTalkEditTabs[activeTalkTab])}
-											>
-												Add Past Talks
-											</div>
-											</>
-										)
-									}
-								</div>
-
-								{/* <div className='experience_tab_content'>
-									<div className='past_experience'>
-										<div className='past_experience__position'>Digital Disruption: The Role of AI and Machine Learning</div>
-										<div className='past_experience__company'>Microsoft Tech Conference</div>
-										<div className='past_experience__date'>Lagos, Nigeria 2019</div>
-									</div>
-
-									<div className='past_experience'>
-										<div className='past_experience__position'>Digital Disruption: The Role of AI and Machine Learning</div>
-										<div className='past_experience__company'>Microsoft Tech Conference</div>
-										<div className='past_experience__date'>Lagos, Nigeria 2019</div>
-									</div>
-								</div> */}
-
-								{/* <div className='experience_more'>
-									{
-										experience && experience.length > talksLimit && experience.length > 2 && 
+										allTalks && allTalks.length > talksLimit && allTalks.length > 2 && 
 										<div onClick = {() => setTalksLimit(lim => lim +2)} > <More/> </div>
 									}
 									{
-										experience && experience.length <= talksLimit && experience.length > 2 && 
+										allTalks && allTalks.length <= talksLimit && allTalks.length > 2 && 
 										<div onClick = {() => setTalksLimit(lim => lim - 2)} > <More text="Less"/> </div>
 									}
-								</div> */}
+								</div>
 							</TabPane>
 
 							<TabPane tab='Publications' key='3'>
 								{/* topic areas content */}
-								<div className="noitem">
-									<img src={noPublicationIcon} alt="" className="noitem__image"/>
-									<div className="noitem__header">No Publications</div>
+								{
+									allPublications.length === 0? (
+										<div className="noitem">
+											<img src={noPublicationIcon} alt="" className="noitem__image"/>
+											<div className="noitem__header">No Publications</div>
+											{
+												isAdmin && (
+													<>
+													<div className="noitem__textcontent">Add books, articles, e-books and blog posts written by you.</div>
+													<div className="noitem__action" onClick={() => openEditPopup(topicTalkEditTabs[activeTalkTab])}>
+														Add Publications
+													</div>
+													</>
+												)
+											}
+										</div>
+									):(
+										<div className="publication_tab_content">
+												{
+													allPublications.map(({type, title, link, year}, index) => (
+														<div className="previous_publication">
+															<div className="previous_publication__type">
+																<span style={{textTransform:'capitalize'}}>{type}</span> {year}
+															</div>
+															<div className="previous_publication__title">
+																{title}
+															</div>
+															<a target="_blank" href={link} rel="noopener noreferrer" className="previous_publication__link">
+																View Publication
+															</a>
+														</div>
+													))
+												}
+										</div>
+									)
+								}
+
+								<div className='experience_more'>
 									{
-										isAdmin && (
-											<>
-											<div className="noitem__textcontent">Add books, articles, e-books and blog posts written by you.</div>
-											<div className="noitem__action" onClick={() => openEditPopup(topicTalkEditTabs[activeTalkTab])}>
-												Add Publications
-											</div>
-											</>
-										)
+										allPublications && allPublications.length > publicationsLimit && allPublications.length > 2 && 
+										<div onClick = {() => setPublicationsLimit(lim => lim +2)} > <More/> </div>
+									}
+									{
+										allPublications && allPublications.length <= publicationsLimit && allPublications.length > 2 && 
+										<div onClick = {() => setPublicationsLimit(lim => lim - 2)} > <More text="Less"/> </div>
 									}
 								</div>
-								{/* <div className="publication_tab_content">
-									<div className="previous_publication">
-										<div className="previous_publication__type">
-											<span>ARTICLE</span> 2019
-										</div>
-										<div className="previous_publication__title">
-											The Health Technology Revolution
-										</div>
-										<a target="_blank" href="/" className="previous_publication__link">
-											View Publication
-										</a>
-									</div>
-								</div>
-
-								<div className="publication_tab_content">
-									<div className="previous_publication">
-										<div className="previous_publication__type">
-											<span>ARTICLE</span> 2019
-										</div>
-										<div className="previous_publication__title">
-											The Health Technology Revolution
-										</div>
-										<a  target="_blank" href="/" className="previous_publication__link">
-											View Publication
-										</a>
-									</div>
-								</div> */}
-
-								{/* <div>
-									<More/>
-								</div> */}
 							</TabPane>
 						</Tabs>
 					</div>

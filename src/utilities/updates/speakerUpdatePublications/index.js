@@ -22,7 +22,7 @@ import axios from '../../axios';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#fff' }} spin />;
 
-export default function Index({ onClose }) {
+export default function Index({ onClose , onSuccess}) {
 	const [state, setState] = useState([
 		{
 			publicationType: '',
@@ -51,8 +51,9 @@ export default function Index({ onClose }) {
 				// copy and paste from here
 			})
 			.then((res) => {
-				message.success('Details updated sucesfully!');
+				message.success('Profile sucesfully updated!');
 				onClose();
+				onSuccess()
 			})
 			.catch((err) => {
 				message.error('There was an error updating user!', err.response.data.message);
@@ -61,9 +62,6 @@ export default function Index({ onClose }) {
 			.finally(() => {
 				setLoading(false);
 			});
-		// logic for saving details here
-		message.success('Profile sucesfully updated!');
-		onClose();
 	};
 	const deleteFormItem = (index) => {
 		const oldItem = state.filter((s, eduIndex) => index !== eduIndex);
