@@ -7,6 +7,7 @@ import { DatePicker } from 'antd';
 import calendarIcon from '../../../assets/calendar.svg';
 import blueCircle from '../assets/blueCircle.svg';
 import closeTag from '../assets/closeTag.svg';
+import {validateData} from './validator';
 
 import '../updates.scss';
 import './speakerTalksUpdate.scss';
@@ -33,6 +34,10 @@ export default function Index({ onClose, initialData, onSuccess }) {
 		setState(oldItem);
 	};
 	const saveTalkDetails = () => {
+		if(!validateData(state)){
+			message.error('Please fill in all fields before proceeding!');
+			return
+		}
 		// set lading state
 		setLoading(true);
 		// make patch request

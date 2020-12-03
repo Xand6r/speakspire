@@ -16,7 +16,7 @@ import { PUBLICATION_TYPES } from './constants';
 
 import '../updates.scss';
 import './speakerUpdatePublications.scss';
-import { cleanData } from './validator';
+import { cleanData, validateData } from './validator';
 
 import axios from '../../axios';
 
@@ -42,6 +42,10 @@ export default function Index({ onClose , onSuccess}) {
 	};
 
 	const savePublicationDetails = () => {
+		if(!validateData(state)){
+			message.error("Please fill in all fields before proceeding!");
+			return;
+		}
 		// set lading state
 		setLoading(true);
 		// make patch request

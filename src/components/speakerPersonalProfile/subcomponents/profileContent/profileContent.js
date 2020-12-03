@@ -461,7 +461,6 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 										</div>
 									)
 								}
-
 								<div className='experience_more'>
 									{
 										allPublications && allPublications.length > publicationsLimit && allPublications.length > 2 && 
