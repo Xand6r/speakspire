@@ -33,11 +33,13 @@ import web from '../../assets/web.svg';
 import noPublicationIcon from '../../assets/publicationsnone.svg';
 import noTalksIcon from '../../assets/talksnone.svg';
 
+import axios from '../../../../utilities/axios';
 import './profileContent.scss';
 import bluePencilIcon from '../../assets/pencil.svg';
 import { act } from '@testing-library/react';
 
 const imageLoadingIcon = <LoadingOutlined style={{fontSize: 20, color: '#4D75F4'}} spin />;
+const whiteLoadingIcon = <LoadingOutlined style={{fontSize: 24, color: '#fff'}} spin />;
 const { TabPane } = Tabs;
 
 const getLink = (allLinks, linkType) => {
@@ -89,7 +91,7 @@ const filterData = (array, params) => {
 };
 
 export default function ProfileContent({userData, isAdmin, refetch }) {
-
+	const [loading, setLoading] = useState(false);
 	const [editField, setEditField] = useState(false);
 	const [positionsLimit, setPositionsLimit] = useState(2);
 	const [educationsLimit, setEducationsLimit] = useState(2);
@@ -124,6 +126,7 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 			<img src={bluePencilIcon} alt='' />
 		</div>
 	);
+	const userID = useSelector(({user}) => user.id);
 
 	const showMediaEditItems = (tab) => {
 		return activeMediaTab.edit && `${activeMediaTab.activeTab}` === `${tab}`
@@ -140,7 +143,7 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 				link,
 				category
 			}
-		])
+		]);
 	}
 
 	const removeMedia = (link) => {
@@ -284,10 +287,21 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 
 	const saveMedia = () =>{
 		// logic about uploading images
+
+		setLoading(true)
+        axios.patch(`/speakers/${userID}/media`,{
+			media: mediaState
+        }).then((res) => {
+            message.success("Details updated sucesfully!");
+        }).catch((err) => {
+            message.error("There was an error updating user!", err.response.data.message);
+        }).finally(()=>{
 			setActiveMediaTab({
 				...activeMediaTab,
 				edit: false
-			})
+			});
+			setLoading(false);
+        })
 	}
 
 	const cancelMedia = () =>{
@@ -687,7 +701,10 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 												className="save"
 												onClick={saveMedia}
 											>
-												save
+											{
+												loading? <Spin indicator={whiteLoadingIcon} />
+												: "Save"
+											}
 											</div>
 										</div>
 									</div>

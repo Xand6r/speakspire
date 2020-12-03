@@ -73,7 +73,6 @@ export default function Index({onClose, initialData, onSuccess}) {
 
     useEffect(()=>{
         const links = jsonParse(initialData.links).filter(l => l);
-        console.log(links)
         if(links.length){
             const initialState = {
                 website: getLink(links, 'www'),
