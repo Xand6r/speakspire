@@ -4,7 +4,7 @@
 
 .profilecard{
     width: 1140px;
-    height: 303px;
+    min-height: 303px;
 
     margin-bottom: 25px;
 
@@ -69,6 +69,7 @@
 
     &__maincontent{
         display: flex;
+        padding-bottom: 28px;
 
         &__right{
             margin-top: 15px;

@@ -175,7 +175,7 @@ export default function Index({
                     }}
                 >
                     <img src={blueCircle} alt='' />
-                    <span>Add New Position</span>
+                    <span>Add New Education</span>
                 </div>
             </div>
 

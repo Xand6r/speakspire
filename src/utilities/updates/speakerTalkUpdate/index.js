@@ -67,6 +67,7 @@ export default function Index({ onClose, initialData, onSuccess, init }) {
 	};
 
 	useEffect(() => {
+		if(!initialData || !initialData.length)return
 		// set the state locally
 		const newState = initialData.map((datum) => ({
 			eventName: datum.name,
