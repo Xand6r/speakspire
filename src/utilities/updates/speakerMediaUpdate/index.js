@@ -34,16 +34,16 @@ export default function Index({onClose, initialData, onSuccess}) {
         [LinkedIn, 'linkedin.com/', 'linkedin'],
         [Twitter, 'twitter.com/', 'twitter'],
         [Facebook, 'facebook.com/', 'facebook'],
-        [behance, 'behance.net/', 'benhance'],
-        [dribbble, 'dribbble.com/', 'dribble'],
+        [behance, 'behance.net/', 'behance'],
+        [dribbble, 'dribbble.com/', 'dribbble'],
         [pintrest, 'pintrest.com/', 'pintrest'],
         [github, 'github.com/', 'github'],
     ];
     const saveMediaDetails = () => {
         const submittedLinks = Object.values(state).filter( o => o)
         setLoading(true);
-        axios.patch(`/speakers/`,{
-            links: submittedLinks
+        axios.patch(`/speakers/${userID}/links`,{
+            links: JSON.stringify(submittedLinks)
         }).then(() =>{
             message.success("Profile sucesfully updated");
             onSuccess();
@@ -61,6 +61,7 @@ export default function Index({onClose, initialData, onSuccess}) {
             [key]: value
         })
     }
+    
     const getLink = (allLinks, linkType) => {
         try{
             return allLinks.find(oneLink => oneLink.includes(linkType)) || ""
@@ -72,15 +73,16 @@ export default function Index({onClose, initialData, onSuccess}) {
 
     useEffect(()=>{
         const links = jsonParse(initialData.links).filter(l => l);
+        console.log(links)
         if(links.length){
             const initialState = {
                 website: getLink(links, 'www'),
                 instagram: getLink(links, 'instagram'),
                 linkedin: getLink(links, 'linkedin'),
                 twitter: getLink(links, 'twitter'),
-                benhance: getLink(links, 'benhance'),
+                behance: getLink(links, 'behance'),
                 facebook: getLink(links, 'facebook'),
-                dribble: getLink(links, 'dribble'),
+                dribbble: getLink(links, 'dribbble'),
                 pintrest: getLink(links, 'pintrest'),
                 github: getLink(links, 'github')
             }
