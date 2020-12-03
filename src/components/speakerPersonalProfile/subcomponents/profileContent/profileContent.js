@@ -88,7 +88,7 @@ const filterData = (array, params) => {
 	return array.filter((data) => data.category === params);
 };
 
-export default function ProfileContent({ primaryTopic, primarySkills, secondaryTopic, secondarySkills, userData, isAdmin }) {
+export default function ProfileContent({userData, isAdmin, refetch }) {
 
 	const [editField, setEditField] = useState(false);
 	const [positionsLimit, setPositionsLimit] = useState(2);
@@ -155,34 +155,42 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 		why: <UpdateUsp
 				initialData={{usp}}
 				onClose={() => setClosePopup(true)}
+				onSuccess={refetch}
 			/>,
 		bio: <UpdateBio
 				initialData={{bio}}
 				onClose={() => setClosePopup(true)}
+				onSuccess={refetch}
 			/>,
 		socials: <UpdateMedia
 			initialData={{links}}
 			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
 		/>,
 		talks: <UpdateTalks
 			initialData={{links}}
 			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
 		/>,
 		publications: <UpdatePub
 			initialData={{links}}
 			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
 		/>,
 		position: <UpdatePos
 			initialData={experience}
 			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
 		/>,
 		certifications: <UpdateCert
 			initialData={certification}
 			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
 		/>,
 		education: <UpdateEdu
 			initialData={education}
 			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
 		/>,
 		topicArea: <UpdateTopics
 			initialData={{

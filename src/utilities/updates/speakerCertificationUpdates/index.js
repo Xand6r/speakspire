@@ -11,6 +11,8 @@ import calendarIcon from '../../../assets/calendar.svg';
 import blueCircle from '../assets/blueCircle.svg';
 import closeTag from '../assets/closeTag.svg';
 
+import validateDetails from './validate';
+
 import '../updates.scss';
 import './speakerCertificationUpdates.scss';
 
@@ -68,7 +70,10 @@ export default function Index({
 		));
 		setState(oldItem)
     }
-    const saceCertificationDetails = () => {
+    const saveCertificationDetails = () => {
+        if(!validateDetails(state)){
+            message.error("Please fill in all details before submitting!");
+        }
         // sucesfully save details and then alert
         message.success("Profile Sucessfully updated!");
         onClose()
@@ -275,7 +280,7 @@ export default function Index({
 
                 <div
                     className="save"
-                    onClick={saceCertificationDetails}
+                    onClick={saveCertificationDetails}
                 >
                     Save
                 </div>

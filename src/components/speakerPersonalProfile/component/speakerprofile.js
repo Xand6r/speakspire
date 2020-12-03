@@ -13,7 +13,7 @@ import ProfileCard from '../subcomponents/profileCard';
 import ProfileContent from '../subcomponents/profileContent';
 import { component as NavBar } from '../../../utilities/navbar';
 import { component as Footer } from '../../../utilities/footer';
-import uploadImage from '../../../utilities/generalUtils/uploadImage';
+import uploadImage, {uploadSpeakerImage} from '../../../utilities/generalUtils/uploadImage';
 
 import './speakerprofile.scss';
 const antIcon = <LoadingOutlined style={{fontSize: 46, color: '#F1F3F9'}} spin />;
@@ -39,7 +39,7 @@ const props = {
 export default function Speakerprofile(props) {
 	const [userData, setUserData] = useState({});
 	const [uploadLoading, setUploadLoading] = useState(false);
-	const [imageLink, setImageLink] = useState(null);
+	const [imageLink, setImageLink] = useState("");
 	const history = useHistory();
 
 	const userId = useSelector(({user}) => user.id)
@@ -47,18 +47,18 @@ export default function Speakerprofile(props) {
 
 	const isAdmin = userId === id
 
+	const getDetails = async () => {
+		try {
+			const { data } = await axios.get(`/speakers/${id}`);
+			setUserData(data.data);
+		} catch (err) {
+			console.log(err)
+			message.error('there was an error fetching this user');
+			setUserData({});
+			setTimeout(() => history.push('/'), 1000);
+		}
+	};
 	useEffect(() => {
-		const getDetails = async () => {
-			try {
-				const { data } = await axios.get(`/speakers/${id}`);
-				setUserData(data.data);
-			} catch (err) {
-				console.log(err)
-				message.error('there was an error fetching this user');
-				setUserData({});
-				setTimeout(() => history.push('/'), 1000);
-			}
-		};
 		if(id){
 			getDetails();
 			console.log(id)
@@ -76,6 +76,13 @@ export default function Speakerprofile(props) {
 	  }
 	}, [])
 
+	useEffect(() => {
+		if(userData){
+			setImageLink(userData.cover_photo)
+		}
+	}, [userData])
+
+
 	return (
 		<div className='speakerprofile'>
 			{/* the navigation bar of the site */}
@@ -87,7 +94,7 @@ export default function Speakerprofile(props) {
 			{/* the section for the image header */}
 			<div className='speakerprofile__header_image'>
 				<img
-					src={userData.cover_photo}
+					src={imageLink}
 					alt=''
 					style={{
 						transform: `translateY(${Math.abs(offset) * 0.25}px)`,
@@ -96,7 +103,7 @@ export default function Speakerprofile(props) {
 				/>
 				{
 					isAdmin &&
-					<ImgCrop shape='round'>
+					<ImgCrop aspect='3.49'>
 							<Upload
 								{...props}
 								beforeUpload={(file) => {
@@ -110,12 +117,9 @@ export default function Speakerprofile(props) {
 
 									}
 									setUploadLoading(true);
-									uploadImage(file)
+									uploadSpeakerImage(file, userId)
 										.then((res) => setImageLink(res))
 										.catch((err) => message.error("There was an error uploading image"))
-										.then(() => {
-											// make request to upload image to server
-										})
 										.finally(() =>{
 											setUploadLoading(false)
 										})
@@ -140,13 +144,13 @@ export default function Speakerprofile(props) {
 
 			{/* the section containing the profilecard */}
 			<div className='speakerprofile__profile_card'>
-				<ProfileCard userData={userData} isAdmin={isAdmin} />
+				<ProfileCard refetch={getDetails} userData={userData} isAdmin={isAdmin} />
 			</div>
 			{/* the section containing the profilecard */}
 
 			{/* the section containing the main content */}
 			<div className='speakerprofile__profile_content'>
-				<ProfileContent userData={userData} isAdmin={isAdmin} />
+				<ProfileContent refetch={getDetails} userData={userData} isAdmin={isAdmin} />
 			</div>
 			{/* the section containing the main content */}
 			{/* the footer */}
