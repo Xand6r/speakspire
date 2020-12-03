@@ -1,7 +1,9 @@
 import React,{useState, useEffect} from 'react';
-
+import validate from './validate';
+import {useSelector} from 'react-redux';
+import axios from '../../../utilities/axios';
 import moment from 'moment';
-import {message, Checkbox} from 'antd';
+import {message, Checkbox, Spin} from 'antd';
 import { DatePicker } from 'antd';
 import calendarIcon from '../../../assets/calendar.svg';
 import blueCircle from '../assets/blueCircle.svg';
@@ -10,9 +12,15 @@ import closeTag from '../assets/closeTag.svg';
 import '../updates.scss';
 import './speakerEducationUpdates.scss';
 
+import { LoadingOutlined } from '@ant-design/icons';
+const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#fff'}} spin />;
+
 export default function Index({
-    onClose, initialData
+    onClose, initialData, onSuccess
 }) {
+    const userID = useSelector(({user}) => user.id);
+
+    const [loading, setLoading] = useState(false);
     const [state, setState] = useState([
         {
             institution: "",
@@ -35,8 +43,23 @@ export default function Index({
     }
     const savePositionDetails = () => {
         // sucesfully save details and then alert
-        message.success("Profile Sucessfully updated!");
-        onClose()
+        if(!validate){
+            message.error("Please fill in all fields before proceeding!");
+            return;
+        }
+        setLoading(true)
+        axios.patch(`/speakers/${userID}/education`,{
+            "education": state
+        }).then((res) => {
+            message.success("Details updated sucesfully!");
+            onSuccess();
+            onClose();
+        }).catch((err) => {
+            message.error("There was an error updating user!", err.response.data.message);
+            onClose();
+        }).finally(()=>{
+            setLoading(false)
+        })
     }
     const changeListData = (index, property, value) => {
 		const updatedState = [...state];
@@ -168,7 +191,10 @@ export default function Index({
                     className="save"
                     onClick={savePositionDetails}
                 >
-                    Save
+                    {
+                        loading? <Spin indicator={antIcon} />
+                        : "Save"
+                    }
                 </div>
             </div>
 

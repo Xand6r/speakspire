@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import moment from 'moment';
 import axios from '../../../utilities/axios'
+import validator from './validate';
 import { DatePicker, message, Checkbox, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
@@ -12,6 +13,7 @@ import closeTag from '../assets/closeTag.svg';
 
 import '../updates.scss';
 import './speakerPositionUpdates.scss';
+import { relativeTimeRounding } from 'moment';
 
 const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#fff'}} spin />;
 export default function Index({
@@ -39,6 +41,10 @@ export default function Index({
 		setState(oldItem)
     }
     const savePositionDetails = () => {
+        if(!validator(state)){
+            message.error("Please fill in all fields before proceeding!");
+            return;
+        }
         // sucesfully save details and then alert
         setLoading(true)
         axios.patch(`/speakers/${userID}/experience`,{
