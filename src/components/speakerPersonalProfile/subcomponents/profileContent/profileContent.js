@@ -16,6 +16,7 @@ import UpdateTalks from '../../../../utilities/updates/speakerTalkUpdate';
 import UpdatePub from '../../../../utilities/updates/speakerUpdatePublications';
 import UpdatePos from '../../../../utilities/updates/speakerPositionUpdates';
 import UpdateEdu from '../../../../utilities/updates/speakerEducationUpdates';
+import UpdateCert from '../../../../utilities/updates/speakerCertificationUpdates';
 
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 
@@ -87,7 +88,7 @@ const filterData = (array, params) => {
 	return array.filter((data) => data.category === params);
 };
 
-export default function ProfileContent({ primaryTopic, primarySkills, secondaryTopic, secondarySkills, userData, isAdmin }) {
+export default function ProfileContent({userData, isAdmin, refetch }) {
 
 	const [editField, setEditField] = useState(false);
 	const [positionsLimit, setPositionsLimit] = useState(2);
@@ -149,35 +150,47 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 	}
 	
 	const topicTalkEditTabs = ["","topicArea", "talks", "publications"];
-	const positionsEditTabs = ["","position", "education", "publications"];
+	const positionsEditTabs = ["","position", "education", "certifications"];
 	const componentUpdateMap = {
 		why: <UpdateUsp
 				initialData={{usp}}
 				onClose={() => setClosePopup(true)}
+				onSuccess={refetch}
 			/>,
 		bio: <UpdateBio
 				initialData={{bio}}
 				onClose={() => setClosePopup(true)}
+				onSuccess={refetch}
 			/>,
 		socials: <UpdateMedia
 			initialData={{links}}
 			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
 		/>,
 		talks: <UpdateTalks
 			initialData={{links}}
 			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
 		/>,
 		publications: <UpdatePub
 			initialData={{links}}
 			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
 		/>,
 		position: <UpdatePos
-			initialData={{links}}
+			initialData={experience}
 			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
+		/>,
+		certifications: <UpdateCert
+			initialData={certification}
+			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
 		/>,
 		education: <UpdateEdu
-			initialData={{links}}
+			initialData={education}
 			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
 		/>,
 		topicArea: <UpdateTopics
 			initialData={{
@@ -563,7 +576,7 @@ export default function ProfileContent({ primaryTopic, primarySkills, secondaryT
 													isAdmin && (
 														<>
 															<div className="noitem__textcontent">Tell people more about your certificates and where you acquired them from.</div>
-															<div className="noitem__action">
+															<div className="noitem__action" onClick={() => openEditPopup(positionsEditTabs[positionsTab])}>
 																Add Certificates
 															</div>
 														</>

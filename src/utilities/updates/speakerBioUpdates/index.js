@@ -1,17 +1,45 @@
 import React, {useState, useEffect} from 'react';
-import {message} from 'antd';
+import {useSelector} from 'react-redux';
+import {validateBio} from './validate';
+import {message, Spin} from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
-export default function Index({initialData, onClose}) {
+import axios from '../../axios';
+
+const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#fff'}} spin />;
+
+export default function Index({initialData, onClose, onSuccess}) {
     const [state, setState] = useState("");
+    const userId = useSelector(({user}) => user.id);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() =>{
         setState(initialData.bio);
     }, [initialData])
 
     const saveBio = () =>{
-        // logic to make API call to save bio
-        onClose();
-        message.success("Profile sucessfully updated!")
+        // validate all fields present  
+        if(!validateBio(state)){
+            message.error("Please fill in all details before submitting!");
+            return;
+        }
+        // set lading state
+        setLoading(true)
+        // make patch request
+        axios.patch(`speakers/${userId}/bio`,{
+            bio: state
+        // copy and paste from here
+        }).then((res) => {
+            message.success("Details updated sucesfully!");
+            onSuccess();
+            onClose();
+        }).catch((err) => {
+            message.error("There was an error updating user!", err.response.data.message);
+            onClose();
+        }).finally(()=>{
+            setLoading(false)
+        })
+        // to here for all requests made
     }
 
     return (
@@ -49,7 +77,11 @@ export default function Index({initialData, onClose}) {
                     className="save"
                     onClick={saveBio}
                 >
-                    Save
+                {/* add this too */}
+                {
+                    loading? <Spin indicator={antIcon} />
+                    : "Save"
+                }
                 </div>
             </div>
 

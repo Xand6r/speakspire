@@ -18,7 +18,7 @@ import greyPencil from '../../assets/greyPencil.svg';
 
 import Popup from '../../../../utilities/popup/index';
 import ContactMe from '../../../../utilities/contactMethods';
-import uploadImage from '../../../../utilities/generalUtils/uploadImage';
+import uploadImage, {uploadSpeakerCover} from '../../../../utilities/generalUtils/uploadImage';
 
 import './profilecard.scss';
 
@@ -44,7 +44,7 @@ const props = {
 const antIcon = <LoadingOutlined style={{fontSize: 46, color: '#F1F3F9'}} spin />;
 
 
-export default function Profilecard({ userData, isAdmin }) {
+export default function Profilecard({ userData, isAdmin, refetch }) {
 	const [userContacts, setUserContacts] = useState({});
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const [imageLink, setImageLink] = useState(null);
@@ -52,9 +52,15 @@ export default function Profilecard({ userData, isAdmin }) {
 	const [popupClosed, setClosePopup] = useState(true);
 
 	const {
-		profile_photo, name, highest_level_of_education, experience, expertise, languages, phone, email,
+		id, profile_photo, name, highest_level_of_education, experience, expertise, languages, phone, email,
 		state, country, contact = [], preferences, price = "1000 - 300000$naira"
 	} = userData;
+
+	useEffect(() => {
+		if(userData){
+			setImageLink(userData.profile_photo)
+		}
+	}, [userData])
 	const [hideContacts, setHideContacts] = useState(true);
 	const splitLanguage = (data) => {
 		return data
@@ -104,6 +110,7 @@ export default function Profilecard({ userData, isAdmin }) {
 					<UpdateProfile
 						initialData={{name, phone, email}}
 						onClose={() => setClosePopup(true)}
+						onSuccess={refetch}
 					/>
 				}
 				onClose={
@@ -124,7 +131,7 @@ export default function Profilecard({ userData, isAdmin }) {
 				<div className='profilecard__maincontent'>
 					<div className='profilecard__maincontent__left'>
 						<div className={`profilepicture_wrapper --${tag}`}>
-							<img src={profile_photo} alt='' />
+							<img src={imageLink} alt='' />
 
 							{
 								isAdmin &&
@@ -142,12 +149,9 @@ export default function Profilecard({ userData, isAdmin }) {
 
 												}
 												setUploadLoading(true);
-												uploadImage(file)
+												uploadSpeakerCover(file, id)
 													.then((res) => setImageLink(res))
 													.catch((err) => message.error("There was an error uploading image"))
-													.then(() => {
-														// make request to upload image to server
-													})
 													.finally(() =>{
 														setUploadLoading(false)
 													})

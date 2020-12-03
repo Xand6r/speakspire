@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import {message} from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+import {useSelector} from 'react-redux';
+import axios from '../../axios';
+import {message, Spin} from 'antd';
+import validator from './validate';
+
 
 import {initialState} from './constants';
 import './speakerprofileupdates.scss';
 import '../updates.scss';
 
+const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#fff'}} spin />;
 export default function UpdateProfile({
-    initialData, onClose
+    initialData, onClose, onSuccess
 }) {
     const [state, setState] = useState(initialState);
+    const userID = useSelector(({user}) => user.id);
+    const [loading, setLoading] = useState(false);
     const changeFormState = (name, value)=>{
         setState(state => ({
             ...state,
@@ -29,9 +38,27 @@ export default function UpdateProfile({
     
 
     const savePersonalDetails = () =>{
+        if(!validator(state)){
+            message.error("Please fill in all fields before proceeding");
+            return;
+        }
+        setLoading(true)
+        axios.patch(`/speakers/${userID}/info`,{
+            "name": state.fullname,
+            "email": state.email,
+            "phone": state.phonenumber
+        }).then((res) => {
+            message.success("Details updated sucesfully!");
+            onSuccess();
+            onClose();
+        }).catch((err) => {
+            message.error("There was an error updating user!", err.response.data.message);
+            onClose();
+        }).finally(()=>{
+            setLoading(false)
+        })
+
         // update the details logic
-        message.success("Details updated sucesfully!");
-        onClose();
     }
 
     return (
@@ -61,7 +88,7 @@ export default function UpdateProfile({
                         </label>
                         <input
                             type="text"
-                            name="fullname"
+                            name="phonenumber"
                             value={state.phonenumber}
                             onChange={changeInputState}
                         />
@@ -73,7 +100,7 @@ export default function UpdateProfile({
                         </label>
                         <input
                             type="text"
-                            name="fullname"
+                            name="email"
                             value={state.email}
                             onChange={changeInputState}
                         />
@@ -93,7 +120,10 @@ export default function UpdateProfile({
                     className="save"
                     onClick={savePersonalDetails}
                 >
-                    Save
+                {
+                    loading? <Spin indicator={antIcon} />
+                    : "Save"
+                }
                 </div>
             </div>
 

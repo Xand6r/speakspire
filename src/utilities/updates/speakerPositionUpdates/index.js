@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 
 import moment from 'moment';
 import {message, Checkbox} from 'antd';
@@ -21,6 +21,12 @@ export default function Index({
             to: ""
         }
     ]);
+
+    useEffect(() => {
+        if(!initialData) return;
+        setState(initialData);
+        
+    }, [initialData])
     const deleteFormItem = (index) => {
 		const oldItem = state.filter((s, eduIndex)=>(
 			index !== eduIndex

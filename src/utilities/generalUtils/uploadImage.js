@@ -15,3 +15,35 @@ export default async (image) => {
 
 	return link;
 };
+
+export const uploadSpeakerImage = async(image, id) => {
+	const formData = await new FormData();
+	formData.append('cover_photo', image);
+	let link;
+	try {
+		const response = await axios.post(`/speakers/${id}/photo/cover`, formData);
+		console.log(response.data.data);
+		link = response.data.data;
+	} catch (err) {
+		console.log(err);
+		link = '';
+	}
+
+	return link;
+}
+
+export const uploadSpeakerCover = async(image, id) => {
+	const formData = await new FormData();
+	formData.append('profile_photo', image);
+	let link;
+	try {
+		const response = await axios.post(`/speakers/${id}/photo/profile`, formData);
+		console.log(response.data.data);
+		link = response.data.data;
+	} catch (err) {
+		console.log(err);
+		link = '';
+	}
+
+	return link;
+}

@@ -1,17 +1,42 @@
 import React, {useState, useEffect} from 'react';
-import {message} from 'antd';
+import {useSelector} from 'react-redux';
+import axios from '../../axios';
+import {message, Spin} from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
-export default function Index({initialData, onClose}) {
+
+const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#fff'}} spin />;
+
+export default function Index({initialData, onClose, onSuccess}) {
     const [state, setState] = useState("");
+    const [loading, setLoading] = useState(false)
 
     useEffect(() =>{
         setState(initialData.usp);
     }, [initialData])
-
+    const userId = useSelector(({user}) => user.id);
     const saveBio = () =>{
         // logic to make API call to save bio
-        onClose();
-        message.success("Profile sucessfully updated!")
+        if(!state){
+            message.error("Please fill in all fields before proceeding")
+            return;
+        }
+        setLoading(true)
+        axios.patch(`/speakers/${userId}/usp`,{
+            usp: state
+        })
+        .then(res => {
+            message.success("Profile sucessfully updated!");
+            onSuccess()
+            onClose();
+        })
+        .catch((err) => {
+            message.error("There was an error updating user!", err.response.data.message);
+            onClose();
+        })
+        .finally(()=>{
+            setLoading(false)
+        })
     }
 
     return (
@@ -49,7 +74,10 @@ export default function Index({initialData, onClose}) {
                     className="save"
                     onClick={saveBio}
                 >
-                    Save
+                    {
+                        loading? <Spin indicator={antIcon} />
+                        : "Save"
+                    }
                 </div>
             </div>
 

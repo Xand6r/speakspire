@@ -58,6 +58,53 @@
 
     &__form{
         margin-bottom: 50px;
+        &__content{
+            padding: 30px 42px 10px;
+            // padding: 30px 42px 40px;
+            background: #F7F8FC;
+            border-radius: 10px;
+            position: relative;
+
+            &.--withmargin{
+                margin-bottom: 30px;
+
+                &:last-of-type{
+                    margin-bottom: 0;
+                }
+            }
+
+            &__item{
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 30px;
+
+                label{
+                    @extend %fourteenpx;
+                    color:$grey;
+                    margin-bottom: 10px;
+                    font-family: 'markpro-medium';
+                    &.double{
+                        display: flex;
+                        flex-direction: column;
+
+                        span{
+                            margin-top: 7px;
+                            color: $grey;
+                            @extend %elevenpx;
+                        }
+                    }
+                }
+
+                input[type='text'], input[type='date']{
+                    @extend %input-styles;
+                    @extend %sixteenpx;
+                    border: 1px solid #CDD1DE;
+                    background-color: white;
+                    width: 360px;
+                    height: 50px;
+                }
+            }
+        }
 
         .form_close{
             position: absolute;
@@ -188,53 +235,6 @@
             }
         }
 
-        &__content{
-            padding: 30px 42px 10px;
-            // padding: 30px 42px 40px;
-            background: #F7F8FC;
-            border-radius: 10px;
-            position: relative;
-
-            &.--withmargin{
-                margin-bottom: 30px;
-
-                &:last-of-type{
-                    margin-bottom: 0;
-                }
-            }
-
-            &__item{
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 30px;
-
-                label{
-                    @extend %fourteenpx;
-                    color:$grey;
-                    margin-bottom: 10px;
-                    font-family: 'markpro-medium';
-                    &.double{
-                        display: flex;
-                        flex-direction: column;
-
-                        span{
-                            margin-top: 7px;
-                            color: $grey;
-                            @extend %elevenpx;
-                        }
-                    }
-                }
-
-                input[type='text'], input[type='date']{
-                    @extend %input-styles;
-                    @extend %sixteenpx;
-                    border: 1px solid #CDD1DE;
-                    background-color: white;
-                    width: 360px;
-                    height: 50px;
-                }
-            }
-        }
     }
 
 }
