@@ -41,7 +41,7 @@ export default function Index({ onClose , onSuccess, initialData}) {
 	};
 
 	useEffect(() => {
-		if(initialData){
+		if(initialData && initialData.length){
 			const newState = initialData.map((datum) => (
 				{
 					publicationType: datum.type || "",

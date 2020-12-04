@@ -6,6 +6,8 @@ import downArrowActive from '../assets/downArrowActive.svg';
 import downArrowNeutral from '../assets/downArrowNeutral.svg';
 import { Avatar, Image } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import axios from '../../../utilities/axios';
+import {setUserData} from '../../../redux/userSlice';
 
 import Logo from '../assets/Logo.svg';
 import { setLoggedIn, setLoggedOut } from '../../../redux/userSlice';
@@ -59,7 +61,12 @@ export default function Navbar() {
 
 		const foundSession = getToken();
 		if (foundSession) {
-			setUserDetails(getUser().user_id)
+			const userDetails = getUser().user_id
+			axios.get(`/speakers/${userDetails.id}`).then(({data}) => {
+				dispatch(setUserData(data.data))
+			}).catch(err => {
+				console.log('there was an error fetching user details');
+			})
 			dispatch(setLoggedIn({
 				role: getRole(),
 				id: getID()
@@ -143,7 +150,7 @@ export default function Navbar() {
 						<>
 							<Dropdown overlay={menu} placement='bottomCenter'>
 								<div className='profilepicture__container' onMouseEnter={toggleHover} onMouseLeave={toggleHover}>
-									<img className='profilepicture' src={userDetails?.profile_photo || profilePicturePlaceholder} alt='' />
+									<img className='profilepicture' src={userState?.user?.profile_photo || profilePicturePlaceholder} alt='' />
 									<img className='arrow' src={!isHovered ? downArrowNeutral : downArrowActive} alt='' />
 								</div>
 							</Dropdown>
