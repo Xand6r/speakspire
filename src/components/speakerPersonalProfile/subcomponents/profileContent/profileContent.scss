@@ -14,6 +14,14 @@ $right-item-width: 597px;;
     display: flex;
     justify-content: space-between;
 
+    .moreimages{
+        margin-bottom: 20px;
+        display: flex;
+        & > div:first-of-type{
+            margin-right: 10px;
+        }
+    }
+    
     .noitem{
         display: flex;
         flex-direction: column;
@@ -254,9 +262,6 @@ $right-item-width: 597px;;
                     border-radius: 5px;
                 }
 
-            }
-            .moreimages{
-                margin-bottom: 20px;
             }
         }
 
