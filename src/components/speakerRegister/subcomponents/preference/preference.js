@@ -78,7 +78,7 @@ export default function Preference({
                     <div className="preference__formsection__section__form --whitebg --no-mt">
                         <div className="--input_wrapper --select">
                             <label className="double" htmlFor="position">
-                                Availability
+                                Availability *
                                 <span>These are days you’re available for engagements.</span>
                             </label>
                             <div className="--singleselect">
@@ -97,7 +97,7 @@ export default function Preference({
                     <div className="preference__formsection__section__form --whitebg">
                         <div className="--input_wrapper --select">
                             <label className="double" htmlFor="position">
-                                Mode of Delivery
+                                Mode of Delivery *
                                 <span>These are your preferred ways of delivery.</span>
                             </label>
                             <div className="--singleselect">
@@ -115,7 +115,7 @@ export default function Preference({
                     <div className="preference__formsection__section__form --whitebg">
                         <div className="--input_wrapper --select">
                             <label className="double" htmlFor="position">
-                                Open to Volunteering
+                                Open to Volunteering *
                             </label>
                             <div className="--singleselect">
                             <Select
@@ -133,7 +133,7 @@ export default function Preference({
                     <div className="preference__formsection__section__form --whitebg">
                         <div className="--input_wrapper --select">
                             <label className="double" htmlFor="position">
-                                Are you open to travel?
+                                Are you open to travel? *
                             </label>
                             <div className="--singleselect">
                                 <Select
@@ -207,7 +207,7 @@ export default function Preference({
                 </div>
                 
                 <div className="contacts__header">
-                    Contact Details
+                    Contact Details *
                 </div>
                 <div className="preference__formsection__section__form --wide">
 
@@ -268,7 +268,7 @@ export default function Preference({
                 </div>
 
                 <div className="contacts__header">
-                    Speaker Fee
+                    Speaker Fee *
                 </div>
                 <div className="preference__formsection__section__form --wide">
 

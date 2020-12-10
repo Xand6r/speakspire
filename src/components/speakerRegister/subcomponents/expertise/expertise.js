@@ -116,7 +116,7 @@ export default function Expertise({stateChanger, state}) {
 			<div className='expertise__formsection'>
 				<div className='expertise__formsection__section'>
 					<div className='expertise__formsection__section__header'>
-						<div className='--heading'>Specialty</div>
+						<div className='--heading'>Specialty *</div>
 						<div className='--sub_heading'>Tell us what kind of speaker you are.</div>
 					</div>
 					<div className='expertise__formsection__section__form --nomargin'>
@@ -152,7 +152,7 @@ export default function Expertise({stateChanger, state}) {
 
 				<div className='expertise__formsection__section'>
 					<div className='expertise__formsection__section__header'>
-						<div className='--heading'>Topic Areas</div>
+						<div className='--heading'>Topic Areas *</div>
 						<div className='--sub_heading'>These are the broad topics your expertise falls under.</div>
 					</div>
 					<div className='expertise__formsection__section__form  --more-margin'>
@@ -235,7 +235,7 @@ export default function Expertise({stateChanger, state}) {
 
 					<div className='expertise__formsection__section'>
 						<div className='expertise__formsection__section__header'>
-							<div className='--heading'>Education</div>
+							<div className='--heading'>Education *</div>
 						</div>
 						{state.education.map((education, index) => (
 							<div className='expertise__formsection__section__form'>
@@ -513,7 +513,7 @@ export default function Expertise({stateChanger, state}) {
 					<div className='expertise__formsection__section__form --whitebg'>
 						<div className='--input_wrapper --select'>
 							<label className='double' htmlFor='position'>
-								Highest Level of Education
+								Highest Level of Education *
 							</label>
 							<div className='--singleselect'>
 								<Select
@@ -531,7 +531,7 @@ export default function Expertise({stateChanger, state}) {
 					<div className='expertise__formsection__section__form --whitebg'>
 						<div className='--input_wrapper --select'>
 							<label className='double' htmlFor='position'>
-								Languages
+								Languages *
 							</label>
 							<div className='--multiselect '>
 								<MultiSelect
