@@ -10,6 +10,7 @@ import shareIcon from '../../assets/share.svg';
 import imageOverlay from '../../assets/overlay.svg';
 import ellipsisIcon from '../../assets/ellipsis.svg';
 import locationIcon from '../../assets/location.svg';
+import bluePencilIcon from '../../assets/pencil.svg';
 import ContactMe from '../../../../utilities/contactMethods';
 import {uploadOrganiserProfile} from '../../../../utilities/generalUtils/uploadImage';
 
@@ -31,6 +32,7 @@ const props = {
 	},
 };
 
+
 const antIcon = <LoadingOutlined style={{fontSize: 46, color: '#F1F3F9'}} spin />;
 export default function Profilecard({ userData , isAdmin, refetch}) {
 	const { id, profile_photo, name, specialty, address, country, services, email, phone } = userData;
@@ -38,8 +40,14 @@ export default function Profilecard({ userData , isAdmin, refetch}) {
 	const [userContacts, setUserContacts] = useState({});
 	const [imageLink, setImageLink] = useState(null);
 	const [uploadLoading, setUploadLoading] = useState(false);
-		const [hideContacts, setHideContacts] = useState(true);
+	const [hideContacts, setHideContacts] = useState(true);
 
+	const EditIcon = () => (
+		isAdmin &&
+		<div className='editicon'>
+			<img src={bluePencilIcon} alt='' />
+		</div>
+	);
 
 	useEffect(() => {
 		if(userData){
@@ -55,7 +63,7 @@ export default function Profilecard({ userData , isAdmin, refetch}) {
 		<div className='profilecard_organisers'>
 			<div className='profilecard_organisers__actions'>
 				<img src={shareIcon} alt='share' />
-				<img src={ellipsisIcon} alt='ellipsis' />
+				{/* <EditIcon /> */}
 			</div>
 
 			<div className='profilecard_organisers__maincontent'>

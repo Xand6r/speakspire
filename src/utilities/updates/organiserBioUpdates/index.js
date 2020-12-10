@@ -5,8 +5,8 @@ import {message, Spin} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 import axios from '../../axios';
-import '../updates.scss';
-
+import '../updates.scss'
+import './speakerBioUpdates.scss';
 const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#fff'}} spin />;
 
 export default function Index({initialData, onClose, onSuccess}) {
@@ -27,7 +27,7 @@ export default function Index({initialData, onClose, onSuccess}) {
         // set lading state
         setLoading(true)
         // make patch request
-        axios.patch(`speakers/${userId}/bio`,{
+        axios.patch(`organizers/${userId}/bio`,{
             bio: state
         // copy and paste from here
         }).then((res) => {

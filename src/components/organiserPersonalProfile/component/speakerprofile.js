@@ -134,7 +134,7 @@ export default function Speakerprofile(props) {
 
 			{/* the section containing the main content */}
 			<div className='speakerprofile__profile_content'>
-				<ProfileContent userData={userData} />
+				<ProfileContent userData={userData}  isAdmin={isAdmin}  refetch={getDetails}/>
 			</div>
 			{/* the section containing the main content */}
 			{/* the footer */}
