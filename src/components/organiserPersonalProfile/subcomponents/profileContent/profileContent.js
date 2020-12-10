@@ -6,6 +6,8 @@ import { Tabs } from 'antd';
 import Popup from '../../../../utilities/popup/index';
 import UpdateBio from '../../../../utilities/updates/organiserBioUpdates';
 import UpdateMedia from '../../../../utilities/updates/organierMediaUpdate';
+import UpdateClients from '../../../../utilities/updates/organiserClientUpdate';
+import UpdatePartners from '../../../../utilities/updates/organiserPartnerUpdate';
 
 
 
@@ -62,13 +64,13 @@ export default function ProfileContent({ userData, refetch, isAdmin }) {
 			onClose={() => setClosePopup(true)}
 			onSuccess={refetch}
 		/>,
-		clients: <UpdateMedia
-			initialData={{links}}
+		clients: <UpdateClients
+			initialData={{clients}}
 			onClose={() => setClosePopup(true)}
 			onSuccess={refetch}
 		/>,
-		partners: <UpdateMedia
-			initialData={{links}}
+		partners: <UpdatePartners
+			initialData={{partners}}
 			onClose={() => setClosePopup(true)}
 			onSuccess={refetch}
 		/>
