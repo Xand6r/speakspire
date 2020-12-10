@@ -102,6 +102,7 @@ export default function Filter() {
                 <div className="filter__results">
                 {
                     speakerState.data.map(speaker => {
+                        console.log(speaker.id)
                         const {
                             id,
                             name, experience:[{company, position}],

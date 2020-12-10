@@ -11,6 +11,7 @@ const Homepage = lazy(() => import('./components/homepage' /* webpackChunkName: 
 const SpeakersPage = lazy(() => import('./components/speakersPage' /* webpackChunkName: "SpeakersPage" */));
 // const SpeakersProfile = lazy(() => import('./components/speakerProfile' /* webpackChunkName: "SingleSpeakerPage" */));
 const SpeakerPersonalProfile =  lazy(() => import('./components/speakerPersonalProfile' /* webpackChunkName: "Profile" */))
+// const OrganiserProfile = lazy(() => import('./components/organiserProfile' /* webpackChunkName: "OrganiserProfile" */));
 const OrganiserPersonalProfile = lazy(() => import('./components/organiserPersonalProfile' /* webpackChunkName: "Profile" */));
 const SignUpCategory = lazy(() => import('./components/category' /* webpackChunkName: "SignUpCategory" */));
 const SignInPage = lazy(() => import('./components/signin' /* webpackChunkName: "SignInPage" */));
@@ -20,7 +21,6 @@ const EventsPage = lazy(() => import('./components/eventsPage' /* webpackChunkNa
 const EventProfile = lazy(() => import('./components/eventProfile' /* webpackChunkName: "EventProfile" */));
 const OrganisersPage = lazy(() => import('./components/organisersPage' /* webpackChunkName: "OrganisersPage" */));
 const EventSignUpPage = lazy(() => import('./components/eventsRegister' /* webpackChunkName: "EventSignUpPage" */));
-const OrganiserProfile = lazy(() => import('./components/organiserProfile' /* webpackChunkName: "OrganiserProfile" */));
 const About = lazy(() => import('./components/about' /* webpackChunkName: "About" */));
 const IndividualSignUp = lazy(() => import('./components/individualSignup' /* webpackChunkName: "IndividualSignUp" */));
 const Favourites = lazy(() => import('./components/favourites' /* webpackChunkName: "IndividualSignUp" */));
@@ -55,8 +55,8 @@ function App() {
 					<Route path='/events/:id' component={EventProfile} />
 					<Route path='/organisers' component={OrganisersPage} />
 					<Route path='/individual' component={IndividualSignUp} />
-					<Route path='/registerevent' component={EventSignUpPage} />
-					<Route path='/organiserprofile/:id' component={OrganiserProfile} />
+					<ProtectedRoute path='/registerevent' component={EventSignUpPage} />
+					<Route path='/organiserprofile/:id' component={OrganiserPersonalProfile} />
 					<Route exact path='/' component={Homepage} />
 					<Route exact path="/confirm" component={ConfirmMail} />
 				</Switch>

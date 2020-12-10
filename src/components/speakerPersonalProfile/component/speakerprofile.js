@@ -86,7 +86,7 @@ export default function Speakerprofile(props) {
 
 
 	return (
-		<div className='speakerprofile'>
+		<div className='speakerprofile speaker'>
 			{/* the navigation bar of the site */}
             <div className="--sticky">
 				<NavBar />
