@@ -33,17 +33,18 @@ export default function Speakerprofile(props) {
 	const history = useHistory();
 	const role = getRole();
 
+	const getDetails = async () => {
+		try {
+			const { data } = await axios.get(`/organizers/${id}`);
+			setUserData(data.data);
+		} catch (err) {
+			message.error('there was an error fetching this user');
+			setUserData({});
+			setTimeout(() => history.push('/'), 1000);
+		}
+	};
+
 	useEffect(() => {
-		const getDetails = async () => {
-			try {
-				const { data } = await axios.get(`/organizers/${id}`);
-				setUserData(data.data);
-			} catch (err) {
-				message.error('there was an error fetching this user');
-				setUserData({});
-				setTimeout(() => history.push('/'), 1000);
-			}
-		};
 		if(id && role !== 'speaker'){
 			getDetails();
 		}
@@ -127,7 +128,7 @@ export default function Speakerprofile(props) {
 
 			{/* the section containing the profilecard */}
 			<div className='speakerprofile__profile_card'>
-				<ProfileCard userData={userData} />
+				<ProfileCard userData={userData}  isAdmin={isAdmin}  refetch={getDetails}/>
 			</div>
 			{/* the section containing the profilecard */}
 

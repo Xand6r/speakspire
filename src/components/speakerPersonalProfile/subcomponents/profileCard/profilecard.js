@@ -48,6 +48,8 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 	const [userContacts, setUserContacts] = useState({});
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const [imageLink, setImageLink] = useState(null);
+	const [hideContacts, setHideContacts] = useState(true);
+
 
 	const [popupClosed, setClosePopup] = useState(true);
 
@@ -61,7 +63,6 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 			setImageLink(userData.profile_photo)
 		}
 	}, [userData])
-	const [hideContacts, setHideContacts] = useState(true);
 	const splitLanguage = (data) => {
 		return data
 			.replace(/['"]+/g, ' ')
