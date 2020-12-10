@@ -106,7 +106,11 @@ export default function SigninInputs() {
 				</div>
 				{/* wrapper for select item */}
 
-				<span className='blue__text'>Forgot Password?</span>
+				<span
+					className='blue__text'
+					onClick={() => history.push('/forgotpassword')}
+				>Forgot Password?
+				</span>
 			</div>
 
 			<div className='signininputs__submit' onClick={loginUser}>

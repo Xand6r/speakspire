@@ -24,6 +24,8 @@ const EventSignUpPage = lazy(() => import('./components/eventsRegister' /* webpa
 const About = lazy(() => import('./components/about' /* webpackChunkName: "About" */));
 const IndividualSignUp = lazy(() => import('./components/individualSignup' /* webpackChunkName: "IndividualSignUp" */));
 const Favourites = lazy(() => import('./components/favourites' /* webpackChunkName: "IndividualSignUp" */));
+const ForgotPassword = lazy(() => import('./components/password/forgotPassword' /* webpackChunkName: "IndividualSignUp" */));
+const ResetPassword = lazy(() => import('./components/password/resetPassword' /* webpackChunkName: "IndividualSignUp" */));
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
 	const loggedIn = getToken();
@@ -59,6 +61,8 @@ function App() {
 					<Route path='/organiserprofile/:id' component={OrganiserPersonalProfile} />
 					<Route exact path='/' component={Homepage} />
 					<Route exact path="/confirm" component={ConfirmMail} />
+					<Route exact path='/forgotpassword' component={ForgotPassword} />
+					<Route exact path='/resetpassword' component={ResetPassword} />
 				</Switch>
 			</Suspense>
 		</>

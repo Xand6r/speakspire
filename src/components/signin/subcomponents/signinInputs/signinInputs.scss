@@ -3,33 +3,6 @@
 @import '../../../../stylesheets/utilities';
 @import '../../../../stylesheets/fonts';
 
-.select-dropdown{
-    height: 50px !important;
-    display: flex !important;
-    align-items: center !important;
-    padding: 0 20px !important;
-    color: #162359 !important;
-    font-family: 'markpro-medium';
-}
-.select-dropdown:hover{
-    background: #EDF1FE !important;
-}
-.select-dropdown[aria-selected="true"]{
-    background: #EDF1FE !important;
-    color: #4D75F4 !important;
-}
-.ant-select-open{
-    border: 0.5px solid $light-blue  !important;
-    box-shadow: none !important;
-    outline: none !important;
-    border-radius: 5px !important;
-}
-.ant-select-focused{
-    border: 1px solid $light-blue !important;
-    box-shadow: none !important;
-    outline: none !important;
-    border-radius: 5px !important;
-}
 .signininputs{
     display: flex;
     flex-direction: column;
@@ -129,4 +102,32 @@
         width: 120px;
         height: 50px;
     }
+
 }
+        .select-dropdown{
+            height: 50px !important;
+            display: flex !important;
+            align-items: center !important;
+            padding: 0 20px !important;
+            color: #162359 !important;
+            font-family: 'markpro-medium';
+        }
+        .select-dropdown:hover{
+            background: #EDF1FE !important;
+        }
+        .select-dropdown[aria-selected="true"]{
+            background: #EDF1FE !important;
+            color: #4D75F4 !important;
+        }
+        .ant-select-open{
+            border: 0.5px solid $light-blue  !important;
+            box-shadow: none !important;
+            outline: none !important;
+            border-radius: 5px !important;
+        }
+        .ant-select-focused{
+            border: 1px solid $light-blue !important;
+            box-shadow: none !important;
+            outline: none !important;
+            border-radius: 5px !important;
+        }
