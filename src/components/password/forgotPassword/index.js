@@ -64,7 +64,7 @@ export default function Index() {
                                     <label htmlFor="">Email</label>
                                     <input
                                         type="text"
-                                        placeholder="enter your email"
+                                        placeholder="Enter your email"
                                         value={email}
                                         onChange={({target: {value}}) => setEmail(value)}
                                     />

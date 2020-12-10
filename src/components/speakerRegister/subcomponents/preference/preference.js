@@ -110,7 +110,7 @@ export default function Preference({
                     <div className="preference__formsection__section__form --whitebg">
                         <div className="--input_wrapper --select">
                             <label className="double" htmlFor="position">
-                                Volunteering
+                                Open to Volunteering
                             </label>
                             <div className="--singleselect">
                             <Select

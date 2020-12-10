@@ -334,7 +334,7 @@ export default function Expertise({stateChanger, state}) {
 
 					<div className='expertise__formsection__section --last'>
 						<div className='expertise__formsection__section__header'>
-							<div className='--heading'>Certification and Licenses </div>
+							<div className='--heading'>Other Certifications </div>
 						</div>
 						{state.certifications.map((cert, index) => (
 							<div className='expertise__formsection__section__form'>
@@ -352,7 +352,7 @@ export default function Expertise({stateChanger, state}) {
 									<input
 										name='certification_name'
 										type='text'
-										placeholder='Enter School Name'
+										placeholder='Enter Certification Name'
 										value={cert.certification_name}
 										onChange={(e) => {
 											changeListData('certifications', index, 'certification_name', e.target.value);
@@ -440,6 +440,19 @@ export default function Expertise({stateChanger, state}) {
 
 								<div className='--input_wrapper'>
 									<label htmlFor='dates'>From</label>
+									<div className="--tilldate">
+										<Checkbox 
+											onChange={(e)=>{
+												if(e.target.checked){
+													changeListData('certifications', index, 'to', moment().format(monthFormat))
+												}else{
+													changeListData('certifications', index, 'to', '')
+												}
+											}}
+										>
+											Till Date
+										</Checkbox>
+									</div>
 									<div className='--date_wrapper --half_date'>
 										<DatePicker
 											format={monthFormat}
@@ -470,19 +483,6 @@ export default function Expertise({stateChanger, state}) {
 											}
 											disabledDate={d => (!d || d.isBefore(cert.from) || d.isAfter(moment())) }
 										/>
-									</div>
-									<div className="--tilldate">
-										<Checkbox 
-											onChange={(e)=>{
-												if(e.target.checked){
-													changeListData('certifications', index, 'to', moment().format(monthFormat))
-												}else{
-													changeListData('certifications', index, 'to', '')
-												}
-											}}
-										>
-											Till Date
-										</Checkbox>
 									</div>
 								</div>
 							</div>

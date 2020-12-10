@@ -127,6 +127,19 @@ export default function Experience({
 
                                 <div className="--input_wrapper">
                                     <label htmlFor="dates">From</label>
+                                    <div className="--tilldate">
+										<Checkbox 
+											onChange={(e)=>{
+												if(e.target.checked){
+													changeListData('positions', index, 'to', moment().format(monthFormat))
+												}else{
+													changeListData('positions', index, 'to', '')
+												}
+											}}
+										>
+											Till Date
+										</Checkbox>
+									</div>
                                     <div className="--date_wrapper --half_date">
                                         <DatePicker
                                             format={monthFormat}
@@ -158,19 +171,6 @@ export default function Experience({
                                             disabledDate={d => !d || d.isBefore(position.from) || d.isAfter(moment())}
                                         />
                                     </div>
-                                    <div className="--tilldate">
-										<Checkbox 
-											onChange={(e)=>{
-												if(e.target.checked){
-													changeListData('positions', index, 'to', moment().format(monthFormat))
-												}else{
-													changeListData('positions', index, 'to', '')
-												}
-											}}
-										>
-											Till Date
-										</Checkbox>
-									</div>
                                 </div>
                             </div>
                             

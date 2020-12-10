@@ -12,8 +12,9 @@ export const SPEAKER_SPECIALITY = [
 
 // the different options fro the topic areas
 export const TOPIC_AREAS = [
-    { value: 'Health/Medicine ', label: 'Health/Medicine ' },
-    { value: 'Technology ', label: 'Technology ' },
+    { value: 'None', label: 'None' },
+    { value: 'Health/Medicine', label: 'Health/Medicine' },
+    { value: 'Technology', label: 'Technology' },
     { value: 'Sports/Fitness', label: 'Sports/Fitness' },
     { value: 'Education', label: 'Education' },
     { value: 'Entertainment', label: 'Entertainment' },
