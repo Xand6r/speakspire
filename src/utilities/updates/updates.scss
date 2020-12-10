@@ -29,6 +29,11 @@
         border: 4px solid var(--scrollbarBG);
     }
 
+    .ant-picker-input > input{
+        font-family: 'markpro-medium';
+        color: $dark-blue !important;
+    }
+
     &.textareawrapper{
         padding: 70px 78px 50px 78px;
     }
