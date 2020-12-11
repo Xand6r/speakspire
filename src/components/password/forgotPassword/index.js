@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from '../../../utilities/axios'
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, message, Select } from 'antd';
 import {useHistory} from 'react-router-dom';
@@ -17,22 +18,34 @@ export default function Index() {
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
-    const [identity, setIdentity] = useState('Speaker');
+    const [identity, setIdentity] = useState('speakers');
 
 
     const history = useHistory();
 
+    const generateLink = () => `/${identity}/generateToken`;
+
     const changePassword = () =>{
         // make api call
-        if("sucessfull"){
-            if(!email){
-                message.error("Please pass in a valid mail before proceeding");
-                return;
-            }
-            setPage(2);
-        }else{
-            message.error("There was an error changing your password")
+        if(!email){
+            message.error("Please pass in a valid mail before proceeding");
+            return;
         }
+        setLoading(true)
+        axios.post(generateLink(), {
+            email
+        })
+        .then(({data}) => {
+            console.log(data);
+            setPage(2);
+        })
+        .catch(err => {
+            message.error("Email doesn't exist please go over it.")
+            console.log()
+        })
+        .finally(() =>{
+            setLoading(false)
+        })
     }
     return (
         <div className="passwordwrapper">
@@ -67,6 +80,7 @@ export default function Index() {
                                         placeholder="Enter your email"
                                         value={email}
                                         onChange={({target: {value}}) => setEmail(value)}
+                                        style={{background: "white"}}
                                     />
                                 </div>
 
@@ -74,13 +88,13 @@ export default function Index() {
                                     {/* wrapper for select item */}
                                         <label htmlFor='password'> Account type </label>
                                         <Select defaultValue={identity} allowClear onChange={(value) => setIdentity(value)}>
-                                            <Option className='select-dropdown' value='individual'>
+                                            <Option className='select-dropdown' value='individuals'>
                                                 Individual
                                             </Option>
-                                            <Option className='select-dropdown' value='speaker'>
+                                            <Option className='select-dropdown' value='speakers'>
                                                 Speaker
                                             </Option>
-                                            <Option className='select-dropdown' value='organiser'>
+                                            <Option className='select-dropdown' value='organizers'>
                                                 Organiser
                                             </Option>
                                         </Select>
