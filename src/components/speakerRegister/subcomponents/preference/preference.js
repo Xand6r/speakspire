@@ -299,13 +299,13 @@ export default function Preference({
                             <input
                                 value={state.budgetFrom}
                                 type="number"
-                                placeholder={`00.00 ${currencyMap[state.currency.value]}`}
+                                placeholder={`00.00 ${currencyMap[state.currency.value] || ''}`}
                                 min="0"
                                 onChange={({target}) => changeSelectState('budgetFrom',  Number(target.value) < 0 ? 0 : target.value )}
                             />
                             <span> - </span>
                             <input
-                                placeholder={`00.00 ${currencyMap[state.currency.value]}`}
+                                placeholder={`00.00 ${currencyMap[state.currency.value] || ""}`}
                                 type="number"
                                 value={state.budgetTo}
                                 max="300000"
