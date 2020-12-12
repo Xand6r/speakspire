@@ -38,7 +38,6 @@ function App() {
 		<>
 			{/* <Nav /> */}
 			<Suspense fallback={<Loader />}>
-				<Loader />
 				<Switch>
 					<ProtectedRoute
 						exact path='/profile'
