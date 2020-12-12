@@ -6,18 +6,16 @@ import { useDispatch } from 'react-redux';
 import { INITIAL_STATE } from './constants';
 import { component as NavBar } from '../../../utilities/navbar';
 import validateEmail from '../../../utilities/generalUtils/validation';
-import { setLoggedIn } from '../../../redux/userSlice';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 import { Spin } from 'antd';
 import { message } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 import axios from '../../../utilities/axios';
-import newaxios from 'axios';
 import notificationIcon from '../assets/notification.svg';
 import { setMail } from '../../../api/user';
 import './usersignup.scss';
-import { useEffect } from 'react';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24, color: 'white' }} spin />;
 
@@ -94,21 +92,21 @@ export default function Userdetails() {
 					<div className='userdetails__formsection'>
 						{/* wrapepr for the name */}
 						<div className='--wrapper'>
-							<label htmlFor='name'>Full Name</label>
+							<label htmlFor='name'>Full Name *</label>
 							<input maxLength='30' type='text' id='name' name='name' onChange={handleFormChange} value={state.name} placeholder='Enter full name' />
 						</div>
 						{/* wrapepr for the name */}
 
 						{/* wrapper for the email */}
 						<div className='--wrapper'>
-							<label htmlFor='email'>Email</label>
+							<label htmlFor='email'>Email *</label>
 							<input type='email' id='email' name='email' placeholder='Enter your email' onChange={handleFormChange} value={state.email} />
 						</div>
 						{/* wrapper for the email */}
 
 						{/* wrapper for you password */}
 						<div className='--wrapper'>
-							<label htmlFor='password'> Password </label>
+							<label htmlFor='password'> Password *</label>
 							<div className='--passwordinput'>
 								<input
 									placeholder='6+ Characters'
@@ -123,6 +121,9 @@ export default function Userdetails() {
 									id='togglePassword'
 									onClick={() => setPasswordHidden(!passwordHidden)}
 								/>
+							</div>
+							<div className="--passwordstrengthbarwrapper">
+								<PasswordStrengthBar password={state.password} />
 							</div>
 						</div>
 						{/* wrapper for you password */}
