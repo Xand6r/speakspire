@@ -10,9 +10,14 @@
     z-index: 40000;
 
     img {
-        height: 50px;
-        animation: show-logo 800ms ease-in-out infinite;
+        // animation: show-logo 800ms ease-in-out infinite;
     }
+}
+
+.cls-1{fill:#4d75f4;}.cls-2{fill:#3fa8ef;}.cls-3{fill:#42e56d;}.cls-4{fill:#2ae0ed;}
+
+#Layer_2{
+    transform: rotate(90deg);
 }
 
 @keyframes show-logo {
