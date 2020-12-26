@@ -62,7 +62,7 @@ export default function Index({ onClose, initialData, onSuccess }) {
 				<div className='updates__form__content'>
 					<div className='updates__form__content__item'>
 						<label className='double' htmlFor='fullname'>
-							Clients
+							Partners
 							<span>
 								Who have you worked for? Separate client names with commas.
 							</span>

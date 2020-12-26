@@ -101,7 +101,7 @@
                     }
                 }
 
-                input[type='text'], input[type='date']{
+                input[type='text'], input[type='date'], input[type='tel']{
                     @extend %input-styles;
                     @extend %sixteenpx;
                     border: 1px solid #CDD1DE;
