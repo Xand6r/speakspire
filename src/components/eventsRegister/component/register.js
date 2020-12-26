@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
@@ -26,6 +27,7 @@ import { message } from 'antd';
 import './register.scss';
 import defaultImage from '../assets/greycircle.svg';
 
+const INITIAL_ERROR_STATES = [true, true, true, true];
 export default function Register({ location }) {
 	const [activeTab, setactiveTab] = useState(0);
 	const [previewHidden, setPreviewHidden] = useState(false);
@@ -34,7 +36,13 @@ export default function Register({ location }) {
 	const [schedule, setSchedule] = useState(SCHEDULE_STATE);
 	const [speakerCall, setSpeakerCall] = useState(SPEAKER_CALL);
 	const [media, setMedia] = useState(INITIAL_MEDIA_STATE);
+	const [errorStates, setErrorStates] = useState(INITIAL_ERROR_STATES)
+
 	const history = useHistory();
+	const user = useSelector(({user})=>user);
+
+	const {role, id:organiserId} = user;
+
 
 	const mapState = {
 		'Event Info':validateEventInfo(eventInfo),
@@ -42,6 +50,30 @@ export default function Register({ location }) {
 		'Call for Speakers': validateSpeakerCall(speakerCall),
 		'Media': validateMedia(media),
 	}
+
+	useEffect(() => {
+		const NO_ERRORS = [...errorStates];
+		NO_ERRORS[0] = true;
+		setErrorStates(NO_ERRORS);
+	}, [eventInfo]);
+
+	useEffect(() => {
+		const NO_ERRORS = [...errorStates];
+		NO_ERRORS[1] = true;
+		setErrorStates(NO_ERRORS);
+	}, [schedule]);
+
+	useEffect(() => {
+		const NO_ERRORS = [...errorStates];
+		NO_ERRORS[2] = true;
+		setErrorStates(NO_ERRORS);
+	}, [speakerCall]);
+
+	useEffect(() => {
+		const NO_ERRORS = [...errorStates];
+		NO_ERRORS[3] = true;
+		setErrorStates(NO_ERRORS);
+	}, [media]);
 
 	useEffect(() => {
 		const { pathname } = location;
@@ -68,17 +100,22 @@ export default function Register({ location }) {
 		const allFilled = Object.values(mapState).every((a) => a);
 		if (!allFilled) {
 			message.error('Please Fill in All fields in the form before submitting');
-			return;
+			const errorMap = Object.values(mapState).map(a=>Boolean(a));
+			setErrorStates(errorMap);
+			// return an empty promise so we can know to stop the spinner
+			return Promise.resolve();
 		}
 		// send post request
-		axios
-			.post('/events/add', cleanData(finalState))
+		return axios
+			.post('/events/add', cleanData(finalState, organiserId))
 			.then(() => {
 				message.success('Event created successfully');
-				setTimeout(() => history.push('/registerevent'), 1000);
+				setTimeout(() => history.push('/events'), 1000);
 			})
 			.catch(() => message.error('There was an error creating the event'));
 	};
+
+
 
 	return (
 		<div className='registerevent'>
@@ -97,6 +134,7 @@ export default function Register({ location }) {
 								active={index === activeTab}
 								changeTab={makeActive}
 								filled={mapState[step]}
+								error={!errorStates[index]}
 							/>
 						</Link>
 					))}

@@ -18,6 +18,7 @@ import './profilecard.scss';
 const tag = 'premium';
 export default function Profilecard({ userData }) {
 	const { name, organizer, schedule, language } = userData;
+	console.log(userData);
 	return (
 		<div className='events_profilecard'>
 			<div className='events_profilecard__actions'>
@@ -62,11 +63,7 @@ export default function Profilecard({ userData }) {
 					</div>
 
 					<div className='events_profilecard__maincontent__right__item --top'>
-						<div className='--speakercall'>
-							<img src={blueSpeaker} alt='bluespeaker' />
-							<span>Call for Speakers</span>
-						</div>
-						<div className='--speakercall_action'>View Details</div>
+						<div className='--speakercall_action'>Register</div>
 					</div>
 				</div>
 			</div>

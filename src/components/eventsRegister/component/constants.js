@@ -4,7 +4,17 @@ export const STEPS = [
     'Call for Speakers', 'Media'
 ];
 
+export const EVENT_TYPE = [
+    { value: 'conference', label: 'Conference' },
+    { value: 'party', label: 'Party' },
+]
+// export teh different categories existing for a speaker
+export const SPEAKER_CATEGORY = [
+    { value: 'classic', label: 'Classic Speaker' },
+    { value: 'standard', label: 'Standard Speaker' },
+    { value: 'premium', label: 'Premium Speaker' },
 
+]
 // the default state for the company details state
 export const EVENT_INFO_STATE = {
     eventName:'',

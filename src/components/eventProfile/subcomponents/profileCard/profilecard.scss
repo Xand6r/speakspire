@@ -32,11 +32,10 @@
     }
 
     .--speakercall_action{
-        @extend %outlined-button;
+        @extend %filled-button;
         width: 161px;
         height: 41px;
         margin-right: 14px;
-        background: #EDF1FE;
     }
 
     %tag{

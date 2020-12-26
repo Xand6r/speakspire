@@ -1,24 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Tabs } from 'antd';
 import moment from 'moment';
+import PropTypes from 'prop-types';
+import {useSelector} from 'react-redux';
 
-import { aboutEvent } from './constants';
-
-import profileSample from '../../assets/instagram.svg';
-import instagram from '../../assets/instagram.svg';
-import linkedin from '../../assets/linkedin.svg';
-import twitter from '../../assets/twitter.svg';
-import facebook from '../../assets/facebook.svg';
-import web from '../../assets/web.svg';
 
 import { component as EventCard } from '../../../../utilities/eventCard';
-import {useSelector} from 'react-redux';
-import { component as SkillTab } from '../../../../utilities/skillTab';
+import { aboutEvent } from './constants';
+import bluePencilIcon from '../../assets/pencil.svg';
+
+import SpeakerCall from './speakerCall';
 
 import './profileContent.scss';
-import bluePencilIcon from '../../assets/pencil.svg';
-import { useHistory } from 'react-router-dom';
 
 const { TabPane } = Tabs;
 
@@ -57,7 +50,7 @@ function parseTime(time) {
     }
 }
 export default function ProfileContent({ about, primaryTopic, primarySkills, secondaryTopic, secondarySkills, bio, userData }) {
-	const { description, tags, topic_area, type, schedule, media } = userData;
+	const { description, tags, topic_area, type, schedule, media, speakers=[] } = userData;
 	const eventState = useSelector(({events} )=> events);
 	return (
 		<div className='event_profilecontent_wrapper'>
@@ -70,6 +63,7 @@ export default function ProfileContent({ about, primaryTopic, primarySkills, sec
 						<div className='--bottom_content'>{description}</div>
 					</div>
 				</div>
+
 				<div className='event_profilecontent__right'>
 					<div className='event_profilecontent__right__bio'>
 						<div className='--top_heading'>
@@ -97,6 +91,20 @@ export default function ProfileContent({ about, primaryTopic, primarySkills, sec
 									</div>
 								</div>
 							</div>
+						</div>
+					</div>
+
+					<div className="event_profilecontent__right__speakers">
+						<div className='--top_heading'>
+							<span>Call for Speakers</span>
+							<EditIcon />
+						</div>
+						<div className="--bottom_content">
+							{
+								[...speakers, ...speakers].map((oneSpeaker) => (
+									<SpeakerCall oneSpeaker={oneSpeaker}/>
+								))
+							}
 						</div>
 					</div>
 
@@ -145,6 +153,7 @@ export default function ProfileContent({ about, primaryTopic, primarySkills, sec
 						</Tabs>
 					</div>
 				</div>
+			
 			</div>
 			<div className='event_profilecontent__bottom'>
 				<div className='--bottomtitle'>More Events from this Organizer</div>

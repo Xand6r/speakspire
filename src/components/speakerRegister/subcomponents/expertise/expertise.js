@@ -18,8 +18,6 @@ import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 import {
 	SPEAKER_SPECIALITY,
 	TOPIC_AREAS,
-	DEFAULT_MULTI_OPTIONS,
-	DEFAULT_SINGLE_OPTIONS,
 	EDUCATION_OPTIONS,
 	LANGUAGE_OPTIONS,
 } from './constants';
