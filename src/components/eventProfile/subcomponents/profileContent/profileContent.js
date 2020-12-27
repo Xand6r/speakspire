@@ -8,6 +8,9 @@ import {LoadingOutlined} from '@ant-design/icons';
 
 import Popup from '../../../../utilities/popup/index';
 import UpdateEventDetails from '../../../../utilities/updates/eventDetailsUpdate';
+import UpdateEventDescription from '../../../../utilities/updates/eventDescriptionUpdate';
+import UpdateEventSpeaker from '../../../../utilities/updates/eventSpeakerUpdate';
+
 
 
 import { component as EventCard } from '../../../../utilities/eventCard';
@@ -53,7 +56,7 @@ function parseTime(time) {
 
 
 export default function ProfileContent({ isAdmin, refetch, userData }) {
-	const { description, tags, topic_area, type, schedule, media, speakers=[] } = userData;
+	const { description, tags, topic_area, type, schedule, media, speakers=[], id } = userData;
 	const eventState = useSelector(({events} )=> events);
 
 	const [loading, setLoading] = useState(false);
@@ -81,6 +84,23 @@ export default function ProfileContent({ isAdmin, refetch, userData }) {
 			}}
 			onClose={() => setClosePopup(true)}
 			onSuccess={refetch}
+			eventId={id}
+		/>,
+		about: <UpdateEventDescription
+			initialData={{
+				description
+			}}
+			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
+			eventId={id}
+		/>,
+		speakers: <UpdateEventSpeaker
+			initialData={{
+				speakers: speakers[0]
+			}}
+			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
+			eventId={id}
 		/>
 	}
 
@@ -102,6 +122,9 @@ export default function ProfileContent({ isAdmin, refetch, userData }) {
 						<div className='event_profilecontent__left__reason'>
 							<div className='--top_heading'>
 								<span>About This Event</span>
+								<div onClick = {() => openEditPopup('about')}>
+									<EditIcon />
+								</div>
 							</div>
 							<div className='--bottom_content'>{description}</div>
 						</div>
@@ -143,7 +166,9 @@ export default function ProfileContent({ isAdmin, refetch, userData }) {
 						<div className="event_profilecontent__right__speakers">
 							<div className='--top_heading'>
 								<span>Call for Speakers</span>
-								<EditIcon />
+								<div onClick = {() => openEditPopup('speakers')}>
+									<EditIcon />
+								</div>
 							</div>
 							<div className="--bottom_content">
 								{
