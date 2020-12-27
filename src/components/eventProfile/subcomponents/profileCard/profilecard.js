@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import {jsonParse} from '../../../../utilities/utils';
 import Popup from '../../../../utilities/popup/index';
-import UpdateProfile from '../../../../utilities/updates/zsampleUpdate';
+import UpdateProfile from '../../../../utilities/updates/eventProfileUpdate';
 
 import ellipsisIcon from '../../assets/ellipsis.svg';
 import shareIcon from '../../assets/share.svg';
@@ -18,7 +18,7 @@ import './profilecard.scss';
 
 const tag = 'premium';
 export default function Profilecard({ userData, isAdmin, refetch }) {
-	const { name, organizer, schedule=[{}], language, id } = userData;
+	const { name, organizer, schedule=[{}], language, id, theme } = userData;
 	const [popupClosed, setClosePopup] = useState(true);
 
 	// parse the time into the required format
@@ -41,7 +41,13 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 				closed={popupClosed}
 				Component={
 					<UpdateProfile
-						initialData={{}}
+						initialData={{
+							schedule,
+							name,
+							theme,
+							language: jsonParse(language),
+
+						}}
 						onClose={() => setClosePopup(true)}
 						onSuccess={refetch}
 						eventId={id}

@@ -173,7 +173,7 @@ export default function Schedule({
                 <div className="schedule__formsection__section">
                     
                     <label className="double" htmlFor="position">
-                        Event Frenquency
+                        Event Frequency
                     </label>
                     <div className="--singleselect --iconinput">
 
