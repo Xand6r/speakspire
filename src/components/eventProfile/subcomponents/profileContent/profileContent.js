@@ -101,7 +101,7 @@ export default function ProfileContent({ about, primaryTopic, primarySkills, sec
 						</div>
 						<div className="--bottom_content">
 							{
-								[...speakers, ...speakers].map((oneSpeaker) => (
+								speakers.map((oneSpeaker) => (
 									<SpeakerCall oneSpeaker={oneSpeaker}/>
 								))
 							}

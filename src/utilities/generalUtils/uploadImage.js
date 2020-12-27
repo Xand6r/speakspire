@@ -79,3 +79,20 @@ export const uploadSpeakerCover = async(image, id) => {
 
 	return link;
 }
+
+
+export const uploadEventsCover = async(image, id) => {
+	const formData = await new FormData();
+	formData.append('banner', image);
+	let link;
+	try {
+		const response = await axios.post(`/events/${id}/banner`, formData);
+		console.log(response.data.data);
+		link = response.data.data;
+	} catch (err) {
+		console.log(err);
+		link = '';
+	}
+
+	return link;
+}

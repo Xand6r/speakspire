@@ -7,7 +7,6 @@ import ImgCrop from 'antd-img-crop';
 import { Upload, message } from 'antd';
 
 import imageOverlay from '../assets/overlay.svg';
-import {setUserData as setUserDataRedux} from '../../../redux/userSlice';
 import { component as NavBar } from '../../../utilities/navbar';
 import ProfileCard from '../subcomponents/profileCard';
 import ProfileContent from '../subcomponents/profileContent';

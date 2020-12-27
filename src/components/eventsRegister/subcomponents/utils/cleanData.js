@@ -37,7 +37,7 @@ export default (data, organizerId) => {
 			frequency: frequency.value ? frequency.value : '',
 			date: cleanDate(dateFrom, dateTo),
 			time: cleanDate(timeFrom, timeTo),
-			physicalLink: JSON.stringify(physicalLink),
+			physicalLink: physicalLink || '',
 			onlineLink: JSON.stringify(onlineLink),
 			intervals: interval.value ? interval.value : '',
 			interval_day_of_week:interval_day_of_week?interval_day_of_week:'',
