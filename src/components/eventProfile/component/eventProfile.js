@@ -35,17 +35,17 @@ export default function Speakerprofile(props) {
 	const role = getRole();
 	// const isAdmin = userId === id
 
+	const getDetails = async () => {
+		try {
+			const { data } = await axios.get(`/events/${props.match.params.id}`);
+			setUserData(data.data);
+		} catch (err) {
+			message.error('there was an error fetching this event');
+			setUserData({});
+			setTimeout(() => history.push('/events'), 2000);
+		}
+	};
 	useEffect(() => {
-		const getDetails = async () => {
-			try {
-				const { data } = await axios.get(`/events/${props.match.params.id}`);
-				setUserData(data.data);
-			} catch (err) {
-				message.error('there was an error fetching this event');
-				setUserData({});
-				setTimeout(() => history.push('/events'), 2000);
-			}
-		};
 		getDetails();
 	}, [history, props.match.params.id]);
 
@@ -130,13 +130,13 @@ export default function Speakerprofile(props) {
 
 			{/* the section containing the profilecard */}
 			<div className='eventprofile__profile_card'>
-				<ProfileCard userData={userData} />
+				<ProfileCard isAdmin={isAdmin} refetch={getDetails} userData={userData} />
 			</div>
 			{/* the section containing the profilecard */}
 
 			{/* the section containing the main content */}
 			<div className='eventprofile__profile_content'>
-				<ProfileContent userData={userData} />
+				<ProfileContent  isAdmin={isAdmin} refetch={getDetails} userData={userData} />
 			</div>
 			{/* the section containing the main content */}
 

@@ -13,8 +13,8 @@ import ProfileContent from '../subcomponents/profileContent';
 import { component as Footer } from '../../../utilities/footer';
 // import a sample image
 import axios from '../../../utilities/axios';
-import { getID, getRole } from '../../../api/user';
-import uploadImage, {uploadOrganiserImage} from '../../../utilities/generalUtils/uploadImage';
+import { getRole } from '../../../api/user';
+import {uploadOrganiserImage} from '../../../utilities/generalUtils/uploadImage';
 
 
 

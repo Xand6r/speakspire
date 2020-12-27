@@ -10,9 +10,7 @@ import splitData from '../utils/splitData';
 
 import shareIcon from '../../assets/share.svg';
 import imageOverlay from '../../assets/overlay.svg';
-import ellipsisIcon from '../../assets/ellipsis.svg';
 import locationIcon from '../../assets/location.svg';
-import bluePencilIcon from '../../assets/pencil.svg';
 import ContactMe from '../../../../utilities/contactMethods';
 import greyPencil from '../../assets/greyPencil.svg';
 
