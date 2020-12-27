@@ -78,7 +78,7 @@ export default function Index({ onClose, initialData, onSuccess, eventId }) {
 				})
 				.catch((err) => {
 					console.log(err);
-					message.error('There was an error updating user!', err.response.data.message);
+					message.error('There was an error updating Event!', err.response.data.message);
 					onClose();
 				})
 				.finally(() => {

@@ -1,8 +1,13 @@
-import React from 'react';
-import { Tabs } from 'antd';
+import React, {useState} from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import ImgCrop from 'antd-img-crop';
+import { Tabs, message } from 'antd';
 import {useSelector} from 'react-redux';
+import {LoadingOutlined} from '@ant-design/icons';
+
+import Popup from '../../../../utilities/popup/index';
+import UpdateEventDetails from '../../../../utilities/updates/eventDetailsUpdate';
 
 
 import { component as EventCard } from '../../../../utilities/eventCard';
@@ -15,11 +20,7 @@ import './profileContent.scss';
 
 const { TabPane } = Tabs;
 
-const EditIcon = () => (
-	<div className='editicon'>
-		<img src={bluePencilIcon} alt='' />
-	</div>
-);
+
 
 const More = () => <div className='more'>More...</div>;
 
@@ -49,151 +50,197 @@ function parseTime(time) {
          return `${timeInt}:${minutes} AM`;
     }
 }
-export default function ProfileContent({ about, primaryTopic, primarySkills, secondaryTopic, secondarySkills, bio, userData }) {
+
+
+export default function ProfileContent({ isAdmin, refetch, userData }) {
 	const { description, tags, topic_area, type, schedule, media, speakers=[] } = userData;
 	const eventState = useSelector(({events} )=> events);
+
+	const [loading, setLoading] = useState(false);
+	const [editField, setEditField] = useState(false);
+	const [popupClosed, setClosePopup] = useState(true);
+
+	const EditIcon = () => (
+		isAdmin &&
+		<div className='editicon'>
+			<img src={bluePencilIcon} alt='' />
+		</div>
+	);
+	
+	const openEditPopup = (key) => {
+		setEditField(key);
+		setClosePopup(false);
+	}
+
+	const componentUpdateMap = {
+		details: <UpdateEventDetails
+			initialData={{
+				type,
+				topicArea:topic_area,
+				tags
+			}}
+			onClose={() => setClosePopup(true)}
+			onSuccess={refetch}
+		/>
+	}
+
+
 	return (
-		<div className='event_profilecontent_wrapper'>
-			<div className='event_profilecontent'>
-				<div className='event_profilecontent__left'>
-					<div className='event_profilecontent__left__reason'>
-						<div className='--top_heading'>
-							<span>About This Event</span>
-						</div>
-						<div className='--bottom_content'>{description}</div>
-					</div>
-				</div>
-
-				<div className='event_profilecontent__right'>
-					<div className='event_profilecontent__right__bio'>
-						<div className='--top_heading'>
-							<span>Event Details</span>
-						</div>
-						<div className='--bottom_content'>
-							<div className='--details_content'>
-								<span> {type} </span>
-								<span> {schedule ? schedule[0].frequency : null} </span>
+		<>
+			<Popup
+				closed={popupClosed}
+				Component={
+					componentUpdateMap[editField]
+				}
+				onClose={
+					() => setClosePopup(true)
+				}
+			/>
+			<div className='event_profilecontent_wrapper'>
+				<div className='event_profilecontent'>
+					<div className='event_profilecontent__left'>
+						<div className='event_profilecontent__left__reason'>
+							<div className='--top_heading'>
+								<span>About This Event</span>
 							</div>
+							<div className='--bottom_content'>{description}</div>
+						</div>
+					</div>
 
-							<div className='--details_details'>
-								<div className='--details_details__item'>
-									<span> Topic Area </span>
-									<div className='topicarea'>{topic_area}</div>
+					<div className='event_profilecontent__right'>
+						<div className='event_profilecontent__right__bio'>
+							<div className='--top_heading'>
+								<span>Event Details</span>
+								<div onClick = {() => openEditPopup('details')}>
+									<EditIcon />
 								</div>
-								<div className='--details_details__item'>
-									<span> Event Tags </span>
-									<div className='eventtags'>
-										{splitData(tags).map((tag, i) => (
-											<div className='eventtag' key={i}>
-												{tag}
-											</div>
-										))}
+							</div>
+							<div className='--bottom_content'>
+								<div className='--details_content'>
+									<span> {type} </span>
+									<span> {schedule ? schedule[0].frequency : null} </span>
+								</div>
+
+								<div className='--details_details'>
+									<div className='--details_details__item'>
+										<span> Topic Area </span>
+										<div className='topicarea'>{topic_area}</div>
+									</div>
+									<div className='--details_details__item'>
+										<span> Event Tags </span>
+										<div className='eventtags'>
+											{splitData(tags).map((tag, i) => (
+												<div className='eventtag' key={i}>
+													{tag}
+												</div>
+											))}
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<div className="event_profilecontent__right__speakers">
-						<div className='--top_heading'>
-							<span>Call for Speakers</span>
-							<EditIcon />
+						<div className="event_profilecontent__right__speakers">
+							<div className='--top_heading'>
+								<span>Call for Speakers</span>
+								<EditIcon />
+							</div>
+							<div className="--bottom_content">
+								{
+									speakers.map((oneSpeaker) => (
+										<SpeakerCall oneSpeaker={oneSpeaker}/>
+									))
+								}
+							</div>
 						</div>
-						<div className="--bottom_content">
-							{
-								speakers.map((oneSpeaker) => (
-									<SpeakerCall oneSpeaker={oneSpeaker}/>
-								))
-							}
+
+						<div className='event_profilecontent__right__media --tabs'>
+							<Tabs defaultActiveKey='1' tabBarExtraContent={<EditIcon />}>
+								{/* the tab to upload images */}
+								<TabPane tab='Photos' key='1'>
+									{media
+										? filterData(media, 'photo').map(({ link }, index) => (
+												<div className='image_tab_content' key={index}>
+													<img src={link} alt='' />
+												</div>
+										))
+										: null}
+									<div className='moreimages'>
+										<More />
+									</div>
+								</TabPane>
+								{/* the tab to upload images */}
+
+								<TabPane tab='Videos' key='2'>
+									{media
+										? filterData(media, 'video').map(({ link }, index) => (
+												<div className='image_tab_content' key={index}>
+													<video src={link} alt='' />
+												</div>
+										))
+										: null}
+									<div className='moreimages'>
+										<More />
+									</div>
+								</TabPane>
+
+								<TabPane tab='Presentation' key='3'>
+									{media
+										? filterData(media, 'presentation').map(({ link }, index) => (
+												<div className='image_tab_content' key={index}>
+													<img src={link} alt='' />
+												</div>
+										))
+										: null}
+									<div className='moreimages'>
+										<More />
+									</div>
+								</TabPane>
+							</Tabs>
 						</div>
 					</div>
-
-					<div className='event_profilecontent__right__media --tabs'>
-						<Tabs defaultActiveKey='1' tabBarExtraContent={<EditIcon />}>
-							{/* the tab to upload images */}
-							<TabPane tab='Photos' key='1'>
-								{media
-									? filterData(media, 'photo').map(({ link }, index) => (
-											<div className='image_tab_content' key={index}>
-												<img src={link} alt='' />
-											</div>
-									  ))
-									: null}
-								<div className='moreimages'>
-									<More />
-								</div>
-							</TabPane>
-							{/* the tab to upload images */}
-
-							<TabPane tab='Videos' key='2'>
-								{media
-									? filterData(media, 'video').map(({ link }, index) => (
-											<div className='image_tab_content' key={index}>
-												<video src={link} alt='' />
-											</div>
-									  ))
-									: null}
-								<div className='moreimages'>
-									<More />
-								</div>
-							</TabPane>
-
-							<TabPane tab='Presentation' key='3'>
-								{media
-									? filterData(media, 'presentation').map(({ link }, index) => (
-											<div className='image_tab_content' key={index}>
-												<img src={link} alt='' />
-											</div>
-									  ))
-									: null}
-								<div className='moreimages'>
-									<More />
-								</div>
-							</TabPane>
-						</Tabs>
+				
+				</div>
+				<div className='event_profilecontent__bottom'>
+					<div className='--bottomtitle'>More Events from this Organizer</div>
+					<div className='--bottom__events'>
+					{
+							eventState.data.slice(0,3).map(event => {
+								let tags=[];
+								try{
+									tags=JSON.parse(event.tags)
+								}catch(err){
+									tags=[]
+								}
+								const fs="Do-MMM-YYY"
+								const dateFrom = parseNewDateFormat(event.schedule[0].date.slice(0,8))
+								const dateTo = parseNewDateFormat(event.schedule[0].date.slice(9))
+								const timeFrom = parseTime(event.schedule[0].time.split('-')[0])
+								const timeTo = parseTime(event.schedule[0].time.split('-')[1])
+								let dateInterval = ""
+								if(event.schedule[0].frequency === "Single-day Event"){
+									dateInterval = `${dateFrom} ${timeFrom} WAT`
+								}else{
+									dateInterval = `${dateFrom} - ${dateTo} ${timeFrom} WAT`
+								}
+								return (
+									<EventCard
+										id={event.id}
+										eventName={event.name}
+										eventTitle={event.organizer}
+										profileimage={event.banner}
+										skillsList={tags}
+										pcs={"pcs"}
+										dateInterval = {dateInterval}
+									/>
+								)
+							})
+						}
 					</div>
 				</div>
-			
-			</div>
-			<div className='event_profilecontent__bottom'>
-				<div className='--bottomtitle'>More Events from this Organizer</div>
-				<div className='--bottom__events'>
-				{
-                        eventState.data.slice(0,3).map(event => {
-                            let tags=[];
-                            try{
-                                tags=JSON.parse(event.tags)
-                            }catch(err){
-                                tags=[]
-                            }
-                            const fs="Do-MMM-YYY"
-                            const dateFrom = parseNewDateFormat(event.schedule[0].date.slice(0,8))
-                            const dateTo = parseNewDateFormat(event.schedule[0].date.slice(9))
-                            const timeFrom = parseTime(event.schedule[0].time.split('-')[0])
-                            const timeTo = parseTime(event.schedule[0].time.split('-')[1])
-                            let dateInterval = ""
-                            if(event.schedule[0].frequency === "Single-day Event"){
-                                dateInterval = `${dateFrom} ${timeFrom} WAT`
-                            }else{
-                                dateInterval = `${dateFrom} - ${dateTo} ${timeFrom} WAT`
-                            }
-                            return (
-                                <EventCard
-                                    id={event.id}
-                                    eventName={event.name}
-                                    eventTitle={event.organizer}
-                                    profileimage={event.banner}
-                                    skillsList={tags}
-                                    pcs={"pcs"}
-                                    dateInterval = {dateInterval}
-                                />
-                            )
-                        })
-                    }
-				</div>
-			</div>
-			<div />
-		</div>
+				<div />
+			</div>	
+		</>
 	);
 }
 
