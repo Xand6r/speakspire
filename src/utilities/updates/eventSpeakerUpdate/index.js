@@ -3,7 +3,11 @@ import Select from 'react-select';
 import { message, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
-import { SPEAKER_SPECIALITY, TOPIC_AREAS } from '../../../components/speakerRegister/subcomponents/expertise/constants';
+import bluePlusIcon from '../../../components/eventsRegister//assets/bluePlainPlus.svg';
+import deleteSectionIcon from '../../../components/eventsRegister//assets/deletesection.svg';
+
+import { TOPIC_AREAS } from '../../../components/speakerRegister/subcomponents/expertise/constants';
+import { SPEAKER_CATEGORY, COUNTRY_LIST } from '../../../components/eventsRegister/component/constants';
 
 import axios from '../../axios';
 import {INITIAL_STATE} from './constants';
@@ -26,8 +30,54 @@ export default function Index({ onClose, initialData, onSuccess, eventId }) {
         })
     }
 
+    const deleteSection = (index) => {
+        setState(
+            [...state].filter((state,stateIndex)=>(
+                stateIndex !== index
+        )))
+    }
+
+    const changeListData = ( index, subproperty,  value) =>{
+        const updatedState = [...state];
+        updatedState[index][subproperty] = value;
+        setState(updatedState);
+    }
+
+    const addNewCall = () => {
+        setState([
+            ...state,
+            {
+                speakerCategory: '',
+                topicArea: '',
+                country: '',
+                budgetFrom: '',
+                budgetTo: '',
+                eventDescription: '',
+            }
+        ])
+    }
+
     useEffect(() => {
         // set initial state
+        const {speakers} = initialData;
+        if(speakers.length){
+            const initialData = [];
+            for (let speaker of speakers){
+                const {
+                    budget, category, country,
+                    description, topic_area
+                } = speaker;
+                initialData.push({
+                    speakerCategory: category,
+                    budgetFrom: budget.split(' - ')[0],
+                    budgetTo: budget.split(' - ')[1],
+                    eventDescription: description,
+                    topicArea: topic_area,
+                    country: country
+                });
+            }
+            setState(initialData)
+        }
 
     }, [initialData]);
 
@@ -63,53 +113,139 @@ export default function Index({ onClose, initialData, onSuccess, eventId }) {
         <div className="updates sample">
             <div className='updates__form'>
                 <div className='updates__form__header'>
-                    Sample header
-                    <span>Sample Subheading.</span>
+                    Call For Speakers
                 </div>
-
-                <div className="updates__form__content">
-                    <div className="updates__form__content__item">
-                    <label htmlFor='fullname'>Event Name</label>
-                        <input
-                            type="text"
-                            value={state.name}
-                            onChange={
-                                ({target:{name, value}})=>{
-                                    stateChanger(name, value)
-                                }
-                            }
-                            placeholder="Enter event name"
-                        />
-                    </div>
-
-                    <div className='updates__form__content__item'>
-                        <label htmlFor='fullname'>Secondary Speciality</label>
-                        <div className='--singleselect'>
-                            <Select
-                                options={SPEAKER_SPECIALITY}
-                                isSearchable
-                                placeholder='Select'
-                                className='--item'
-                                onChange={(secondarySpecialty) => {
-                                    setState({
-                                        ...state,
-                                        secondarySpecialty: secondarySpecialty.value,
-                                    });
-                                }}
-                                value={
-                                    state.secondarySpecialty
-                                        ? {
-                                                value: state.secondarySpecialty,
-                                                label: state.secondarySpecialty,
-                                        }
-                                        : ''
-                                }
+                {
+                    state.map((speakercall, index) => (
+                        <div className={`updates__form__content ${index!==0 && "--margin-top"}`}>
+                        {
+                            (index === 0)
+                                ||
+                            <img
+                                src={deleteSectionIcon}
+                                alt=""
+                                className="--delete"
+                                onClick={()=>deleteSection(index)}
                             />
+                        }
+                            <div className='updates__form__content__item'>
+                                <label htmlFor='fullname'>Speaker Category</label>
+                                <div className='--singleselect'>
+                                    <Select
+                                        options={SPEAKER_CATEGORY}
+                                        isSearchable
+                                        placeholder='Select'
+                                        className='--item'
+                                        onChange={(value) => {
+                                            changeListData(index, 'speakerCategory',  value.value)
+                                        }}
+                                        value={
+                                            speakercall.speakerCategory
+                                                ? {
+                                                        value: speakercall.speakerCategory,
+                                                        label: speakercall.speakerCategory,
+                                                }
+                                                : ''
+                                        }
+                                    />
+                                </div>
+                            </div>
+
+
+                            <div className='updates__form__content__item'>
+                                <label htmlFor='fullname'>Topic Area</label>
+                                <div className='--singleselect'>
+                                    <Select
+                                        options={TOPIC_AREAS}
+                                        isSearchable
+                                        placeholder='Select'
+                                        className='--item'
+                                        onChange={(value) => changeListData(index, 'topicArea',  value)}
+                                        value={
+                                            speakercall.topicArea
+                                                ? {
+                                                        value: speakercall.topicArea,
+                                                        label: speakercall.topicArea,
+                                                }
+                                                : ''
+                                        }
+                                    />
+                                </div>
+                            </div>
+
+
+                            <div className='updates__form__content__item'>
+                                <label htmlFor='country'>Country</label>
+                                <div className='--singleselect'>
+                                    <Select
+                                        options={COUNTRY_LIST}
+                                        isSearchable
+                                        placeholder='Select'
+                                        className='--item'
+                                        onChange={(value) =>  changeListData(index, 'country',  value)}
+                                        value={
+                                            speakercall.country
+                                                ? {
+                                                        value: speakercall.country,
+                                                        label: speakercall.country,
+                                                }
+                                                : ''
+                                        }
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="updates__form__content__item">
+                                <label htmlFor="budget">
+                                    Speaker Budget
+                                </label>
+                                <div className="--double_wrapper">
+                                    <input
+                                        type="number"
+                                        placeholder="00.00 NGN"
+                                        min="1000"
+                                        onChange={(e) =>  changeListData(index, 'budgetFrom',  e.target.value)}
+                                        value={speakercall.budgetFrom}
+                                    />
+                                    <span>to</span>
+                                    <input
+                                        type="number"
+                                        placeholder="00.00 NGN"
+                                        min="1000"
+                                        onChange={(e) =>  changeListData(index, 'budgetTo',  e.target.value)}
+                                        value={speakercall.budgetTo}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="updates__form__content__item updates__form__textareacontent --white">
+                                <label htmlFor="budget">
+                                    Speaker Description
+                                </label>
+                                <textarea
+                                    name="description"
+                                    placeholder="Tell us more about the kind of speakers you’re looking for"
+                                    value={speakercall.eventDescription}
+                                    onChange={(e)=>{
+                                        changeListData(index, 'eventDescription',  e.target.value)
+                                    }}
+                                ></textarea>
+                            </div>
+
                         </div>
+                    ))
+                }
+            </div>
+            <div
+                className="--extra"
+                onClick={addNewCall}
+                >
+                    <div>
+                        <img src={bluePlusIcon} alt=""/>
+                        Add New Call For Speakers
                     </div>
                 </div>
-
-                <div className='updates__action'>
+            <div className='updates__action'>
 				<div className='cancel' onClick={onClose}>
 					Cancel
 				</div>
@@ -118,7 +254,6 @@ export default function Index({ onClose, initialData, onSuccess, eventId }) {
 					{loading ? <Spin indicator={antIcon} /> : 'Save'}
 				</div>
 			</div>
-            </div>
         </div>
     )
 }

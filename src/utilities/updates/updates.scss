@@ -72,6 +72,16 @@
             border-radius: 10px;
             position: relative;
 
+            .--delete{
+                position: absolute;
+                height: 23px;
+                right: 10px;
+                top: 17px;
+                cursor: pointer;
+                @extend %clickable;
+            }
+    
+
             &.--withmargin{
                 margin-bottom: 30px;
 
@@ -103,7 +113,7 @@
                     }
                 }
 
-                input[type='text'], input[type='date'], input[type='tel']{
+                input[type='text'], input[type='date'], input[type='tel'], input[type='number']{
                     @extend %input-styles;
                     @extend %sixteenpx;
                     border: 1px solid #CDD1DE;
@@ -227,6 +237,11 @@
                 border: 1px solid #CDD1DE;
                 width: 360px;
                 min-height: 119px;
+            }
+            &.--white{
+                textarea{
+                    background: #fff;
+                }
             }
         }
 

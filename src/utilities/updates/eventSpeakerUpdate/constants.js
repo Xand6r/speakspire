@@ -1,3 +1,11 @@
-export const INITIAL_STATE = {
-    input: ""
-}
+
+export const INITIAL_STATE = [
+    {
+        speakerCategory: '',
+        topicArea: '',
+        country: '',
+        budgetFrom: '',
+        budgetTo: '',
+        eventDescription: '',
+    }
+]

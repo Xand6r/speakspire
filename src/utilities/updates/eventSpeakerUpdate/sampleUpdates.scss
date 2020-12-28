@@ -3,7 +3,41 @@
 @import '../../../stylesheets/fonts';
 
 .updates.sample{
+    .--double_wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+ 
+        span{
+            color:$light-navy-blue;
+            @extend %fourteenpx;
+            font-family: 'markpro-medium';
+        }
+
+        input{
+            width: 45%;
+        }
+
+    }
+
+    .--margin-top{
+        margin-top: 30px;
+    }
+
+    .--extra{
+        margin: -10px auto 50px;
+        div{
+            @extend %outlined-button;
+            margin: auto;
+            width: 360px;
+            height: 50px;
+            img{
+                margin-right: 10px;
+            }
+        }
+    }
     .--singleselect{
+        text-transform: capitalize;
         .--item{
             .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
                 background: white;

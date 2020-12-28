@@ -526,14 +526,15 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 								setPositionsTab(changedKey);
 							}}
 							tabBarExtraContent={
-							<div onClick={
-									() =>{
-										openEditPopup(positionsEditTabs[positionsTab])
-									}
-								}>
-									<EditIcon />
-							</div>
-						}>
+								<div onClick={
+										() =>{
+											openEditPopup(positionsEditTabs[positionsTab])
+										}
+									}>
+										<EditIcon />
+								</div>
+							}
+						>
 							{/* the tab to upload images */}
 							<TabPane tab='Position' key='1'>
 								<div className='experience_tab_content'>
@@ -844,7 +845,6 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 											</div>
 										</div>
 									</div>
-								
 								}
 							</TabPane>
 						</Tabs>

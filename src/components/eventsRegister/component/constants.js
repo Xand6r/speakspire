@@ -10,9 +10,9 @@ export const EVENT_TYPE = [
 ]
 // export teh different categories existing for a speaker
 export const SPEAKER_CATEGORY = [
-    { value: 'classic', label: 'Classic Speaker' },
-    { value: 'standard', label: 'Standard Speaker' },
-    { value: 'premium', label: 'Premium Speaker' },
+    { value: 'classic', label: 'classic' },
+    { value: 'standard', label: 'standard' },
+    { value: 'premium', label: 'premium' },
 
 ]
 // the default state for the company details state
