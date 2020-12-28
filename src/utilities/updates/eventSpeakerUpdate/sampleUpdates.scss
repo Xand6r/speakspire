@@ -1,0 +1,80 @@
+@import '../../../stylesheets/colors';
+@import '../../../stylesheets/utilities';
+@import '../../../stylesheets/fonts';
+
+.updates.sample{
+    .--double_wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+ 
+        span{
+            color:$light-navy-blue;
+            @extend %fourteenpx;
+            font-family: 'markpro-medium';
+        }
+
+        input{
+            width: 45%;
+        }
+
+    }
+
+    .--margin-top{
+        margin-top: 30px;
+    }
+
+    .--extra{
+        margin: -10px auto 50px;
+        div{
+            @extend %outlined-button;
+            margin: auto;
+            width: 360px;
+            height: 50px;
+            img{
+                margin-right: 10px;
+            }
+        }
+    }
+    .--singleselect{
+        text-transform: capitalize;
+        .--item{
+            .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
+                background: white;
+                cursor: pointer !important;
+            }
+            .css-g1d714-ValueContainer, .css-1hwfws3{
+                background: white;
+                padding-left: 20px;
+                cursor: text;
+                height: 51px;
+            }
+            .css-1wa3eu0-placeholder{
+                color: $light-navy-blue_two;
+                // opacity: .4;
+            }
+            input{
+                height: 36px;
+            }
+            *{
+                transition: 500ms !important;
+                color: $dark-blue;
+                font-family: markpro-medium;
+                @extend %sixteenpx;
+            }
+        }
+        .--item.--cream{
+            .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
+                background: #F7F8FC;
+                transition: 500ms !important;
+                cursor: pointer !important;
+            }
+            .css-g1d714-ValueContainer, .css-1hwfws3{
+                background: #F7F8FC;
+                padding-left: 20px;
+                cursor: text;
+                height: 51px;
+            }
+        }
+    }
+}

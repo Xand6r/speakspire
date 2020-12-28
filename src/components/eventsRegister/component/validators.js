@@ -51,8 +51,7 @@ export const validateSpeakerCall = (scheduleState) =>{
 }
 
 export const validateMedia = (scheduleState) => {
-    return scheduleState.profile_photo.src &&
-    scheduleState.cover_photo.src
+    return scheduleState.cover_photo.src
 }
 
 export const scheduleValidator = (scheduleState) => {

@@ -1,0 +1,234 @@
+@import '../../../stylesheets/colors';
+@import '../../../stylesheets/utilities';
+@import '../../../stylesheets/fonts';
+
+.updates.event_profile{
+    .--smallmargin{
+        margin-bottom: 15px;
+    }
+    .--largemargintop{
+        margin-top: 30px;
+    }
+    .ant-picker{
+        height: 50px;
+        border-radius: 5px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        box-shadow: none;
+    }
+    .ant-picker-input > input{
+        font-family: 'markpro-medium';
+        color: $dark-blue !important;
+        font-size: 16px !important;
+    }
+    .ant-picker.ant-picker-focused{
+        border-color:$light-blue !important;
+        box-shadow: none !important;
+    }
+    .ant-picker:hover{
+        border-color:$light-blue !important;
+    }
+    .--half_date .ant-picker {
+        width: 160px !important;
+    }
+
+    .--double_wrapper, .--date_wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+ 
+        span{
+            color:$light-navy-blue;
+            @extend %fourteenpx;
+            font-family: 'markpro-medium';
+        }
+
+    }
+
+    .day_of_week{
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        border-top: 1px solid #EFF1F9;
+        border-bottom: 1px solid #EFF1F9;
+        .day{
+            @extend %centered-flex;
+            @extend %fifteenpx;
+            font-family: 'markpro-medium';
+            width: 48px;
+            height: 35px;
+            transition: 300ms;
+            color:#767E9F;
+            cursor: pointer;
+            border-radius: 5px;
+            &:hover{
+                background: #EFF1F9;
+                width: 49px;
+                color: #162359;
+            }
+            &:active{
+                width: 44px;
+            }
+            &.active{
+                color: #4D75F4;
+                background: #EDF1FE;
+                border: 1px solid #4D75F4;
+            }
+        }
+        
+    }
+    .updates__form__header__preform{
+        font-family: "markpro-medium";
+        display: flex;
+        flex-direction: column;
+        @extend %eighteenpx;
+        color: #162359;
+        margin-bottom: 10px;
+    
+        span{
+            @extend %elevenpx;
+            color: #767E9F;
+        }
+    
+    }
+
+    .--addnew{
+        color: #4D75F4;
+        cursor: pointer;
+        @extend %fourteenpx;
+        font-family: 'markpro-medium';
+        display: flex;
+        align-items: center;
+        img{
+            margin-top: -3px;
+            margin-right: 8px;
+            transition: 300ms;
+        }
+        &:hover{
+            img{
+                transform: scale(1.1);
+            }
+        }
+        &:active{
+            img{
+                transform: scale(1.03);
+            }
+        }
+    }
+
+    .--inputandicon{
+        position: relative;
+
+        img.icon{
+            position: absolute;
+            left: 18px;
+            top: 15px;
+        }
+        input{
+            padding-left: 41px;
+        }
+        img.bin{
+            position: absolute;
+            right: -24px;
+            top: 15px;
+            cursor: pointer;
+            transition: 300ms;
+            &:hover{
+                transform: scale(1.1);
+            }
+            &:active{
+                transform: scale(1.05);
+            }
+        }
+    }
+    .--singleselect{
+        .--item{
+            .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
+                background: white;
+                cursor: pointer !important;
+            }
+            .css-g1d714-ValueContainer, .css-1hwfws3{
+                background: white;
+                padding-left: 20px;
+                cursor: text;
+                height: 51px;
+            }
+            .css-1wa3eu0-placeholder{
+                color: $light-navy-blue_two;
+                // opacity: .4;
+            }
+            input{
+                height: 36px;
+            }
+            *{
+                transition: 500ms !important;
+                color: $dark-blue;
+                font-family: markpro-medium;
+                @extend %sixteenpx;
+            }
+        }
+        .--item.--cream{
+            .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
+                background: #F7F8FC;
+                transition: 500ms !important;
+                cursor: pointer !important;
+            }
+            .css-g1d714-ValueContainer, .css-1hwfws3{
+                background: #F7F8FC;
+                padding-left: 20px;
+                cursor: text;
+                height: 51px;
+            }
+        }
+    }
+
+    .--multiselect{
+        .select-panel > div:first-of-type{
+            display: none;
+        }
+        .dropdown-content{
+            max-height: 170px !important;
+        }
+        .dropdown-heading{
+            border: 1px solid #CDD1DE !important;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px !important;
+        }
+        .dropdown-heading-value{
+            background: #F7F8FC;
+            overflow: hidden;
+            padding:9px 30px 9px 20px  !important;
+            font-family: 'markpro-medium';
+            span{
+                color: $dark-blue !important;
+            }
+            .placeholding_text{
+                color: #767E9F !important;
+            }
+        }
+        &.--white{
+            .dropdown-heading-value{
+                background: white !important;
+            }
+        }
+        label[aria-selected="true"]{
+            background-color: $light-blue !important;
+            color: $dark-blue !important;
+        }
+        label{
+            margin-bottom: 1px !important;
+            padding: 15px 10px !important;
+            .item-renderer{
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                span{
+                    @extend %sixteenpx;
+                    color: $dark-blue;
+                }
+            }
+        }
+    }
+}

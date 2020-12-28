@@ -3,14 +3,18 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import TagsInput from 'react-tagsinput';
+import MultiSelect from '@khanacademy/react-multi-select';
 
+
+import {
+    LANGUAGE_OPTIONS, TOPIC_AREAS
+} from '../../../speakerRegister/subcomponents/expertise/constants';
+import { SPEAKER_SPECIALITY, EVENT_TYPE } from '../../component/constants';
 
 import './eventInfo.scss';
-
 import '../../../../stylesheets/tag.scss';
 import 'react-tagsinput/react-tagsinput.css';
 
-import { SPEAKER_SPECIALITY } from '../../component/constants';
 
 
 
@@ -136,7 +140,7 @@ export default function Personaldetails({
                     </label>
                     <div className="--singleselect">
                         <Select
-                            options={SPEAKER_SPECIALITY}
+                            options={EVENT_TYPE}
                             isSearchable
                             placeholder="Select"
                             className="--item"
@@ -154,7 +158,7 @@ export default function Personaldetails({
                     </label>
                     <div className="--singleselect">
                         <Select
-                            options={SPEAKER_SPECIALITY}
+                            options={TOPIC_AREAS}
                             isSearchable
                             placeholder="Select"
                             className="--item"
@@ -170,14 +174,16 @@ export default function Personaldetails({
                     <label className="double" htmlFor="position">
                         Language
                     </label>
-                    <div className="--singleselect">
-                        <Select
-                            options={SPEAKER_SPECIALITY}
-                            isSearchable
-                            placeholder="Select"
-                            className="--item"
-                            onChange={(value) => changeSelectState('Language', value)}
-                            value={state.Language}
+                    <div className='--multiselect '>
+                        <MultiSelect
+                            options={LANGUAGE_OPTIONS}
+                            selected={state.Language}
+                            onSelectedChanged={(selected) => {
+                                changeSelectState('Language', selected);
+                            }}
+                            overrideStrings={{
+                                selectSomeItems: <span className='placeholding_text'>Select </span>,
+                            }}
                         />
                     </div>
 

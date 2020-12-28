@@ -60,13 +60,24 @@ export default function Navbar() {
 		dispatch(fetchAllOrganizers());
 
 		const foundSession = getToken();
+		const role = getRole();
 		if (foundSession) {
-			const userDetails = getUser().user_id
-			axios.get(`/speakers/${userDetails.id}`).then(({data}) => {
-				dispatch(setUserData(data.data))
-			}).catch(err => {
-				console.log('there was an error fetching user details');
-			})
+			// if(role === '')
+			if(role === 'speaker'){
+				const userDetails = getUser().user_id
+				axios.get(`/speakers/${userDetails.id}`).then(({data}) => {
+					dispatch(setUserData(data.data))
+				}).catch(err => {
+					console.log('there was an error fetching user details');
+				})
+			}else if(role === 'organizer'){
+				const userDetails = getUser().user_id
+				axios.get(`/organizers/${userDetails.id}`).then(({data}) => {
+					dispatch(setUserData(data.data))
+				}).catch(err => {
+					console.log('there was an error fetching user details');
+				})	
+			}
 			dispatch(setLoggedIn({
 				role: getRole(),
 				id: getID()

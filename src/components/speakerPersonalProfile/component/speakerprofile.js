@@ -19,7 +19,7 @@ import uploadImage, {uploadSpeakerImage} from '../../../utilities/generalUtils/u
 import './speakerprofile.scss';
 const antIcon = <LoadingOutlined style={{fontSize: 46, color: '#F1F3F9'}} spin />;
 
-const props = {
+const defaultImageProps = {
 	name: 'file',
 	action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
 	headers: {
@@ -86,7 +86,7 @@ export default function Speakerprofile(props) {
 
 
 	return (
-		<div className='speakerprofile'>
+		<div className='speakerprofile speaker'>
 			{/* the navigation bar of the site */}
             <div className="--sticky">
 				<NavBar />
@@ -107,7 +107,7 @@ export default function Speakerprofile(props) {
 					isAdmin &&
 					<ImgCrop aspect='3.49'>
 							<Upload
-								{...props}
+								{...defaultImageProps}
 								beforeUpload={(file) => {
 									const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
 									if (!isJpgOrPng) {

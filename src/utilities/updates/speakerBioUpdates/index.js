@@ -5,6 +5,7 @@ import {message, Spin} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 import axios from '../../axios';
+import '../updates.scss';
 
 const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#fff'}} spin />;
 

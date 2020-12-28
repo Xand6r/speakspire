@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -23,8 +24,8 @@ body {
 }
 
 .--tilldate{
-  margin-top: 10px;
-  margin-top: 18px;
+  margin-top: -15px;
+  margin-bottom: 2px;
   display: flex;
   justify-content: flex-end;
   font-family: 13px;
@@ -60,6 +61,7 @@ video{
 
 .css-g1d714-ValueContainer, .css-1hwfws3, .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
   border-radius: 5px !important; 
+  height: 51px;
 }
 
 html {
@@ -82,3 +84,4 @@ body::-webkit-scrollbar-thumb {
   border-radius: 6px;
   border: 3px solid var(--scrollbarBG);
 }
+

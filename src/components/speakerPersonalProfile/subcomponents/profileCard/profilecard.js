@@ -48,6 +48,8 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 	const [userContacts, setUserContacts] = useState({});
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const [imageLink, setImageLink] = useState(null);
+	const [hideContacts, setHideContacts] = useState(true);
+
 
 	const [popupClosed, setClosePopup] = useState(true);
 
@@ -61,13 +63,16 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 			setImageLink(userData.profile_photo)
 		}
 	}, [userData])
-	const [hideContacts, setHideContacts] = useState(true);
 	const splitLanguage = (data) => {
 		return data
 			.replace(/['"]+/g, ' ')
 			.replace(/['/[]+/g, '')
 			.replace(/['/\]]+/g, '');
 	};
+	const currencyMap ={
+        dollars: "$",
+        naira: "NGN"
+    }
 	const travelLocation = preferences?JSON.parse(preferences[0].travel)[0]: "Nigeria";
 	const physical = preferences && preferences[0].delivery_mode.includes('Physical');
 	const virtual = preferences && preferences[0].delivery_mode.includes('Virtual');
@@ -77,7 +82,8 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 	const getPrice = () => {
 		try{
 			const priceRange = price.split('$')[0].split(" - ");
-			const formattedPriceRange = `${formatPrice(priceRange[0])} NGN - ${formatPrice(priceRange[1])} NGN`
+			const currency = price.split('$')[1]
+			const formattedPriceRange = `${formatPrice(priceRange[0])} ${currencyMap[currency]}- ${formatPrice(priceRange[1])} ${currencyMap[currency]}`
 			return formattedPriceRange;
 		}catch(err){
 			return "100,000 NGN - 650,000 NGN"

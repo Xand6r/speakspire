@@ -5,6 +5,14 @@
     @extend %register-tabs-styles;
     padding: 70px 192px;
 
+    .contact__subtext{
+        margin-top: 7px;
+        margin-bottom: 7px;
+        color: $grey;
+        @extend %tenpx;
+        font-family: 'markpro-medium';
+    }
+
     .newformsection{
         align-self: center;
     }
@@ -162,6 +170,7 @@
                                     }
                                     .css-g1d714-ValueContainer, .css-1hwfws3{
                                         background: #fff;
+                                        height: 51px;
                                     }
                                 }
                                 .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{

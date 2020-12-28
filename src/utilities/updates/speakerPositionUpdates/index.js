@@ -124,50 +124,50 @@ export default function Index({
                                 <label htmlFor="fullname">
                                     Company
                                 </label>
+                                <div className="--tilldate">
+                                    <Checkbox 
+                                        onChange={(e)=>{
+                                            if(e.target.checked){
+                                                changeListData(index, 'to', moment().format(monthFormat))
+                                            }else{
+                                                changeListData(index, 'to', '')
+                                            }
+                                        }}
+                                    >
+                                        Till Date
+                                    </Checkbox>
+                                </div>
                                 <div className="--date_wrapper --half_date">
-                                        <DatePicker
-                                            format={monthFormat}
-                                            picker="month"
-                                            placeholder="mm/yy"
-                                            suffixIcon={<DateSuffix />}
-                                            onChange={(momentDate, dateString)=>{
-                                                changeListData(index, 'from', dateString)
-                                            }}
-                                            value={
-                                                position.from?
-												moment(position.from, monthFormat):''
-                                            }
-                                            disabledDate={d => !d || d.isAfter(moment())}
-                                        />
-                                        <span>to</span>
-                                        <DatePicker
-                                            format={monthFormat}
-                                            picker="month"
-                                            placeholder="mm/yy"
-                                            suffixIcon={<DateSuffix />}
-                                            onChange={(momentDate, dateString)=>{
-                                                changeListData(index, 'to', dateString)
-                                            }}
-                                            value={
-                                                position.to?
-												moment(position.to, monthFormat):''   
-                                            }
-                                            disabledDate={d => !d || d.isBefore(position.from) || d.isAfter(moment())}
-                                        />
-                                    </div>
-                                    <div className="--tilldate">
-										<Checkbox 
-											onChange={(e)=>{
-												if(e.target.checked){
-													changeListData(index, 'to', moment().format(monthFormat))
-												}else{
-													changeListData(index, 'to', '')
-												}
-											}}
-										>
-											Till Date
-										</Checkbox>
-									</div>
+                                    <DatePicker
+                                        format={monthFormat}
+                                        picker="month"
+                                        placeholder="mm/yy"
+                                        suffixIcon={<DateSuffix />}
+                                        onChange={(momentDate, dateString)=>{
+                                            changeListData(index, 'from', dateString)
+                                        }}
+                                        value={
+                                            position.from?
+                                            moment(position.from, monthFormat):''
+                                        }
+                                        disabledDate={d => !d || d.isAfter(moment())}
+                                    />
+                                    <span>to</span>
+                                    <DatePicker
+                                        format={monthFormat}
+                                        picker="month"
+                                        placeholder="mm/yy"
+                                        suffixIcon={<DateSuffix />}
+                                        onChange={(momentDate, dateString)=>{
+                                            changeListData(index, 'to', dateString)
+                                        }}
+                                        value={
+                                            position.to?
+                                            moment(position.to, monthFormat):''   
+                                        }
+                                        disabledDate={d => !d || d.isBefore(position.from) || d.isAfter(moment())}
+                                    />
+                                </div>
                             </div>
 
                         </div>

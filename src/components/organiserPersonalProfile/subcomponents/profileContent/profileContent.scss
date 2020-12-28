@@ -10,10 +10,76 @@ $right-item-width: 597px;;
     margin: 0 auto 0px;
 }
 .profilecontent_organiser{
+    .ant-upload-list{
+        display: none;
+    }
     max-width: 1140px;
     margin: 0 auto 9px;
     display: flex;
     justify-content: space-between;
+
+
+    .media_wrapper{
+        position: relative;
+        margin-bottom: 10px;
+
+
+        .delete_media{
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            cursor: pointer;
+            transition: 300ms;
+            height: 25px;
+            width: 25px;
+
+            &:hover{
+                transform: scale(1.12);
+            }
+
+            &:active{
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    .adminfooter{
+        display: flex;
+        justify-content: space-between;
+        .actiongroup{
+            display: flex;
+        }
+        .cancel{
+            @extend %filled-button;
+            width: 108.22px;
+            height: 40px;
+            background: #F5F5F9;
+            font-family: 'markpro-bold';
+            color: $dark-blue;
+            margin-right: 15px;
+        }
+        
+        .save{
+            @extend %filled-button;
+            width: 108.22px;
+            height: 40px;
+            background: $light-blue;
+            font-family: 'markpro-bold';
+            color: white
+        }
+
+        .addmedia{
+            @extend %outlined-button;
+            height: 40px;
+            padding: 12px 35px;
+            margin-right: 10px;
+
+            img{
+                margin-right: 10px;
+            }
+        }
+
+    }
 
 
     &__left{
@@ -29,6 +95,7 @@ $right-item-width: 597px;;
         &__speaking{
             width: $left-item-width;
             margin-bottom: 25px;
+            box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.05);
             &__tab_content{
                 &:first-of-type{
                     margin-bottom: 23px;
@@ -80,6 +147,7 @@ $right-item-width: 597px;;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.05);
             span{
                 vertical-align: middle;
                 color: $dark-blue;
@@ -113,11 +181,14 @@ $right-item-width: 597px;;
         &__media{
             width: $right-item-width;
             background: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.05);
 
             .image_tab_content{
                 display: flex;
                 justify-content: space-between;
                 margin-top: 15px;
+                flex-wrap: wrap;
                 img{
                     width: 263px;
                     height: 176px;
@@ -126,7 +197,12 @@ $right-item-width: 597px;;
 
             }
             .moreimages{
-                margin-top: 20px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                display: flex;
+                & > div:first-of-type{
+                    margin-right: 10px;
+                }
             }
         }
 
@@ -143,6 +219,8 @@ $right-item-width: 597px;;
         &__experiences{
             width: $right-item-width;
             margin-bottom: 25px;
+            box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
             .experience_tab_content{
                 margin-top: 10px;
                 margin-bottom: 10px;

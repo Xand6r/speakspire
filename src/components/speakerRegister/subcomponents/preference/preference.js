@@ -47,6 +47,11 @@ export default function Preference({
         cacheFormState(SPEAKER_PREFERENCE_KEY, state)
     },[state]);
 
+    const currencyMap ={
+        dollars: "$",
+        naira: "NGN"
+    }
+
     useEffect(()=>{
         if(!state.contactMail && !state.contactPhone){
             const {email, phonenumber} = jsonParse(localStorage.getItem(SPEAKER_PERSONAL_DETAILS_KEY))
@@ -73,7 +78,7 @@ export default function Preference({
                     <div className="preference__formsection__section__form --whitebg --no-mt">
                         <div className="--input_wrapper --select">
                             <label className="double" htmlFor="position">
-                                Availability
+                                Availability *
                                 <span>These are days you’re available for engagements.</span>
                             </label>
                             <div className="--singleselect">
@@ -92,7 +97,7 @@ export default function Preference({
                     <div className="preference__formsection__section__form --whitebg">
                         <div className="--input_wrapper --select">
                             <label className="double" htmlFor="position">
-                                Mode of Delivery
+                                Mode of Delivery *
                                 <span>These are your preferred ways of delivery.</span>
                             </label>
                             <div className="--singleselect">
@@ -110,7 +115,7 @@ export default function Preference({
                     <div className="preference__formsection__section__form --whitebg">
                         <div className="--input_wrapper --select">
                             <label className="double" htmlFor="position">
-                                Volunteering
+                                Open to Volunteering *
                             </label>
                             <div className="--singleselect">
                             <Select
@@ -128,7 +133,7 @@ export default function Preference({
                     <div className="preference__formsection__section__form --whitebg">
                         <div className="--input_wrapper --select">
                             <label className="double" htmlFor="position">
-                                Are you open to travel?
+                                Are you open to travel? *
                             </label>
                             <div className="--singleselect">
                                 <Select
@@ -202,7 +207,7 @@ export default function Preference({
                 </div>
                 
                 <div className="contacts__header">
-                    Contact Details
+                    Contact Details *
                 </div>
                 <div className="preference__formsection__section__form --wide">
 
@@ -220,12 +225,31 @@ export default function Preference({
 
                     <div className="--input_wrapper">
                         <label className="double --contact" htmlFor="position">
-                        <img src={whatsappIcon} alt=""/> Whatsapp
+                            <img src={whatsappIcon} alt=""/> Whatsapp
                         </label>
+                        <div className="contact__subtext">
+                            Add your WhatsApp number. Example: wa.me/08123456789.
+                        </div>
                         <input
                             type="text"
-                            placeholder="Enter WhatsApp link"
-                            onChange={({target}) => changeSelectState('contactWhatsapp', target.value)}
+                            placeholder="wa.me/"
+                            onChange={({target}) => {
+                                const textContent = target.value;
+                                let newText='';
+                                if(textContent.length === 1 && !state.contactWhatsapp){
+                                    newText = `${'wa.me/'}${textContent}`;
+                                    changeSelectState('contactWhatsapp', newText)
+                                    return;
+
+                                }else if(textContent === 'wa.me/'){
+                                    newText= '';
+                                    changeSelectState('contactWhatsapp', newText)
+                                    return;
+                                }
+
+                                newText = textContent;
+                                changeSelectState('contactWhatsapp', newText)
+                            }}
                             value = {state.contactWhatsapp}
                         />
                     </div>
@@ -244,7 +268,7 @@ export default function Preference({
                 </div>
 
                 <div className="contacts__header">
-                    Speaker Fee
+                    Speaker Fee *
                 </div>
                 <div className="preference__formsection__section__form --wide">
 
@@ -275,13 +299,13 @@ export default function Preference({
                             <input
                                 value={state.budgetFrom}
                                 type="number"
-                                placeholder="00.00 NGN"
+                                placeholder={`00.00 ${currencyMap[state.currency.value] || ''}`}
                                 min="0"
                                 onChange={({target}) => changeSelectState('budgetFrom',  Number(target.value) < 0 ? 0 : target.value )}
                             />
                             <span> - </span>
                             <input
-                                placeholder="00.00 NGN "
+                                placeholder={`00.00 ${currencyMap[state.currency.value] || ""}`}
                                 type="number"
                                 value={state.budgetTo}
                                 max="300000"

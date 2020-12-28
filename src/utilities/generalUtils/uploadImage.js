@@ -32,12 +32,61 @@ export const uploadSpeakerImage = async(image, id) => {
 	return link;
 }
 
+export const uploadOrganiserImage = async(image, id) => {
+	const formData = await new FormData();
+	formData.append('cover_photo', image);
+	let link;
+	try {
+		const response = await axios.post(`/organizers/${id}/photo/cover`, formData);
+		console.log(response.data.data);
+		link = response.data.data;
+	} catch (err) {
+		console.log(err);
+		link = '';
+	}
+
+	return link;
+}
+
+export const uploadOrganiserProfile = async(image, id) => {
+	const formData = await new FormData();
+	formData.append('profile_photo', image);
+	let link;
+	try {
+		const response = await axios.post(`/organizers/${id}/photo/profile`, formData);
+		console.log(response.data.data);
+		link = response.data.data;
+	} catch (err) {
+		console.log(err);
+		link = '';
+	}
+
+	return link;
+}
+
 export const uploadSpeakerCover = async(image, id) => {
 	const formData = await new FormData();
 	formData.append('profile_photo', image);
 	let link;
 	try {
 		const response = await axios.post(`/speakers/${id}/photo/profile`, formData);
+		console.log(response.data.data);
+		link = response.data.data;
+	} catch (err) {
+		console.log(err);
+		link = '';
+	}
+
+	return link;
+}
+
+
+export const uploadEventsCover = async(image, id) => {
+	const formData = await new FormData();
+	formData.append('banner', image);
+	let link;
+	try {
+		const response = await axios.post(`/events/${id}/banner`, formData);
 		console.log(response.data.data);
 		link = response.data.data;
 	} catch (err) {

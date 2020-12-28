@@ -77,7 +77,7 @@ export default function Personaldetails({
             <div className="personaldetails__formsection">
                 {/* wrapepr for the name */}
                 <div className="--wrapper">
-                    <label htmlFor="fullname">Full Name</label>
+                    <label htmlFor="fullname">Full Name *</label>
                     <input
                         maxLength="30"
                         type="text"
@@ -92,7 +92,7 @@ export default function Personaldetails({
                 
                 {/* wrapper for the gender */}
                 <div className="--wrapper">
-                    <label htmlFor="fullname">Gender</label>
+                    <label htmlFor="fullname">Gender *</label>
                     <div className="--gendersection">
                         {
                             GENDER_OPTIONS.map((gender, index)=>(
@@ -112,7 +112,7 @@ export default function Personaldetails({
 
                 {/* wrapper for the birthdate */}
                 <div className="--wrapper">
-                    <label htmlFor="birthdate">Birthdate</label>
+                    <label htmlFor="birthdate">Birthdate *</label>
                     <DatePicker
                         format={monthFormat}
                         placeholder="dd-mm-yy"
@@ -148,7 +148,7 @@ export default function Personaldetails({
 
                 {/* wrapper for the city or state */}
                     <div className="--wrapper">
-                    <label htmlFor="city">City or state</label>
+                    <label htmlFor="city">City or state *</label>
                     <input
                         type="text"
                         id="city"
@@ -162,7 +162,7 @@ export default function Personaldetails({
 
                 {/* wrapper for the country */}
                 <div className="--wrapper">
-                    <label htmlFor="coutry">Country</label>
+                    <label htmlFor="coutry">Country *</label>
                     <div className="--singleselect">
                         <Select
                             options={COUNTRY_LIST}
@@ -190,7 +190,7 @@ export default function Personaldetails({
 
                 {/* wrapper for the email */}
                     <div className="--wrapper">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Email *</label>
                     <input
                         type="email"
                         id="email"
@@ -204,7 +204,7 @@ export default function Personaldetails({
 
                 {/* wrapper for you password */}
                 <div className="--wrapper">
-                    <label htmlFor="password"> Password </label>
+                    <label htmlFor="password"> Password *</label>
                     <div className="--passwordinput">
                         <input
                             // {/* placeholder="6+ Characters" */}

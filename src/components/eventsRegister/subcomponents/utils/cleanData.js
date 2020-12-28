@@ -1,6 +1,6 @@
 import { cleanDate, cleanSpeakers, cleanMedia } from './cleanParams';
 
-export default (data) => {
+export default (data, organizerId) => {
 	const {
 		eventName,
 		eventOrganizer,
@@ -29,14 +29,15 @@ export default (data) => {
 		tags: JSON.stringify(services),
 		type: eventType.value ? eventType.value : '',
 		topic_area: topicArea.value ? topicArea.value : '',
-		language: Language.value ? Language.value : '',
+		language: Language ? JSON.stringify(Language) : JSON.stringify({}),
 		banner: cover_photo.src ? cover_photo.src : '',
+		organizer_id: organizerId,
 
 		schedule: {
 			frequency: frequency.value ? frequency.value : '',
 			date: cleanDate(dateFrom, dateTo),
 			time: cleanDate(timeFrom, timeTo),
-			physicalLink: JSON.stringify(physicalLink),
+			physicalLink: physicalLink || '',
 			onlineLink: JSON.stringify(onlineLink),
 			intervals: interval.value ? interval.value : '',
 			interval_day_of_week:interval_day_of_week?interval_day_of_week:'',

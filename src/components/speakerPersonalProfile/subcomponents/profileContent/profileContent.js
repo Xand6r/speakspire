@@ -411,13 +411,13 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 									)
 								}
 
-								<div className='experience_more'>
+								<div className='moreimages'>
 									{
 										allTalks && allTalks.length > talksLimit && allTalks.length > 2 && 
 										<div onClick = {() => setTalksLimit(lim => lim +2)} > <More/> </div>
 									}
 									{
-										allTalks && allTalks.length <= talksLimit && allTalks.length > 2 && 
+										allTalks && (allTalks.length <= talksLimit || talksLimit > 2) && allTalks.length > 2 && 
 										<div onClick = {() => setTalksLimit(lim => lim - 2)} > <More text="Less"/> </div>
 									}
 								</div>
@@ -461,13 +461,13 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 										</div>
 									)
 								}
-								<div className='experience_more'>
+								<div className='moreimages'>
 									{
 										allPublications && allPublications.length > publicationsLimit && allPublications.length > 2 && 
 										<div onClick = {() => setPublicationsLimit(lim => lim +2)} > <More/> </div>
 									}
 									{
-										allPublications && allPublications.length <= publicationsLimit && allPublications.length > 2 && 
+										allPublications && (allPublications.length <= publicationsLimit || publicationsLimit > 2) && allPublications.length > 2 && 
 										<div onClick = {() => setPublicationsLimit(lim => lim - 2)} > <More text="Less"/> </div>
 									}
 								</div>
@@ -526,14 +526,15 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 								setPositionsTab(changedKey);
 							}}
 							tabBarExtraContent={
-							<div onClick={
-									() =>{
-										openEditPopup(positionsEditTabs[positionsTab])
-									}
-								}>
-									<EditIcon />
-							</div>
-						}>
+								<div onClick={
+										() =>{
+											openEditPopup(positionsEditTabs[positionsTab])
+										}
+									}>
+										<EditIcon />
+								</div>
+							}
+						>
 							{/* the tab to upload images */}
 							<TabPane tab='Position' key='1'>
 								<div className='experience_tab_content'>
@@ -547,13 +548,13 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 										))
 										: null}
 
-									<div className='experience_more'>
+									<div className='moreimages'>
 										{
 											experience && experience.length > positionsLimit && experience.length > 2 && 
 											<div onClick = {() => setPositionsLimit(lim => lim +2)} > <More/> </div>
 										}
 										{
-											experience && experience.length <= positionsLimit && experience.length > 2 && 
+											experience && (experience.length <= positionsLimit || positionsLimit > 2) && experience.length > 2 && 
 											<div onClick = {() => setPositionsLimit(lim => lim - 2)} > <More text="Less"/> </div>
 										}
 									</div>
@@ -573,13 +574,13 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 										))
 										: null}
 
-									<div className='experience_more'>
+									<div className='moreimages'>
 										{
 											education && education.length > educationsLimit && education.length > 2 && 
 											<div onClick = {() => setEducationsLimit(lim => lim +2)} > <More/> </div>
 										}
 										{
-											education && education.length <= educationsLimit && education.length > 2 && 
+											education && (education.length <= educationsLimit || educationsLimit > 2) && education.length > 2 && 
 											<div onClick = {() => setEducationsLimit(lim => lim - 2)} > <More text="Less"/> </div>
 										}
 									</div>
@@ -615,13 +616,13 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 											</div>
 										)
 									}
-									<div className='experience_more'>
+									<div className='moreimages'>
 									{
 											certification && certification.length > certificatesLimit && certification.length > 2 && 
 											<div onClick = {() => setcertificatesLimit(lim => lim +2)} > <More/> </div>
 										}
 										{
-											certification && certification.length <= certificatesLimit && certification.length > 2 && 
+											certification && (certification.length <= certificatesLimit || certificatesLimit > 2) && certification.length > 2 && 
 											<div onClick = {() => setcertificatesLimit(lim => lim - 2)} > <More text="Less"/> </div>
 										}
 									</div>
@@ -686,7 +687,7 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 										<div onClick = {() => setPictureLimit(lim => lim +2)} > <More/> </div>
 									}
 									{
-										mediaState && filterData(mediaState, 'photo').length <= pictureLimit && filterData(mediaState, 'photo').length > 2 && 
+										mediaState && (filterData(mediaState, 'photo').length <= pictureLimit || pictureLimit > 2) && filterData(mediaState, 'photo').length > 2 && 
 										<div onClick = {() => setPictureLimit(lim => lim - 2)} > <More text="Less"/> </div>
 									}
 								</div>
@@ -758,7 +759,7 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 										<div onClick = {() => setVideoLimit(lim => lim +2)} > <More/> </div>
 									}
 									{
-										mediaState && filterData(mediaState, 'video').length <= videoLimit && filterData(mediaState, 'video').length > 2 && 
+										mediaState && (filterData(mediaState, 'video').length <= videoLimit || videoLimit > 2) && filterData(mediaState, 'video').length > 2 && 
 										<div onClick = {() => setVideoLimit(lim => lim - 2)} > <More text="Less"/> </div>
 									}
 								</div>
@@ -811,7 +812,7 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 										<div onClick = {() => setPresentationLimit(lim => lim +2)} > <More/> </div>
 									}
 									{
-										mediaState && filterData(mediaState, 'presentation').length <= presentationLimit && filterData(mediaState, 'presentation').length > 2 && 
+										mediaState && (filterData(mediaState, 'presentation').length <= presentationLimit || presentationLimit > 2) && filterData(mediaState, 'presentation').length > 2 && 
 										<div onClick = {() => setPresentationLimit(lim => lim - 2)} > <More text="Less"/> </div>
 									}
 								</div>
@@ -844,7 +845,6 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 											</div>
 										</div>
 									</div>
-								
 								}
 							</TabPane>
 						</Tabs>

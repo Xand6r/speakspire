@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import { Tabs , Spin} from 'antd';
+import ImgCrop from 'antd-img-crop';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import ImgCrop from 'antd-img-crop';
+import React, { useState } from 'react';
+
 import {LoadingOutlined} from '@ant-design/icons';
-import whiteTick from '../../assets/whiteTick.svg';
-import {Spin} from 'antd';
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 
+import whiteTick from '../../assets/whiteTick.svg';
 import ImageTab from './imageTab';
 import VideoTab from './videoTab';
-import { Tabs } from 'antd';
 
 import './media.scss';
 
@@ -18,8 +18,10 @@ import fileUpload from '../../assets/uploadFile.svg';
 import deleteBin from '../../assets/deleteBin.svg';
 
 import { Upload, message, Button } from 'antd';
+import { tuple } from 'antd/lib/_util/type';
 
 const antIcon = <LoadingOutlined style={{fontSize: 24, color: '#4D75F4'}} spin />;
+const whiteAntIcon = <LoadingOutlined style={{fontSize: 24, color: '#fff'}} spin />;
 const { TabPane } = Tabs;
 
 function callback(key) {
@@ -55,6 +57,18 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 		});
 	};
 	const [loading, setLoading] = useState(false);
+	const [submitLoading, setSubmitLoading] = useState(false);
+
+	const submitForm = async () =>{
+		setSubmitLoading(true);
+		try{
+			await handleSubmit()
+		}catch(err){
+			message.error('There was an error',err.message)
+		}finally{
+			setSubmitLoading(false);
+		}
+	}
 
 	return (
 		<div className='media'>
@@ -145,8 +159,14 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 						<div className='cancel'>Back</div>
 					</Link>
 
-					<Link className='link' onClick={handleSubmit}>
-						<div className='next'>Next</div>
+					<Link className='link' onClick={submitForm}>
+						<div className='next'>
+							{
+								submitLoading?
+								<Spin indicator={whiteAntIcon} /> :
+								'Create Event'
+							}
+						</div>
 					</Link>
 				</div>
 			</div>

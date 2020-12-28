@@ -57,7 +57,7 @@ export default function Personaldetails({
             <div className="companypersonaldetails__formsection">
                 {/* wrapepr for the name */}
                 <div className="--wrapper">
-                    <label htmlFor="fullname">Company Name</label>
+                    <label htmlFor="fullname">Company Name *</label>
                     <input
                         maxLength="30"
                         type="text"
@@ -73,7 +73,7 @@ export default function Personaldetails({
 
                 {/* wrapper for the phone number */}
                 <div className="--wrapper --date">
-                    <label htmlFor="number">Phone</label>
+                    <label htmlFor="number">Phone *</label>
                     <PhoneInput
                         country={'ng'}
                         value={state.phoneNumber}
@@ -89,7 +89,7 @@ export default function Personaldetails({
 
                 {/* wrapper for the city or state */}
                 <div className="--wrapper">
-                    <label htmlFor="city">Address</label>
+                    <label htmlFor="city">Address *</label>
                     <input
                         type="text"
                         id="address"
@@ -104,7 +104,7 @@ export default function Personaldetails({
 
                 {/* wrapper for the city or state */}
                     <div className="--wrapper">
-                    <label htmlFor="city">City or state</label>
+                    <label htmlFor="city">City or state *</label>
                     <input
                         type="text"
                         id="city"
@@ -119,7 +119,7 @@ export default function Personaldetails({
 
                 {/* wrapper for the country */}
                 <div className="--wrapper">
-                    <label htmlFor="coutry">Country</label>
+                    <label htmlFor="coutry">Country *</label>
                     <div className="--singleselect">
                         <Select
                             options={COUNTRY_LIST}
@@ -143,7 +143,7 @@ export default function Personaldetails({
                 
                 {/* wrapepr for the name */}
                 <div className="--wrapper">
-                    <label htmlFor="fullname">Company Email</label>
+                    <label htmlFor="fullname">Company Email *</label>
                     <input
                         maxLength="30"
                         type="text"
@@ -159,7 +159,7 @@ export default function Personaldetails({
 
                 {/* wrapper for you password */}
                 <div className="--wrapper">
-                    <label htmlFor="password"> Password </label>
+                    <label htmlFor="password"> Password *</label>
                         <div className="--passwordinput">
                         <input
                             placeholder="6+ Characters"

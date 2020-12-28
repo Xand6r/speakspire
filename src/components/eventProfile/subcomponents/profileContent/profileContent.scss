@@ -17,6 +17,69 @@ $right-item-width: 597px;;
     display: flex;
     justify-content: space-between;
 
+    .ant-upload-list.ant-upload-list-text{
+        display: none;
+    }
+
+    .media_wrapper{
+        position: relative;
+        margin-bottom: 10px;
+
+
+        .delete_media{
+            position: absolute;
+            bottom: 10px;
+            right: 7px;
+            cursor: pointer;
+            transition: 300ms;
+
+            &:hover{
+                transform: scale(1.12);
+            }
+
+            &:active{
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    .adminfooter{
+        display: flex;
+        justify-content: space-between;
+        .actiongroup{
+            display: flex;
+        }
+        .cancel{
+            @extend %filled-button;
+            width: 108.22px;
+            height: 40px;
+            background: #F5F5F9;
+            font-family: 'markpro-bold';
+            color: $dark-blue;
+            margin-right: 15px;
+        }
+        
+        .save{
+            @extend %filled-button;
+            width: 108.22px;
+            height: 40px;
+            background: $light-blue;
+            font-family: 'markpro-bold';
+            color: white
+        }
+
+        .addmedia{
+            @extend %outlined-button;
+            height: 40px;
+            padding: 12px 35px;
+            margin-right: 10px;
+
+            img{
+                margin-right: 10px;
+            }
+        }
+
+    }
 
     &__left{
         &__reason{
@@ -120,16 +183,30 @@ $right-item-width: 597px;;
                 display: flex;
                 justify-content: space-between;
                 margin-top: 15px;
-                img{
+                img.show_media{
                     width: 263px;
                     height: 176px;
                     border-radius: 5px;
                 }
 
             }
+            
             .moreimages{
-                margin-top: 20px;
+                margin-bottom: 20px;
+                display: flex;
+                & > div:first-of-type{
+                    margin-right: 10px;
+                }
             }
+        }
+
+        &__speakers{
+            width: $right-item-width;
+            padding: 30px;
+            background: #FFFFFF;
+            box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            margin-bottom: 25px;   
         }
 
         &__bio{

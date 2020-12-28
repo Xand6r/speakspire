@@ -18,8 +18,6 @@ import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 import {
 	SPEAKER_SPECIALITY,
 	TOPIC_AREAS,
-	DEFAULT_MULTI_OPTIONS,
-	DEFAULT_SINGLE_OPTIONS,
 	EDUCATION_OPTIONS,
 	LANGUAGE_OPTIONS,
 } from './constants';
@@ -116,7 +114,7 @@ export default function Expertise({stateChanger, state}) {
 			<div className='expertise__formsection'>
 				<div className='expertise__formsection__section'>
 					<div className='expertise__formsection__section__header'>
-						<div className='--heading'>Specialty</div>
+						<div className='--heading'>Specialty *</div>
 						<div className='--sub_heading'>Tell us what kind of speaker you are.</div>
 					</div>
 					<div className='expertise__formsection__section__form --nomargin'>
@@ -152,7 +150,7 @@ export default function Expertise({stateChanger, state}) {
 
 				<div className='expertise__formsection__section'>
 					<div className='expertise__formsection__section__header'>
-						<div className='--heading'>Topic Areas</div>
+						<div className='--heading'>Topic Areas *</div>
 						<div className='--sub_heading'>These are the broad topics your expertise falls under.</div>
 					</div>
 					<div className='expertise__formsection__section__form  --more-margin'>
@@ -235,7 +233,7 @@ export default function Expertise({stateChanger, state}) {
 
 					<div className='expertise__formsection__section'>
 						<div className='expertise__formsection__section__header'>
-							<div className='--heading'>Education</div>
+							<div className='--heading'>Education *</div>
 						</div>
 						{state.education.map((education, index) => (
 							<div className='expertise__formsection__section__form'>
@@ -334,7 +332,7 @@ export default function Expertise({stateChanger, state}) {
 
 					<div className='expertise__formsection__section --last'>
 						<div className='expertise__formsection__section__header'>
-							<div className='--heading'>Certification and Licenses </div>
+							<div className='--heading'>Other Certifications </div>
 						</div>
 						{state.certifications.map((cert, index) => (
 							<div className='expertise__formsection__section__form'>
@@ -352,7 +350,7 @@ export default function Expertise({stateChanger, state}) {
 									<input
 										name='certification_name'
 										type='text'
-										placeholder='Enter School Name'
+										placeholder='Enter Certification Name'
 										value={cert.certification_name}
 										onChange={(e) => {
 											changeListData('certifications', index, 'certification_name', e.target.value);
@@ -440,6 +438,19 @@ export default function Expertise({stateChanger, state}) {
 
 								<div className='--input_wrapper'>
 									<label htmlFor='dates'>From</label>
+									<div className="--tilldate">
+										<Checkbox 
+											onChange={(e)=>{
+												if(e.target.checked){
+													changeListData('certifications', index, 'to', moment().format(monthFormat))
+												}else{
+													changeListData('certifications', index, 'to', '')
+												}
+											}}
+										>
+											Till Date
+										</Checkbox>
+									</div>
 									<div className='--date_wrapper --half_date'>
 										<DatePicker
 											format={monthFormat}
@@ -471,19 +482,6 @@ export default function Expertise({stateChanger, state}) {
 											disabledDate={d => (!d || d.isBefore(cert.from) || d.isAfter(moment())) }
 										/>
 									</div>
-									<div className="--tilldate">
-										<Checkbox 
-											onChange={(e)=>{
-												if(e.target.checked){
-													changeListData('certifications', index, 'to', moment().format(monthFormat))
-												}else{
-													changeListData('certifications', index, 'to', '')
-												}
-											}}
-										>
-											Till Date
-										</Checkbox>
-									</div>
 								</div>
 							</div>
 						))}
@@ -513,7 +511,7 @@ export default function Expertise({stateChanger, state}) {
 					<div className='expertise__formsection__section__form --whitebg'>
 						<div className='--input_wrapper --select'>
 							<label className='double' htmlFor='position'>
-								Highest Level of Education
+								Highest Level of Education *
 							</label>
 							<div className='--singleselect'>
 								<Select
@@ -531,7 +529,7 @@ export default function Expertise({stateChanger, state}) {
 					<div className='expertise__formsection__section__form --whitebg'>
 						<div className='--input_wrapper --select'>
 							<label className='double' htmlFor='position'>
-								Languages
+								Languages *
 							</label>
 							<div className='--multiselect '>
 								<MultiSelect

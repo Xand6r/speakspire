@@ -1,0 +1,12 @@
+@import '../../../stylesheets/colors';
+@import '../../../stylesheets/utilities';
+@import '../../../stylesheets/fonts';
+
+.updates.partners{
+    .updates__form__content__item{
+        width: 360px;
+    }
+    label{
+        color: $dark-blue;
+    }
+}

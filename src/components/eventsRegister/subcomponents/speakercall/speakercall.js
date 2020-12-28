@@ -10,20 +10,16 @@ import './speakercall.scss';
 
 import '../../../../stylesheets/tag.scss';
 
-import { SPEAKER_SPECIALITY, COUNTRY_LIST } from '../../component/constants';
+import { SPEAKER_SPECIALITY, COUNTRY_LIST, SPEAKER_CATEGORY } from '../../component/constants';
+import {
+    TOPIC_AREAS
+} from '../../../speakerRegister/subcomponents/expertise/constants';
 
 
 export default function SpeakerCall({
     stateChanger, state
 }) {
 
-    const handleFormChange = (event)=>{
-        const {name, value} = event.target;
-        stateChanger({
-            ...state,
-            [name]: value
-          });
-    }
     const changeListData = ( index, subproperty,  value) =>{
         const updatedState = [...state];
         updatedState[index][subproperty] = value;
@@ -40,12 +36,6 @@ export default function SpeakerCall({
         console.log(state);
     }
 
-    const changeSelectState = (name, value)=>{
-        stateChanger({
-            ...state,
-            [name]: value
-          });
-    }
     const addNewCall = () => {
         stateChanger([
             ...state,
@@ -55,7 +45,7 @@ export default function SpeakerCall({
                 country: '',
                 budgetFrom: '',
                 budgetTo: '',
-                speakerDescription: '',
+                eventDescription: '',
             }
         ])
     }
@@ -91,7 +81,7 @@ export default function SpeakerCall({
                             </label>
                             <div className="--singleselect">
                                 <Select
-                                    options={SPEAKER_SPECIALITY}
+                                    options={SPEAKER_CATEGORY}
                                     isSearchable
                                     placeholder="Select"
                                     className="--item"
@@ -111,7 +101,7 @@ export default function SpeakerCall({
                             </label>
                             <div className="--singleselect">
                                 <Select
-                                    options={SPEAKER_SPECIALITY}
+                                    options={TOPIC_AREAS}
                                     isSearchable
                                     placeholder="Select"
                                     className="--item"
@@ -145,7 +135,7 @@ export default function SpeakerCall({
                         <div className="--wrapper">
                             
                             <label className="double" htmlFor="position">
-                                Speaker Budget (Optional)
+                                Speaker Budget
                             </label>
                             <div className="--double_wrapper">
                                 <input
@@ -153,6 +143,7 @@ export default function SpeakerCall({
                                     type="number"
                                     placeholder="00.00 NGN"
                                     onChange={(e) =>  changeListData(index, 'budgetFrom',  e.target.value)}
+                                    min="1000"
                                 />
                                 <span>to</span>
                                 <input
@@ -160,6 +151,7 @@ export default function SpeakerCall({
                                     type="number"
                                     value={speakercall.budgetTo}
                                     onChange={(e) =>  changeListData(index, 'budgetTo',  e.target.value)}
+                                    min="1000"
                                 />
                             </div>
 

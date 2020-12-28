@@ -82,7 +82,7 @@ export default function Experience({
 
                 <div className="experience__formsection__section --last">
                     <div className="experience__formsection__section__header">
-                        <div className="--heading">Current Position</div>
+                        <div className="--heading">Current Position *</div>
                         <div className="--sub_heading">
                             This is the primary position to be displayed on your profile.
                         </div>
@@ -127,6 +127,19 @@ export default function Experience({
 
                                 <div className="--input_wrapper">
                                     <label htmlFor="dates">From</label>
+                                    <div className="--tilldate">
+										<Checkbox 
+											onChange={(e)=>{
+												if(e.target.checked){
+													changeListData('positions', index, 'to', moment().format(monthFormat))
+												}else{
+													changeListData('positions', index, 'to', '')
+												}
+											}}
+										>
+											Till Date
+										</Checkbox>
+									</div>
                                     <div className="--date_wrapper --half_date">
                                         <DatePicker
                                             format={monthFormat}
@@ -158,19 +171,6 @@ export default function Experience({
                                             disabledDate={d => !d || d.isBefore(position.from) || d.isAfter(moment())}
                                         />
                                     </div>
-                                    <div className="--tilldate">
-										<Checkbox 
-											onChange={(e)=>{
-												if(e.target.checked){
-													changeListData('positions', index, 'to', moment().format(monthFormat))
-												}else{
-													changeListData('positions', index, 'to', '')
-												}
-											}}
-										>
-											Till Date
-										</Checkbox>
-									</div>
                                 </div>
                             </div>
                             
@@ -205,7 +205,7 @@ export default function Experience({
                     <div className="experience__formsection__section__form --whitebg">
                         <div className="--input_wrapper --select">
                             <label className="double" htmlFor="position">
-                                Years of Professional Experience
+                                Years of Professional Experience *
                             </label>
                             <div className="--singleselect">
                             <Select
@@ -223,7 +223,7 @@ export default function Experience({
                     <div className="experience__formsection__section__form --whitebg">
                         <div className="--input_wrapper --select">
                             <label className="double" htmlFor="position">
-                                Number of Professional Speaking Engagements
+                                Number of Professional Speaking Engagements *
                             </label>
                             <div className="--singleselect">
                             <Select
@@ -241,7 +241,7 @@ export default function Experience({
                     <div className="experience__formsection__section__form --whitebg">
                         <div className="--input_wrapper">
                             <label className="double" htmlFor="bio">
-                                Unique Selling Proposition (USP)
+                                Unique Selling Proposition (USP) *
                                 <span>
                                     What makes you different from other speakers? (Max. 25 words)
                                 </span>
@@ -259,7 +259,7 @@ export default function Experience({
                     <div className="experience__formsection__section__form --whitebg">
                         <div className="--input_wrapper">
                             <label className="double" htmlFor="fullbio">
-                                Full Bio
+                                Full Bio *
                                 <span>
                                     Tell us more about you, your skillset and experience
                                 </span>

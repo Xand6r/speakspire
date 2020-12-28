@@ -39,7 +39,7 @@ import {
 
 
 const PROFILE_LINKS = [
-	[wwwLogo, 'www'],
+	[wwwLogo, 'www.'],
 	[Instagram, 'instagram.com/'],
 	[LinkedIn, 'linkedin.com/in/'],
 	[Twitter, 'twitter.com/'],
@@ -132,7 +132,7 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 			<div className='organiserlogin__formsection'>
 				<div className='organiserlogin__formsection__section --more-padding'>
 					<label className='double' htmlFor='position'>
-						Specialty
+						Specialty *
 					</label>
 					<div className='--singleselect'>
 						<Select
@@ -148,7 +148,7 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 
 				<div className='organiserlogin__formsection__section --more-padding'>
 					<label className='double'>
-						Services
+						Services *
 						<span>Add specific services you offer. Separate services with commas.</span>
 					</label>
 					<div className='--input_wrapper --tags --grey'>
@@ -169,7 +169,7 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 
 				<div className='organiserlogin__formsection__section --more-padding'>
 					<label className='double' htmlFor='fullbio'>
-						Company Bio
+						Company Bio *
 						<span>Enter company bio</span>
 					</label>
 					<textarea
@@ -185,7 +185,7 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 
 				<div className='organiserlogin__formsection__section --more-padding'>
 					<label className='double'>
-						Clients
+						Clients *
 						<span>Who have you worked for? Separate client names with commas.</span>
 					</label>
 					<div className='--input_wrapper --tags --grey'>
@@ -206,7 +206,7 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 
 				<div className='organiserlogin__formsection__section --more-padding'>
 					<label className='double'>
-						Partners
+						Partners *
 						<span>Who do you work with? Separate client names with commas.</span>
 					</label>
 					<div className='--input_wrapper --tags --grey'>
@@ -237,7 +237,19 @@ export default function Media({ stateChanger, state, handleSubmit }) {
 									value={state.links[index]}
 									onChange={(e) => {
 										let newState = [...state.links];
-										newState[index] = e.target.value;
+										const textContent = e.target.value;
+										if(textContent.length === 1 && !newState[index]){
+											newState[index] = `${profileLink[1]}${textContent}`;
+											changeSelectState('links', newState);
+											return;
+
+										}else if(textContent === profileLink[1]){
+											newState[index] = '';
+											changeSelectState('links', newState);
+											return;
+										}
+
+										newState[index] = textContent;
 										changeSelectState('links', newState);
 									}}
 								/>

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import { DatePicker, TimePicker, Checkbox } from 'antd';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -29,8 +30,6 @@ function onChange(e) {
 export default function Schedule({
     stateChanger, state
 }) {
-    console.log(state)
-
     const changeSelectState = (name, value)=>{
         stateChanger({
             ...state,
@@ -49,6 +48,20 @@ export default function Schedule({
         links[index] = value
         changeSelectState('onlineLink', links)
     }
+
+    useEffect(() => {
+        // when ever they change the frequency of the event
+        // reset some parameters
+        stateChanger({
+            ...state,
+            dateFrom: [],
+            dateTo : [],
+            timeFrom: [],
+            timeTo : [],
+            interval: "",
+            interval_day_of_week: "",
+        });
+    }, [state.frequency])
 
     return (
         <div className="schedule">
@@ -160,7 +173,7 @@ export default function Schedule({
                 <div className="schedule__formsection__section">
                     
                     <label className="double" htmlFor="position">
-                        Event Frenquency
+                        Event Frequency
                     </label>
                     <div className="--singleselect --iconinput">
 
@@ -195,6 +208,7 @@ export default function Schedule({
                                         });
 
                                     }}
+                                    disabledDate={d => !d || d.isBefore(moment())}
                                     value={state.dateFrom[0]}
                                 />
                             </div>
@@ -226,6 +240,7 @@ export default function Schedule({
                                                 timeTo: [momentDate, dateString],
                                             });
                                         }}
+                                        disabledDate={d =>!d || d.isBefore(state.timeFrom[0]) }
                                         value={state.timeTo[0]}
                                     />
                                 </div>
@@ -257,6 +272,7 @@ export default function Schedule({
                                             });
 
                                         }}
+                                        disabledDate={d => !d || d.isBefore(moment())}
                                         value={state.dateFrom[0]}
                                     />
 
@@ -273,6 +289,7 @@ export default function Schedule({
                                             });
 
                                         }}
+                                        disabledDate={d => !d || d.isBefore(state.dateFrom[0])}
                                         value={state.dateTo[0]}
                                     />
 
@@ -282,14 +299,14 @@ export default function Schedule({
 
                             <div className="schedule__formsection__section">
                                 <label htmlFor="birthdate">Time</label>
-                                <div className="--checkboxes">
-                                    <Checkbox checked onChange={onChange}>
+                                {/* <div className="--checkboxes"> */}
+                                    {/* <Checkbox checked onChange={onChange}>
                                         Use the same time and location for all days
-                                    </Checkbox>
+                                    </Checkbox> */}
                                     {/* <Checkbox onChange={onChange}>
                                         Edit the time or location for each day
                                     </Checkbox> */}
-                                </div>
+                                {/* </div> */}
 							<div className='--date_wrapper --half_date'>
 								<TimePicker
 									format={'HH:mm'}
@@ -429,6 +446,7 @@ export default function Schedule({
 												});
 											}}
 											value={state.dateFrom[0]}
+                                            disabledDate={d => !d || d.isAfter(moment())}
 										/>
 										<span>to</span>
 										<DatePicker
@@ -442,19 +460,20 @@ export default function Schedule({
 												});
 											}}
 											value={state.dateTo[0]}
+                                            disabledDate={d => !d || d.isBefore(state.dateFrom[0])}
 										/>
 									</div>
 								</div>
 								<div className='schedule__formsection__section'>
 									<label htmlFor='birthdate'>Time</label>
-									<div className='--checkboxes'>
+									{/* <div className='--checkboxes'>
 										<Checkbox checked onChange={onChange}>
 											Use the same time and location for all days
-										</Checkbox>
+										</Checkbox> */}
 										{/* <Checkbox onChange={onChange}>
                                                 Edit the time or location for each day
                                             </Checkbox> */}
-									</div>
+									{/* </div> */}
 									<div className='--date_wrapper --half_date'>
 										<TimePicker
 											format={'HH:mm'}
@@ -504,7 +523,6 @@ export default function Schedule({
 						className='link'
 						to='/registerevent/3'
 						onClick={() => {
-							console.log(state);
 						}}>
 						<div className='next'>Save & Continue</div>
 					</Link>
