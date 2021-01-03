@@ -50,14 +50,14 @@ import { message } from 'antd';
 import cleanData from '../subcomponents/utils/cleanData';
 import axios from '../../../utilities/axios';
 
-const INITIAL_ERROR_STATES = [true, true, true, true, true]
+const INITIAL_ERROR_STATES = [true, true, true, true, true];
 
 export default function Register({ location }) {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const [activeTab, setactiveTab] = useState(0);
 	const [previewHidden, setPreviewHidden] = useState(false);
-	const [errorStates, setErrorStates] = useState(INITIAL_ERROR_STATES)
+	const [errorStates, setErrorStates] = useState(INITIAL_ERROR_STATES);
 	const [personalDetails, setPersonalDetails] = useState(getFormState(SPEAKER_PERSONAL_DETAILS_KEY) || INITIAL_PERSONAL_DETAILS_STATE);
 	const [expertise, setExpertise] = useState(getFormState(SPEAKER_EXPERTISE_KEY) || INITIAL_EXPERTISE_STATE);
 	const [experience, setExperience] = useState(getFormState(SPEAKER_EXPERIENCE_KEY) || INITIAL_EXPERIENCE_STATE);
@@ -104,14 +104,13 @@ export default function Register({ location }) {
 		setErrorStates(NO_ERRORS);
 	}, [media]);
 
-
 	const makeActive = (clickedIndex) => {
 		setactiveTab(clickedIndex);
 	};
 
 	const mapState = {
 		'Personal Details': validatePersonaDetails(personalDetails),
-		Expertise: validateExpertiseState(expertise),
+		Expertise: expertise,
 		Experience: validateExperienceState(experience),
 		Preferences: validatePreferenceState(preference),
 		Media: validateMedia(media),
@@ -128,8 +127,8 @@ export default function Register({ location }) {
 		const allFilled = Object.values(mapState).every((a) => a);
 		if (!allFilled) {
 			message.error(ERROR_MESSAGES.INCOMPLETE_PARAMETERS);
-			const errorMap = Object.values(mapState).map(a=>Boolean(a));
-			console.log(errorMap)
+			const errorMap = Object.values(mapState).map((a) => Boolean(a));
+			console.log(errorMap);
 			setErrorStates(errorMap);
 			return Promise.resolve();
 		}
@@ -144,7 +143,7 @@ export default function Register({ location }) {
 				}, 500);
 			})
 			.catch((err) => {
-				const { email } = err.response?.data?.message || {email: "Unknown error"};
+				const { email } = err.response?.data?.message || { email: 'Unknown error' };
 				if (email) {
 					message.error(email);
 					return;
