@@ -10,7 +10,7 @@ import ConfirmMail from './components/confirmMail/index';
 const Homepage = lazy(() => import('./components/homepage' /* webpackChunkName: "Homepage" */));
 const SpeakersPage = lazy(() => import('./components/speakersPage' /* webpackChunkName: "SpeakersPage" */));
 // const SpeakersProfile = lazy(() => import('./components/speakerProfile' /* webpackChunkName: "SingleSpeakerPage" */));
-const SpeakerPersonalProfile =  lazy(() => import('./components/speakerPersonalProfile' /* webpackChunkName: "Profile" */))
+const SpeakerPersonalProfile = lazy(() => import('./components/speakerPersonalProfile' /* webpackChunkName: "Profile" */));
 // const OrganiserProfile = lazy(() => import('./components/organiserProfile' /* webpackChunkName: "OrganiserProfile" */));
 const OrganiserPersonalProfile = lazy(() => import('./components/organiserPersonalProfile' /* webpackChunkName: "Profile" */));
 const SignUpCategory = lazy(() => import('./components/category' /* webpackChunkName: "SignUpCategory" */));
@@ -33,21 +33,16 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 };
 
 function App() {
-	const role = useSelector(({user}) => user.role)
+	const role = useSelector(({ user }) => user.role);
 	return (
 		<>
 			{/* <Nav /> */}
 			<Suspense fallback={<Loader />}>
 				<Switch>
-					<ProtectedRoute
-						exact path='/profile'
-						component={
-							(role === 'speaker')?(SpeakerPersonalProfile): (OrganiserPersonalProfile)
-						}
-					/>
+					<ProtectedRoute exact path='/profile' component={role === 'speaker' ? SpeakerPersonalProfile : OrganiserPersonalProfile} />
 					<ProtectedRoute exact path='/favourites' component={Favourites} />
 					<Route exact path='/about' component={About} />
-					<Route exact path='/speakers' component={SpeakersPage}/>
+					<Route exact path='/speakers' component={SpeakersPage} />
 					<Route exact path='/speakers/:id' component={SpeakerPersonalProfile} />
 					<Route exact path='/events' component={EventsPage} />
 					<Route exact path='/category' component={SignUpCategory} />
@@ -60,7 +55,7 @@ function App() {
 					<ProtectedRoute path='/registerevent' component={EventSignUpPage} />
 					<Route path='/organiserprofile/:id' component={OrganiserPersonalProfile} />
 					<Route exact path='/' component={Homepage} />
-					<Route exact path="/confirm" component={ConfirmMail} />
+					<Route exact path='/confirm' component={ConfirmMail} />
 					<Route exact path='/forgotpassword' component={ForgotPassword} />
 					<Route exact path='/resetpassword' component={ResetPassword} />
 				</Switch>
