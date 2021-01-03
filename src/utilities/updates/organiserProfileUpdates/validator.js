@@ -1,3 +1,3 @@
-export const validateData = () => {
+export const validateData = (state) => {
     return true
 }

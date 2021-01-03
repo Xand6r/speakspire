@@ -30,9 +30,9 @@ export default function Speakerprofile(props) {
 
 	const history = useHistory();
 	const userId = useSelector(({user}) => user.id)
-
-	const id = userId;
 	const role = getRole();
+	const eventId = userData?.id;
+	const organiserId = userData?.organizer_id;
 	// const isAdmin = userId === id
 
 	const getDetails = async () => {
@@ -67,7 +67,7 @@ export default function Speakerprofile(props) {
 	  }
 	}, []);
 
-	const isAdmin =true;
+	const isAdmin = (userId === organiserId) && role === "organizer"
 
 	return (
 		<div className='eventprofile'>
@@ -103,7 +103,7 @@ export default function Speakerprofile(props) {
 
 									}
 									setUploadLoading(true);
-									uploadEventsCover(file, userId)
+									uploadEventsCover(file, eventId, organiserId)
 										.then((res) => res && setImageLink(res))
 										.catch((err) => message.error("There was an error uploading image"))
 										.finally(() =>{

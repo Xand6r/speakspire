@@ -39,10 +39,7 @@ export default function Index({ onClose, initialData, onSuccess, eventId }) {
             topicArea,
             topicTags: jsonParse(tags)
         });
-        alert('loading');
-        axios.get('http://localhost:8081/auth/google/link').then(data => alert(data));
         // set initial state
-        console.log(initialData)
     }, [initialData]);
 
     const saveState = () => {
