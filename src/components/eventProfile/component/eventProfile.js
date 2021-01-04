@@ -5,6 +5,7 @@ import ImgCrop from 'antd-img-crop';
 import { Upload, message, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
+import Loader from '../../../utilities/loadingScreen';
 import imageOverlay from '../assets/overlay.svg';
 
 import { getID, getRole } from '../../../api/user';
@@ -26,6 +27,7 @@ export default function Speakerprofile(props) {
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const [userData, setUserData] = useState({});
 	const [imageLink, setImageLink] = useState("");
+	const [loading, setLoading] = useState(false);
 
 
 	const history = useHistory();
@@ -46,7 +48,10 @@ export default function Speakerprofile(props) {
 		}
 	};
 	useEffect(() => {
-		getDetails();
+		setLoading(true);
+		getDetails().then(() => {
+			setLoading(false);
+		})
 	}, [history, props.match.params.id]);
 
 	useEffect(()=>{
@@ -68,6 +73,11 @@ export default function Speakerprofile(props) {
 	}, []);
 
 	const isAdmin = (userId === organiserId) && role === "organizer"
+
+
+	if(loading){
+		return <Loader />
+	}
 
 	return (
 		<div className='eventprofile'>

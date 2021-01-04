@@ -5,6 +5,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {Spin} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import Loader from '../../../utilities/loadingScreen';
 import {setUserData as setUserDataRedux} from '../../../redux/userSlice';
 
 
@@ -40,6 +41,8 @@ const defaultImageProps = {
 export default function Speakerprofile(props) {
 	const [userData, setUserData] = useState({});
 	const [uploadLoading, setUploadLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
+
 	const [imageLink, setImageLink] = useState("");
 	const history = useHistory();
 	const dispatch = useDispatch()
@@ -62,8 +65,10 @@ export default function Speakerprofile(props) {
 	};
 	useEffect(() => {
 		if(id){
-			getDetails();
-			console.log(id)
+			setLoading(true);
+			getDetails().then(() =>{
+				setLoading(false);
+			})
 		}
 	}, [history, id]);
 
@@ -84,6 +89,9 @@ export default function Speakerprofile(props) {
 		}
 	}, [userData])
 
+	if(loading){
+		return <Loader />
+	}
 
 	return (
 		<div className='speakerprofile speaker'>

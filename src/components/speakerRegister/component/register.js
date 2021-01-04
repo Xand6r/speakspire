@@ -137,7 +137,7 @@ export default function Register({ location }) {
 			.post('/speakers/add', cleanData(finalState))
 			.then((res) => {
 				setMail(personalDetails.email);
-				// deleteFormState([SPEAKER_EXPERIENCE_KEY, SPEAKER_EXPERTISE_KEY, SPEAKER_MEDIA_KEY, SPEAKER_PERSONAL_DETAILS_KEY, SPEAKER_PREFERENCE_KEY]);
+				deleteFormState([SPEAKER_EXPERIENCE_KEY, SPEAKER_EXPERTISE_KEY, SPEAKER_MEDIA_KEY, SPEAKER_PERSONAL_DETAILS_KEY, SPEAKER_PREFERENCE_KEY]);
 				setTimeout(() => {
 					history.push('/confirm');
 				}, 500);
