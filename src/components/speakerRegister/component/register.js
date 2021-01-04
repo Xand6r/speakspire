@@ -110,7 +110,7 @@ export default function Register({ location }) {
 
 	const mapState = {
 		'Personal Details': validatePersonaDetails(personalDetails),
-		Expertise: expertise,
+		Expertise: validateExpertiseState(expertise),
 		Experience: validateExperienceState(experience),
 		Preferences: validatePreferenceState(preference),
 		Media: validateMedia(media),
@@ -137,7 +137,7 @@ export default function Register({ location }) {
 			.post('/speakers/add', cleanData(finalState))
 			.then((res) => {
 				setMail(personalDetails.email);
-				deleteFormState([SPEAKER_EXPERIENCE_KEY, SPEAKER_EXPERTISE_KEY, SPEAKER_MEDIA_KEY, SPEAKER_PERSONAL_DETAILS_KEY, SPEAKER_PREFERENCE_KEY]);
+				// deleteFormState([SPEAKER_EXPERIENCE_KEY, SPEAKER_EXPERTISE_KEY, SPEAKER_MEDIA_KEY, SPEAKER_PERSONAL_DETAILS_KEY, SPEAKER_PREFERENCE_KEY]);
 				setTimeout(() => {
 					history.push('/confirm');
 				}, 500);

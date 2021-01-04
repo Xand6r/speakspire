@@ -26,8 +26,9 @@ export default function Index({initialData, onClose, onSuccess, eventId}) {
         // set lading state
         setLoading(true)
         // make patch request
-        axios.patch(``,{
-            bio: state
+        axios.patch(`http://api.speakspire.com/events/${eventId}/description`,{
+            "description": state,
+            "organizer_id": userId 
         // copy and paste from here
         }).then((res) => {
             message.success("Details updated sucesfully!");

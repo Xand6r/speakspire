@@ -82,12 +82,12 @@ export default function ProfileContent({ isAdmin, refetch, userData }) {
 		// logic about uploading images
 
 		setLoading(true)
-        axios.patch(`/speakers//media`,{
+        axios.patch(`events/${id}/media`,{
 			media: mediaState
         }).then((res) => {
             message.success("Details updated sucesfully!");
         }).catch((err) => {
-            message.error("There was an error updating user!", err.response.data.message);
+            message.error("There was an error updating your event media!", err.response.data.message);
         }).finally(()=>{
 			setActiveMediaTab({
 				...activeMediaTab,

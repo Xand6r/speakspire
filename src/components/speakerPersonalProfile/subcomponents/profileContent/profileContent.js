@@ -364,12 +364,34 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 							{/* the tab to upload images */}
 							<TabPane tab='Topic Areas' key='1'>
 								{/* topic areas content */}
-								<SpeakingSkills
-									primaryTopic={expertise && expertise[0]?.primary_topic}
-									primarySkills={expertise ? JSON.parse(expertise[0]?.primary_tags || {}) : []}
-									secondaryTopic={expertise && expertise[0]?.secondary_topic}
-									secondarySkills={expertise ? JSON.parse(expertise[0]?.secondary_tags || {}) : []}
-								/>
+								{
+									expertise && expertise[0]?.primary_topic?
+									(
+										<SpeakingSkills
+											primaryTopic={expertise && expertise[0]?.primary_topic}
+											primarySkills={expertise ? JSON.parse(expertise[0]?.primary_tags || {}) : []}
+											secondaryTopic={expertise && expertise[0]?.secondary_topic}
+											secondarySkills={expertise ? JSON.parse(expertise[0]?.secondary_tags || {}) : []}
+										/>
+									):(
+										<div className="noitem">
+											<img src={noTalksIcon} alt="" className="noitem__image"/>
+											<div className="noitem__header">No Topic Areas</div>
+											{
+												isAdmin && (
+													<>
+													<div className="noitem__textcontent">Tell people more about your area of specialty.</div>
+													<div className="noitem__action"
+														onClick={() => openEditPopup(topicTalkEditTabs[activeTalkTab])}
+													>
+														Add Topic Areas
+													</div>
+													</>
+												)
+											}
+										</div>
+									)
+								}
 								{/* topic areas content */}
 							</TabPane>
 							{/* the tab to upload images */}
@@ -538,15 +560,31 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 							{/* the tab to upload images */}
 							<TabPane tab='Position' key='1'>
 								<div className='experience_tab_content'>
-									{experience
-										? experience.slice(0,positionsLimit).map(({ company, from, position, to }, index) => (
+									{experience && experience.filter(e=>e.position).length
+										? experience.filter(e=>e.position).slice(0,positionsLimit).map(({ company, from, position, to }, index) => (
 												<div className='past_experience' key={index}>
 													<div className='past_experience__position'>{position}</div>
 													<div className='past_experience__company'>{company}</div>
 													<div className='past_experience__date'>{`${from} - ${to}`}</div>
 												</div>
 										))
-										: null}
+										: (
+											<div className="noitem">
+											<img src={noPublicationIcon} alt="" className="noitem__image"/>
+											<div className="noitem__header">No Position</div>
+											{
+												isAdmin && (
+													<>
+													<div className="noitem__textcontent">Add Places you have worked at and elaborate your experience.</div>
+													<div className="noitem__action" onClick={() => openEditPopup(positionsEditTabs[positionsTab])}>
+														Add Position
+													</div>
+													</>
+												)
+											}
+										</div>
+										)
+										}
 
 									<div className='moreimages'>
 										{

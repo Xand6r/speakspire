@@ -11,9 +11,7 @@ export const validatePersonaDetails = (personalState) => {
 export const validateExpertiseState = (expertise) => {
     
     return(
-        Object.values(expertise).every(o => o!== '')
-        &&
-        expertise.primary_topic_tags.length !== 0
+        expertise.highest_education !== ""
         &&
         expertise.languages.length !== 0
         &&
@@ -39,10 +37,10 @@ export const validateExpertiseState = (expertise) => {
 
 export const validateExperienceState = (experience) => {
     return Object.values(experience).every(o => o!== '')
-        &&
-        experience.positions.every(cert=>{
-            return Object.values(cert).every(o=>o.length)
-        })
+        // &&
+        // experience.positions.every(cert=>{
+        //     return Object.values(cert).every(o=>o.length)
+        // })
 };
 
 export const validatePreferenceState = (preference) => {
@@ -50,8 +48,7 @@ export const validatePreferenceState = (preference) => {
         (
             preference.availability !== "" &&
             preference.mode_of_delivery !=="" &&
-            preference.open_for_travel !== "" &&
-            preference.volunteering !==  ""
+            preference.open_for_travel !== ""
         )
         &&
         ((preference.open_for_travel.value === "yes" && preference.travel_places.length > 0 )
