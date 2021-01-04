@@ -63,6 +63,8 @@ const imageLoadingIcon = <LoadingOutlined style={{fontSize: 20, color: '#4D75F4'
 export default function ProfileContent({ isAdmin, refetch, userData }) {
 	const { description, tags, topic_area, type, schedule, media, speakers=[], id } = userData;
 	const eventState = useSelector(({events} )=> events);
+	const userId = useSelector(({user}) => user.id);
+
 
 	const [loading, setLoading] = useState(false);
 	const [editField, setEditField] = useState(false);
@@ -83,6 +85,7 @@ export default function ProfileContent({ isAdmin, refetch, userData }) {
 
 		setLoading(true)
         axios.patch(`events/${id}/media`,{
+			"organizer_id": `${userId}`,
 			media: mediaState
         }).then((res) => {
             message.success("Details updated sucesfully!");

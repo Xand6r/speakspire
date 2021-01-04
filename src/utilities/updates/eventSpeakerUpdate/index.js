@@ -160,7 +160,7 @@ export default function Index({ onClose, initialData, onSuccess, eventId }) {
                                         isSearchable
                                         placeholder='Select'
                                         className='--item'
-                                        onChange={(value) => changeListData(index, 'topicArea',  value)}
+                                        onChange={(value) => changeListData(index, 'topicArea',  value.value)}
                                         value={
                                             speakercall.topicArea
                                                 ? {
@@ -182,7 +182,7 @@ export default function Index({ onClose, initialData, onSuccess, eventId }) {
                                         isSearchable
                                         placeholder='Select'
                                         className='--item'
-                                        onChange={(value) =>  changeListData(index, 'country',  value)}
+                                        onChange={(value) =>  changeListData(index, 'country',  value.value)}
                                         value={
                                             speakercall.country
                                                 ? {
