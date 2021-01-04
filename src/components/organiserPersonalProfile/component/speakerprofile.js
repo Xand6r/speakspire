@@ -6,6 +6,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import ImgCrop from 'antd-img-crop';
 import { Upload, message } from 'antd';
 
+import Loader from '../../../utilities/loadingScreen';
 import imageOverlay from '../assets/overlay.svg';
 import { component as NavBar } from '../../../utilities/navbar';
 import ProfileCard from '../subcomponents/profileCard';
@@ -27,6 +28,7 @@ export default function Speakerprofile(props) {
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const userId = useSelector(({user}) => user.id)
 	const id = props.match.params.id || userId;
+	const [loading, setLoading] = useState(false);
 
 	const isAdmin = userId === id
 	const history = useHistory();
@@ -45,7 +47,10 @@ export default function Speakerprofile(props) {
 
 	useEffect(() => {
 		if(id && role !== 'speaker'){
-			getDetails();
+			setLoading(true)
+			getDetails().then(() => {
+				setLoading(false);
+			})
 		}
 	}, [history, id, role]);
 
@@ -64,7 +69,11 @@ export default function Speakerprofile(props) {
 		if(userData){
 			setImageLink(userData.cover_photo)
 		}
-	}, [userData])
+	}, [userData]);
+
+	if(loading){
+		return <Loader />
+	}
 
 	return (
 		<div id="organiser" className='speakerprofile'>

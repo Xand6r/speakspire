@@ -1,3 +1,3 @@
-export const validateData = () => {
-    return true
+export const validateData = (state) => {
+    return Object.values(state).every(item => item!=="")
 }

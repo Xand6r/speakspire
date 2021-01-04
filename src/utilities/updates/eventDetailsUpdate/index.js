@@ -21,16 +21,27 @@ import '../../../stylesheets/tag.scss';
 const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#fff' }} spin />;
 
 export default function Index({ onClose, initialData, onSuccess, eventId }) {
-	const [state, setState] = useState(INITIAL_STATE);
-	const [loading, setLoading] = useState(false);
-	const userId = useSelector(({ user }) => user.id);
+    const [state, setState] = useState(INITIAL_STATE);
+    const [loading, setLoading] = useState(false);
 
-	const stateChanger = (name, value) => {
-		setState({
-			...state,
-			[name]: value,
-		});
-	};
+    const stateChanger = (name, value) => {
+        setState({
+            ...state,
+            [name]:value
+        })
+    }
+
+    useEffect(() => {
+        const {type, topicArea,  tags} = initialData;
+        setState({
+            ...state,
+            eventType: type,
+            topicArea,
+            topicTags: jsonParse(tags)
+        });
+        // set initial state
+    }, [initialData]);
+
 
 	useEffect(() => {
 		const { type, topicArea, tags } = initialData;

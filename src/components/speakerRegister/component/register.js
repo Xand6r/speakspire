@@ -110,7 +110,7 @@ export default function Register({ location }) {
 
 	const mapState = {
 		'Personal Details': validatePersonaDetails(personalDetails),
-		Expertise: expertise,
+		Expertise: validateExpertiseState(expertise),
 		Experience: validateExperienceState(experience),
 		Preferences: validatePreferenceState(preference),
 		Media: validateMedia(media),

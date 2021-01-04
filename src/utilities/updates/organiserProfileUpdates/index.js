@@ -50,23 +50,28 @@ export default function Index({ onClose, initialData, onSuccess }) {
 			// set lading state
 			setLoading(true);
 			// make patch request
-			// axios
-			// 	.patch(`speakers/${userId}/expertise`, {
-			// 		// expertise: cleanData(state),
-			// 	})
-			// 	.then(() => {
-			// 		message.success('Details updated sucesfully!');
-			// 		onClose();
-			// 		onSuccess();
-			// 	})
-			// 	.catch((err) => {
-			// 		console.log(err);
-			// 		message.error('There was an error updating user!', err.response.data.message);
-			// 		onClose();
-			// 	})
-			// 	.finally(() => {
-			// 		setLoading(false);
-			// 	});
+			axios
+				.patch(`organizers/${userId}/details`, {
+                    "name": state.name,
+                    "specialty": state.specialty,
+                    "email": state.email,
+                    "phone": state.phone,
+                    "state": state.city,
+                    "country":state.country
+				})
+				.then(() => {
+					message.success('Details updated sucesfully!');
+					onClose();
+					onSuccess();
+				})
+				.catch((err) => {
+					console.log(err);
+					message.error('There was an error updating user!', err.response.data.message);
+					onClose();
+				})
+				.finally(() => {
+					setLoading(false);
+				});
 		} else {
 			message.error('Please fill in all details before submitting!');
 			return;

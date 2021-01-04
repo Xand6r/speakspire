@@ -57,8 +57,11 @@ function parseTime(time) {
 const whiteLoadingIcon = <LoadingOutlined style={{ fontSize: 24, color: '#fff' }} spin />;
 const imageLoadingIcon = <LoadingOutlined style={{ fontSize: 20, color: '#4D75F4' }} spin />;
 export default function ProfileContent({ isAdmin, refetch, userData }) {
-	const { description, tags, topic_area, type, schedule, media, speakers = [], id } = userData;
-	const eventState = useSelector(({ events }) => events);
+	const { description, tags, topic_area, type, schedule, media, speakers=[], id } = userData;
+	const eventState = useSelector(({events} )=> events);
+	const userId = useSelector(({user}) => user.id);
+
+
 
 	const [loading, setLoading] = useState(false);
 	const [editField, setEditField] = useState(false);
@@ -76,23 +79,18 @@ export default function ProfileContent({ isAdmin, refetch, userData }) {
 	const saveMedia = () => {
 		// logic about uploading images
 
-		setLoading(true);
-		axios
-			.patch(`/speakers//media`, {
-				media: mediaState,
-			})
-			.then((res) => {
-				message.success('Details updated sucesfully!');
-			})
-			.catch((err) => {
-				message.error('There was an error updating user!', err.response.data.message);
-			})
-			.finally(() => {
-				setActiveMediaTab({
-					...activeMediaTab,
-					edit: false,
-				});
-				setLoading(false);
+		setLoading(true)
+        axios.patch(`events/${id}/media`,{
+			"organizer_id": `${userId}`,
+			media: mediaState
+        }).then((res) => {
+            message.success("Details updated sucesfully!");
+        }).catch((err) => {
+            message.error("There was an error updating your event media!", err.response.data.message);
+        }).finally(()=>{
+			setActiveMediaTab({
+				...activeMediaTab,
+				edit: false
 			});
 	};
 

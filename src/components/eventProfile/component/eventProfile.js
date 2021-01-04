@@ -5,6 +5,7 @@ import ImgCrop from 'antd-img-crop';
 import { Upload, message, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
+import Loader from '../../../utilities/loadingScreen';
 import imageOverlay from '../assets/overlay.svg';
 
 import { getID, getRole } from '../../../api/user';
@@ -25,13 +26,16 @@ const antIcon = <LoadingOutlined style={{ fontSize: 46, color: '#F1F3F9' }} spin
 export default function Speakerprofile(props) {
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const [userData, setUserData] = useState({});
-	const [imageLink, setImageLink] = useState('');
+	const [imageLink, setImageLink] = useState("");
+	const [loading, setLoading] = useState(false);
+
 
 	const history = useHistory();
-	const userId = useSelector(({ user }) => user.id);
+	const userId = useSelector(({user}) => user.id)
 
-	const id = userId;
 	const role = getRole();
+	const eventId = userData?.id;
+	const organiserId = userData?.organizer_id;
 	// const isAdmin = userId === id
 
 	const getDetails = async () => {
@@ -45,7 +49,10 @@ export default function Speakerprofile(props) {
 		}
 	};
 	useEffect(() => {
-		getDetails();
+		setLoading(true);
+		getDetails().then(() => {
+			setLoading(false);
+		})
 	}, [history, props.match.params.id]);
 
 	useEffect(() => {
@@ -66,7 +73,12 @@ export default function Speakerprofile(props) {
 		};
 	}, []);
 
-	const isAdmin = true;
+	const isAdmin = (userId === organiserId) && role === "organizer"
+
+
+	if(loading){
+		return <Loader />
+	}
 
 	return (
 		<div className='eventprofile'>
@@ -88,16 +100,36 @@ export default function Speakerprofile(props) {
 				/>
 				{isAdmin && (
 					<ImgCrop aspect='2.05'>
-						<Upload
-							{...props}
-							beforeUpload={(file) => {
-								const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-								if (!isJpgOrPng) {
-									message.error('You can only upload JPG/PNG file!');
-									return;
-								}
-								if (uploadLoading) {
-									message.error('Still Uploading one image!');
+							<Upload
+								{...props}
+								beforeUpload={(file) => {
+									const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+									if (!isJpgOrPng) {
+										message.error('You can only upload JPG/PNG file!');
+										return;
+									}
+									if(uploadLoading){
+										message.error('Still Uploading one image!');
+
+									}
+									setUploadLoading(true);
+									uploadEventsCover(file, eventId, organiserId)
+										.then((res) => res && setImageLink(res))
+										.catch((err) => message.error("There was an error uploading image"))
+										.finally(() =>{
+											setUploadLoading(false)
+										})
+									return false;
+								}}
+							>
+							<div className="eventprofile__header_image__overlay">
+								{
+									!uploadLoading ?
+									<img
+										src={imageOverlay} 
+										alt=""
+									/> :
+									<Spin indicator={antIcon} />
 								}
 								setUploadLoading(true);
 								uploadEventsCover(file, userId)

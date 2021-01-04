@@ -104,6 +104,7 @@ export default function Index({ onClose, initialData, onSuccess, eventId }) {
 		}
 	};
 
+
 	return (
 		<div className='updates sample'>
 			<div className='updates__form'>

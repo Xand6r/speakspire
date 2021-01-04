@@ -13,6 +13,7 @@ import {
 
 import { STEPS, EVENT_INFO_STATE, SCHEDULE_STATE, SPEAKER_CALL, INITIAL_MEDIA_STATE } from './constants';
 
+
 import { component as NavBar } from '../../../utilities/navbar';
 import { component as SectionTab } from '../../speakerRegister/subcomponents/sectionTab';
 import { component as EventCard } from '../../../utilities/eventCard';
@@ -50,6 +51,15 @@ export default function Register({ location }) {
 		'Call for Speakers': validateSpeakerCall(speakerCall),
 		'Media': validateMedia(media),
 	}
+
+	useEffect(() => {
+		if(role !== "organizer"){
+			message.error("You have to be an organiser to create an event");
+			setTimeout(() =>{
+				history.goBack();
+			},1500)
+		}
+	}, [])
 
 	useEffect(() => {
 		const NO_ERRORS = [...errorStates];
