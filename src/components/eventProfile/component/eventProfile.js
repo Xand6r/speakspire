@@ -122,24 +122,6 @@ export default function Speakerprofile(props) {
 									return false;
 								}}
 							>
-							<div className="eventprofile__header_image__overlay">
-								{
-									!uploadLoading ?
-									<img
-										src={imageOverlay} 
-										alt=""
-									/> :
-									<Spin indicator={antIcon} />
-								}
-								setUploadLoading(true);
-								uploadEventsCover(file, userId)
-									.then((res) => res && setImageLink(res))
-									.catch((err) => message.error('There was an error uploading image'))
-									.finally(() => {
-										setUploadLoading(false);
-									});
-								return false;
-							}}>
 							<div className='eventprofile__header_image__overlay'>
 								{!uploadLoading ? <img src={imageOverlay} alt='' /> : <Spin indicator={antIcon} />}
 							</div>

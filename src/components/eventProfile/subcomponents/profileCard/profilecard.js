@@ -73,7 +73,7 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 
 						<div className='--event_theme'>
 							<div className='--themeheading'>Theme</div>
-							<div className='--themecontent'>The Role of Media in Growing the Economy</div>
+							<div className='--themecontent'>{theme}</div>
 						</div>
 					</div>
 

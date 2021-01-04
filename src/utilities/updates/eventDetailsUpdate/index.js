@@ -23,6 +23,7 @@ const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#fff' }} spin />
 export default function Index({ onClose, initialData, onSuccess, eventId }) {
     const [state, setState] = useState(INITIAL_STATE);
     const [loading, setLoading] = useState(false);
+	const userId = useSelector(({user}) => user.id)
 
     const stateChanger = (name, value) => {
         setState({
@@ -51,10 +52,6 @@ export default function Index({ onClose, initialData, onSuccess, eventId }) {
 			topicArea,
 			topicTags: jsonParse(tags),
 		});
-		alert('loading');
-		axios.get('http://localhost:8081/auth/google/link').then((data) => alert(data));
-		// set initial state
-		console.log(initialData);
 	}, [initialData]);
 
 	const saveState = () => {

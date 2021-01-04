@@ -92,7 +92,8 @@ export default function ProfileContent({ isAdmin, refetch, userData }) {
 				...activeMediaTab,
 				edit: false
 			});
-	};
+		});
+	}
 
 	const showMediaEditItems = (tab) => {
 		return activeMediaTab.edit && `${activeMediaTab.activeTab}` === `${tab}`;
@@ -534,6 +535,7 @@ export default function ProfileContent({ isAdmin, refetch, userData }) {
 		</>
 	);
 }
+
 
 ProfileContent.propTypes = {
 	about: PropTypes.string,
