@@ -77,7 +77,7 @@ export default function Index({ onClose, initialData, onSuccess, eventId }) {
 
 	const saveState = () => {
 		const valid = validateData(state);
-		const eventID = window.location.href.split('http://localhost:3000/events/')[1];
+		const eventID = window.location.href.split('/events/')[1];
 
 		if (valid) {
 			// set lading state
