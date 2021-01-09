@@ -72,10 +72,19 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 	const currencyMap ={
         dollars: "$",
         naira: "NGN"
-    }
-	const travelLocation = preferences?JSON.parse(preferences[0].travel)[0]: "Nigeria";
-	const physical = preferences && preferences[0].delivery_mode.includes('Physical');
-	const virtual = preferences && preferences[0].delivery_mode.includes('Virtual');
+	};
+	const arrayJsonParse = (jsonstring, array) => {
+		try{
+			const parsed = JSON.parse(jsonstring);
+			return parsed;
+		}catch(err){
+			return array?[]:{};
+		}
+	};
+
+	const travelLocation = preferences?arrayJsonParse(preferences[0]?.travel)[0]: "Nigeria";
+	const physical = preferences && preferences[0]?.delivery_mode.includes('Physical');
+	const virtual = preferences && preferences[0]?.delivery_mode.includes('Virtual');
 	const formatPrice = (priceString) =>{
 		return Number(priceString.replace(' ','')).toLocaleString()
 	}
@@ -186,8 +195,8 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 						<div className='profiletext_wrapper'>
 							<div className='--name'>{name}</div>
 							<div className='--qualifications'>{highest_level_of_education}</div>
-							<div className='--position'>{experience ? experience[0].position : null}</div>
-							<div className='--company'>{experience ? experience[0].company : null}</div>
+							<div className='--position'>{experience ? experience[0]?.position : null}</div>
+							<div className='--company'>{experience ? experience[0]?.company : null}</div>
 							<div className='--footer'>
 								<div
 									className='--contact'
@@ -232,7 +241,7 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 
 						<div className='profilecard__maincontent__right__item'>
 							<div className='--icon' > <img src={planeIcon} alt='' /> </div>
-							<div className='--text'>{travelLocation}</div>
+							<div className='--text'>{travelLocation || "N/A"}</div>
 						</div>
 
 						<div className='profilecard__maincontent__right__item'>

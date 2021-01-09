@@ -111,6 +111,7 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 	const [allPublications, setAllPublications] = useState([]);
 	const [activeTalkTab, setactiveTalkTab] = useState(1);
 	const [positionsTab, setPositionsTab] = useState(1);
+	const [randomId, setRandomId] = useState(0);
 
 	const [mediaLoading, setMediaLoading] = useState(false);
 	const FileImage = () => <img height='14px' style={{'marginRight': '10px'}} src={UploadImage} alt='calendar' />;
@@ -120,7 +121,6 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 	const speakersList = speakers || [];
 
 	const SOCIAL_MEDIA_ICONS = [[instagram, getLink(links, 'instagram')], [linkedin, getLink(links, 'linkedin')], [twitter, getLink(links, 'twitter')], [facebook, getLink(links, 'facebook')], [web, getLink(links, 'www')]];
-
 
 	const EditIcon = () => (
 		isAdmin &&
@@ -134,6 +134,11 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 		return activeMediaTab.edit && `${activeMediaTab.activeTab}` === `${tab}`
 	}
 
+	useEffect(() => {
+		const tempRandomId = parseInt(Math.random() * speakersList.length);
+		setRandomId(tempRandomId)
+	},[speakersList])
+	
 	useEffect(() => {
 		if(!userData) return;
 		const {
@@ -515,14 +520,15 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 					<div className='profilecontent__left__similar'>
 						<div className='similar_heading'> Similar Speakers</div>
 						<div className='similar_speakers'>
-							{speakersList.slice(1, 2).map((speaker, i) => {
+							{speakersList.slice(randomId, randomId + 1).map((speaker, i) => {
 								const {
 									name,
-									experience: [{ company, position }],
+									experience,
 									profile_photo,
 									id,
 									expertise: [{ primary_specialty, secondary_specialty, primary_tags }],
 								} = speaker;
+								const [{ company, position }] = experience.length? experience : [{}]
 								return (
 									<HorizontalSpeaker
 										id={id}

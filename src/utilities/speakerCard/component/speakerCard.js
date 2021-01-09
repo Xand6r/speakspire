@@ -62,7 +62,7 @@ export default function SpeakerCard({
 
                     <div className="speakercard__profile__skills">
                         {
-                            skills.map((skill,i)=>(
+                            skills.slice(0,3).map((skill,i)=>(
                                 <Skill name={skill} key={i} />
                             ))
                         }

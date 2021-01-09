@@ -105,9 +105,10 @@ export default function Filter() {
                         console.log(speaker.id)
                         const {
                             id,
-                            name, experience:[{company, position}],
+                            name, experience,
                             expertise: [{primary_specialty,secondary_specialty, primary_tags, primary_topic }]
                         } = speaker;
+                        const [{company, position}] = experience.length? experience : [{company: null, position: null}];
                         return (
                             <SpeakerCard
                                 id={speaker.id}
