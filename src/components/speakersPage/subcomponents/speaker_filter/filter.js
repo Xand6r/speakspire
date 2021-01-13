@@ -21,6 +21,14 @@ export default function Filter() {
     function onChange(checkedValues) {
         console.log('checked = ', checkedValues);
     }
+    const arrayJsonParse = (jsonstring, array) => {
+		try{
+			const parsed = JSON.parse(jsonstring);
+			return parsed;
+		}catch(err){
+			return array?[]:{};
+		}
+	};
     const [speakerFilterState, setSpeakerFilterState] = useState(INITIAL_STATE);
     const [speakerNumber, setSpeakerNumber] = useState(12);
     const [filterLoading, setFilterLoading] = useState(false)
@@ -102,12 +110,18 @@ export default function Filter() {
                 <div className="filter__results">
                 {
                     speakerState.data.map(speaker => {
-                        console.log(speaker.id)
+                        
                         const {
                             id,
                             name, experience,
-                            expertise: [{primary_specialty,secondary_specialty, primary_tags, primary_topic }]
+                            expertise: [{primary_specialty,secondary_specialty, primary_tags, primary_topic }],
+                            bio, languages,
+                            preferences,
+                            state, country
                         } = speaker;
+                        const travelLocation = preferences?arrayJsonParse(preferences[0]?.travel)[0]: "Nigeria";
+                        const physical = preferences && preferences[0]?.delivery_mode.includes('Physical');
+                        const virtual = preferences && preferences[0]?.delivery_mode.includes('Virtual');
                         const [{company, position}] = experience.length? experience : [{company: null, position: null}];
                         return (
                             <SpeakerCard
@@ -121,6 +135,13 @@ export default function Filter() {
                                 primary={primary_specialty}
                                 secondary={primary_topic}
                                 tag="premium"
+                                bio={bio}
+                                travelLocation={travelLocation}
+                                physical={physical}
+                                virtual={virtual}
+                                state={state}
+                                country={country}
+                                languages={languages}
                             />
                         );
                     })

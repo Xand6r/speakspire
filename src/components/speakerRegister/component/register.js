@@ -202,6 +202,15 @@ export default function Register({ location }) {
 									image={media.profile_photo.src || undefined}
 									primary={expertise.primary_specialty.value}
 									secondary={expertise.primary_topic_area.value}
+									bio={experience.fullbio}
+									travelLocation={
+										preference.travel_places.length && preference.travel_places.indexOf("Global") == -1 ?
+										preference.travel_places.join(', '): "Global"
+									}
+									state={personalDetails.city}
+									country={personalDetails.country}
+									languages={expertise.languages.join(", ")}
+									profile
 								/>
 							</div>
 						) : (
