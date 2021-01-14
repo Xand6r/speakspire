@@ -137,6 +137,9 @@ export default function Filter() {
 									companyName={organiser.name}
 									specialty={organiser.specialty}
 									services={JSON.parse(organiser.services)}
+									state={organiser.state}
+									country={organiser.country}
+									about={organiser.bio}
 								/>
 							</div>
 						);

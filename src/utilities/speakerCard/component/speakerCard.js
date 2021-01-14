@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom'
 import './speakerCard.scss';
 import {component as Skill} from '../../skillTab';
 import placeholderIcon from '../assets/placeholderImage.svg'
-import samplePicture from '../assets/samplepicture.svg';
 import playIcon from '../assets/playIcon.svg';
 import profileIcon from '../assets/profileIcon.svg';
 import blueMic from '../assets/blueMic.svg';
@@ -87,7 +86,7 @@ export default function SpeakerCard({
                         <>
                             <div className="speakercard__profile__sideitems --left">
                                 {physical &&  <img src={profileIcon} alt=""/>}
-                                {physical &&  <img src={playIcon} alt=""/>}
+                                {virtual &&  <img src={playIcon} alt=""/>}
                             </div>
                             <div className="speakercard__profile__sideitems --right">
                                 <img
