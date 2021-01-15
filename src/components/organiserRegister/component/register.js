@@ -148,6 +148,10 @@ export default function Register({ location }) {
 									companyName={personalDetails.companyName}
 									specialty={media.speciality.label}
 									services={media.services.length ? media.services : undefined}
+									state={personalDetails.city}
+									country={personalDetails.country}
+									about={media.bio}
+									profile
 								/>
 							</div>
 						) : (

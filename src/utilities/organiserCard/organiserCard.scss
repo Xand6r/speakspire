@@ -56,14 +56,13 @@
 
     &__profile{
         margin-bottom: 20px;
+        border-radius: 50%;
         img{
-            border: 2px solid #FFFFFF;
             // border-radius: 50%;
             object-fit: cover;
             height: 93px;
             width: 93px;
             border-radius: 5px;
-            background: white;
         }
     }
 
@@ -127,9 +126,8 @@
         .organiser_preview__profile{
             margin-top: -45px;
             img{
-                border: 2px solid #FFFFFF;
                 box-sizing: border-box;
-                box-shadow: 0px 10px 15px rgba(22, 35, 89, 0.1);
+                // box-shadow: 0px 10px 15px rgba(22, 35, 89, 0.1);
                 border-radius: 5px;
             }
         }
@@ -146,7 +144,12 @@
                 color: #767E9F;
                 font-family: 'markpro-regular';
                 @extend %twelvepx;
-                height: 64px;
+                height: 74px;
+                word-break: break-all;
+                display: -webkit-box;
+                -webkit-line-clamp: 4;
+                -webkit-box-orient: vertical;  
+                overflow: hidden;
             }
             &__action{
                 @extend %outlined-button;
