@@ -1,0 +1,53 @@
+// imports
+@import '../../stylesheets/colors';
+@import '../../stylesheets/utilities';
+@import '../../stylesheets/fonts';
+
+.shareuser{
+    position: absolute;
+    top: 16px;
+    right: -138px;
+    z-index: 10;  
+    box-shadow: 0px 4px 20px rgba(22, 35, 89, 0.08);
+    border-radius: 4px;
+
+    ul{
+        border-radius: 5px;
+    }
+    .navigation-dropdown {
+        .dropdown-header{
+            border-radius: 4px 4px 0px 0px;
+            background: #CDD1DE;
+            color: #162359;
+            display: flex;
+            width: 192px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0px 14px;
+            font-family: 'markpro-medium';
+            @extend %fourteenpx;
+            cursor: unset;
+    
+            &__image{
+                margin-right: 8px;
+                cursor: unset;
+
+            }
+        }
+
+        .dropdown-content{
+            width: 192px;
+            .profileimage{
+                fill:#767E9F;
+            }
+            &:hover .profileimage{
+                fill: #4D75F4;
+            }
+
+            &:last-of-type{
+                border-radius: 0px 0px 4px 4px;
+            }
+        }
+    }
+}

@@ -18,6 +18,7 @@ import greyPencil from '../../assets/greyPencil.svg';
 
 import Popup from '../../../../utilities/popup/index';
 import ContactMe from '../../../../utilities/contactMethods';
+import ShareMe from '../../../../utilities/shareDropdown';
 import uploadImage, {uploadSpeakerCover} from '../../../../utilities/generalUtils/uploadImage';
 
 import './profilecard.scss';
@@ -48,6 +49,7 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 	const [userContacts, setUserContacts] = useState({});
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const [imageLink, setImageLink] = useState(null);
+	const [hideShare, setHideShare] = useState(true);
 	const [hideContacts, setHideContacts] = useState(true);
 
 
@@ -100,6 +102,7 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 	}
 	window.addEventListener('click', e=>{
 		setHideContacts(true);
+		setHideShare(true);
 	});
 
 	const EditIcon = () => (
@@ -137,7 +140,27 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 			>
 				<div className={`profilecard__tag --${tag}`}>{tag}</div>
 				<div className='profilecard__actions'>
-					<img src={shareIcon} alt='share' />
+					<div>
+						<img
+							onClick={(e) => {
+								e.stopPropagation()
+								setHideShare(!hideShare);
+							}}
+							src={shareIcon}
+							alt='share'
+						/>
+						<ShareMe
+							closed={hideShare}
+							onClose={(e) => {
+								e.stopPropagation()
+								setHideShare(true);
+							}}
+							meta={{
+								id,
+								profilePhoto: profile_photo
+							}}
+						/>
+					</div>
 					<div onClick={() => setClosePopup(false)}>
 						<EditIcon />
 					</div>
