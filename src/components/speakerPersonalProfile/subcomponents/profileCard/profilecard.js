@@ -140,7 +140,10 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 			>
 				<div className={`profilecard__tag --${tag}`}>{tag}</div>
 				<div className='profilecard__actions'>
-					<div>
+					<div style={{marginRight: "10px"}} onClick={() => setClosePopup(false)}>
+						<EditIcon />
+					</div>
+					<div style={{display: "flex"}}>
 						<img
 							onClick={(e) => {
 								e.stopPropagation()
@@ -160,9 +163,6 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 								profilePhoto: profile_photo
 							}}
 						/>
-					</div>
-					<div onClick={() => setClosePopup(false)}>
-						<EditIcon />
 					</div>
 				</div>
 

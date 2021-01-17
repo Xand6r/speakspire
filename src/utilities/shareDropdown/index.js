@@ -10,14 +10,12 @@ import {
 } from './svgs'
 
 
-export default function ({closed, onClose, meta}) {
-    const {id, profilePhoto} = meta;
+export default function ({closed, onClose}) {
     const url = "http://speakspire.com/speakers/56";//window.location.href;
     
 
     function shareFacebook(){
-        var img = profilePhoto; //Set Desired Image here
-        var totalurl = encodeURIComponent(url+'?img='+img);
+        var totalurl = encodeURIComponent(url);
         
         window.open ('http://www.facebook.com/sharer.php?u='+totalurl,'','width=500, height=500, scrollbars=yes, resizable=no');
         
