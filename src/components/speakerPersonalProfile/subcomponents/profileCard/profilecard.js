@@ -158,10 +158,6 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 								e.stopPropagation()
 								setHideShare(true);
 							}}
-							meta={{
-								id,
-								profilePhoto: profile_photo
-							}}
 						/>
 					</div>
 				</div>

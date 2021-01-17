@@ -4,7 +4,7 @@ import './organiserCard.scss';
 import {useHistory} from 'react-router-dom';
 
 import {component as Skill} from '../../utilities/skillTab';
-
+import {message} from 'antd';
 import locationIcon from '../speakerCard/assets/location.svg';
 import playIcon from '../speakerCard/assets/playIcon.svg';
 import profileIcon from '../speakerCard/assets/profileIcon.svg';
@@ -39,6 +39,18 @@ const Preview = ({
 }) => {
     const history = useHistory();
     const [fav, setFav] = useState(false);
+
+    const url = `http://speakspire.com/organiserprofile/${id}`;
+
+    const copyToClipboard = str => {
+        const el = document.createElement('textarea');
+        el.value = url;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        message.success("pofile link copied to clipboard");
+    };
 
     return (
         <div
@@ -108,7 +120,12 @@ const Preview = ({
                             style={{cursor: "pointer"}}
                             alt=""
                         />
-                        <img src={shareIcon} alt=""/>
+                        <img
+                            src={shareIcon}
+                            alt=""
+                            style={{cursor: "pointer"}}
+                            onClick={copyToClipboard}
+                        />
                     </div>
                 </>
             }

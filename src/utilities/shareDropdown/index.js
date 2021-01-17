@@ -11,8 +11,19 @@ import {
 
 
 export default function ({closed, onClose}) {
-    const url = "http://speakspire.com/speakers/56";//window.location.href;
-    
+    const user = useSelector(({user}) => user);
+    const {id, role} = user;
+    let url = window.location.href;
+    const roleMap = {
+        speaker: "speakers",
+        organizer: "organiserprofile"
+    }
+
+    if(url.indexOf('profile') !== -1){
+        url = `http://speakspire.com/${roleMap[role]}/${id}`;
+    }
+
+    console.log(url)
 
     function shareFacebook(){
         var totalurl = encodeURIComponent(url);

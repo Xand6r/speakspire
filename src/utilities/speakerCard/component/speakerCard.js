@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom'
+import { message } from 'antd';
 
 import './speakerCard.scss';
 import {component as Skill} from '../../skillTab';
@@ -38,6 +39,18 @@ export default function SpeakerCard({
     state, country, languages, profile
 }) {
     const [fav, setFav] = useState(false);
+
+    const url = `http://speakspire.com/speakers/${id}`;
+
+    const copyToClipboard = str => {
+        const el = document.createElement('textarea');
+        el.value = url;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        message.success("copied link to clipboard");
+    };
 
     const splitLanguage = (data) => {
 		return data
@@ -95,7 +108,12 @@ export default function SpeakerCard({
                                     style={{cursor: "pointer"}}
                                     alt=""
                                 />
-                                <img src={shareIcon} alt=""/>
+                                <img
+                                    src={shareIcon}
+                                    alt=""
+                                    onClick={copyToClipboard}
+                                    style={{cursor: "pointer"}}
+                                />
                             </div>
                         </>
                     }
