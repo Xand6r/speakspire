@@ -12,22 +12,32 @@ import {
 
 export default function ({closed, onClose, meta}) {
     const {id, profilePhoto} = meta;
+    const url = "http://speakspire.com/speakers/56";//window.location.href;
     
-    // const shareFacebook = () => {
-    //     const facebookShareLink = profileUrl + '&picture=' + profilePhoto + '&description=descript';
-    //     console.log(facebookShareLink);
-    //     var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=" + facebookShareLink+ "?imageurl="+profilePhoto);
-    //     return false;
-    // }
 
     function shareFacebook(){
-        const url = 'http://speakspire.com/speakers/18';//window.location.href;
         var img = profilePhoto; //Set Desired Image here
         var totalurl = encodeURIComponent(url+'?img='+img);
         
         window.open ('http://www.facebook.com/sharer.php?u='+totalurl,'','width=500, height=500, scrollbars=yes, resizable=no');
         
-        }
+    }
+
+    function shareTwitter(){
+        const text='Check us out  at speakspire';
+        const totalurl = `http://twitter.com/share?text=${text}&url=${url}&hashtags=#events,#speakers,#speakspire`
+        window.open(totalurl, '','width=500, height=500, scrollbars=yes, resizable=no')
+    }
+
+    function shareLinkedin(){
+        const title = 'Speakspire';
+        const summary = 'Check us out at Speakspire';
+        const totalurl = `https://www.linkedin.com/shareArticle?url=${url}&title=${title}&summary=${summary}&source=LinkedIn`;
+        window.open(totalurl, '','width=500, height=500, scrollbars=yes, resizable=no')
+
+    }
+
+
 
     return (
         <div
@@ -41,19 +51,25 @@ export default function ({closed, onClose, meta}) {
                     </div>
                     Share on:
                 </div>
-                <div className="dropdown-content">
+                {/* <div className="dropdown-content">
                     <div className="dropdown-content__image">
                         <RenderInstagramIcon />
                     </div>
                     Instagram
-                </div>
-                <div className="dropdown-content">
+                </div> */}
+                <div
+                    className="dropdown-content"
+                    onClick={shareLinkedin}
+                >
                     <div className="dropdown-content__image">
                         <RenderLinkedInIcon />
                     </div>
                     LinkedIn
                 </div>
-                <div className="dropdown-content">
+                <div
+                    className="dropdown-content"
+                    onClick = {shareTwitter}
+                >
                     <div className="dropdown-content__image">
                         <RenderTwitterInIcon />
                     </div>
