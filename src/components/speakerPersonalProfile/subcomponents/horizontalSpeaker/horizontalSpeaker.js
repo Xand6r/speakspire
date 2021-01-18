@@ -38,7 +38,7 @@ export default function HorizontalSpeaker({
                     </div>
 
                     <div className="icongroup">
-                        {/* <img src={like} alt=""/> */}
+                        <img src={like} alt=""/>
                         {physical &&
                             <Tooltip title="Available for physical events">
                                 <img src={profile} alt=""/>

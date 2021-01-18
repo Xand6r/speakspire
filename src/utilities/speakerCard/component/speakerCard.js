@@ -49,7 +49,7 @@ export default function SpeakerCard({
         el.select();
         document.execCommand('copy');
         document.body.removeChild(el);
-        message.success("copied link to clipboard");
+        message.success("Copied profile link to clipboard");
     };
 
     const splitLanguage = (data) => {

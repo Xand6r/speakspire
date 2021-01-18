@@ -23,7 +23,6 @@ export default function ({closed, onClose}) {
         url = `http://speakspire.com/${roleMap[role]}/${id}`;
     }
 
-    console.log(url)
 
     function shareFacebook(){
         var totalurl = encodeURIComponent(url);
@@ -46,6 +45,16 @@ export default function ({closed, onClose}) {
 
     }
 
+    const copyToClipboard = () => {
+        const el = document.createElement('textarea');
+        el.value = url;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        message.success("Copied profile link to clipboard");
+    };
+
 
 
     return (
@@ -60,12 +69,6 @@ export default function ({closed, onClose}) {
                     </div>
                     Share on:
                 </div>
-                {/* <div className="dropdown-content">
-                    <div className="dropdown-content__image">
-                        <RenderInstagramIcon />
-                    </div>
-                    Instagram
-                </div> */}
                 <div
                     className="dropdown-content"
                     onClick={shareLinkedin}
@@ -92,6 +95,15 @@ export default function ({closed, onClose}) {
                         <RenderFacebookIcon />
                     </div>
                     Facebook
+                </div>
+                <div
+                    className="dropdown-content"
+                    onClick = {copyToClipboard}
+                >
+                    <div className="dropdown-content__image">
+                        <RenderInstagramIcon />
+                    </div>
+                    Copy Link
                 </div>
             </Menu>
         </div>
