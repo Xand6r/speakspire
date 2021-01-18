@@ -51,6 +51,8 @@ export const LANGUAGE_OPTIONS = [
     { label: "English", value: "English" },
     { label: "Spanish", value: "Spanish" },
     { label: "French", value: "French" },
+    { label: "German", value: "German" },
+    { label: "Portuguese", value: "Portuguese" },
 ]
 // the default options fro multi and single select
 

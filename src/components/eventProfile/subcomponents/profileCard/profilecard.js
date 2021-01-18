@@ -4,6 +4,7 @@ import moment from 'moment';
 import { jsonParse } from '../../../../utilities/utils';
 import Popup from '../../../../utilities/popup/index';
 import UpdateProfile from '../../../../utilities/updates/eventProfileUpdate';
+import ShareMe from '../../../../utilities/shareDropdown';
 
 import ellipsisIcon from '../../assets/ellipsis.svg';
 import shareIcon from '../../assets/share.svg';
@@ -19,7 +20,8 @@ import './profilecard.scss';
 const tag = 'premium';
 export default function Profilecard({ userData, isAdmin, refetch }) {
 	const { name, organizer, schedule = [{}], language, id, theme } = userData;
-	const [popupClosed, setClosePopup] = useState(true);
+	const [ popupClosed, setClosePopup] = useState(true);
+	const [ hideShare, setHideShare] = useState(true);
 
 	// parse the time into the required format
 	const [{ date = '', time = '', physicalLink, onlineLink }] = schedule;
@@ -28,8 +30,14 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 	const parsedDate = moment(startDate, 'DD-MM-YY').format('ddd, MMM DD, YYYY');
 	// parse the time into the required format
 
+	window.addEventListener('click', e=>{
+		setHideShare(true);
+	});
+
+
 	const EditIcon = () =>
-		isAdmin && (
+		isAdmin &&
+		(
 			<div className='editicon'>
 				<img src={greyPencil} alt='' />
 			</div>
@@ -56,9 +64,26 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 			/>
 			<div className='events_profilecard'>
 				<div className='events_profilecard__actions'>
-					<img src={shareIcon} alt='share' />
-					<div onClick={() => setClosePopup(false)}>
+					<div style={{marginRight: "8px"}} onClick={() => setClosePopup(false)}>
 						<EditIcon />
+					</div>
+					<div style={{display: "flex"}}>
+						<img
+							onClick={(e) => {
+								e.stopPropagation()
+								setHideShare(!hideShare);
+							}}
+							src={shareIcon}
+							alt='share'
+							style={{cursor: "pointer"}}
+						/>
+						<ShareMe
+							closed={hideShare}
+							onClose={(e) => {
+								e.stopPropagation()
+								setHideShare(true);
+							}}
+						/>
 					</div>
 				</div>
 

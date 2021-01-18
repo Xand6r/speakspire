@@ -92,10 +92,12 @@
 
     &__maincontent{
         display: flex;
+        justify-content: space-between;
 
         &__right{
             margin-top: 15px;
             margin-bottom: 13px;
+            margin-right: 150px;
 
             &__item{
                 margin: 21px 0px;

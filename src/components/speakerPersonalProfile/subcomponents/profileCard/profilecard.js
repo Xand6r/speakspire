@@ -1,5 +1,5 @@
 import ImgCrop from 'antd-img-crop';
-import {Spin, message, Upload} from 'antd';
+import {Spin, message, Upload, Tooltip} from 'antd';
 import React, {useState, useEffect} from 'react';
 
 import UpdateProfile from '../../../../utilities/updates/speakerProfileUpdates';
@@ -18,11 +18,12 @@ import greyPencil from '../../assets/greyPencil.svg';
 
 import Popup from '../../../../utilities/popup/index';
 import ContactMe from '../../../../utilities/contactMethods';
+import ShareMe from '../../../../utilities/shareDropdown';
 import uploadImage, {uploadSpeakerCover} from '../../../../utilities/generalUtils/uploadImage';
+import { classifySpeaker } from '../../../../utilities/utils';
 
 import './profilecard.scss';
 
-const tag = 'premium';
 
 const props = {
 	name: 'file',
@@ -48,6 +49,7 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 	const [userContacts, setUserContacts] = useState({});
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const [imageLink, setImageLink] = useState(null);
+	const [hideShare, setHideShare] = useState(true);
 	const [hideContacts, setHideContacts] = useState(true);
 
 
@@ -55,8 +57,12 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 
 	const {
 		id, profile_photo, name, highest_level_of_education, experience, expertise, languages, phone, email,
-		state, country, contact = [], preferences, price = "1000 - 300000$naira"
+		state, country, contact = [], preferences, price = "1000 - 300000$naira",
+		years_of_experience='0-2 years', number_of_engagements="0-10 engagements"
 	} = userData;
+
+	const tag = classifySpeaker(number_of_engagements ,years_of_experience, languages);
+	console.log(tag);
 
 	useEffect(() => {
 		if(userData){
@@ -72,10 +78,19 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 	const currencyMap ={
         dollars: "$",
         naira: "NGN"
-    }
-	const travelLocation = preferences?JSON.parse(preferences[0].travel)[0]: "Nigeria";
-	const physical = preferences && preferences[0].delivery_mode.includes('Physical');
-	const virtual = preferences && preferences[0].delivery_mode.includes('Virtual');
+	};
+	const arrayJsonParse = (jsonstring, array) => {
+		try{
+			const parsed = JSON.parse(jsonstring);
+			return parsed;
+		}catch(err){
+			return array?[]:{};
+		}
+	};
+
+	const travelLocation = preferences?arrayJsonParse(preferences[0]?.travel)[0]: "Nigeria";
+	const physical = preferences && preferences[0]?.delivery_mode.includes('Physical');
+	const virtual = preferences && preferences[0]?.delivery_mode.includes('Virtual');
 	const formatPrice = (priceString) =>{
 		return Number(priceString.replace(' ','')).toLocaleString()
 	}
@@ -91,6 +106,7 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 	}
 	window.addEventListener('click', e=>{
 		setHideContacts(true);
+		setHideShare(true);
 	});
 
 	const EditIcon = () => (
@@ -128,9 +144,25 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 			>
 				<div className={`profilecard__tag --${tag}`}>{tag}</div>
 				<div className='profilecard__actions'>
-					<img src={shareIcon} alt='share' />
-					<div onClick={() => setClosePopup(false)}>
+					<div style={{marginRight: "10px"}} onClick={() => setClosePopup(false)}>
 						<EditIcon />
+					</div>
+					<div style={{display: "flex"}}>
+						<img
+							onClick={(e) => {
+								e.stopPropagation()
+								setHideShare(!hideShare);
+							}}
+							src={shareIcon}
+							alt='share'
+						/>
+						<ShareMe
+							closed={hideShare}
+							onClose={(e) => {
+								e.stopPropagation()
+								setHideShare(true);
+							}}
+						/>
 					</div>
 				</div>
 
@@ -186,8 +218,8 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 						<div className='profiletext_wrapper'>
 							<div className='--name'>{name}</div>
 							<div className='--qualifications'>{highest_level_of_education}</div>
-							<div className='--position'>{experience ? experience[0].position : null}</div>
-							<div className='--company'>{experience ? experience[0].company : null}</div>
+							<div className='--position'>{experience ? experience[0]?.position : null}</div>
+							<div className='--company'>{experience ? experience[0]?.company : null}</div>
 							<div className='--footer'>
 								<div
 									className='--contact'
@@ -200,8 +232,16 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 								>
 									contact me
 								</div>
-								{physical && <img src={profileIcon} alt='' />}
-								{virtual && <img src={playIcon} alt='' />}
+								{physical &&
+                                    <Tooltip title="Available for physical events">
+                                        <img src={profileIcon} alt=""/>
+                                    </Tooltip>
+                                }
+                                {virtual &&
+                                    <Tooltip title="Available for virtual events">
+                                        <img src={playIcon} alt=""/>
+                                    </Tooltip>
+                                }
 								<ContactMe
 									closed={hideContacts}
 									contacts={userContacts}
@@ -232,7 +272,7 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 
 						<div className='profilecard__maincontent__right__item'>
 							<div className='--icon' > <img src={planeIcon} alt='' /> </div>
-							<div className='--text'>{travelLocation}</div>
+							<div className='--text'>{travelLocation || "N/A"}</div>
 						</div>
 
 						<div className='profilecard__maincontent__right__item'>

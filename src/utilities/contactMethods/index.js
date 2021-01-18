@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './contactMethods.scss';
 import {message} from 'antd';
 

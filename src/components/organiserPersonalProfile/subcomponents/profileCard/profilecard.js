@@ -7,6 +7,7 @@ import './profilecard.scss';
 import UpdateProfile from '../../../../utilities/updates/organiserProfileUpdates';
 import Popup from '../../../../utilities/popup/index';
 import splitData from '../utils/splitData';
+import ShareMe from '../../../../utilities/shareDropdown';
 
 import shareIcon from '../../assets/share.svg';
 import imageOverlay from '../../assets/overlay.svg';
@@ -42,6 +43,8 @@ export default function Profilecard({ userData , isAdmin, refetch}) {
 	const [imageLink, setImageLink] = useState(null);
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const [hideContacts, setHideContacts] = useState(true);
+	const [hideShare, setHideShare] = useState(true);
+
 
 	const EditIcon = () => (
 		isAdmin &&
@@ -58,6 +61,7 @@ export default function Profilecard({ userData , isAdmin, refetch}) {
 
 	window.addEventListener('click', e=>{
 		setHideContacts(true);
+		setHideShare(true);
 	});
 
 	return (
@@ -77,9 +81,26 @@ export default function Profilecard({ userData , isAdmin, refetch}) {
 				/>
 			<div className='profilecard_organisers'>
 				<div className='profilecard_organisers__actions'>
-					<img src={shareIcon} alt='share' />
-					<div onClick={() => setClosePopup(false)} >
+					<div style={{marginRight: "10px"}} onClick={() => setClosePopup(false)} >
 						<EditIcon />
+					</div>
+					<div style={{display: "flex"}}>
+						<img 
+							onClick={(e) => {
+								e.stopPropagation()
+								setHideShare(!hideShare);
+							}}
+							src={shareIcon}
+							alt='share'
+							style={{cursor: "pointer"}}
+						/>
+						<ShareMe
+							closed={hideShare}
+							onClose={(e) => {
+								e.stopPropagation()
+								setHideShare(true);
+							}}
+						/>
 					</div>
 				</div>
 

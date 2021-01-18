@@ -6,6 +6,7 @@ import MultiSelect from '@khanacademy/react-multi-select';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
+import { classifySpeaker } from '../../../../utilities/utils';
 import { component as SpeakerCard } from '../../../../utilities/speakerCard';
 import ResetFilterIcon from '../../../../assets/resetFilterIcon.svg';
 import LeftArrow from '../../../../assets/leftArrow.svg';
@@ -22,7 +23,14 @@ const INITIAL_STATE = {
 };
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#4D75F4' }} spin />;
-
+const arrayJsonParse = (jsonstring, array) => {
+	try{
+		const parsed = JSON.parse(jsonstring);
+		return parsed;
+	}catch(err){
+		return array?[]:{};
+	}
+};
 const multi_options = [
 	{ label: 'Grapes', value: 'grapes' },
 	{ label: 'Mango', value: 'mango' },
@@ -120,11 +128,20 @@ export default function Filter() {
 				<div className='filter__results'>
 					{speakerState.data.slice(0, limit).map((speaker) => {
 						const {
-							id,
-							name,
-							experience: [{ company, position }],
-							expertise: [{ primary_specialty, primary_tags, primary_topic }],
-						} = speaker;
+                            id,
+                            name, experience,
+                            expertise: [{primary_specialty,secondary_specialty, primary_tags, primary_topic }],
+                            bio, languages,
+                            preferences,
+                            state, country,
+							years_of_experience = '0-2 years', number_of_engagements = "0-10 engagements",
+							languages: userLanguages
+                        } = speaker;
+						const tag = classifySpeaker(number_of_engagements, years_of_experience, userLanguages);
+                        const travelLocation = preferences?arrayJsonParse(preferences[0]?.travel)[0]: "Nigeria";
+                        const physical = preferences && preferences[0]?.delivery_mode.includes('Physical');
+                        const virtual = preferences && preferences[0]?.delivery_mode.includes('Virtual');
+                        const [{company, position}] = experience.length? experience : [{company: null, position: null}];
 						return (
 							<SpeakerCard
 								id={speaker.id}
@@ -136,7 +153,14 @@ export default function Filter() {
 								image={speaker.profile_photo}
 								primary={primary_specialty}
 								secondary={primary_topic}
-								tag='premium'
+								tag={tag}
+								bio={bio}
+                                travelLocation={travelLocation}
+                                physical={physical}
+                                virtual={virtual}
+                                state={state}
+                                country={country}
+                                languages={languages}
 							/>
 						);
 					})}

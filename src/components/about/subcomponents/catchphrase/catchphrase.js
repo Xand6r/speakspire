@@ -2,6 +2,9 @@ import React from 'react';
 import './catchphrase.scss';
 
 import Speaker from '../../assets/speaker.svg'
+import Boldness from '../../assets/boldness.svg'
+import Intent from '../../assets/intent.svg'
+import Love from '../../assets/love.svg'
 
 export default function Catchphrase() {
     return (
@@ -18,7 +21,7 @@ export default function Catchphrase() {
 
             <div className="catchphrase__phraseswrapper">
 
-                <div className="catchphrase__phraseswrapper__box --first">
+                <div className="catchphrase__phraseswrapper__box --firstold">
                     <div className="catchphrase__phraseswrapper__box__text">
                         <div className="--phrase__heading">
                             Boldness
@@ -28,7 +31,7 @@ export default function Catchphrase() {
                         </div>
                     </div>
                     <img
-                        src={Speaker}
+                        src={Boldness}
                         alt="speaker"
                         className="catchphrase__phraseswrapper__box__image"
                     />
@@ -44,13 +47,13 @@ export default function Catchphrase() {
                         </div>
                     </div>
                     <img
-                        src={Speaker}
+                        src={Intent}
                         alt="speaker"
                         className="catchphrase__phraseswrapper__box__image"
                     />
                 </div>
 
-                <div className="catchphrase__phraseswrapper__box --third">
+                <div className="catchphrase__phraseswrapper__box --thirdold">
                     <div className="catchphrase__phraseswrapper__box__text">
                         <div className="--phrase__heading">
                             Love
@@ -60,7 +63,7 @@ export default function Catchphrase() {
                         </div>
                     </div>
                     <img
-                        src={Speaker}
+                        src={Love}
                         alt="speaker"
                         className="catchphrase__phraseswrapper__box__image"
                     />

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs, message } from 'antd';
 import {LoadingOutlined} from '@ant-design/icons';
-import {Spin, Button, Upload} from 'antd';
+import {Spin, Button, Upload, Tooltip} from 'antd';
 import ImgCrop from 'antd-img-crop';
 
 
@@ -18,6 +18,7 @@ import UpdatePos from '../../../../utilities/updates/speakerPositionUpdates';
 import UpdateEdu from '../../../../utilities/updates/speakerEducationUpdates';
 import UpdateCert from '../../../../utilities/updates/speakerCertificationUpdates';
 
+import { classifySpeaker } from '../../../../utilities/utils';
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 
 import UploadImage from '../../assets/upload.svg'
@@ -111,6 +112,7 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 	const [allPublications, setAllPublications] = useState([]);
 	const [activeTalkTab, setactiveTalkTab] = useState(1);
 	const [positionsTab, setPositionsTab] = useState(1);
+	const [randomId, setRandomId] = useState(0);
 
 	const [mediaLoading, setMediaLoading] = useState(false);
 	const FileImage = () => <img height='14px' style={{'marginRight': '10px'}} src={UploadImage} alt='calendar' />;
@@ -120,7 +122,6 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 	const speakersList = speakers || [];
 
 	const SOCIAL_MEDIA_ICONS = [[instagram, getLink(links, 'instagram')], [linkedin, getLink(links, 'linkedin')], [twitter, getLink(links, 'twitter')], [facebook, getLink(links, 'facebook')], [web, getLink(links, 'www')]];
-
 
 	const EditIcon = () => (
 		isAdmin &&
@@ -134,6 +135,11 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 		return activeMediaTab.edit && `${activeMediaTab.activeTab}` === `${tab}`
 	}
 
+	useEffect(() => {
+		const tempRandomId = parseInt(Math.random() * speakersList.length);
+		setRandomId(tempRandomId)
+	},[speakersList])
+	
 	useEffect(() => {
 		if(!userData) return;
 		const {
@@ -515,24 +521,27 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 					<div className='profilecontent__left__similar'>
 						<div className='similar_heading'> Similar Speakers</div>
 						<div className='similar_speakers'>
-							{speakersList.slice(1, 2).map((speaker, i) => {
+							{speakersList.slice(randomId, randomId + 1).map((speaker, i) => {
 								const {
-									name,
-									experience: [{ company, position }],
-									profile_photo,
-									id,
+									name, experience,
+									profile_photo, id,
 									expertise: [{ primary_specialty, secondary_specialty, primary_tags }],
+									years_of_experience = '0-2 years', number_of_engagements = "0-10 engagements",
+									languages, preferences
 								} = speaker;
+								const category = classifySpeaker(number_of_engagements,years_of_experience, languages)
+								const [{ company, position }] = experience.length? experience : [{}]
 								return (
 									<HorizontalSpeaker
 										id={id}
 										key={i}
-										category='premium'
+										category={category}
 										profilePicture={profile_photo}
 										fullname={name}
 										position={position}
 										company={company}
 										primary={primary_specialty}
+										preferences={preferences}
 									/>
 								);
 							})}
