@@ -216,7 +216,7 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 						</div>
 
 						<div className='profiletext_wrapper'>
-							<div className='--name'>{name}</div>
+							<div className='--name'>{(name||'').toLowerCase()}</div>
 							<div className='--qualifications'>{highest_level_of_education}</div>
 							<div className='--position'>{experience ? experience[0]?.position : null}</div>
 							<div className='--company'>{experience ? experience[0]?.company : null}</div>

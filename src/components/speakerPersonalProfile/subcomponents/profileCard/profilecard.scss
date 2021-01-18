@@ -193,6 +193,7 @@
                 max-width: 300px;
                 .--name{
                     @extend %twentyeightpx;
+                    text-transform: capitalize;
                     font-family: 'markpro-bold';
                     color: $dark-blue;
                     margin-top: 15px;
