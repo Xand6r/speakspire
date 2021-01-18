@@ -68,11 +68,9 @@ export default function SpeakerCard({
 	};
 
 	const makeRequest = async (speakers) => {
-		const response = await axios.post(`/speakers/${userId}/favorites/speakers`, {
+		await axios.post(`/speakers/${userId}/favorites/speakers`, {
 			favoriteSpeakers: JSON.stringify(speakers),
 		});
-
-		console.log(response);
 	};
 
 	const url = `http://speakspire.com/speakers/${id}`;
