@@ -87,7 +87,8 @@ export default function Speakerprofile(props) {
 		if(userData){
 			setImageLink(userData.cover_photo)
 		}
-	}, [userData])
+	}, [userData]);
+
 
 	if(loading){
 		return <Loader />

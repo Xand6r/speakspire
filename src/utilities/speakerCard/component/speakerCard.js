@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom'
-import { message } from 'antd';
+import { message, Tooltip } from 'antd';
 
 import './speakerCard.scss';
 import {component as Skill} from '../../skillTab';
@@ -98,8 +98,16 @@ export default function SpeakerCard({
                         !profile && 
                         <>
                             <div className="speakercard__profile__sideitems --left">
-                                {physical &&  <img src={profileIcon} alt=""/>}
-                                {virtual &&  <img src={playIcon} alt=""/>}
+                                {physical &&
+                                    <Tooltip title="Available for physical events">
+                                        <img src={profileIcon} alt=""/>
+                                    </Tooltip>
+                                }
+                                {virtual &&
+                                    <Tooltip title="Available for virtual events">
+                                        <img src={playIcon} alt=""/>
+                                    </Tooltip>
+                                }
                             </div>
                             <div className="speakercard__profile__sideitems --right">
                                 <img

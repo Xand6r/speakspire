@@ -17,13 +17,13 @@
         border-radius: 50%;
         margin-right: 20px;
         &.--premium{
-            border: 2.5px solid #D1B072;
+            border: 2.5px solid $premiumColor;
         }
         &.--classic{
-            border: 2.5px solid #61B395;
+            border: 2.5px solid $classicColor;
         }
         &.--standard{
-            border: 2.5px solid #4D75F4;
+            border: 2.5px solid $standardColor;
         }
     }
     &__details{
@@ -87,8 +87,16 @@
         text-transform: uppercase;
 
         &.--premium{
-            color: #D1B072;
-            background: #FFF5E3;
+            background: $premiumBg;
+            color: $premiumColor;
+        }
+        &.--classic{
+            background: $classicBg;
+            color: $classicColor;
+        }
+        &.--standard{
+            background: $standardBg;
+            color: $standardColor;
         }
     }
 

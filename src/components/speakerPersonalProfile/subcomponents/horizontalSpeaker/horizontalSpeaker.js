@@ -8,12 +8,15 @@ import blueMic from '../../assets/blueMic.svg'
 import like from '../../assets/like.svg';
 import play from '../../assets/play.svg';
 import profile from '../../assets/profile.svg';
+import {Tooltip} from 'antd';
 
 export default function HorizontalSpeaker({
     category, profilePicture, fullname,
-    position, company, primary, id
+    position, company, primary, id, preferences
 }) {
-    const history=useHistory()
+    const physical = preferences && preferences[0]?.delivery_mode.includes('Physical');
+	const virtual = preferences && preferences[0]?.delivery_mode.includes('Virtual');
+    const history=useHistory();
     return (
         <div 
         className="horizontalspeaker"
@@ -35,9 +38,17 @@ export default function HorizontalSpeaker({
                     </div>
 
                     <div className="icongroup">
-                        <img src={like} alt=""/>
-                        <img src={play} alt=""/>
-                        <img src={profile} alt=""/>
+                        {/* <img src={like} alt=""/> */}
+                        {physical &&
+                            <Tooltip title="Available for physical events">
+                                <img src={profile} alt=""/>
+                            </Tooltip>
+                        }
+                        {virtual &&
+                            <Tooltip title="Available for virtual events">
+                                <img src={play} alt=""/>
+                            </Tooltip>
+                        }
                     </div>
 
                 </div>

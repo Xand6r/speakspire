@@ -5,6 +5,7 @@
 
 .speakercard{
     display: flex;
+    overflow: hidden;
     flex-direction: column;
     min-width: 262px;
     max-width: 262px;
@@ -47,6 +48,18 @@
         @extend %tag;
         background: #FFF5E3;;
         color: #D1B072;
+    }
+
+    .--classic{
+        @extend %tag;
+        background: $classicBg;
+        color: $classicColor;
+    }
+
+    .--standard{
+        @extend %tag;
+        background: $standardBg;
+        color: $standardColor;
     }
     
     .--tagplaceholder{
@@ -198,11 +211,18 @@
     }
 
     &:hover{
+        overflow: unset;
         .speakercard__profile__picturewrapper{
             margin-top: -50px;
 
             &.--premiumwrapper img{
-                border: 3px solid #D1B072;
+                border: 3px solid $premiumColor;
+            }
+            &.--classicwrapper img{
+                border: 3px solid $classicColor;
+            }
+            &.--standardwrapper img{
+                border: 3px solid $standardColor;
             }
         }
         .speakercard__profile__position,

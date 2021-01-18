@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs, message } from 'antd';
 import {LoadingOutlined} from '@ant-design/icons';
-import {Spin, Button, Upload} from 'antd';
+import {Spin, Button, Upload, Tooltip} from 'antd';
 import ImgCrop from 'antd-img-crop';
 
 
@@ -18,6 +18,7 @@ import UpdatePos from '../../../../utilities/updates/speakerPositionUpdates';
 import UpdateEdu from '../../../../utilities/updates/speakerEducationUpdates';
 import UpdateCert from '../../../../utilities/updates/speakerCertificationUpdates';
 
+import { classifySpeaker } from '../../../../utilities/utils';
 import uploadImage from '../../../../utilities/generalUtils/uploadImage';
 
 import UploadImage from '../../assets/upload.svg'
@@ -522,23 +523,25 @@ export default function ProfileContent({userData, isAdmin, refetch }) {
 						<div className='similar_speakers'>
 							{speakersList.slice(randomId, randomId + 1).map((speaker, i) => {
 								const {
-									name,
-									experience,
-									profile_photo,
-									id,
+									name, experience,
+									profile_photo, id,
 									expertise: [{ primary_specialty, secondary_specialty, primary_tags }],
+									years_of_experience = '0-2 years', number_of_engagements = "0-10 engagements",
+									languages, preferences
 								} = speaker;
+								const category = classifySpeaker(number_of_engagements,years_of_experience, languages)
 								const [{ company, position }] = experience.length? experience : [{}]
 								return (
 									<HorizontalSpeaker
 										id={id}
 										key={i}
-										category='premium'
+										category={category}
 										profilePicture={profile_photo}
 										fullname={name}
 										position={position}
 										company={company}
 										primary={primary_specialty}
+										preferences={preferences}
 									/>
 								);
 							})}

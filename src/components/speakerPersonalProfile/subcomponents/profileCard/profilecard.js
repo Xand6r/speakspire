@@ -1,5 +1,5 @@
 import ImgCrop from 'antd-img-crop';
-import {Spin, message, Upload} from 'antd';
+import {Spin, message, Upload, Tooltip} from 'antd';
 import React, {useState, useEffect} from 'react';
 
 import UpdateProfile from '../../../../utilities/updates/speakerProfileUpdates';
@@ -20,10 +20,10 @@ import Popup from '../../../../utilities/popup/index';
 import ContactMe from '../../../../utilities/contactMethods';
 import ShareMe from '../../../../utilities/shareDropdown';
 import uploadImage, {uploadSpeakerCover} from '../../../../utilities/generalUtils/uploadImage';
+import { classifySpeaker } from '../../../../utilities/utils';
 
 import './profilecard.scss';
 
-const tag = 'premium';
 
 const props = {
 	name: 'file',
@@ -57,8 +57,12 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 
 	const {
 		id, profile_photo, name, highest_level_of_education, experience, expertise, languages, phone, email,
-		state, country, contact = [], preferences, price = "1000 - 300000$naira"
+		state, country, contact = [], preferences, price = "1000 - 300000$naira",
+		years_of_experience='0-2 years', number_of_engagements="0-10 engagements"
 	} = userData;
+
+	const tag = classifySpeaker(number_of_engagements ,years_of_experience, languages);
+	console.log(tag);
 
 	useEffect(() => {
 		if(userData){
@@ -228,8 +232,16 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 								>
 									contact me
 								</div>
-								{physical && <img src={profileIcon} alt='' />}
-								{virtual && <img src={playIcon} alt='' />}
+								{physical &&
+                                    <Tooltip title="Available for physical events">
+                                        <img src={profileIcon} alt=""/>
+                                    </Tooltip>
+                                }
+                                {virtual &&
+                                    <Tooltip title="Available for virtual events">
+                                        <img src={playIcon} alt=""/>
+                                    </Tooltip>
+                                }
 								<ContactMe
 									closed={hideContacts}
 									contacts={userContacts}

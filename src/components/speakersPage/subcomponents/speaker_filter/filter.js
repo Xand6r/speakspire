@@ -8,7 +8,7 @@ import LeftArrow from '../../../../assets/leftArrow.svg';
 
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-
+import { classifySpeaker } from '../../../../utilities/utils';
 import { INITIAL_STATE, FILTER_TEXT, CHECKBOX_OPTIONS } from './constants';
 
 import {jsonParse} from '../../../../utilities/utils';
@@ -30,9 +30,19 @@ export default function Filter() {
 		}
 	};
     const [speakerFilterState, setSpeakerFilterState] = useState(INITIAL_STATE);
-    const [speakerNumber, setSpeakerNumber] = useState(12);
-    const [filterLoading, setFilterLoading] = useState(false)
+    const [limit, setLimit] = useState(12);
+	const [loading, setLoading] = useState(false);
     const speakerState = useSelector(({speakers} )=> speakers);
+
+
+    const increaseLimit = () => {
+		if (limit >= speakerState.data.length) return;
+		setLoading(true);
+		setTimeout(() => {
+			setLimit(limit + 4);
+			setLoading(false);
+		}, 1000);
+	};
 
     return (
         <div>
@@ -109,7 +119,7 @@ export default function Filter() {
 
                 <div className="filter__results">
                 {
-                    speakerState.data.map(speaker => {
+                    speakerState.data.slice(0,limit).map(speaker => {
                         
                         const {
                             id,
@@ -117,8 +127,11 @@ export default function Filter() {
                             expertise: [{primary_specialty,secondary_specialty, primary_tags, primary_topic }],
                             bio, languages,
                             preferences,
-                            state, country
+                            state, country,
+                            years_of_experience = '0-2 years', number_of_engagements = "0-10 engagements",
+							languages: userLanguages
                         } = speaker;
+                        const tag = classifySpeaker(number_of_engagements, years_of_experience, userLanguages);
                         const travelLocation = preferences?arrayJsonParse(preferences[0]?.travel)[0]: "Nigeria";
                         const physical = preferences && preferences[0]?.delivery_mode.includes('Physical');
                         const virtual = preferences && preferences[0]?.delivery_mode.includes('Virtual');
@@ -134,7 +147,7 @@ export default function Filter() {
                                 image={speaker.profile_photo}
                                 primary={primary_specialty}
                                 secondary={primary_topic}
-                                tag="premium"
+                                tag={tag}
                                 bio={bio}
                                 travelLocation={travelLocation}
                                 physical={physical}
@@ -148,9 +161,9 @@ export default function Filter() {
                     }
                 </div>
 
-                <div className="filter__more_results">
+                <div className="filter__more_results" onClick={increaseLimit}>
                     {
-                        (speakerState.loading || filterLoading)?(
+                        (speakerState.loading || loading)?(
                             <Spin indicator={antIcon} />
                         ):(
                             <>

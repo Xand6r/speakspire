@@ -6,6 +6,7 @@ import MultiSelect from '@khanacademy/react-multi-select';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
+import { classifySpeaker } from '../../../../utilities/utils';
 import { component as SpeakerCard } from '../../../../utilities/speakerCard';
 import ResetFilterIcon from '../../../../assets/resetFilterIcon.svg';
 import LeftArrow from '../../../../assets/leftArrow.svg';
@@ -132,8 +133,11 @@ export default function Filter() {
                             expertise: [{primary_specialty,secondary_specialty, primary_tags, primary_topic }],
                             bio, languages,
                             preferences,
-                            state, country
+                            state, country,
+							years_of_experience = '0-2 years', number_of_engagements = "0-10 engagements",
+							languages: userLanguages
                         } = speaker;
+						const tag = classifySpeaker(number_of_engagements, years_of_experience, userLanguages);
                         const travelLocation = preferences?arrayJsonParse(preferences[0]?.travel)[0]: "Nigeria";
                         const physical = preferences && preferences[0]?.delivery_mode.includes('Physical');
                         const virtual = preferences && preferences[0]?.delivery_mode.includes('Virtual');
@@ -149,7 +153,7 @@ export default function Filter() {
 								image={speaker.profile_photo}
 								primary={primary_specialty}
 								secondary={primary_topic}
-								tag='premium'
+								tag={tag}
 								bio={bio}
                                 travelLocation={travelLocation}
                                 physical={physical}
