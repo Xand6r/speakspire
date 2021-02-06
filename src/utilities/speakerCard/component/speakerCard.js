@@ -19,6 +19,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setFavoriteSpeakers } from '../../../redux/userSlice';
 import axios from '../../../utilities/axios';
 
+
 // import placeholders
 
 import fullnamePlaceHolder from '../assets/placeholders/nameplaceholder.svg';
@@ -50,6 +51,9 @@ export default function SpeakerCard({
 }) {
 	const dispatch = useDispatch();
 	const { user } = useSelector((state) => state.user);
+	const userState = useSelector(({ user }) => user);
+
+
 	const userId = user.id;
 	const favoriteSpeakers = user.favoriteSpeakers || [];
 
@@ -132,14 +136,17 @@ export default function SpeakerCard({
 								)}
 							</div>
 							<div className='speakercard__profile__sideitems --right'>
-								<img
-									src={likedStatus ? likedIcon : likeIcon}
-									onClick={() => {
-										likedStatus ? removeFromFavorites() : addToFavorites();
-									}}
-									style={{ cursor: 'pointer' }}
-									alt=''
-								/>
+								{
+									userState.loggedIn &&
+									<img
+										src={likedStatus ? likedIcon : likeIcon}
+										onClick={() => {
+											likedStatus ? removeFromFavorites() : addToFavorites();
+										}}
+										style={{ cursor: 'pointer' }}
+										alt=''
+									/>
+								}
 								<img src={shareIcon} alt='' onClick={copyToClipboard} style={{ cursor: 'pointer' }} />
 							</div>
 						</>
