@@ -1,5 +1,8 @@
-export const  initialState = {
-    fullname: "",
-    phonenumber: "",
-    email: "",
-}
+export const initialState = {
+	fullname: '',
+	phonenumber: '',
+	email: '',
+	price: '',
+	state: '',
+	country: '',
+};

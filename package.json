@@ -15,6 +15,7 @@
     "antd": "^4.6.2",
     "antd-img-crop": "^3.10.0",
     "axios": "^0.20.0",
+    "countries-list": "^2.6.1",
     "jwt-decode": "^3.0.0",
     "mandrill-api": "^1.0.45",
     "moment": "^2.27.0",

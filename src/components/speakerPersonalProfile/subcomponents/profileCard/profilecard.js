@@ -1,6 +1,6 @@
 import ImgCrop from 'antd-img-crop';
-import {Spin, message, Upload, Tooltip} from 'antd';
-import React, {useState, useEffect} from 'react';
+import { Spin, message, Upload, Tooltip } from 'antd';
+import React, { useState, useEffect } from 'react';
 
 import UpdateProfile from '../../../../utilities/updates/speakerProfileUpdates';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -15,15 +15,15 @@ import planeIcon from '../../assets/plane.svg';
 import globeIcon from '../../assets/globe.svg';
 import locationIcon from '../../assets/location.svg';
 import greyPencil from '../../assets/greyPencil.svg';
+import { formatPrice, getPrice } from './utils';
 
 import Popup from '../../../../utilities/popup/index';
 import ContactMe from '../../../../utilities/contactMethods';
 import ShareMe from '../../../../utilities/shareDropdown';
-import uploadImage, {uploadSpeakerCover} from '../../../../utilities/generalUtils/uploadImage';
+import uploadImage, { uploadSpeakerCover } from '../../../../utilities/generalUtils/uploadImage';
 import { classifySpeaker } from '../../../../utilities/utils';
 
 import './profilecard.scss';
-
 
 const props = {
 	name: 'file',
@@ -42,8 +42,7 @@ const props = {
 		}
 	},
 };
-const antIcon = <LoadingOutlined style={{fontSize: 46, color: '#F1F3F9'}} spin />;
-
+const antIcon = <LoadingOutlined style={{ fontSize: 46, color: '#F1F3F9' }} spin />;
 
 export default function Profilecard({ userData, isAdmin, refetch }) {
 	const [userContacts, setUserContacts] = useState({});
@@ -52,77 +51,72 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 	const [hideShare, setHideShare] = useState(true);
 	const [hideContacts, setHideContacts] = useState(true);
 
-
-	const [popupClosed, setClosePopup] = useState(true);
+	const [popupClosed, setClosePopup] = useState(false);
 
 	const {
-		id, profile_photo, name, highest_level_of_education, experience, expertise, languages, phone, email,
-		state, country, contact = [], preferences, price = "1000 - 300000$naira",
-		years_of_experience='0-2 years', number_of_engagements="0-10 engagements"
+		id,
+		profile_photo,
+		name,
+		highest_level_of_education,
+		experience,
+		expertise,
+		languages,
+		phone,
+		email,
+		state,
+		country,
+		contact = [],
+		preferences,
+		price = '1000 - 300000$naira',
+		years_of_experience = '0-2 years',
+		number_of_engagements = '0-10 engagements',
 	} = userData;
 
-	const tag = classifySpeaker(number_of_engagements ,years_of_experience, languages);
+	const tag = classifySpeaker(number_of_engagements, years_of_experience, languages);
 	console.log(tag);
 
 	useEffect(() => {
-		if(userData){
-			setImageLink(userData.profile_photo)
+		if (userData) {
+			setImageLink(userData.profile_photo);
 		}
-	}, [userData])
+	}, [userData]);
 	const splitLanguage = (data) => {
 		return data
 			.replace(/['"]+/g, ' ')
 			.replace(/['/[]+/g, '')
 			.replace(/['/\]]+/g, '');
 	};
-	const currencyMap ={
-        dollars: "$",
-        naira: "NGN"
-	};
+
 	const arrayJsonParse = (jsonstring, array) => {
-		try{
+		try {
 			const parsed = JSON.parse(jsonstring);
 			return parsed;
-		}catch(err){
-			return array?[]:{};
+		} catch (err) {
+			return array ? [] : {};
 		}
 	};
 
-	const travelLocation = preferences?arrayJsonParse(preferences[0]?.travel)[0]: "Nigeria";
+	const travelLocation = preferences ? arrayJsonParse(preferences[0]?.travel)[0] : 'Nigeria';
 	const physical = preferences && preferences[0]?.delivery_mode.includes('Physical');
 	const virtual = preferences && preferences[0]?.delivery_mode.includes('Virtual');
-	const formatPrice = (priceString) =>{
-		return Number(priceString.replace(' ','')).toLocaleString()
-	}
-	const getPrice = () => {
-		try{
-			const priceRange = price.split('$')[0].split(" - ");
-			const currency = price.split('$')[1]
-			const formattedPriceRange = `${formatPrice(priceRange[0])} ${currencyMap[currency]}- ${formatPrice(priceRange[1])} ${currencyMap[currency]}`
-			return formattedPriceRange;
-		}catch(err){
-			return "100,000 NGN - 650,000 NGN"
-		}
-	}
-	window.addEventListener('click', e=>{
+
+	window.addEventListener('click', (e) => {
 		setHideContacts(true);
 		setHideShare(true);
 	});
 
-	const EditIcon = () => (
-		isAdmin &&
-		<div className='editicon'>
-			<img src={greyPencil} alt='' />
-		</div>
-	);
+	const EditIcon = () =>
+		isAdmin && (
+			<div className='editicon'>
+				<img src={greyPencil} alt='' />
+			</div>
+		);
 
-	useEffect(()=>{
+	useEffect(() => {
 		contact.forEach((oneContact) => {
 			setUserContacts(oneContact);
 		});
-	},[contact])
-
-	
+	}, [contact]);
 
 	return (
 		<>
@@ -130,27 +124,23 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 				closed={popupClosed}
 				Component={
 					<UpdateProfile
-						initialData={{name, phone, email}}
+						initialData={{ name, phone, email, price: getPrice(price), state, country }}
 						onClose={() => setClosePopup(true)}
 						onSuccess={refetch}
 					/>
 				}
-				onClose={
-					() => setClosePopup(true)
-				}
+				onClose={() => setClosePopup(true)}
 			/>
-			<div
-				className='profilecard'
-			>
+			<div className='profilecard'>
 				<div className={`profilecard__tag --${tag}`}>{tag}</div>
 				<div className='profilecard__actions'>
-					<div style={{marginRight: "10px"}} onClick={() => setClosePopup(false)}>
+					<div style={{ marginRight: '10px' }} onClick={() => setClosePopup(false)}>
 						<EditIcon />
 					</div>
-					<div style={{display: "flex"}}>
+					<div style={{ display: 'flex' }}>
 						<img
 							onClick={(e) => {
-								e.stopPropagation()
+								e.stopPropagation();
 								setHideShare(!hideShare);
 							}}
 							src={shareIcon}
@@ -159,7 +149,7 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 						<ShareMe
 							closed={hideShare}
 							onClose={(e) => {
-								e.stopPropagation()
+								e.stopPropagation();
 								setHideShare(true);
 							}}
 						/>
@@ -171,83 +161,69 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 						<div className={`profilepicture_wrapper --${tag}`}>
 							<img src={imageLink} alt='' />
 
-							{
-								isAdmin &&
+							{isAdmin && (
 								<ImgCrop shape='round'>
-										<Upload
-											{...props}
-											beforeUpload={(file) => {
-												const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-												if (!isJpgOrPng) {
-													message.error('You can only upload JPG/PNG file!');
-													return;
-												}
-												if(uploadLoading){
-													message.error('Still Uploading one image!');
-
-												}
-												setUploadLoading(true);
-												uploadSpeakerCover(file, id)
-													.then((res) => {
-														setImageLink(res)
-														refetch()
-														}
-													)
-													.catch((err) => message.error("There was an error uploading image"))
-													.finally(() =>{
-														setUploadLoading(false)
-													})
-												return false;
-											}}
-										>
-										<div className="profilepicture_wrapper__overlay">
-											{
-												!uploadLoading ?
-												<img
-													src={imageOverlay} 
-													alt=""
-												/> :
-												<Spin indicator={antIcon} />
+									<Upload
+										{...props}
+										beforeUpload={(file) => {
+											const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+											if (!isJpgOrPng) {
+												message.error('You can only upload JPG/PNG file!');
+												return;
 											}
+											if (uploadLoading) {
+												message.error('Still Uploading one image!');
+											}
+											setUploadLoading(true);
+											uploadSpeakerCover(file, id)
+												.then((res) => {
+													setImageLink(res);
+													refetch();
+												})
+												.catch((err) => message.error('There was an error uploading image'))
+												.finally(() => {
+													setUploadLoading(false);
+												});
+											return false;
+										}}>
+										<div className='profilepicture_wrapper__overlay'>
+											{!uploadLoading ? <img src={imageOverlay} alt='' /> : <Spin indicator={antIcon} />}
 										</div>
 									</Upload>
 								</ImgCrop>
-							}
+							)}
 						</div>
 
 						<div className='profiletext_wrapper'>
-							<div className='--name'>{(name||'').toLowerCase()}</div>
+							<div className='--name'>{(name || '').toLowerCase()}</div>
 							<div className='--qualifications'>{highest_level_of_education}</div>
 							<div className='--position'>{experience ? experience[0]?.position : null}</div>
 							<div className='--company'>{experience ? experience[0]?.company : null}</div>
 							<div className='--footer'>
 								<div
 									className='--contact'
-									onClick={
-										(e) => {
-											e.stopPropagation()
-											setHideContacts(!hideContacts);
-										}
-									}
-								>
+									onClick={(e) => {
+										e.stopPropagation();
+										setHideContacts(!hideContacts);
+									}}>
 									contact me
 								</div>
-								{physical &&
-                                    <Tooltip title="Available for physical events">
-                                        <img src={profileIcon} alt=""/>
-                                    </Tooltip>
-                                }
-                                {virtual &&
-                                    <Tooltip title="Available for virtual events">
-                                        <img src={playIcon} alt=""/>
-                                    </Tooltip>
-                                }
+								{physical && (
+									<Tooltip title='Available for physical events'>
+										<img src={profileIcon} alt='' />
+									</Tooltip>
+								)}
+								{virtual && (
+									<Tooltip title='Available for virtual events'>
+										<img src={playIcon} alt='' />
+									</Tooltip>
+								)}
 								<ContactMe
 									closed={hideContacts}
 									contacts={userContacts}
 									onClose={(e) => {
-										e.stopPropagation()
-										setHideContacts(true)
+										e.stopPropagation();
+										setHideContacts(true);
 									}}
 								/>
 							</div>
@@ -261,22 +237,34 @@ export default function Profilecard({ userData, isAdmin, refetch }) {
 						</div>
 
 						<div className='profilecard__maincontent__right__item'>
-							<div className='--icon' > <img src={moneyIcon} alt='' /> </div>
-							<div className='--text'>{getPrice()}</div>
+							<div className='--icon'>
+								{' '}
+								<img src={moneyIcon} alt='' />{' '}
+							</div>
+							<div className='--text'>{getPrice(price)}</div>
 						</div>
 
 						<div className='profilecard__maincontent__right__item'>
-							<div className='--icon' > <img src={locationIcon} alt='' /> </div>
+							<div className='--icon'>
+								{' '}
+								<img src={locationIcon} alt='' />{' '}
+							</div>
 							<div className='--text'>{`${state}, ${country}`}</div>
 						</div>
 
 						<div className='profilecard__maincontent__right__item'>
-							<div className='--icon' > <img src={planeIcon} alt='' /> </div>
-							<div className='--text'>{travelLocation || "N/A"}</div>
+							<div className='--icon'>
+								{' '}
+								<img src={planeIcon} alt='' />{' '}
+							</div>
+							<div className='--text'>{travelLocation || 'N/A'}</div>
 						</div>
 
 						<div className='profilecard__maincontent__right__item'>
-							<div className='--icon' > <img src={globeIcon} alt='' /> </div>
+							<div className='--icon'>
+								{' '}
+								<img src={globeIcon} alt='' />{' '}
+							</div>
 							<div className='--text'>{languages ? splitLanguage(languages) : null}</div>
 						</div>
 					</div>
