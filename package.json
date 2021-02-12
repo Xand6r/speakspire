@@ -14,7 +14,7 @@
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.6.2",
     "antd-img-crop": "^3.10.0",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "countries-list": "^2.6.1",
     "jwt-decode": "^3.0.0",
     "mandrill-api": "^1.0.45",
